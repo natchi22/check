@@ -1,0 +1,18 @@
+<template>
+	<div class="">
+		หน้าไร?
+	</div>
+</template>
+
+<script>
+
+export default {
+	components: {
+ 
+	},
+};
+</script>
+
+<style>
+
+</style>
