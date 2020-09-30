@@ -2,6 +2,8 @@
   <div class="layout-margin">
     <Nuxt />
     <img :src="image" alt="">
+    name = {{name}}
+    userId = {{userId}}
   </div>
 </template>
 <style>
@@ -29,7 +31,6 @@ export default {
             this.userId = userId
             this.name = name
             this.image = image
-            alert(userId+"----"+name+"----"+image)
           })
         }
         else{
