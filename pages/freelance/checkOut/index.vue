@@ -1,38 +1,42 @@
 <template>
-    <div class="check-in">
-        <img src="../../../assets/icon/out.png" alt="">
-        <h1>บันทึกออกงาน</h1>
-        <div class="box-time">
-            <h4>{{dateShow}}</h4>
-            <h4>เข้า: {{timeIn}}</h4>
-            <h3>ออก: {{timeOut}}</h3>
-            <hr class="line line-grey">
-            <h3 class="sum">รวม {{sum}}</h3>
-        </div>
-        <nuxt-link to="/freelance/checkOut/listTask">
-            <button class="btn btn-red">ถัดไป</button>
-        </nuxt-link>
+  <div class="check-in">
+    <img src="../../../assets/icon/out.png" alt="">
+    <h1>บันทึกออกงาน</h1>
+    <div class="box-time">
+      <h4>{{ dateShow }}</h4>
+      <h4>เข้า: {{ timeIn }}</h4>
+      <h3>ออก: {{ timeOut }}</h3>
+      <hr class="line line-grey">
+      <h3 class="sum">
+        รวม {{ sum }}
+      </h3>
     </div>
+    <nuxt-link to="/freelance/checkOut/listTask">
+      <button class="btn btn-red">
+        ถัดไป
+      </button>
+    </nuxt-link>
+  </div>
 </template>
 <script>
 export default {
-    data(){
-        return {
-            dateShow: '22/09/2020',
-            timeIn: 6,
-            timeOut: 10,
-            sum: null,
-        }
-    },
-    methods:{
-        sumTime(){
-            this.sum = this.timeOut - this.timeIn
-            return this.sum
-        }
-    },
-    mounted(){
-        this.sumTime()
+  data () {
+    return {
+      dateShow: '22/09/2020',
+      timeIn: 6,
+      timeOut: 10,
+      sum: null
     }
+  },
+  mounted () {
+    this.sumTime()
+  },
+  methods: {
+    sumTime () {
+      this.sum = this.timeOut - this.timeIn
+      return this.sum
+    }
+  }
 }
 </script>
 <style scoped>
@@ -68,5 +72,8 @@ h1{
 }
 .sum{
     margin: 20px 0 !important;
+}
+.btn{
+    margin-bottom: 20px;
 }
 </style>

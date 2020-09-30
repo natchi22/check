@@ -1,29 +1,29 @@
 <template>
-    <div class="check-in">
-        <a-icon  
-            type="check-circle"
-            :style="{ 
-                fontSize: '100px', 
-                color: '#3ABCA7' }"
-            theme="filled" 
-        />
-        <h1>
-            บันทึกเข้างาน <br>
-            เรียบร้อยแล้ว
-        </h1>
-        <div class="box-time">
-            <p>{{dateShow}}, {{timeShow}} น.</p>
-        </div>
+  <div class="check-in">
+    <a-icon
+      type="check-circle"
+      :style="{
+        fontSize: '100px',
+        color: '#3ABCA7' }"
+      theme="filled"
+    />
+    <h1>
+      บันทึกเข้างาน <br>
+      เรียบร้อยแล้ว
+    </h1>
+    <div class="box-time">
+      <p>{{ dateShow }}, {{ timeShow }} น.</p>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            dateShow: '22/10/2020',
-            timeShow: '10.10'
-        }
+  data () {
+    return {
+      dateShow: '22/10/2020',
+      timeShow: '10.10'
     }
+  }
 }
 </script>
 <style scoped>
