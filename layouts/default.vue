@@ -1,9 +1,6 @@
 <template>
   <div class="layout-margin">
     <Nuxt />
-    <img :src="image" alt="">
-    name = {{name}}
-    userId = {{userId}}
   </div>
 </template>
 <style>
