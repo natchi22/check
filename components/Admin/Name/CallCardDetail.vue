@@ -30,7 +30,7 @@ export default {
 .card-detail{
     border-radius: 4px;
     box-shadow: 4px 4px 8px rgba(58,188,167,0.25);
-    padding: 24px 15px;
+    padding: 20px 14px 14px 14px;
     /* height: 116px; */
 }
 .data-profile{
@@ -40,9 +40,12 @@ export default {
     font-size: 14px;
 }
 .title{
-    width: 50%;
+    width: 40%;
 }
 .detail{
-    width: 50%;
+    width: 60%;
+}
+.detail h1{
+  color: rgba(0, 0, 0, 0.6) ;
 }
 </style>

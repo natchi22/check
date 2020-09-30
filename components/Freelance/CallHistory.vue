@@ -1,21 +1,29 @@
 <template>
-    <div class="card-detail">
-        <h2>{{dateShow}}</h2>
-        <hr class="line line-green">
-        <h3>เวลาเข้า - ออก: <font>{{timeIn}} น. - {{timeOut}} น.</font></h3>
-        <h3>รายละเอียด: <font>{{detail}}</font></h3>
+  <div class="card-detail">
+    <h2>{{ dateShow }}</h2>
+    <hr class="line line-green">
+    <div class="data-profile">
+      <div class="title">
+        <h1>เวลาเข้า - ออก:</h1>
+        <h1>รายละเอียด:</h1>
+      </div>
+      <div class="detail">
+        <h1>{{ timeIn }} น. - {{ timeOut }} น.</h1>
+        <h1>{{ detail }}</h1>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            dateShow: '22/10/2020',
-            timeIn:'10.00',
-            timeOut:'18.00',
-            detail:'ลิสงาน'
-        }
+  data () {
+    return {
+      dateShow: '22/10/2020',
+      timeIn: '10.00',
+      timeOut: '18.00',
+      detail: 'ลิสงาน'
     }
+  }
 }
 </script>
 <style scoped>
@@ -30,11 +38,20 @@ export default {
     width: 100px;
     margin: 0 auto 20px auto;
 }
-.card-detail h3{
-    font-size: 14px;
-    margin: 10px 0 0 0;
+.data-profile{
+    display: flex;
+    margin-top: 10px;
 }
-font{
-    color: rgba(0,0,0,0.6);
+.data-profile h1{
+    font-size: 14px;
+}
+.title{
+    width: 40%;
+}
+.detail{
+    width: 60%;
+}
+.detail h1{
+  color: rgba(0, 0, 0, 0.6) ;
 }
 </style>

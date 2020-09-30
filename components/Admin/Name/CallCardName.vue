@@ -1,17 +1,17 @@
 <template>
-    <div class="card">
-        <img class="pic" src="../../../assets/som.jpeg" alt="รูปโปรไฟล์">
-        <h1>{{fName}} {{lName}}</h1>
-    </div>
+  <div class="card">
+    <img class="pic" src="../../../assets/som.jpeg" alt="รูปโปรไฟล์">
+    <h1>{{ fName }} {{ lName }}</h1>
+  </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            fName: 'นางสาว',
-            lName: 'สมศรี'
-        }
+  data () {
+    return {
+      fName: 'นางสาว',
+      lName: 'สมศรี'
     }
+  }
 }
 </script>
 <style scoped>

@@ -1,16 +1,17 @@
 <template>
-    <div>
-        <h1>ประวัติการทำงานของคุณ</h1>
-        <CallHistory class="history"/>
-        <CallHistory class="history"/>
-    </div>
+  <div>
+    <h1>ประวัติการทำงานของคุณ</h1>
+    <CallHistory class="history" />
+    <CallHistory class="history" />
+    <CallHistory class="history" />
+  </div>
 </template>
 <script>
 import CallHistory from '@/components/Freelance/CallHistory'
 export default {
-    components:{
-        CallHistory
-    }
+  components: {
+    CallHistory
+  }
 }
 </script>
 <style scoped>
@@ -20,4 +21,9 @@ export default {
 h1{
     font-size: 24px;
 }
+/* @media screen and (min-width: 768px ){
+.history{
+    margin: 0 0 200px 0;
+}
+} */
 </style>

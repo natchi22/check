@@ -1,10 +1,14 @@
 <template>
-    <div class="login">
-        <h1>เข้าสู่ระบบ</h1>
-        <input type="text" placeholder="ชื่อผู้ใช้">
-        <input type="text" placeholder="รหัสผ่าน">
-        <nuxt-link to="/admin/history"><button class="btn btn-green">เข้าสู่ระบบ</button></nuxt-link>      
-    </div>
+  <div class="login">
+    <h1>เข้าสู่ระบบ</h1>
+    <input type="text" placeholder="ชื่อผู้ใช้">
+    <input type="text" placeholder="รหัสผ่าน">
+    <nuxt-link to="/admin/history">
+      <button class="btn btn-green">
+        เข้าสู่ระบบ
+      </button>
+    </nuxt-link>
+  </div>
 </template>
 <style scoped>
 .login{

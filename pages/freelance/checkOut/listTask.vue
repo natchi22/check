@@ -1,15 +1,17 @@
 <template>
-    <div class="list-task">
-        <h1>รายละเอียดงานวันนี้</h1>
-        <textarea name="" id="" cols="30" rows="10" placeholder="รายละเอียดงาน*"></textarea>
-        <nuxt-link to="/freelance/checkout/succeed">
-            <button class="btn btn-red">ออกงาน</button>
-        </nuxt-link>
-    </div>
+  <div class="list-task">
+    <h1>รายละเอียดงานวันนี้</h1>
+    <textarea id="" name="" cols="40" rows="10" placeholder="รายละเอียดงาน*" />
+    <nuxt-link to="/freelance/checkout/succeed">
+      <button class="btn btn-red">
+        ออกงาน
+      </button>
+    </nuxt-link>
+  </div>
 </template>
 <style scoped>
 .list-task{
-    width: 245px;
+    width: 290px;
     margin: 0 auto;
 }
 textarea{
