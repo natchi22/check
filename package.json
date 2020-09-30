@@ -11,6 +11,7 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@line/liff": "^2.4.1",
     "ant-design-vue": "^1.6.5",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.5"
