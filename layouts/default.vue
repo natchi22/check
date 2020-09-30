@@ -29,7 +29,7 @@ export default {
             this.userId = userId
             this.name = name
             this.image = image
-            alert(userId+"----"+name+"----"+img)
+            alert(userId+"----"+name+"----"+image)
           })
         }
         else{
