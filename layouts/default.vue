@@ -24,7 +24,7 @@ export default {
         if (liff.isLoggedIn()) {
           liff.getProfile().then((profile) => {
             const userId = profile.userId
-            const pictureUrl = profile.pictureUrl
+            const image = profile.pictureUrl
             const name = profile.displayName
             this.userId = userId
             this.name = name
@@ -35,7 +35,10 @@ export default {
         else{
           liff.login()
         }
-      })
+      }).catch((err) => {
+            alert('Connect failed, please try again.')
+            liff.closeWindow()
+        })
   }
 }
 </script>
