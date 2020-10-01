@@ -1,4 +1,5 @@
 export const state = () => ({
+  profile: {},
   image: null,
   userId: null,
   nameLine: null

@@ -2,9 +2,9 @@
 	<div class="">
 		หน้าไร?
 	<nuxt-link to="/freelance">ไป</nuxt-link>
-	<!-- img =<img :src="image" alt="">
+	img =<img :src="image" alt="">
     name = {{name}}
-    userId = {{userId}} -->
+    userId = {{userId}}
 
 	</div>
 </template>
@@ -27,33 +27,33 @@ export default {
       }),
   },
   mounted () {
-    // const data = {
-    //   img : this.image,
-    //   id : this.userId,
-    //   name : this.name
-    // }
-    // this.$store.commit('saveProfile',data)
-    // liff.init({ liffId: '1654989800-V2XxzW4z' })
-    //   .then(() => {
-    //     if (liff.isLoggedIn()) {
-    //       liff.getProfile().then((profile) => {
-    //         const userId = profile.userId
-    //         const image = profile.pictureUrl
-    //         const name = profile.displayName
-    //         this.userId = userId
-    //         this.name = name
-    //         this.image = image
-    //         this.saveProfile(profile)
-    //       })
-    //     }
-    //     else{
-    //       liff.login()
-    //     }
-    //   })
-    //   .catch((err) => {
-    //         alert('Connect failed, please try again.')
-    //         liff.closeWindow()
-    //     })
+    const data = {
+      img : this.image,
+      id : this.userId,
+      name : this.name
+    }
+    this.$store.commit('saveProfile',data)
+    liff.init({ liffId: '1654989800-V2XxzW4z' })
+      .then(() => {
+        if (liff.isLoggedIn()) {
+          liff.getProfile().then((profile) => {
+            const userId = profile.userId
+            const image = profile.pictureUrl
+            const name = profile.displayName
+            this.userId = userId
+            this.name = name
+            this.image = image
+            this.saveProfile(profile)
+          })
+        }
+        else{
+          liff.login()
+        }
+      })
+      .catch((err) => {
+            alert('Connect failed, please try again.')
+            liff.closeWindow()
+        })
   }
 }
 </script>
