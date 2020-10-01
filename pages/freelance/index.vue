@@ -1,11 +1,9 @@
 <template>
 	<div >
-
-        {{profile}}
         <div class="regis">
             <h1>กรอกข้อมูลส่วนตัว</h1>
             <div class="cover">
-                <img class="pic size-pic" src="../../assets/som.jpeg" alt="รูปโปรไฟล์">
+                <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
             </div>
             
             <h2>ชื่อ</h2>
