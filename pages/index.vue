@@ -32,7 +32,6 @@ export default {
       id : this.userId,
       name : this.name
     }
-    this.$store.commit('saveProfile',data)
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       .then(() => {
         if (liff.isLoggedIn()) {

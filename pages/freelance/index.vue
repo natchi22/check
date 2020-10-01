@@ -24,10 +24,10 @@
 import { mapState,mapMutations } from 'vuex'
 export default {
 computed: {
-//     ...mapState({
-//     // arrow functions can make the code very succinct!
-//     saveProfile: state => state.saveProfile.profile
-//   })
+    ...mapState({
+    // arrow functions can make the code very succinct!
+    saveProfile: state => state.saveProfile.profile
+  })
 },
   methods:{
     // ...mapMutations({
