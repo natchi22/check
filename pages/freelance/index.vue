@@ -26,7 +26,7 @@ export default {
 computed: {
     ...mapState({
     // arrow functions can make the code very succinct!
-    saveProfile: state => state.saveProfile.profile
+    profile: state => state.profile.profile
   })
 },
   methods:{
