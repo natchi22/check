@@ -3,9 +3,9 @@
         <div class="regis">
             <h1>กรอกข้อมูลส่วนตัว</h1>
             <div class="cover">
-                <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
+                <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">  <!-- ชื่อไฟล์.ตัวที่เอาไปเก็บ -->
             </div>
-            
+           
             <h2>ชื่อ</h2>
             <input type="text" placeholder="ชื่อ*">
             <h2>นามสกุล</h2>
@@ -23,10 +23,9 @@
 // import liff from '@line/liff'
 import { mapState,mapMutations } from 'vuex'
 export default {
-computed: {
+computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
     ...mapState({
-    // arrow functions can make the code very succinct!
-    profile: state => state.profile.profile
+    profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
   })
 },
   methods:{

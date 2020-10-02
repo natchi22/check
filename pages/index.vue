@@ -2,7 +2,7 @@
 	<div class="">
 		หน้าไร?
 	<nuxt-link to="/freelance">ไป</nuxt-link>
-	img =<img :src="image" alt="">
+	  img =<img :src="image" alt="">
     name = {{name}}
     userId = {{userId}}
 

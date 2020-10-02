@@ -1,7 +1,7 @@
 <template>
     <div class="profile">
         <div class="cover">
-            <img class="pic size-pic" src="../../../assets/som.jpeg" alt="รูปโปรไฟล์">
+            <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
         </div>
         
         <div class="data-profile">
@@ -24,7 +24,13 @@
     </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default {
+computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+    ...mapState({
+        profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+    })
+},
     data(){
         return{
             fName: 'นางสาว',
