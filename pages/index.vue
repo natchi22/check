@@ -44,10 +44,10 @@ export default {
 				this.$router.replace('/freelance')
 			}
 			else if (params.get('page') === 'profile'){
-				this.$router.push('/freelance/profile')
+				this.$router.replace('/freelance/profile')
 			}
 			else if (params.get('page') === 'history'){
-				this.$router.push('/freelance/history')
+				this.$router.replace('/freelance/history')
 			} 
           })
         }

@@ -43,8 +43,24 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
+  modules: ['@nuxtjs/firebase'
   ],
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyCqTKx-xG3SlBhMNibN3xCW7oKrmuhzO6U',
+      authDomain: 'check-b9516.firebaseapp.com',
+      databaseURL: 'https://check-b9516.firebaseio.com',
+      projectId: 'check-b9516',
+      storageBucket: 'check-b9516.appspot.com',
+      messagingSenderId: '101675041173',
+      appId: '1:101675041173:web:c3fe4663b3c7aecd71b69c',
+      measurementId: 'G-1KB12R0VKS'
+    },
+    services: {
+      auth: true, // Just as example. Can be any other service. //เอาไว้login
+      firestore: true
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

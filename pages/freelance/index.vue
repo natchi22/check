@@ -1,5 +1,5 @@
 <template>
-	<div >
+	<div v-if="checkRegis">
         <div class="regis">
             <h1>กรอกข้อมูลส่วนตัว</h1>
             <div class="cover">
@@ -7,13 +7,13 @@
             </div>
            
             <h2>ชื่อ</h2>
-            <input type="text" placeholder="ชื่อ*">
+            <input type="text" placeholder="ชื่อ*" v-model="fName">
             <h2>นามสกุล</h2>
-            <input type="text" placeholder="นามสกุล*">
+            <input type="text" placeholder="นามสกุล*" v-model="lName">
             <h2>เบอร์โทรศัพท์</h2>
-            <input type="text" placeholder="เบอร์โทรศัพท์*">
+            <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
             <nuxt-link to="/freelance/checkIn">
-                <button class="btn btn-green">ถัดไป</button>
+                <button class="btn btn-green" @click="summit">ถัดไป</button>
             </nuxt-link>
 	    </div>
 	</div>
@@ -23,6 +23,13 @@
 // import liff from '@line/liff'
 import { mapState,mapMutations } from 'vuex'
 export default {
+    data(){
+        return{
+            fName: '',
+            lName: '',
+            telNumber: ''
+        }
+    },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
         profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
@@ -30,6 +37,16 @@ export default {
     },
     mounted(){
         console.log(this.profile)
+    },
+    methods:{
+        summit(){
+            const user = this.$fireStore.collection("Freelance").doc().set({
+                freelanceId : user.id,
+                firstName : this.fName,
+                lastName : this.lName,
+                phone : this.telNumber
+            })
+        }
     }
 
 }
