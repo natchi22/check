@@ -23,14 +23,14 @@
 // import liff from '@line/liff'
 import { mapState,mapMutations } from 'vuex'
 export default {
-computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
-    ...mapState({
-    profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
-  })
-},
-  methods:{
-      
-  },
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+        ...mapState({
+        profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+    })
+    },
+    mounted(){
+        
+    }
 
 }
 </script>
