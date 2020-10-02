@@ -50,13 +50,13 @@ export default {
 			console.log(window.location.search)
 			console.log(queryString)
 			if (params.get('page') === 'freelance'){
-				this.$route.push('/freelance')
+				this.$router.push('/freelance')
 			}
 			else if (params.get('page') === 'profile'){
-				this.$route.push('/freelance/profile')
+				this.$router.push('/freelance/profile')
 			}
 			else if (params.get('page') === 'history'){
-				this.$route.push('/freelance/history')
+				this.$router.push('/freelance/history')
 			} 
           })
         }
