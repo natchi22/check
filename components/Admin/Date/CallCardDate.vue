@@ -2,7 +2,7 @@
   <div class="card">
     <div class="name">
       <div class="cover">
-        <img class="pic" src="../../../assets/som.jpeg" alt="รูปโปรไฟล์">
+        <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
       </div>
       <h1>{{ fName }} {{ lName }}</h1>
     </div>
@@ -19,7 +19,13 @@
   </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default {
+  computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+    ...mapState({
+    profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+  })
+},
   data () {
     return {
       open: true,
