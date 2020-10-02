@@ -6,12 +6,13 @@
     name = {{name}}
     userId = {{userId}}
   <nuxt-link to="/freelance/profile">ไปหน้าโปรไฟล์</nuxt-link>
+  <nuxt-link to="/freelance/history">history</nuxt-link>
 
 	</div>
 </template>
 
 
-// <script>
+<script>
 // import liff from '@line/liff'
 // import { mapMutations } from 'vuex'
 // export default {
@@ -56,7 +57,7 @@
 //         })
 //   }
 // }
-// </script>
+</script>
 <style>
 
 </style>

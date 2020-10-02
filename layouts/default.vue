@@ -3,7 +3,10 @@
     <Nuxt />
   </div>
 </template>
-<script>
+<style>
+    @import '../style/style.css';
+</style>
+// <script>
 import liff from '@line/liff'
 import { mapMutations } from 'vuex'
 export default {
@@ -25,6 +28,7 @@ export default {
       id : this.userId,
       name : this.name
     }
+    this.$store.commit('saveProfile',data)
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       .then(() => {
         if (liff.isLoggedIn()) {
@@ -49,6 +53,3 @@ export default {
   }
 }
 </script>
-<style>
-    @import '../style/style.css';
-</style>

@@ -23,7 +23,8 @@ export default {
       dateShow: '22/10/2020',
       timeShow: '10.10'
     }
-  }
+  },
+  
 }
 </script>
 <style scoped>
