@@ -47,7 +47,8 @@ export default {
             this.name = name
             this.image = image
 			this.saveProfile(profile)
-			console.log(params)
+			console.log(window.location.search)
+			console.log(queryString)
 			if (params.get('page') === 'freelance'){
 				this.$route.push('/freelance')
 			}
