@@ -37,7 +37,7 @@ export default {
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       .then(() => {
         if (liff.isLoggedIn()) {
-			const queryString = decodeURIComponent(window.location.search).replace("?liff.state=", "")
+			const queryString = decodeURIComponent(this.$route.push).replace("?liff.state=", "")
                 const params = new URLSearchParams(queryString)
           liff.getProfile().then((profile) => {
             const userId = profile.userId
