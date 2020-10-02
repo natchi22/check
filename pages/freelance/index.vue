@@ -1,5 +1,5 @@
 <template>
-	<div v-if="checkRegis">
+	<div>
         <div class="regis">
             <h1>กรอกข้อมูลส่วนตัว</h1>
             <div class="cover">
@@ -39,13 +39,15 @@ export default {
         console.log(this.profile)
     },
     methods:{
-        summit(){
-            const user = this.$fireStore.collection("Freelance").doc().set({
+        async summit(){
+            const user = this.$fireStore.collection("Freelance").doc()
+            await user.set({
                 freelanceId : user.id,
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber
             })
+            console.log(user)
         }
     }
 

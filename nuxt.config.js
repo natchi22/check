@@ -57,7 +57,6 @@ export default {
       measurementId: 'G-1KB12R0VKS'
     },
     services: {
-      auth: true, // Just as example. Can be any other service. //เอาไว้login
       firestore: true
     }
   },
