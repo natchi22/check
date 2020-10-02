@@ -48,13 +48,13 @@ export default {
             this.image = image
 			this.saveProfile(profile)
 			if (params.get('page') === 'freelance'){
-				window.location.href = 'https://check-two.vercel.app/freelance'
+				this.$route.push.href = 'https://check-two.vercel.app/freelance'
 			}
 			else if (params.get('page') === 'profile'){
-				window.location.href = 'https://check-two.vercel.app/freelance/profile'
+				this.$route.push.href = 'https://check-two.vercel.app/freelance/profile'
 			}
 			else if (params.get('page') === 'history'){
-				window.location.href = 'https://check-two.vercel.app/freelance/history'
+				this.$route.push.href = 'https://check-two.vercel.app/freelance/history'
 			} 
           })
         }
