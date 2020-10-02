@@ -37,7 +37,7 @@ export default {
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       .then(() => {
         if (liff.isLoggedIn()) {
-			const queryString = decodeURIComponent(this.$route).replace("?liff.state=", "")
+			const queryString = decodeURIComponent(window.location.search).replace("?liff.state=", "")
                 const params = new URLSearchParams(queryString)
           liff.getProfile().then((profile) => {
             const userId = profile.userId
@@ -47,14 +47,15 @@ export default {
             this.name = name
             this.image = image
 			this.saveProfile(profile)
+			console.log(params)
 			if (params.get('page') === 'freelance'){
 				this.$route.push('/freelance')
 			}
 			else if (params.get('page') === 'profile'){
-				this.$route.push.href = 'https://check-two.vercel.app/freelance/profile'
+				this.$route.push('/freelance/profile')
 			}
 			else if (params.get('page') === 'history'){
-				this.$route.push.href = 'https://check-two.vercel.app/freelance/history'
+				this.$route.push('/freelance/history')
 			} 
           })
         }
