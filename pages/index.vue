@@ -48,7 +48,7 @@ export default {
             this.image = image
 			this.saveProfile(profile)
 			if (params.get('page') === 'freelance'){
-				this.$route.push.href = 'https://check-two.vercel.app/freelance'
+				this.$route.push('/freelance')
 			}
 			else if (params.get('page') === 'profile'){
 				this.$route.push.href = 'https://check-two.vercel.app/freelance/profile'
