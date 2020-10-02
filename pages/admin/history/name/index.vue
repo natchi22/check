@@ -11,7 +11,7 @@
       </nuxt-link>
     </div>
     <div class="profile-img">
-      <img class="pic size-pic" src="../../../../assets/som.jpeg" alt="รูปโปรไฟล์">
+      <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
       <h2>{{ fName }} {{ lName }}</h2>
     </div>
     <CallCardDetail class="card" />
@@ -19,8 +19,14 @@
   </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 import CallCardDetail from '@/components/Admin/Name/CallCardDetail'
 export default {
+  computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+    ...mapState({
+    profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+  })
+},
   components: {
     CallCardDetail
   },
