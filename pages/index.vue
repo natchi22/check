@@ -1,13 +1,6 @@
 <template>
-	<div class="">
-		หน้าไร?
-	<nuxt-link to="/freelance">ไป</nuxt-link>
-	  img =<img :src="image" alt="">
-    name = {{name}}
-    userId = {{userId}}
-  <nuxt-link to="/freelance/profile">ไปหน้าโปรไฟล์</nuxt-link>
-  <nuxt-link to="/freelance/history">history</nuxt-link>
-
+	<div>
+		
 	</div>
 </template>
 
@@ -47,10 +40,8 @@ export default {
             this.name = name
             this.image = image
 			this.saveProfile(profile)
-			console.log(window.location.search)
-			console.log(queryString)
 			if (params.get('page') === 'freelance'){
-				this.$router.push('/freelance')
+				this.$router.replace('/freelance')
 			}
 			else if (params.get('page') === 'profile'){
 				this.$router.push('/freelance/profile')
