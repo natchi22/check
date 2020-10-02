@@ -5,6 +5,7 @@
 	  img =<img :src="image" alt="">
     name = {{name}}
     userId = {{userId}}
+  <nuxt-link to="/freelance/profile">ไปหน้าโปรไฟล์</nuxt-link>
 
 	</div>
 </template>

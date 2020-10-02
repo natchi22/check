@@ -37,7 +37,8 @@ computed: { //นำstoreไปใช้ วางไว้หน้าที่
             lName: 'สมศรี',
             telNumber: '0829077908'
         }
-    }
+    },
+
 }
 </script>
 <style scoped>
