@@ -1,6 +1,7 @@
 <template>
 	<div>
-		
+		<!-- ใส่ตัวโหลด -->
+    โหลดแพพ
 	</div>
 </template>
 

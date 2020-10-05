@@ -10,10 +10,11 @@
                 <h1>นามสกุล</h1>
                 <h1>เบอร์โทรศัพท์</h1> 
             </div>
-            <div class="main">
-                <h1>{{fName}}</h1>
-                <h1>{{lName}}</h1>
-                <h1>{{telNumber}}</h1> 
+            <!-- เรียกข้อมูลมาโชว์ -->
+            <div class="main"> 
+                <h1>{{inforFrelance.firstName}}</h1>
+                <h1>{{inforFrelance.lastName}}</h1>
+                <h1>{{inforFrelance.phone}}</h1>
             </div>
         </div>
         <div class="cover">
@@ -33,11 +34,17 @@ computed: { //นำstoreไปใช้ วางไว้หน้าที่
 },
     data(){
         return{
-            fName: '',
-            lName: '',
-            telNumber: ''
+            inforFrelance:{}
         }
     },
+    async mounted(){
+        // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+        const infor = await this.$fireStore.collection("Freelance").where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri').get()
+        infor.forEach((doc)=>{
+            this.inforFrelance = doc.data()
+        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        console.log(this.inforFrelance)
+    }
 
 }
 </script>

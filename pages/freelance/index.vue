@@ -30,7 +30,7 @@ export default {
             telNumber: ''
         }
     },
-    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
         ...mapState({
         profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
     })
@@ -39,7 +39,7 @@ export default {
         console.log(this.profile)
     },
     methods:{
-        async summit(){
+        async summit(){ ///input db ???
             const user = this.$fireStore.collection("Freelance").doc()
             await user.set({
                 freelanceId : user.id,
