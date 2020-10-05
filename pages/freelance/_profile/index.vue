@@ -3,9 +3,10 @@
         <div class="cover">
             <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
         </div>
-        
+        {{$route.params.profile}}
         <div class="data-profile">
             <div class="title">
+                
                 <h1>ชื่อ</h1>
                 <h1>นามสกุล</h1>
                 <h1>เบอร์โทรศัพท์</h1> 

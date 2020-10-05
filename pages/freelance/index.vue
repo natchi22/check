@@ -39,10 +39,11 @@ export default {
         console.log(this.profile)
     },
     methods:{
-        async summit(){ ///input db ???
+        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
             const user = this.$fireStore.collection("Freelance").doc()
             await user.set({
                 freelanceId : user.id,
+                // lineId : ,
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber

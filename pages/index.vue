@@ -33,8 +33,8 @@ export default {
         if (liff.isLoggedIn()) {
 			const queryString = decodeURIComponent(window.location.search).replace("?liff.state=", "")
                 const params = new URLSearchParams(queryString)
-          liff.getProfile().then((profile) => {
-            const userId = profile.userId
+          liff.getProfile().then((profile) => { 
+            const userId = profile.userId ///เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
             const image = profile.pictureUrl
             const name = profile.displayName
             this.userId = userId

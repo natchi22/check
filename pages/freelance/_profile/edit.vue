@@ -14,6 +14,35 @@
         </div> 
 	</div>
 </template>
+<script>
+export default {
+    data(){
+        return{
+            fName: '',
+            lName: '',
+            telNumber: ''
+        }
+    },
+    async mounted(){
+        const editPro = await this.$fireStore.collection("Freelance").doc("IjlHx1m6jKAm8HvcJeri").update({
+            firstName : this.fName,
+            lastName : this.lName,
+            phone : this.telNumber
+        })
+        // .where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri').get()
+        // editPro.update({
+        //     firstName : this.fName,
+        //     lastName : this.lName,
+        //     phone : this.telNumber
+        // })
+        // const user = this.$fireStore.collection("Freelance").where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri')
+        // .update(
+
+        // ) 
+        console.log(editPro)
+    }
+}
+</script>
 <style scoped>
 .regis{
     width: 245px;
