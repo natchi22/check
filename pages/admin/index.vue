@@ -10,6 +10,32 @@
     </nuxt-link>
   </div>
 </template>
+<script>
+// import liff from '@line/liff'
+import { mapState,mapMutations } from 'vuex'
+export default {
+    data(){
+        return{
+            userAdmin: '',
+            passAdmin: ''
+        }
+    },
+  
+    methods:{
+        async summit(){ ///input db ???
+            const user = this.$fireStore.collection("Freelance").doc()
+            await user.set({
+                freelanceId : user.id,
+                firstName : this.fName,
+                lastName : this.lName,
+                phone : this.telNumber
+            })
+            console.log(user)
+        }
+    }
+
+}
+</script>
 <style scoped>
 .login{
     display: flex;
