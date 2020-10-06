@@ -12,18 +12,26 @@
       เรียบร้อยแล้ว
     </h1>
     <div class="box-time">
-      <p>{{ dateShow }}, {{ timeShow }} น.</p>
+      <p>{{showDateTime}} น.</p>
     </div>
   </div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      dateShow: '22/10/2020',
-      timeShow: '10.10'
-    }
-  },
+    data () {
+		return {
+			showDateTime: ''
+		}
+    },
+    async mounted(){
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const dateTime = await this.$fireStore.collection("Task").where("timeIn",'==', this.dateTime).get()
+		dateTime.forEach((doc)=>{
+			this.showDateTime = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		
+		console.log(this.showDateTime)
+      }
   
 }
 </script>

@@ -3,11 +3,10 @@
 		<img src="../../../assets/icon/in.png" alt="">
 		<h1>บันทึกเข้างาน</h1>
 		<div class="box-time">
-		<p>{{dateTime}} น.</p>
-		<!-- <p>{{ dateShow }}, {{ timeIn }} น.</p> -->
+		<p>{{showDateTime}} น.</p>
 		</div>
 		<nuxt-link to="/freelance/checkIn/Succeed">
-		<button class="btn btn-green">
+		<button class="btn btn-green" @click="summit">
 			เข้างาน
 		</button>
 		</nuxt-link>
@@ -17,9 +16,13 @@
 export default {
 	data () {
 		return {
-			date:'',
+			showDateTime: '',
+			showTime:'',
+			showDate:'',
+			timeIn:'',
+			freelanceId:'',
 			time:'',
-			dateTime: ''
+			date:''
 			
 		}
 	},
@@ -28,8 +31,22 @@ export default {
 		const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()+',';
 		const time = today.getHours() + ":" + today.getMinutes();
 		const dateTime = date+' '+time;
+		this.showTime = time;
+		this.showDate = date;
+		this.showDateTime = dateTime
 			console.log(dateTime)
-	}
+	},
+	methods:{
+        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
+            const time = this.$fireStore.collection("Task").doc()
+            await time.set({
+				freelanceId : time.id,
+                timeIn : this.showTime,
+            })
+            console.log(time)
+        },
+        //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
+    }
 }
 	
 </script>
