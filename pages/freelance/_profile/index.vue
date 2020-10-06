@@ -30,7 +30,7 @@ import { mapState,mapMutations } from 'vuex'
 export default {
 computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
     ...mapState({
-        profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+        profile: state => state.profile.profileData 
     })
 },
     data(){
@@ -40,7 +40,7 @@ computed: { //นำstoreไปใช้ วางไว้หน้าที่
     },
     async mounted(){
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri').get()
+        const infor = await this.$fireStore.collection("Freelance").where("lineId",'==','U645ad0b318fc07490d2eb8f3adb43db6').get()
         infor.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
