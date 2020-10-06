@@ -28,7 +28,6 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
-            userId: ''
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
@@ -47,7 +46,6 @@ export default {
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber,
-                lineId : profile.userId
             })
             console.log(user)
         },

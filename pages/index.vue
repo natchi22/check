@@ -10,23 +10,23 @@
 import liff from '@line/liff'
 import { mapMutations } from 'vuex'
 export default {
-  data () {
-    return {
-      image: '',
-      name:'',
-      userId:''        
-    }
-  },
-  methods:{
-    ...mapMutations({
-        saveProfile: 'profile/saveProfile'
-      }),
-  },
-  mounted () {
-    const data = {
-      img : this.image,
-      id : this.userId,
-      name : this.name
+  	data () {
+    	return {
+			image: '',
+			name:'',
+			userId:''        
+		}
+  	},
+  	methods:{
+    	...mapMutations({
+        	saveProfile: 'profile/saveProfile'
+		}),
+	},
+ 	mounted () {
+    	const data = {
+      	img : this.image,
+      	id : this.userId,
+     	name : this.name
     }
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       	.then(() => {
