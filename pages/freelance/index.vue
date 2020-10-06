@@ -27,12 +27,13 @@ export default {
         return{
             fName: '',
             lName: '',
-            telNumber: ''
+            telNumber: '',
+            userId: ''
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
         ...mapState({
-        profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+        profile: state => state.profile.profileData 
     })
     },
     mounted(){
@@ -43,13 +44,14 @@ export default {
             const user = this.$fireStore.collection("Freelance").doc()
             await user.set({
                 freelanceId : user.id,
-                // lineId : ,
                 firstName : this.fName,
                 lastName : this.lName,
-                phone : this.telNumber
+                phone : this.telNumber,
+                lineId : profile.userId
             })
             console.log(user)
-        }
+        },
+        //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
     }
 
 }
