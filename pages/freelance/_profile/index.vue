@@ -40,10 +40,11 @@ computed: { //นำstoreไปใช้ วางไว้หน้าที่
     },
     async mounted(){
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("lineId",'==','U645ad0b318fc07490d2eb8f3adb43db6').get()
+        const infor = await this.$fireStore.collection("Freelance").where("lineId",'==', 'profile.userId' ).get()
         infor.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        
         console.log(this.inforFrelance)
     }
 
