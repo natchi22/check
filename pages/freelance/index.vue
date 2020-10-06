@@ -26,6 +26,7 @@ import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
+            inforFrelance:{},
             fName: '',
             lName: '',
             telNumber: '',
@@ -38,7 +39,13 @@ export default {
     })
     },
     mounted(){
-        console.log(this.profile)
+        const getInfo = this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+        getInfo.forEach((doc)=>{
+            this.inforFrelance = doc.data()
+        }) 
+            if(this.inforFrelance){
+                this.$router.replace('/freelance/checkin')
+            }
     },
     methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
