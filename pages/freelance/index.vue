@@ -33,7 +33,7 @@ export default {
             lineId: ''
         }
     },
-    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย   
         ...mapState({
         profile: state => state.profile.profileData
     })
