@@ -3,7 +3,7 @@
 		<img src="../../../assets/icon/in.png" alt="">
 		<h1>บันทึกเข้างาน</h1>
 		<div class="box-time">
-		<p>{{dateTime}} น.</p>
+		<p>{{today.getHours}} น.</p>
 		<!-- <p>{{ dateShow }}, {{ timeIn }} น.</p> -->
 		</div>
 		<nuxt-link to="/freelance/checkIn/Succeed">
