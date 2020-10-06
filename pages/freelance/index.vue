@@ -44,7 +44,10 @@ export default {
             this.inforFrelance = doc.data()
         }) 
             if(this.inforFrelance.lineId && firstName && lastName && phone){
-                this.$router.replace('/freelance/checkin')
+                this.$router.push('/freelance/checkin')
+            }
+            else{
+                this.$router.push('/freelance')
             }
     },
     methods:{
