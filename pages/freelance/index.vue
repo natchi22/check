@@ -38,8 +38,8 @@ export default {
         profile: state => state.profile.profileData
     })
     },
-    mounted(){
-        const getInfo = this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+    async mounted(){
+        const getInfo = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
         getInfo.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) 
