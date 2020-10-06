@@ -3,7 +3,7 @@
 		<img src="../../../assets/icon/in.png" alt="">
 		<h1>บันทึกเข้างาน</h1>
 		<div class="box-time">
-		<p>{{today.getHours}} น.</p>
+		<p>{{dateTime}} น.</p>
 		<!-- <p>{{ dateShow }}, {{ timeIn }} น.</p> -->
 		</div>
 		<nuxt-link to="/freelance/checkIn/Succeed">
@@ -17,8 +17,10 @@
 export default {
 	data () {
 		return {
-			dateShow: '22/01/2020',
-			timeIn: '10.00'
+			date:'',
+			time:'',
+			dateTime: ''
+			
 		}
 	},
 	mounted(){
