@@ -12,7 +12,7 @@
             <input type="text" placeholder="นามสกุล*" v-model="lName">
             <h2>เบอร์โทรศัพท์</h2>
             <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
-            {{profile.userId}}
+            <!-- {{profile.userId}} -->
             <nuxt-link to="/freelance/checkIn">
                 <button class="btn btn-green" @click="summit">ถัดไป</button>
             </nuxt-link>
