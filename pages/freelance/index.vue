@@ -43,7 +43,7 @@ export default {
         getInfo.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) 
-            if(this.inforFrelance){
+            if(this.inforFrelance.lineId && firstName && lastName && phone){
                 this.$router.replace('/freelance/checkin')
             }
     },
