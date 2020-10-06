@@ -48,7 +48,7 @@ export default {
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber,
-                lineId : profile.userId
+                lineId : this.profile.userId
             })
             console.log(user)
         },
