@@ -27,7 +27,8 @@ export default {
       	img : this.image,
       	id : this.userId,
      	name : this.name
-    }
+	}
+	
     liff.init({ liffId: '1654989800-V2XxzW4z' })
       	.then(() => {
         	if (liff.isLoggedIn()) {

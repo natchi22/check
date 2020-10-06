@@ -1,26 +1,35 @@
 <template>
-  <div class="check-in">
-    <img src="../../../assets/icon/in.png" alt="">
-    <h1>บันทึกเข้างาน</h1>
-    <div class="box-time">
-      <p>{{ dateShow }}, {{ timeIn }} น.</p>
-    </div>
-    <nuxt-link to="/freelance/checkIn/Succeed">
-      <button class="btn btn-green">
-        เข้างาน
-      </button>
-    </nuxt-link>
-  </div>
+	<div class="check-in">
+		<img src="../../../assets/icon/in.png" alt="">
+		<h1>บันทึกเข้างาน</h1>
+		<div class="box-time">
+		<p>{{dateTime}} น.</p>
+		<!-- <p>{{ dateShow }}, {{ timeIn }} น.</p> -->
+		</div>
+		<nuxt-link to="/freelance/checkIn/Succeed">
+		<button class="btn btn-green">
+			เข้างาน
+		</button>
+		</nuxt-link>
+	</div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      dateShow: '22/01/2020',
-      timeIn: '10.00'
-    }
-  }
+	data () {
+		return {
+			dateShow: '22/01/2020',
+			timeIn: '10.00'
+		}
+	},
+	mounted(){
+		const today = new Date();
+		const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()+',';
+		const time = today.getHours() + ":" + today.getMinutes();
+		const dateTime = date+' '+time;
+			console.log(dateTime)
+	}
 }
+	
 </script>
 <style scoped>
 .in img{
