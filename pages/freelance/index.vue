@@ -5,7 +5,7 @@
             <div class="cover">
                 <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">  <!-- ชื่อไฟล์.ตัวที่เอาไปเก็บ -->
             </div>
-           
+            {{inforFrelance}}
             <h2>ชื่อ</h2>
             <input type="text" placeholder="ชื่อ*" v-model="fName">
             <h2>นามสกุล</h2>
@@ -43,7 +43,7 @@ export default {
         getInfo.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) 
-            if(this.inforFrelance){
+            if(this.inforFrelance.userId){
                 this.$router.replace('/freelance/checkin')
             }
     },
