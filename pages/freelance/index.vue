@@ -12,6 +12,7 @@
             <input type="text" placeholder="นามสกุล*" v-model="lName">
             <h2>เบอร์โทรศัพท์</h2>
             <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
+            {{profile.userId}}
             <nuxt-link to="/freelance/checkIn">
                 <button class="btn btn-green" @click="summit">ถัดไป</button>
             </nuxt-link>
@@ -28,11 +29,12 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
+            lineId: ''
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
         ...mapState({
-        profile: state => state.profile.profileData 
+        profile: state => state.profile.profileData
     })
     },
     mounted(){
@@ -46,6 +48,7 @@ export default {
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber,
+                lineId : profile.userId
             })
             console.log(user)
         },

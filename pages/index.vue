@@ -2,6 +2,8 @@
 	<div>
 		<!-- ใส่ตัวโหลด -->
     โหลดแพพ
+	 <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
+	{{profile.userId}}
 	</div>
 </template>
 
