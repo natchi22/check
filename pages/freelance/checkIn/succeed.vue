@@ -28,8 +28,8 @@ export default {
     data () {
 		return {
       showDateTime: '',
-      showdate:'',
-	  showTime:'',
+    //   showdate:'',
+	//   showTime:'',
 	  freelanceData: '',
 		}
     },

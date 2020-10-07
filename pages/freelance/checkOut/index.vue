@@ -4,11 +4,11 @@
     <h1>บันทึกออกงาน</h1>
     <div class="box-time">
 		<h4>{{ showDateOut }}</h4>
-		<h4>เข้า: {{ showTimeIn }}</h4> <!-- ดึงข้อมูลจากcheck in มาใส่ -->
+		<h4>เข้า: {{showDateTime.timeIn}}</h4> <!-- ดึงข้อมูลจากcheck in มาใส่ -->
 		<h3>ออก: {{ showTimeOut }}</h3>
 		<hr class="line line-grey">
 		<h3 class="sum">
-			รวม {{ sum }}
+			รวม {{ diffTime }}
 		</h3>
     </div>
     <nuxt-link to="/freelance/checkOut/listTask">
@@ -29,6 +29,9 @@ export default {
 		showTimeIn:'10',
 		showTimeOut:'',
 		showDateOut:'',
+		freelanceData: '',
+		showDateTime: '',
+		diffTime: null,
     }
   },
   
@@ -36,10 +39,39 @@ export default {
 		sumTime () {
 		this.sum = this.showTimeOut - this.showTimeIn
 		return this.sum
+		},
+		diff(start, end) {
+			start = start.split(":")
+			end = end.split(":")
+			var startDate = new Date(0, 0, 0, start[0], start[1], 0)
+			var endDate = new Date(0, 0, 0, end[0], end[1], 0)
+			var diff = endDate.getTime() - startDate.getTime()
+			var hours = Math.floor(diff / 1000 / 60 / 60)
+			diff -= hours * 1000 * 60 * 60
+			var minutes = Math.floor(diff / 1000 / 60)
+
+			// If using time pickers with 24 hours format, add the below line get exact hours
+			if (hours < 0)
+			hours = hours + 24
+
+			return (hours <= 9 ? "0" : "") + hours + " ชม. " + (minutes <= 9 ? "0" : "") + minutes +" น."
 		}
 	},
-    mounted(){
-		const today = new Date();
+    
+	async mounted(){
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', "U645ad0b318fc07490d2eb8f3adb43db6" ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
+		dateTime.forEach((doc)=>{
+			this.showDateTime = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		console.log(this.showDateTime)
+		
+		const today = new Date();  //เวลา
 		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		const timeOut = today.getHours() + ":" + today.getMinutes();
 		// const dateTime = date+' '+time;
@@ -47,8 +79,8 @@ export default {
 		this.showDateOut = dateOut;
 		// this.showDateTime = dateTime
 			console.log(dateOut,timeOut)
-		this.sumTime()
-    },
+		this.diffTime = this.diff(this.showDateTime.timeIn,this.showTimeOut)
+      }
 }
 </script>
 <style scoped>

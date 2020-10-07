@@ -10,8 +10,8 @@
             เรียบร้อยแล้ว
         </h1>
         <div class="box-time">
-            <p> {{dateShow}}<br>
-                {{timeIn}} น. - {{timeOut}} น.
+            <p> {{showDateTime.dateIn}}<br>
+                {{showDateTime.timeIn}} น. - {{}} น.
             </p>
         </div>
     </div>
@@ -20,11 +20,28 @@
 export default {
     data(){
         return{
-            dateShow: '22/10/2020',
-            timeIn: '10.00',
-            timeOut: '18.00'
+            // dateShow: '22/10/2020',
+            // timeIn: '10.00',
+            // timeOut: '18.00',
+            showDateTime: '',
+            // showdate:'',
+            // showTime:'',
+            freelanceData: '',
         }
-    }
+    },
+    async mounted(){
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', "U645ad0b318fc07490d2eb8f3adb43db6" ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
+		dateTime.forEach((doc)=>{
+			this.showDateTime = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		console.log(this.showDateTime)
+      }
 }
 </script>
 <style scoped>
