@@ -55,6 +55,27 @@ export default {
 			hours = hours + 24
 
 			return (hours <= 9 ? "0" : "") + hours + " ชม. " + (minutes <= 9 ? "0" : "") + minutes +" น."
+		},
+		timeDifference(date1,date2) {
+			var difference = date1.getTime() - date2.getTime();
+
+			var daysDifference = Math.floor(difference/1000/60/60/24);
+			difference -= daysDifference*1000*60*60*24
+
+			var hoursDifference = Math.floor(difference/1000/60/60);
+			difference -= hoursDifference*1000*60*60
+
+			var minutesDifference = Math.floor(difference/1000/60);
+			difference -= minutesDifference*1000*60
+
+			var secondsDifference = Math.floor(difference/1000);
+
+			return 'difference = ' + 
+			daysDifference + ' day/s ' + 
+			hoursDifference + ' hour/s ' + 
+			minutesDifference + ' minute/s ' + 
+			secondsDifference + ' second/s '
+			 
 		}
 	},
     
@@ -79,7 +100,8 @@ export default {
 		this.showDateOut = dateOut;
 		// this.showDateTime = dateTime
 			console.log(dateOut,timeOut)
-		this.diffTime = this.diff(this.showDateTime.timeIn,this.showTimeOut)
+		// this.diffTime = this.diff(this.showDateTime.timeIn,this.showTimeOut)
+		this.diffTime = this.timeDifference(this.showDateTime.timeStampIn,+ new Date)
       }
 }
 </script>

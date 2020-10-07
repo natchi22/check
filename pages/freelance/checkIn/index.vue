@@ -61,6 +61,7 @@ export default {
 				timeIn : this.showTimeIn,
 				dateIn : this.showDateIn,
 				status: false,
+				timeStampIn: + new Date(),
 				// taskId : 
             })
             console.log(time)
