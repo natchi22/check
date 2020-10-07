@@ -33,7 +33,7 @@ export default {
 			// time:'',
 			// date:'',
 			dateIn:'',
-			// task:''
+			task:null,
 			
 		}
 	},
@@ -42,6 +42,18 @@ export default {
 		freelance.forEach((doc)=>{
 			this.freelanceData = doc.data()
 		})
+
+		const dateTime = await this.$fireStore.collection("Task")
+		.where("freelanceId",'==',  this.freelanceData.freelanceId)
+		.where("status",'==',  false).get()
+		dateTime.forEach((doc)=>{
+			this.task = doc.data()
+		}) 
+
+		if (!task) {
+			this.$router.replace('/freelance/checkout')
+		}
+
 		const today = new Date();
 		const dateIn = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		const timeIn = today.getHours() + ":" + today.getMinutes();
@@ -50,10 +62,7 @@ export default {
 		this.showDateIn = dateIn;
 		// this.showDateTime = dateTime
 			console.log(dateIn,timeIn)
-		if(this.freelanceData.freelanceId)
-        {
-            this.$router.replace('/freelance/checkout')
-        }
+		
 	},
 	methods:{
 		async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
