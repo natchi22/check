@@ -48,11 +48,14 @@ export default {
 		.where("status",'==',  false).get()
 		dateTime.forEach((doc)=>{
 			this.task = doc.data()
+						console.log('redi')
+
 		}) 
 
-		if (!task) {
-			this.$router.replace('/freelance/checkout')
-		}
+		// if (!task) {
+		// 	console.log('redi')
+		// 	this.$router.replace('/freelance/checkout')
+		// }
 
 		const today = new Date();
 		const dateIn = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
