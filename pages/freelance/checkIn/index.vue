@@ -37,7 +37,10 @@ export default {
 		}
 	},
 	async mounted(){
-		
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+		freelance.forEach((doc)=>{
+		this.freelanceData = doc.data()
+		})
 		const today = new Date();
 		const dateIn = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		const timeIn = today.getHours() + ":" + today.getMinutes();
