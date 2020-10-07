@@ -64,10 +64,12 @@ export default {
             }) 
 
             if (this.task !== null) {
-                console.log('redi')
                 this.$router.replace('/freelance/checkout')
             }
-            this.$router.replace('/freelance/checkin')
+            else {
+                this.$router.replace('/freelance/checkin')
+            }
+            
         }
     },
     methods:{
