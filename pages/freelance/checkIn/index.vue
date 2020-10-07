@@ -3,7 +3,7 @@
 		<img src="../../../assets/icon/in.png" alt="">
 		<h1>บันทึกเข้างาน</h1>
 		<div class="box-time">
-		<p>{{showDate}}, {{showTime}} น.</p>
+		<p>{{showDateIn}}, {{showTimeIn}} น.</p>
 		</div>
 		<nuxt-link to="/freelance/checkIn/Succeed">
 		<button class="btn btn-green" @click="summit">
@@ -13,38 +13,55 @@
 	</div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
+
 export default {
+	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+		...mapState({
+			profile: state => state.profile.profileData 
+		})
+	},
 	data () {
 		return {
 			showDateTime: '',
-			showTime:'',
-			showDate:'',
+			showTimeIn:'',
+			showDateIn:'',
 			timeIn:'',
 			freelanceId:'',
-			time:'',
-			date:'',
-			dateIn:''
+			freelanceData:'',
+			// taskId:'',
+			// time:'',
+			// date:'',
+			dateIn:'',
+			// task:''
 			
 		}
 	},
-	mounted(){
+	async mounted(){
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+		})
 		const today = new Date();
-		const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		const time = today.getHours() + ":" + today.getMinutes();
-		// const dateTime = date+' '+time;
-		this.showTime = time;
-		this.showDate = date;
+		const dateIn = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		const timeIn = today.getHours() + ":" + today.getMinutes();
+		// const dateTime = date+' '+timeIn;
+		this.showTimeIn = timeIn;
+		this.showDateIn = dateIn;
 		// this.showDateTime = dateTime
-			console.log(date,time)
+			console.log(dateIn,timeIn)
 	},
 	methods:{
-        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
-            const time = this.$fireStore.collection("Task").doc()
+		async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
+			const time = await this.$fireStore.collection("Task").doc()
+			console.log(time)
             await time.set({
-				freelanceId : time.id,
-				timeIn : this.showTime,
-				dateIn : this.showDate
-				
+				taskId : time.id,
+				freelanceId : this.freelanceData.freelanceId,
+				timeIn : this.showTimeIn,
+				dateIn : this.showDateIn,
+				status: false,
+				// taskId : 
             })
             console.log(time)
         },

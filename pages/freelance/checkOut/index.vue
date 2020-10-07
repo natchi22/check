@@ -3,13 +3,13 @@
     <img src="../../../assets/icon/out.png" alt="">
     <h1>บันทึกออกงาน</h1>
     <div class="box-time">
-      <h4>{{ dateShow }}</h4>
-      <h4>เข้า: {{ timeIn }}</h4>
-      <h3>ออก: {{ timeOut }}</h3>
-      <hr class="line line-grey">
-      <h3 class="sum">
-        รวม {{ sum }}
-      </h3>
+		<h4>{{ showDateOut }}</h4>
+		<h4>เข้า: {{ showTimeIn }}</h4> <!-- ดึงข้อมูลจากcheck in มาใส่ -->
+		<h3>ออก: {{ showTimeOut }}</h3>
+		<hr class="line line-grey">
+		<h3 class="sum">
+			รวม {{ sum }}
+		</h3>
     </div>
     <nuxt-link to="/freelance/checkOut/listTask">
       <button class="btn btn-red">
@@ -22,21 +22,33 @@
 export default {
   data () {
     return {
-      dateShow: '22/09/2020',
-      timeIn: 6,
-      timeOut: 10,
-      sum: null
+		// dateShow: '22/09/2020',
+		// timeIn: 6,
+		// timeOut: 10,
+		sum: null,
+		showTimeIn:'10',
+		showTimeOut:'',
+		showDateOut:'',
     }
   },
-  mounted () {
-    this.sumTime()
-  },
-  methods: {
-    sumTime () {
-      this.sum = this.timeOut - this.timeIn
-      return this.sum
-    }
-  }
+  
+	methods: {
+		sumTime () {
+		this.sum = this.showTimeOut - this.showTimeIn
+		return this.sum
+		}
+	},
+    mounted(){
+		const today = new Date();
+		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		const timeOut = today.getHours() + ":" + today.getMinutes();
+		// const dateTime = date+' '+time;
+		this.showTimeOut = timeOut;
+		this.showDateOut = dateOut;
+		// this.showDateTime = dateTime
+			console.log(dateOut,timeOut)
+		this.sumTime()
+    },
 }
 </script>
 <style scoped>

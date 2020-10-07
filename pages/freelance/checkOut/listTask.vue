@@ -1,14 +1,55 @@
 <template>
   <div class="list-task">
     <h1>รายละเอียดงานวันนี้</h1>
-    <textarea id="" name="" cols="40" rows="10" placeholder="รายละเอียดงาน*" />
+    <textarea id="" name="" cols="40" rows="10" placeholder="รายละเอียดงาน*" v-model="showDetail"/>
     <nuxt-link to="/freelance/checkout/succeed">
-      <button class="btn btn-red">
+      <button class="btn btn-red" @click="summit">
         ออกงาน
       </button>
     </nuxt-link>
   </div>
 </template>
+<script>
+export default {
+	data () {
+		return {
+			// showDateTime: '',
+			// showTimeIn:'',
+			// showDateIn:'',
+			// timeIn:'',
+			// freelanceId:'',
+			// dateIn:''
+			showTimeOut:'',
+			showDetail:''
+		}
+	},
+  	methods:{
+        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
+            const time = this.$fireStore.collection("Task").doc()
+            await time.set({
+				// freelanceId : time.id,
+				// timeIn : this.showTimeIn,
+				// dateIn : this.showDate
+				timeOut : this.showTimeOut,
+				detail : this.showDetail
+				
+            })
+            console.log(time)
+        },
+        //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
+	},
+	mounted(){
+		const today = new Date();
+		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		const timeOut = today.getHours() + ":" + today.getMinutes();
+		// const dateTime = date+' '+time;
+		this.showTimeOut = timeOut;
+		this.showDateOut = dateOut;
+		// this.showDateTime = dateTime
+			console.log(dateOut,timeOut)
+    },
+}
+</script>
 <style scoped>
 .list-task{
     width: 290px;

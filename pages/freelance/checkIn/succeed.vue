@@ -12,20 +12,29 @@
       เรียบร้อยแล้ว
     </h1>
     <div class="box-time">
-      <p>{{showDate}}, {{showTime}} น</p>
+      <!-- <p>{{showDate}}, {{showTime}} น</p> -->
+      <p>{{showDateTime}}น.</p>
     </div>
   </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default {
+  	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+		...mapState({
+			profile: state => state.profile.profileData 
+		})
+	},
     data () {
 		return {
-			showDateTime: ''
+      showDateTime: '',
+      showdate:'',
+      showTime:''
 		}
     },
     async mounted(){
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==', 'om7tZx0LQj5TeCCFeyMS' ).get()
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==', this.profile.userId ).get()
 		dateTime.forEach((doc)=>{
 			this.showDateTime = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
