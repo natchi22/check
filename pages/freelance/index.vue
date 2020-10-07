@@ -27,6 +27,7 @@ export default {
     data(){
         return{
             inforFrelance:{},
+            freelanceData:'',
             fName: '',
             lName: '',
             telNumber: '',
@@ -50,23 +51,23 @@ export default {
             this.inforFrelance.lastName && 
             this.inforFrelance.phone)
         {
-            const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-		freelance.forEach((doc)=>{
-			this.freelanceData = doc.data()
-		})
+                const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+                freelance.forEach((doc)=>{
+                this.freelanceData = doc.data()
+                })
 
-		const dateTime = await this.$fireStore.collection("Task")
-		.where("freelanceId",'==',  this.freelanceData.freelanceId)
-		.where("status",'==',  false).get()
-		dateTime.forEach((doc)=>{
-			this.task = doc.data()
-		}) 
+            const dateTime = await this.$fireStore.collection("Task")
+            .where("freelanceId",'==',  this.freelanceData.freelanceId)
+            .where("status",'==',  false).get()
+            dateTime.forEach((doc)=>{
+                this.task = doc.data()
+            }) 
 
-		if (this.task !== null) {
-			console.log('redi')
-			this.$router.replace('/freelance/checkout')
-        }
-        this.$router.replace('/freelance/checkin')
+            if (this.task !== null) {
+                console.log('redi')
+                this.$router.replace('/freelance/checkout')
+            }
+            this.$router.replace('/freelance/checkin')
         }
     },
     methods:{
