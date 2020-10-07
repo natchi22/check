@@ -5,7 +5,7 @@
             <div class="cover">
                 <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">  <!-- ชื่อไฟล์.ตัวที่เอาไปเก็บ -->
             </div>
-            {{inforFrelance}}
+            <!-- {{inforFrelance}} -->
             <h2>ชื่อ</h2>
             <input type="text" placeholder="ชื่อ*" v-model="fName">
             <h2>นามสกุล</h2>

@@ -3,7 +3,7 @@
 		<img src="../../../assets/icon/in.png" alt="">
 		<h1>บันทึกเข้างาน</h1>
 		<div class="box-time">
-		<p>{{showDateTime}} น.</p>
+		<p>{{showDate}}, {{showTime}} น.</p>
 		</div>
 		<nuxt-link to="/freelance/checkIn/Succeed">
 		<button class="btn btn-green" @click="summit">
@@ -29,13 +29,13 @@ export default {
 	},
 	mounted(){
 		const today = new Date();
-		const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()+',';
+		const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		const time = today.getHours() + ":" + today.getMinutes();
-		const dateTime = date+' '+time;
+		// const dateTime = date+' '+time;
 		this.showTime = time;
 		this.showDate = date;
-		this.showDateTime = dateTime
-			console.log(dateTime)
+		// this.showDateTime = dateTime
+			console.log(date,time)
 	},
 	methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
