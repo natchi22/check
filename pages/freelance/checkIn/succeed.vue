@@ -25,7 +25,7 @@ export default {
     },
     async mounted(){
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		const dateTime = await this.$fireStore.collection("Task").where("timeIn",'==', this.dateTime).get()
+		const dateTime = await this.$fireStore.collection("Task").where("timeIn",'==',  ).get()
 		dateTime.forEach((doc)=>{
 			this.showDateTime = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput

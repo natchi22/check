@@ -22,7 +22,8 @@ export default {
 			timeIn:'',
 			freelanceId:'',
 			time:'',
-			date:''
+			date:'',
+			dateIn:''
 			
 		}
 	},
@@ -41,7 +42,9 @@ export default {
             const time = this.$fireStore.collection("Task").doc()
             await time.set({
 				freelanceId : time.id,
-                timeIn : this.showTime,
+				timeIn : this.showTime,
+				dateIn : this.shoeDate
+				
             })
             console.log(time)
         },
