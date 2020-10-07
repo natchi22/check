@@ -50,6 +50,10 @@ export default {
 		this.showDateIn = dateIn;
 		// this.showDateTime = dateTime
 			console.log(dateIn,timeIn)
+		if(this.freelanceData.freelanceId)
+        {
+            this.$router.replace('/freelance/checkout')
+        }
 	},
 	methods:{
 		async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ

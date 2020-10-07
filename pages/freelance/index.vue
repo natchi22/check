@@ -43,13 +43,13 @@ export default {
         getInfo.forEach((doc)=>{
             this.inforFrelance = doc.data()
         }) 
-            if(this.inforFrelance.lineId && 
-                this.inforFrelance.firstName && 
-                this.inforFrelance.lastName && 
-                this.inforFrelance.phone)
-            {
-                this.$router.replace('/freelance/checkin')
-            }
+        if(this.inforFrelance.lineId && 
+            this.inforFrelance.firstName && 
+            this.inforFrelance.lastName && 
+            this.inforFrelance.phone)
+        {
+            this.$router.replace('/freelance/checkin')
+        }
     },
     methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
