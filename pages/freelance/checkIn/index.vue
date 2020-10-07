@@ -43,7 +43,7 @@ export default {
             await time.set({
 				freelanceId : time.id,
 				timeIn : this.showTime,
-				dateIn : this.shoeDate
+				dateIn : this.showDate
 				
             })
             console.log(time)
