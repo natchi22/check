@@ -30,7 +30,9 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
-            lineId: ''
+            lineId: ''			,
+            task:null,
+
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย   
@@ -48,7 +50,23 @@ export default {
             this.inforFrelance.lastName && 
             this.inforFrelance.phone)
         {
-            this.$router.replace('/freelance/checkin')
+            const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+		})
+
+		const dateTime = await this.$fireStore.collection("Task")
+		.where("freelanceId",'==',  this.freelanceData.freelanceId)
+		.where("status",'==',  false).get()
+		dateTime.forEach((doc)=>{
+			this.task = doc.data()
+		}) 
+
+		if (this.task !== null) {
+			console.log('redi')
+			this.$router.replace('/freelance/checkout')
+        }
+        this.$router.replace('/freelance/checkin')
         }
     },
     methods:{
