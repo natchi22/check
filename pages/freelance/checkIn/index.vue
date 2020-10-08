@@ -63,8 +63,11 @@ export default {
 				freelanceId : this.freelanceData.freelanceId,
 				timeIn : this.showTimeIn,
 				dateIn : this.showDateIn,
-				status: false,
-				timeStampIn: + new Date(),
+				status : false,
+				timeStampIn : + new Date(),
+				DateOut : this.showDateOut,
+				TimeOut : this.showTimeOut,
+				Detail : this.showDetail
 				// taskId : 
             })
             console.log(time)
