@@ -36,16 +36,16 @@ export default { ///ดึง วัน เวลา ออก มาไว้�
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
 	},
-	// mounted(){
-	// 	const today = new Date();
-	// 	const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-	// 	const timeOut = today.getHours() + ":" + today.getMinutes();
-	// 	// const dateTime = date+' '+time;
-	// 	this.showTimeOut = timeOut;
-	// 	this.showDateOut = dateOut;
-	// 	// this.showDateTime = dateTime
-	// 		console.log(dateOut,timeOut)
-	// },
+	mounted(){
+		const today = new Date();
+		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+		const timeOut = today.getHours() + ":" + today.getMinutes();
+		// const dateTime = date+' '+time;
+		this.showTimeOut = timeOut;
+		this.showDateOut = dateOut;
+		// this.showDateTime = dateTime
+			console.log(dateOut,timeOut)
+	},
 	
 }
 </script>
