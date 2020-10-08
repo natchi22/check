@@ -27,11 +27,11 @@ export default { ///ดึง วัน เวลา ออก มาไว้�
 				detail : this.showDetail
 				
 			})
-			await timeOut.update({
-				dateOut : this.showDateOut,
-				timeOut : this.showTimeOut,
-				detail : this.showDetail
-			})
+			// await timeOut.update({
+			// 	dateOut : this.showDateOut,
+			// 	timeOut : this.showTimeOut,
+			// 	detail : this.showDetail
+			// })
             console.log(timeOut)
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
