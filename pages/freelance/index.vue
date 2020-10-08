@@ -42,35 +42,7 @@ export default {
     })
     },
     async mounted(){
-        const getInfo = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-        getInfo.forEach((doc)=>{
-            this.inforFrelance = doc.data()
-        }) 
-        if(this.inforFrelance.lineId && 
-            this.inforFrelance.firstName && 
-            this.inforFrelance.lastName && 
-            this.inforFrelance.phone)
-        {
-                const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-                freelance.forEach((doc)=>{
-                this.freelanceData = doc.data()
-                })
-
-            const dateTime = await this.$fireStore.collection("Task")
-            .where("freelanceId",'==',  this.freelanceData.freelanceId)
-            .where("status",'==',  false).get()
-            dateTime.forEach((doc)=>{
-                this.task = doc.data()
-            }) 
-
-            if (this.task !== null) {
-                this.$router.replace('/freelance/checkout')
-            }
-            else {
-                this.$router.replace('/freelance/checkin')
-            }
-            
-        }
+    
     },
     methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
