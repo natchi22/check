@@ -46,7 +46,6 @@ export default {
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		console.log(this.showDateTime)
       }
-  
 }
 </script>
 <style scoped>

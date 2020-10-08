@@ -10,44 +10,38 @@
   </div>
 </template>
 <script>
-export default {
+export default { ///ดึง วัน เวลา ออก มาไว้หน้านี้แต่ไม่โชว์
 	data () {
 		return {
-			// showDateTime: '',
-			// showTimeIn:'',
-			// showDateIn:'',
-			// timeIn:'',
-			// freelanceId:'',
-			// dateIn:''
+			showDateOut:'',
 			showTimeOut:'',
 			showDetail:''
 		}
 	},
   	methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
-            const time = this.$fireStore.collection("Task").doc()
-            await time.set({
-				// freelanceId : time.id,
-				// timeIn : this.showTimeIn,
-				// dateIn : this.showDate
+			const timeOut = this.$fireStore.collection("Task").doc()
+            await timeOut.update({ 
+				dateOut : this.showDateOut,
 				timeOut : this.showTimeOut,
 				detail : this.showDetail
 				
             })
-            console.log(time)
+            console.log(timeOut)
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
 	},
-	mounted(){
-		const today = new Date();
-		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		const timeOut = today.getHours() + ":" + today.getMinutes();
-		// const dateTime = date+' '+time;
-		this.showTimeOut = timeOut;
-		this.showDateOut = dateOut;
-		// this.showDateTime = dateTime
-			console.log(dateOut,timeOut)
-    },
+	// mounted(){
+	// 	const today = new Date();
+	// 	const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+	// 	const timeOut = today.getHours() + ":" + today.getMinutes();
+	// 	// const dateTime = date+' '+time;
+	// 	this.showTimeOut = timeOut;
+	// 	this.showDateOut = dateOut;
+	// 	// this.showDateTime = dateTime
+	// 		console.log(dateOut,timeOut)
+	// },
+	
 }
 </script>
 <style scoped>
