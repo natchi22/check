@@ -33,6 +33,9 @@ export default {
 			// time:'',
 			// date:'',
 			dateIn:'',
+			showDateOut:'',
+			showTimeOut:'',
+			showDetail:''
 			
 		}
 	},
