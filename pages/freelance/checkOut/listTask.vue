@@ -10,34 +10,46 @@
   </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default { ///ดึง วัน เวลา ออก มาไว้หน้านี้แต่ไม่โชว์
+	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+		...mapState({
+			profile: state => state.profile.profileData 
+		})
+	},
 	data () {
 		return {
 			showDateOut:'',
 			showTimeOut:'',
-			showDetail:''
-		}
+			showDetail:'',
+			freelanceData:''
+	}
 	},
   	methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
-			const time = this.$fireStore.collection("Task").doc()
-            // await timeOut.set({ 
-			// 	dateOut : this.showDateOut,
-			// 	timeOut : this.showTimeOut,
-			// 	detail : this.showDetail
-				
-			// })
-			await time.update({
-				dateOut : this.showDateOut,
-				timeOut : this.showTimeOut,
-				detail : this.showDetail
+			const time = this.$fireStore.collection("Task")
+			.where('freelanceId','==', this.freelanceData.freelanceId)
+			.where('status','==',false)
+			.get().then((query) => {
+				const task = query.docs[0]
+				task.ref.update({
+					dateOut : this.showDateOut,
+					timeOut : this.showTimeOut,
+					detail : this.showDetail,
+					status : true,
+					timeStampOut : +new Date
+				})
 			})
 			console.log(time)
             console.log(timeOut)
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
 	},
-	mounted(){
+	async mounted(){
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		const today = new Date();
 		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		const timeOut = today.getHours() + ":" + today.getMinutes();

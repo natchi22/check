@@ -11,7 +11,7 @@
         </h1>
         <div class="box-time">
             <p> {{showDateTime.dateIn}}<br>
-                {{showDateTime.timeIn}} น. - {{}} น.
+                {{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.
             </p>
         </div>
     </div>
@@ -27,11 +27,12 @@ export default {
             // showdate:'',
             // showTime:'',
             freelanceData: '',
+
         }
     },
     async mounted(){
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', "U645ad0b318fc07490d2eb8f3adb43db6" ).get()
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
 		freelance.forEach((doc)=>{
 			this.freelanceData = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput

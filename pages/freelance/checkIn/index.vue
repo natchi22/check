@@ -32,11 +32,7 @@ export default {
 			// taskId:'',
 			// time:'',
 			// date:'',
-			dateIn:'',
-			showDateOut:'',
-			showTimeOut:'',
-			showDetail:''
-			
+			dateIn:''
 		}
 	},
 	async mounted(){
@@ -64,10 +60,8 @@ export default {
 				timeIn : this.showTimeIn,
 				dateIn : this.showDateIn,
 				status : false,
-				timeStampIn : + new Date(),
-				DateOut : this.showDateOut,
-				TimeOut : this.showTimeOut,
-				Detail : this.showDetail
+				timeStampIn : + new Date()
+
 				// taskId : 
             })
             console.log(time)
