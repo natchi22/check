@@ -8,7 +8,7 @@
 		<h3>ออก: {{ showTimeOut }}</h3>
 		<hr class="line line-grey">
 		<h3 class="sum">
-			รวม {{ diffTime }}
+			รวม {{ diffTime }} <!-- ติดรวม -->
 		</h3>
     </div>
     <nuxt-link to="/freelance/checkOut/listTask">
@@ -57,10 +57,8 @@ export default {
 			return (hours <= 9 ? "0" : "") + hours + " ชม. " + (minutes <= 9 ? "0" : "") + minutes +" น."
 		},
 		timeDifference(date1,date2) {
-			var difference = date1.getTime() - date2.getTime();
-
-			var daysDifference = Math.floor(difference/1000/60/60/24);
-			difference -= daysDifference*1000*60*60*24
+			var difference = Math.abs(date1 - date2)
+			console.log(difference)
 
 			var hoursDifference = Math.floor(difference/1000/60/60);
 			difference -= hoursDifference*1000*60*60
@@ -68,14 +66,7 @@ export default {
 			var minutesDifference = Math.floor(difference/1000/60);
 			difference -= minutesDifference*1000*60
 
-			var secondsDifference = Math.floor(difference/1000);
-
-			return 'difference = ' + 
-			daysDifference + ' day/s ' + 
-			hoursDifference + ' hour/s ' + 
-			minutesDifference + ' minute/s ' + 
-			secondsDifference + ' second/s '
-			 
+			return hoursDifference+ " ชม. : "+ minutesDifference+" น."
 		}
 	},
     

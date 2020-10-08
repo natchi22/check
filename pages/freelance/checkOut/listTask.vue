@@ -20,18 +20,19 @@ export default { ///ดึง วัน เวลา ออก มาไว้�
 	},
   	methods:{
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ
-			const timeOut = this.$fireStore.collection("Task").doc()
+			const time = this.$fireStore.collection("Task").doc()
             // await timeOut.set({ 
 			// 	dateOut : this.showDateOut,
 			// 	timeOut : this.showTimeOut,
 			// 	detail : this.showDetail
 				
 			// })
-			await timeOut.update({
+			await time.update({
 				dateOut : this.showDateOut,
 				timeOut : this.showTimeOut,
 				detail : this.showDetail
 			})
+			console.log(time)
             console.log(timeOut)
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
