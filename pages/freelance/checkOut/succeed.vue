@@ -17,7 +17,13 @@
     </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default {
+  	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+		...mapState({
+			profile: state => state.profile.profileData 
+		})
+	},
     data(){
         return{
             // dateShow: '22/10/2020',
