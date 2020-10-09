@@ -2,11 +2,11 @@
     <div class="regis">	
         <h1>แก้ไขข้อมูลส่วนตัว</h1>
         <h2>ชื่อ</h2>
-        <input type="text" placeholder="ชื่อ*">
+        <input type="text" placeholder="ชื่อ*" v-model="fName">
         <h2>นามสกุล</h2>
-        <input type="text" placeholder="นามสกุล*">
+        <input type="text" placeholder="นามสกุล*" v-model="lName">
         <h2>เบอร์โทรศัพท์</h2>
-        <input type="text" placeholder="เบอร์โทรศัพท์*">
+        <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
         <div class="div-btn">
             <nuxt-link to="/freelance/profile">
                 <button class="btn btn-green" @click="summit">บันทึก</button>
@@ -49,7 +49,7 @@ export default {
                     phone : this.telNumber
 			    })
 			})
-        console.log(edit)
+        // console.log(edit)
         }
     }
 }
