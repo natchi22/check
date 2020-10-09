@@ -29,18 +29,21 @@ export default {
             profile: state => state.profile.profileData
         })
     },
-    async mounted(){ /// edit profile ไว้ทำวันศุกร์
-        const editPro = await this.$fireStore.collection("Freelance").doc("IjlHx1m6jKAm8HvcJeri").update({
-            firstName : this.fName,
-            lastName : this.lName,
-            phone : this.telNumber
-        })
-        console.log(editPro)
+    async mounted(){
+        // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+        const infor = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+        infor.forEach((doc)=>{
+            this.fName = doc.data().firstName
+            this.lName = doc.data().lastName
+            this.telNumber = doc.data().phone
+        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        
+        console.log(this.inforFrelance)
     },
     methods:{  ///แก้ตรงนี้ แก้โปรไฟล์
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
 			const edit = this.$fireStore.collection("Freelance")
-			.where('FreelanceId','==', this.profile.userId)
+			.where('lineId','==', this.profile.userId)
 			.get().then((query) => {
 				const profile = query.docs[0]
 				profile.ref.update({
