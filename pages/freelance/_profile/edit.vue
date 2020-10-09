@@ -9,12 +9,13 @@
         <input type="text" placeholder="เบอร์โทรศัพท์*">
         <div class="div-btn">
             <nuxt-link to="/freelance/profile">
-                <button class="btn btn-green">บันทึก</button>
+                <button class="btn btn-green" @click="summit">บันทึก</button>
             </nuxt-link>
         </div> 
 	</div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
@@ -23,23 +24,33 @@ export default {
             telNumber: ''
         }
     },
-    async mounted(){
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+        ...mapState({
+        profile: state => state.profile.profileData
+    })
+    },
+    async mounted(){ /// edit profile ไว้ทำวันศุกร์
         const editPro = await this.$fireStore.collection("Freelance").doc("IjlHx1m6jKAm8HvcJeri").update({
             firstName : this.fName,
             lastName : this.lName,
             phone : this.telNumber
         })
-        // .where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri').get()
-        // editPro.update({
-        //     firstName : this.fName,
-        //     lastName : this.lName,
-        //     phone : this.telNumber
-        // })
-        // const user = this.$fireStore.collection("Freelance").where("freelanceId",'==','IjlHx1m6jKAm8HvcJeri')
-        // .update(
-
-        // ) 
         console.log(editPro)
+    },
+    methods:{  ///แก้ตรงนี้ แก้โปรไฟล์
+        summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
+			const edit = this.$fireStore.collection("Freelance")
+			.where('Freelance','==', this.profile.userId)
+			.get().then((query) => {
+				const profile = query.docs[0]
+				profile.ref.update({
+					firstName : this.fName,
+                    lastName : this.lName,
+                    phone : this.telNumber
+			    })
+			    console.log(edit)
+            }),
+        }
     }
 }
 </script>

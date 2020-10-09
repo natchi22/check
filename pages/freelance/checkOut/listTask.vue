@@ -43,7 +43,6 @@ export default { ///ดึง วัน เวลา ออก มาไว้�
 			console.log(time)
             console.log(timeOut)
         },
-        //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
 	},
 	async mounted(){
 		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()

@@ -5,14 +5,12 @@
             <div class="cover">
                 <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">  <!-- ชื่อไฟล์.ตัวที่เอาไปเก็บ -->
             </div>
-            <!-- {{inforFrelance}} -->
             <h2>ชื่อ</h2>
             <input type="text" placeholder="ชื่อ*" v-model="fName">
             <h2>นามสกุล</h2>
             <input type="text" placeholder="นามสกุล*" v-model="lName">
             <h2>เบอร์โทรศัพท์</h2>
             <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
-            <!-- {{profile.userId}} -->
             <nuxt-link to="/freelance/checkIn">
                 <button class="btn btn-green" @click="summit">ถัดไป</button>
             </nuxt-link>

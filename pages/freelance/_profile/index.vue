@@ -3,7 +3,7 @@
         <div class="cover">
             <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
         </div>
-        {{$route.params.profile}}
+        <!-- {{$route.params.profile}} -->
         <div class="data-profile">
             <div class="title">
                 
