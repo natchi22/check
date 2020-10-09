@@ -42,7 +42,7 @@ export default {
 			const edit = this.$fireStore.collection("Freelance")
 			.where('FreelanceId','==', this.profile.userId)
 			.get().then((query) => {
-				const profile = query.inforFrelance[0]
+				const profile = query.docs[0]
 				profile.ref.update({
 					firstName : this.fName,
                     lastName : this.lName,
