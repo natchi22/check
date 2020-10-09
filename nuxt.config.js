@@ -7,7 +7,8 @@ export default {
     title: 'check',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // { name: 'viewport', content: 'width=device-width, initial-scale=1' },  /// เพิ่มข้างล่าง หน้าจอมันจะไม่ขยายตาม
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
