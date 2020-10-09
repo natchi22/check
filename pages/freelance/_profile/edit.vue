@@ -42,14 +42,14 @@ export default {
 			const edit = this.$fireStore.collection("Freelance")
 			.where('FreelanceId','==', this.profile.userId)
 			.get().then((query) => {
-				const profile = query.docs[0]
+				const profile = query.inforFrelance[0]
 				profile.ref.update({
 					firstName : this.fName,
                     lastName : this.lName,
                     phone : this.telNumber
 			    })
 			})
-        // console.log(edit)
+        console.log(edit)
         }
     }
 }
