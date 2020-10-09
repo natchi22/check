@@ -26,8 +26,8 @@ export default {
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
         ...mapState({
-        profile: state => state.profile.profileData
-    })
+            profile: state => state.profile.profileData
+        })
     },
     async mounted(){ /// edit profile ไว้ทำวันศุกร์
         const editPro = await this.$fireStore.collection("Freelance").doc("IjlHx1m6jKAm8HvcJeri").update({
@@ -38,7 +38,7 @@ export default {
         console.log(editPro)
     },
     methods:{  ///แก้ตรงนี้ แก้โปรไฟล์
-        summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
+        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
 			const edit = this.$fireStore.collection("Freelance")
 			.where('Freelance','==', this.profile.userId)
 			.get().then((query) => {
@@ -48,8 +48,8 @@ export default {
                     lastName : this.lName,
                     phone : this.telNumber
 			    })
-			    console.log(edit)
-            }),
+			})
+        // console.log(edit)
         }
     }
 }
