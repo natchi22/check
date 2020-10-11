@@ -28,22 +28,6 @@ export default {
 		showDateTime: '',
 		}
 	},
-	// async mounted(){
-    //     // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-    //     const infor = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-    //     infor.forEach((doc)=>{
-    //         this.fName = doc.data().firstName
-    //         this.lName = doc.data().lastName
-    //         this.telNumber = doc.data().phone
-    //     }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-    //     console.log(this.inforFrelance)
-    //     const task = await this.$fireStore.collection("Task").where("freelance",'==',this.freelanceData.freelanceId).get()
-    //     task.forEach((doc)=>{
-    //         this.fName = doc.data().firstName
-    //         this.lName = doc.data().lastName
-    //         this.telNumber = doc.data().phone
-    //     })
-	// },
 	async mounted(){
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
 		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
@@ -56,7 +40,7 @@ export default {
 			this.showDateTime = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		console.log(this.showDateTime)
-    }
+  	}
 }
 </script>
 <style scoped>

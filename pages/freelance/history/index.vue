@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <h1>ประวัติการทำงานของคุณ</h1>
-    <CallHistory class="history" />
-    <CallHistory class="history" />
-    <CallHistory class="history" />
-  </div>
+	<div>
+		<h1>ประวัติการทำงานของคุณ</h1>
+		<CallHistory class="history" /> <!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
+	</div>
 </template>
 <script>
 import CallHistory from '@/components/Freelance/CallHistory'
 export default {
-  components: {
-    CallHistory
-  }
+	components: {
+		CallHistory
+	}
 }
 </script>
 <style scoped>
