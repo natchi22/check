@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h1>ประวัติการทำงานของคุณ</h1>
-		<CallHistory class="history" /> <!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
-		<CallHistory class="history" />
+		<CallHistory class="history" :v-for="(showDateTime,items) in items" :key="showDateTime"/> 
+		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
 	</div>
 </template>
 <script>
@@ -10,7 +10,14 @@ import CallHistory from '@/components/Freelance/CallHistory'
 export default {
 	components: {
 		CallHistory
-	}
+	},
+	data() {
+		return {
+			items:{
+				showDateTime:''
+		}
+		}
+	},
 }
 </script>
 <style scoped>

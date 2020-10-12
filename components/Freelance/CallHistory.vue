@@ -1,5 +1,5 @@
 <template>
-  <div class="card-detail" :v-for="(showDateTime,items) in items" :key="showDateTime">
+  <div class="card-detail">
     <h2>{{showDateTime.dateIn}}</h2>
     <hr class="line line-green">
     <div class="data-profile">
@@ -26,9 +26,6 @@ export default {
 		return {
 		freelanceData: '',
 		showDateTime: '',
-		items:{
-			showDateTime:''
-		}
 		}
 	},
 	async mounted(){
