@@ -1,13 +1,19 @@
 <template>
 	<div>
 		<h1>ประวัติการทำงานของคุณ</h1> 
-		<CallHistory class="history" :v-for="items in showDateTime" :key="showDateTime" :showDateTime="items"/> 
+		<CallHistory class="history" :v-for="item in showDateTime" :key="showDateTime" :showDateTime="item"/> 
 		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
 	</div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 import CallHistory from '@/components/Freelance/CallHistory'
 export default {
+	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
 	components: {
 		CallHistory
 	},
