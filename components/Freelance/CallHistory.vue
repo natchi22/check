@@ -1,5 +1,5 @@
 <template>
-  <div class="card-detail" :v-for="(freelanceData,items) in items" :key="freelanceData">
+  <div class="card-detail" :v-for="(showDateTime,items) in items" :key="showDateTime">
     <h2>{{showDateTime.dateIn}}</h2>
     <hr class="line line-green">
     <div class="data-profile">
@@ -27,7 +27,7 @@ export default {
 		freelanceData: '',
 		showDateTime: '',
 		items:{
-			freelanceData:''
+			showDateTime:''
 		}
 		}
 	},
