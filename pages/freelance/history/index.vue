@@ -2,6 +2,7 @@
 	<div>
 		<h1>ประวัติการทำงานของคุณ</h1>
 		<CallHistory class="history" /> <!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
+		<CallHistory class="history" />
 	</div>
 </template>
 <script>
