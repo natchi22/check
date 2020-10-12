@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<h1>ประวัติการทำงานของคุณ</h1>
-		<CallHistory class="history" :v-for="(showDateTime,items) in items" :key="showDateTime"/> 
+		<h1>ประวัติการทำงานของคุณ</h1> 
+		<CallHistory class="history" :v-for="items in showDateTime" :key="showDateTime" :showDateTime="items"/> 
 		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
 	</div>
 </template>
@@ -14,9 +14,7 @@ export default {
 	data() {
 		return {
 			freelanceData:'',
-			items:{
-				showDateTime:''
-			}
+			showDateTime: []
 		}
 	},
 	async mounted(){
@@ -26,6 +24,11 @@ export default {
 			this.freelanceData = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
+		dateTime.forEach((doc)=>{
+			this.showDateTime = doc.data()
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		console.log(this.showDateTime)
   	}
 }
 </script>
