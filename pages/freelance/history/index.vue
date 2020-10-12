@@ -3,6 +3,8 @@
 		<h1>ประวัติการทำงานของคุณ</h1> 
 		<CallHistory class="history" :v-for="item in showDateTime" :key="showDateTime" :showDateTime="item"/> 
 		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
+		{{freelanceData}}
+		{{showDateTime}}
 	</div>
 </template>
 <script>
@@ -31,7 +33,7 @@ export default {
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
 		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
-		this.showDateTime =  doc.data()
+		this.showDateTime = dateTime
 		// dateTime.forEach((doc)=>{
 		// 	this.showDateTime = doc.data()
 		// }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
