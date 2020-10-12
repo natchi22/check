@@ -21,14 +21,7 @@ export default {
             profile: state => state.profile.profileData
         })
     },
-	props: ['showDateTime'],
-	props:{
-		showDateTime: {
-      		type: Object,
-      		required: true
-    	}
-	},
-	
+	props: ['showDateTime'],	
 }
 </script>
 <style scoped>
