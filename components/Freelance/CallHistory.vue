@@ -1,5 +1,5 @@
 <template>
-  <div class="card-detail">
+  <div class="card-detail" :v-for="item in items" :key="item.freelanceData">
     <h2>{{showDateTime.dateIn}}</h2>
     <hr class="line line-green">
     <div class="data-profile">
