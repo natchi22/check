@@ -22,7 +22,22 @@ export default {
 	data() {
 		return {
 			freelanceData:'',
-			showDateTime: []
+			showDateTime: [
+				{
+					dateIn: "9/10/2020",
+					timeIn:"12.34",
+					timeOut:"12.34",
+					detail: "ทำไรดี",
+
+				},
+				{
+					dateIn: "5/10/2020",
+					timeIn:"12.34",
+					timeOut:"14.34",
+					detail: "ทำไรดีว้าาาา",
+
+				},
+			]
 		}
 	},
 	async mounted(){

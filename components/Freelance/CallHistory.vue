@@ -16,11 +16,6 @@
 </template>
 <script>
 export default {
-	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
-    },
 	props: ['showDateTime'],	
 }
 </script>
