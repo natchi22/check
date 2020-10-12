@@ -19,14 +19,14 @@
   </div>
 </template>
 <script>
-import { mapState,mapMutations } from 'vuex'
+// import { mapState,mapMutations } from 'vuex'
 import CallCardDetail from '@/components/Admin/Name/CallCardDetail'
 export default {
-  computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
-    ...mapState({
-    profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
-  })
-},
+//   computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+//     ...mapState({
+//     profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
+//   })
+// },
   components: {
     CallCardDetail
   },

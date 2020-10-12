@@ -13,11 +13,9 @@
         <CallCardDate class="margin-card" />
       </a-tab-pane>
       <a-tab-pane key="2" tab="รายชื่อ">
-        <nuxt-link to="/admin/history/name">
-          <CallCardName class="margin-card" />
-          <CallCardName class="margin-card" />
-          <CallCardName class="margin-card" />
-        </nuxt-link>
+        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
+        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
+        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -27,21 +25,37 @@ import moment from 'moment'
 import CallCardDate from '@/components/Admin/Date/CallCardDate'
 import CallCardName from '@/components/Admin/Name/CallCardName'
 export default {
-  components: {
-    CallCardDate,
-    CallCardName
-  },
-  data () {
-    return {
-      dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY']
-    }
-  },
-  methods: {
-    callback (key) {
-      console.log(key)
-    },
-    moment
-  }
+	components: {
+		CallCardDate,
+		CallCardName
+	},
+	data () {
+		return {
+		dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY']
+		}
+	},
+	methods: {
+		callback (key) {
+		console.log(key)
+		},
+		moment
+	},
+	async mounted(){
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
+		freelance.forEach((doc)=>{
+			this.freelanceData = doc.data()
+
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId)
+		.get()
+		// dateTime.orderByChild('dateIn').limitToFirst(30)
+		dateTime.forEach((doc)=>{
+			this.tasks.push(doc.data())
+		})
+		console.log(this.showDateTime)
+  	}
 }
 </script>
 <style scoped>
