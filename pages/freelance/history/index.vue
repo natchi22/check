@@ -37,7 +37,7 @@ export default {
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
 		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId)
-		.get()
+		.orderBy('dateIn', 'desc').get()
 		// dateTime.orderByChild('dateIn').limitToFirst(30)
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
