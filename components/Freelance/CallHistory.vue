@@ -22,6 +22,12 @@ export default {
         })
     },
 	props: ['showDateTime'],
+	props:{
+		showDateTime: {
+      		type: Object,
+      		required: true
+    	}
+	},
 	
 }
 </script>

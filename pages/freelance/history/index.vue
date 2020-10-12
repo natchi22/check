@@ -19,12 +19,6 @@ export default {
 	components: {
 		CallHistory
 	},
-	props:{
-		showDateTime: {
-      		type: Object,
-      		required: true
-    }
-	},
 	data() {
 		return {
 			freelanceData:'',
