@@ -38,7 +38,7 @@ export default {
 		
 		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId)
 		.get()
-		dateTime.orderByChild('dateIn').limitToFirst(30)
+		// dateTime.orderByChild('dateIn').limitToFirst(30)
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
 		})
