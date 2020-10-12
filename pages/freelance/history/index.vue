@@ -8,8 +8,6 @@
 			class="history"
 		/> 
 		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
-		{{freelanceData}}
-		{{tasks}}
 	</div>
 </template>
 <script>
@@ -39,10 +37,9 @@ export default {
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
 		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
-		this.tasks.concat(dateTime)
-		// dateTime.forEach((doc)=>{
-		// 	this.tasks.push(doc.data())
-		// }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		dateTime.forEach((doc)=>{
+			this.tasks.push(doc.data())
+		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		console.log(this.showDateTime)
   	}
 }
