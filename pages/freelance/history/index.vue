@@ -36,8 +36,8 @@ export default {
 
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
-		const dateTime = await this.$fireStore.collection("Task").orderByChild('dateIn').where("freelanceId",'==',  this.freelanceData.freelanceId)
-		.get()
+		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId)
+		.get().orderByChild('dateIn')
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
 		})
