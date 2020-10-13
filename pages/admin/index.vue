@@ -1,14 +1,14 @@
 <template>
-  <div class="login">
-    <h1>เข้าสู่ระบบ</h1>
-    <input type="text" placeholder="ชื่อผู้ใช้">
-    <input type="text" placeholder="รหัสผ่าน">
-    <nuxt-link to="/admin/history">
-      <button class="btn btn-green">
-        เข้าสู่ระบบ
-      </button>
-    </nuxt-link>
-  </div>
+	<div class="login">
+		<h1>เข้าสู่ระบบ</h1>
+		<input type="text" placeholder="ชื่อผู้ใช้" v-model="userAdmin" >
+		<input type="text" placeholder="รหัสผ่าน" v-model="passwordAdmin" >
+		<nuxt-link to="/admin/history">
+		<button class="btn btn-green" >
+			เข้าสู่ระบบ
+		</button>
+		</nuxt-link>
+	</div>
 </template>
 <script>
 // import liff from '@line/liff'
@@ -20,19 +20,9 @@ export default {
             passAdmin: ''
         }
     },
-  
-    methods:{
-        async summit(){ ///input db ???
-            const user = this.$fireStore.collection("Freelance").doc()
-            await user.set({
-                freelanceId : user.id,
-                firstName : this.fName,
-                lastName : this.lName,
-                phone : this.telNumber
-            })
-            console.log(user)
-        }
-    }
+	mounted(){ ///สั่งพิมยูสภุงให้เข้า ผิดมีเด้งผิด ?
+
+	}
 
 }
 </script>

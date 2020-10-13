@@ -8,7 +8,8 @@
             :format="dateFormatList"
           />
         </div>
-        <CallCardDate 
+		<!-- line liffมีปห เปิดลิ้งกูไม่ได้ว่า ข้อมูลขึ้นมาโชว์ไหม -->
+        <CallCardDate    
 			class="margin-card" 
 			v-for="(item, index) in tasks"
 			:key="index"
@@ -22,17 +23,23 @@
 			v-for="(item, index) in tasks"
 			:key="index"
 			:freelanceData="item"
-			{{freelanceData}}
-		/>
+			
+		/>{{freelanceData}}
       </a-tab-pane>
     </a-tabs>
   </div>
 </template>
 <script>
+import { mapState,mapMutations } from 'vuex'
 import moment from 'moment'
 import CallCardDate from '@/components/Admin/Date/CallCardDate'
 import CallCardName from '@/components/Admin/Name/CallCardName'
 export default {
+	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
 	components: {
 		CallCardDate,
 		CallCardName

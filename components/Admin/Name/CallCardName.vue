@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
+    <!-- <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์"> -->
     <h1>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h1>
   </div>
 </template>

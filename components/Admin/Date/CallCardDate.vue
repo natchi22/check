@@ -4,7 +4,7 @@
       <div class="cover">
         <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
       </div>
-      <h1>{{ fName }} {{ lName }}</h1>
+      <h1>{{freelanceData.firstName}} {{freelanceData.lastName}}</h1>
     </div>
     <div class="content">
       <div class="title">
