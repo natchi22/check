@@ -12,8 +12,8 @@
         <h2>รายละเอียด</h2>
       </div>
       <div class="detail">
-        <h3>{{ timeIn }} น. - {{ timeOut }} น.</h3>
-        <h3>{{ detail }}</h3>
+        <h3>{{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.</h3>
+        <h3>{{showDateTime.detail}}</h3>
       </div>
     </div>
   </div>

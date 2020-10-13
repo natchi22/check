@@ -8,14 +8,22 @@
             :format="dateFormatList"
           />
         </div>
-        <CallCardDate class="margin-card" />
-        <CallCardDate class="margin-card" />
-        <CallCardDate class="margin-card" />
-      </a-tab-pane>
-      <a-tab-pane key="2" tab="รายชื่อ">
-        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
-        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
-        <CallCardName class="margin-card" :profile="{pictureUrl:''}" :freelanceData="{firstName:'', lastName:'' }"/>
+        <CallCardDate 
+			class="margin-card" 
+			v-for="(item, index) in tasks"
+			:key="index"
+			:showDateTime="item"
+		/>
+      	</a-tab-pane>
+      	<a-tab-pane key="2" tab="รายชื่อ">
+		<CallCardName 
+			class="margin-card" 
+			:profile="{pictureUrl:''}" 
+			v-for="(item, index) in tasks"
+			:key="index"
+			:freelanceData="item"
+			{{freelanceData}}
+		/>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -31,7 +39,10 @@ export default {
 	},
 	data () {
 		return {
-		dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY']
+			dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY'],
+			freelanceData:'',
+			tasks: []
+
 		}
 	},
 	methods: {
@@ -54,6 +65,7 @@ export default {
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
 		})
+		
 		console.log(this.showDateTime)
   	}
 }
