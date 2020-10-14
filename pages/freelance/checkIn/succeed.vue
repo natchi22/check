@@ -1,19 +1,19 @@
 <template>
   <div class="check-in">
     <a-icon
-      type="check-circle"
-      :style="{
-        fontSize: '100px',
-        color: '#3ABCA7' }"
-      theme="filled"
-    />
-    <h1>
-      บันทึกเข้างาน <br>
-      เรียบร้อยแล้ว
-    </h1>
-    <div class="box-time">
-      <!-- <p>{{showDate}}, {{showTime}} น</p> -->
-      <p>{{showDateTime.dateIn}}, {{showDateTime.timeIn}}น.</p>
+			type="check-circle"
+			:style="{
+			fontSize: '100px',
+			color: '#3ABCA7' }"
+			theme="filled"
+		/>
+		<h1>
+			บันทึกเข้างาน <br>
+			เรียบร้อยแล้ว
+		</h1>
+		<div class="box-time">
+		<!-- <p>{{showDate}}, {{showTime}} น</p> -->
+		<p>{{showDateTime.dateIn}}, {{showDateTime.timeIn}}น.</p>
     </div>
   </div>
 </template>
