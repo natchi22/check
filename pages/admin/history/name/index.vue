@@ -1,21 +1,25 @@
 <template>
   <div>
     <div>
-      <nuxt-link to="/admin/history">
-        <a-icon
-          type="left"
-          :style="{
-            fontSize: '20px'
-          }"
-        />
-      </nuxt-link>
-    </div>
-    <div class="profile-img">
-      <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
-      <h2>{{ fName }} {{ lName }}</h2>
-    </div>
-    <CallCardDetail class="card" />
-    <CallCardDetail class="card" />
+		<nuxt-link to="/admin/history">
+			<a-icon
+			type="left"
+			:style="{
+				fontSize: '20px'
+			}"
+			/>
+		</nuxt-link>
+		</div>
+		<div class="profile-img">
+		<!-- <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์"> -->
+		<h2>{{freelanceData.firstName}} {{ freelanceData.lastName }}</h2>
+		</div>
+    <CallCardDetail 
+		class="card" 
+		v-for="(item, index) in tasks"
+		:key="index"
+		:showDateTime="item"
+	/>
   </div>
 </template>
 <script>
@@ -27,15 +31,33 @@ export default {
 //     profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
 //   })
 // },
-  components: {
-    CallCardDetail
-  },
-  data () {
-    return {
-      fName: 'นางสาว',
-      lName: 'สมศรี'
-    }
-  }
+	components: {
+		CallCardDetail
+	},
+	data () {
+		return {
+			freelanceData:[],
+			tasks: []
+		}
+	},
+	async mounted(){
+
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const freelance = await this.$fireStore.collection("Freelance").get()
+		freelance.forEach((doc)=>{
+			// console.log(doc.data());
+			this.freelanceData.push(doc.data())
+		})
+		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		
+		const dateTime = await this.$fireStore.collection("Task")   ////จะเอาแค่task คนเดียว แต่มาหมดเลย
+		.get()
+		dateTime.forEach((doc)=>{
+			this.tasks.push(doc.data())
+			console.log(doc.data());
+		})
+		
+  	}
 }
 </script>
 <style scoped>

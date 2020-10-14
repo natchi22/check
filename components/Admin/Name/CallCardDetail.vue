@@ -7,23 +7,16 @@
         <h1>รายละเอียด : </h1>
       </div>
       <div class="detail">
-        <h1>{{ dateShow }}</h1>
-        <h1>{{ timeIn }} น. - {{ timeOut }} น.</h1>
-        <h1>{{ detail }}</h1>
+        <h1>{{showDateTime.dateIn}}</h1>
+        <h1>{{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.</h1>
+        <h1>{{showDateTime.detail}}</h1>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      dateShow: '22/01/2020',
-      timeIn: '10.00',
-      timeOut: '18.00',
-      detail: 'รายละเอียดรายละเอียดรายละเอียดรายละเอียดรายละเอีย'
-    }
-  }
+	props: ['profile', 'showDateTime'],
 }
 </script>
 <style scoped>

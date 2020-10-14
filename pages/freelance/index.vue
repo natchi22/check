@@ -24,6 +24,7 @@ import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
+            img: '',
             inforFrelance:{},
             freelanceData:'',
             fName: '',
@@ -50,7 +51,8 @@ export default {
                 firstName : this.fName,
                 lastName : this.lName,
                 phone : this.telNumber,
-                lineId : this.profile.userId
+                lineId : this.profile.userId,
+                pictureUrl : profile.pictureUrl
             })
             console.log(user)
         },

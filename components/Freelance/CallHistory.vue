@@ -1,18 +1,18 @@
 <template>
-  <div class="card-detail">
-    <h2>{{showDateTime.dateIn}}</h2>
-    <hr class="line line-green">
-    <div class="data-profile">
-      <div class="title">
-        <h1>เวลาเข้า - ออก:</h1>
-        <h1>รายละเอียด:</h1>
-      </div>
-      <div class="detail">
-        <h1>{{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.</h1>
-        <h1>{{showDateTime.detail}}</h1>
-      </div>
-    </div>
-  </div>
+	<div class="card-detail">
+		<h2>{{showDateTime.dateIn}}</h2>
+		<hr class="line line-green">
+		<div class="data-profile">
+		<div class="title">
+			<h1>เวลาเข้า - ออก:</h1>
+			<h1>รายละเอียด:</h1>
+		</div>
+		<div class="detail">
+			<h1>{{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.</h1>
+			<h1>{{showDateTime.detail}}</h1>
+		</div>
+		</div>
+	</div>
 </template>
 <script>
 export default {

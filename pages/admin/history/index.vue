@@ -8,38 +8,40 @@
             :format="dateFormatList"
           />
         </div>
-		<!-- line liffมีปห เปิดลิ้งกูไม่ได้ว่า ข้อมูลขึ้นมาโชว์ไหม -->
         <CallCardDate    
 			class="margin-card" 
-			v-for="(item, index) in tasks"
-			:key="index"
-			:showDateTime="item"
+			v-for="item in tasks"
+			:key="item.taskId"
+			:freelanceData="getFreelanceData(item)"
+			:tasks="item"
 		/>
       	</a-tab-pane>
       	<a-tab-pane key="2" tab="รายชื่อ">
-		<CallCardName 
-			class="margin-card" 
-			:profile="{pictureUrl:''}" 
-			v-for="(item, index) in tasks"
-			:key="index"
-			:freelanceData="item"
-			
-		/>{{freelanceData}}
+			<nuxt-link to="/admin/history/name">
+				<CallCardName 
+					class="margin-card"
+					v-for="free in freelanceData" 
+					:key="free.freelanceId"
+					:profile="{pictureUrl:''}" 
+					:freelanceData="free"
+				/>
+				<!-- เหลือ date detail ทำให้มันขึ้นมาก่อน ใส่รูปด้วย-->
+			</nuxt-link>
       </a-tab-pane>
     </a-tabs>
   </div>
 </template>
 <script>
-import { mapState,mapMutations } from 'vuex'
+// import { mapState,mapMutations } from 'vuex'
 import moment from 'moment'
 import CallCardDate from '@/components/Admin/Date/CallCardDate'
 import CallCardName from '@/components/Admin/Name/CallCardName'
 export default {
-	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
-    },
+	// computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+    //     ...mapState({
+    //         profile: state => state.profile.profileData
+    //     })
+    // },
 	components: {
 		CallCardDate,
 		CallCardName
@@ -47,33 +49,43 @@ export default {
 	data () {
 		return {
 			dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY'],
-			freelanceData:'',
+			freelanceData:[],
+			freelanceProfile: null,
 			tasks: []
-
 		}
 	},
 	methods: {
+		async getFreelanceData(task) {
+			const freelance = await this.$fireStore.collection("Freelance")
+			.where('freelanceId', '==', task.freelanceId)
+			.get()
+			freelance.forEach((doc)=>{
+				return doc.data()
+			})
+		},
 		callback (key) {
 		console.log(key)
 		},
 		moment
 	},
 	async mounted(){
-		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==', this.profile.userId ).get()
-		freelance.forEach((doc)=>{
-			this.freelanceData = doc.data()
 
-		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+		const freelance = await this.$fireStore.collection("Freelance").get()
+		freelance.forEach((doc)=>{
+			// console.log(doc.data());
+			this.freelanceData.push(doc.data())
+		})
+		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
-		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId)
+		const dateTime = await this.$fireStore.collection("Task")
 		.get()
 		// dateTime.orderByChild('dateIn').limitToFirst(30)
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
+			console.log(doc.data());
 		})
 		
-		console.log(this.showDateTime)
   	}
 }
 </script>

@@ -1,36 +1,26 @@
 <template>
   <div class="card">
     <div class="name">
-      <div class="cover">
-        <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
-      </div>
-      <h1>{{freelanceData.firstName}} {{freelanceData.lastName}}</h1>
+		<div class="cover">
+			<!-- <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์"> -->
+		</div>
+		<h1>{{freelanceData.firstName}} {{freelanceData.lastName}}</h1>
     </div>
     <div class="content">
-      <div class="title">
-        <h2>เวลาเข้า - ออก</h2>
-        <h2>รายละเอียด</h2>
-      </div>
-      <div class="detail">
-        <h3>{{showDateTime.timeIn}} น. - {{showDateTime.timeOut}} น.</h3>
-        <h3>{{showDateTime.detail}}</h3>
-      </div>
+		<div class="title">
+			<h2>เวลาเข้า - ออก</h2>
+			<h2>รายละเอียด</h2>
+		</div>
+		<div class="detail">
+			<h3>{{tasks.timeIn}} น. - {{tasks.timeOut}} น.</h3>
+			<h3>{{tasks.detail}}</h3>
+		</div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  	// data () {
-	// 	return {
-	// 	open: true,
-	// 	fName: 'นางสาว',
-	// 	lName: 'สมศรี',
-	// 	timeIn: '10.00',
-	// 	timeOut: '18.00',
-	// 	detail: 'รายละเอียดรายละเอียดรายละเอียดรายละเอียดรายละเอียดรายละเอียดรายละเอียดรายละเอียด'
-	// 	}
-	// },
-	props: ['profile', 'showDateTime'],
+  	props: ['profile', 'tasks','freelanceData'],
 	methods: {
 		seemore () {
 		this.open = !this.open

@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-	props: ['profile', 'freelanceData'],
+  props: ['profile', 'freelanceData'],
 }
 </script>
 <style scoped>
