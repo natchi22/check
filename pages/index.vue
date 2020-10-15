@@ -112,7 +112,6 @@ export default {
 </script>
 <style>
 .loaddata{
-	display: flex;
-	justify-content: center;
+	text-align: center;
 }
 </style>
