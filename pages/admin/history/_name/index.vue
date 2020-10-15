@@ -17,7 +17,7 @@
     <CallCardDetail 
 		class="card" 
 		v-for="item in tasks"
-		:key="item"
+		:key="item.taskId"
 		:showDateTime="item"
 		:profile="item" 
 	/>
@@ -37,30 +37,33 @@ export default {
 	},
 	data () {
 		return {
-			freelanceData:[],
-			tasks: []
+			freelanceData: {},
+			tasks: [],
 		}
 	},
+	methods:{
+
+	},
 	async mounted(){
+		console.log(this.$route.params.name)
+		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
 		const freelance = await this.$fireStore.collection("Freelance")
-		.where("freelanceId",'==', 'wYif0xIl2vbunaRCo76E' ).get()
+		.where("freelanceId",'==', this.$route.params.name)
+		.get()
 		freelance.forEach((doc)=>{
+			// console.log(doc.data());
 			this.freelanceData = doc.data()
 		})
-		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		// const freelance = await this.$fireStore.collection("Freelance").get()
-		// freelance.forEach((doc)=>{
-		// 	// console.log(doc.data());
-		// 	this.freelanceData.push(doc.data())
-		// })
 		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-		
 		const dateTime = await this.$fireStore.collection("Task")   ////จะเอาแค่task คนเดียว แต่มาหมดเลย
+		.where("freelanceId",'==', this.$route.params.name)
+		.where("status",'==', true)
 		.get()
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
 			console.log(doc.data());
 		})
+
 		
   	}
 }

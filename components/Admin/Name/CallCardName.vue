@@ -1,8 +1,10 @@
 <template>
-  <div class="card">
-    <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
-    <h1>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h1>
-  </div>
+  <nuxt-link :to="'/admin/history/'+freelanceData.freelanceId" class="card">
+
+      <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
+      <h1>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h1>
+
+  </nuxt-link>
 </template>
 <script>
 export default {

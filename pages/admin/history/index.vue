@@ -12,12 +12,10 @@
 			class="margin-card" 
 			v-for="item in tasks"
 			:key="item.taskId"
-			:freelanceData="() => getFreelanceData(item)"
-			:tasks="item"
+			:task="item"
 		/>
       	</a-tab-pane>
       	<a-tab-pane key="2" tab="รายชื่อ">
-			<nuxt-link to="/admin/history/name">
 				<CallCardName 
 					class="margin-card"
 					v-for="free in freelanceData" 
@@ -26,7 +24,6 @@
 					:freelanceData="free"
 				/>
 				<!-- เหลือ date detail ทำให้มันขึ้นมาก่อน ใส่รูปด้วย-->
-			</nuxt-link>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -52,17 +49,10 @@ export default {
 			freelanceData:[],
 			freelanceProfile: null,
 			tasks: [],
+			someting:{},
 		}
 	},
 	methods: {
-		async getFreelanceData(task) {
-			const freelance = await this.$fireStore.collection("Freelance")
-				.where('freelanceId', '==', task.freelanceId)
-				.get()
-			freelance.forEach((doc)=>{
-				return doc.data()
-			})
-		},
 		callback (key) {
 			console.log(key)
 		},
@@ -75,7 +65,6 @@ export default {
 		freelance.forEach((doc)=>{
 			// console.log(doc.data());
 			this.freelanceData.push(doc.data())
-			console.log(doc.data());
 		})
 		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
@@ -84,9 +73,8 @@ export default {
 		// dateTime.orderByChild('dateIn').limitToFirst(30)
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
-			console.log(doc.data());
+			// console.log(doc.data());
 		})
-		
   	}
 }
 </script>
