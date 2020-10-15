@@ -1,7 +1,7 @@
 <template>
 	<div class="loaddata">
 		<!-- ใส่ตัวโหลด -->
-    <a-icon type="loading"  :style="{ fontSize: '64px', color: '#08c' }"/>
+    <a-icon type="loading"  :style="{ fontSize: '64px', color: '#3ABCA7' }"/>
 	</div>
 </template>
 
@@ -112,6 +112,6 @@ export default {
 </script>
 <style>
 .loaddata{
-
+	margin: 80% 0 0 40%;
 }
 </style>
