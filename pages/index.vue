@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- ใส่ตัวโหลด -->
-    โหลดแพพ
+    <a-icon type="loading" />
 	</div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
     	...mapMutations({
         	saveProfile: 'profile/saveProfile'
 		}),
+		
 	},
  	async mounted () {
     	const data = {
@@ -87,6 +88,12 @@ export default {
 						
 					}
 					else{
+						if(this.inforFrelance.lineId && 
+						this.inforFrelance.firstName && 
+						this.inforFrelance.lastName && 
+						this.inforFrelance.phone){
+
+						}
 						this.$router.replace('/freelance')
 					}
 				}

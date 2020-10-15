@@ -6106,6 +6106,13 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
+lazyload-vue@^0.1.20:
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/lazyload-vue/-/lazyload-vue-0.1.20.tgz#0553eeb3bae4acf336540ec3bc21a14e1d0019f8"
+  integrity sha512-uFs2EMteNcCQZPUrGYh+RB4kEkabD666eJtfa8xotJebNtz2T8H0K24+XqrF9e+6W4qMesJ7MIU8HvSfIweF6A==
+  dependencies:
+    vanilla-lazyload "^12.0.0"
+
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
@@ -9694,6 +9701,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vanilla-lazyload@^12.0.0:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/vanilla-lazyload/-/vanilla-lazyload-12.5.1.tgz#daba44bd856c9f550909e73f7219577c96b28ec7"
+  integrity sha512-gB986dXslHqkbYMDnwfIlKHl++lLADAEZhI6FNZy7gtVddR+1N69xkOI2vRAJssr6QzmKPCfZu4btEHWjG0pNA==
 
 vary@^1.1.2, vary@~1.1.2:
   version "1.1.2"
