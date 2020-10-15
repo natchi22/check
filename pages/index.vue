@@ -112,6 +112,6 @@ export default {
 </script>
 <style>
 .loaddata{
-	margin: 80% 0 0 40%;
+	margin: 60% 0 0 40%;
 }
 </style>

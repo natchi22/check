@@ -26,14 +26,8 @@ export default {
 	},
     data(){
         return{
-            // dateShow: '22/10/2020',
-            // timeIn: '10.00',
-            // timeOut: '18.00',
             showDateTime: '',
-            // showdate:'',
-            // showTime:'',
             freelanceData: '',
-
         }
     },
     async mounted(){
