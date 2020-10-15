@@ -12,7 +12,7 @@
 			class="margin-card" 
 			v-for="item in tasks"
 			:key="item.taskId"
-			:freelanceData="getFreelanceData(item)"
+			:freelanceData="() => getFreelanceData(item)"
 			:tasks="item"
 		/>
       	</a-tab-pane>
@@ -22,7 +22,7 @@
 					class="margin-card"
 					v-for="free in freelanceData" 
 					:key="free.freelanceId"
-					:profile="pictureUrl" 
+					:profile="free" 
 					:freelanceData="free"
 				/>
 				<!-- เหลือ date detail ทำให้มันขึ้นมาก่อน ใส่รูปด้วย-->
@@ -52,20 +52,19 @@ export default {
 			freelanceData:[],
 			freelanceProfile: null,
 			tasks: [],
-			pictureUrl: ''
 		}
 	},
 	methods: {
 		async getFreelanceData(task) {
 			const freelance = await this.$fireStore.collection("Freelance")
-			.where('freelanceId', '==', task.freelanceId)
-			.get()
+				.where('freelanceId', '==', task.freelanceId)
+				.get()
 			freelance.forEach((doc)=>{
 				return doc.data()
 			})
 		},
 		callback (key) {
-		console.log(key)
+			console.log(key)
 		},
 		moment
 	},
@@ -76,6 +75,7 @@ export default {
 		freelance.forEach((doc)=>{
 			// console.log(doc.data());
 			this.freelanceData.push(doc.data())
+			console.log(doc.data());
 		})
 		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		

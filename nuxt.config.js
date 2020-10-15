@@ -45,8 +45,8 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ['@nuxtjs/firebase'
-    // '@nuxtjs/axios',
     // '@nuxtjs/auth'
+    // '@nuxtjs/axios',
   ],
   firebase: {
     config: {

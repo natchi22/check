@@ -11,7 +11,7 @@
 		</nuxt-link>
 		</div>
 		<div class="profile-img">
-		<!-- <img class="pic size-pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์"> -->
+		<img class="pic size-pic" :src="freelanceData.pictureUrl" alt="รูปโปรไฟล์">
 		<h2>{{freelanceData.firstName}} {{ freelanceData.lastName }}</h2>
 		</div>
     <CallCardDetail 
@@ -19,6 +19,7 @@
 		v-for="(item, index) in tasks"
 		:key="index"
 		:showDateTime="item"
+		:profile="item" 
 	/>
   </div>
 </template>

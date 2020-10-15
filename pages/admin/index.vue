@@ -1,13 +1,11 @@
 <template>
 	<div class="login">
 		<h1>เข้าสู่ระบบ</h1>
-		<input type="text" placeholder="ชื่อผู้ใช้" v-model="userAdmin" >
-		<input type="text" placeholder="รหัสผ่าน" v-model="passwordAdmin" >
-		<nuxt-link to="/admin/history">
-		<button class="btn btn-green" >
+		<input type="email" placeholder="ชื่อผู้ใช้" v-model="email">
+		<input type="password" placeholder="รหัสผ่าน" v-model="password">
+		<button class="btn btn-green" @click="login" >
 			เข้าสู่ระบบ
 		</button>
-		</nuxt-link>
 	</div>
 </template>
 <script>
@@ -16,14 +14,25 @@ import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
-            userAdmin: '',
-            passAdmin: ''
+            email: '',
+            password: ''
         }
     },
-	mounted(){ ///สั่งพิมยูสภุงให้เข้า ผิดมีเด้งผิด ?
+    methods:{
+        async login(e) {
+            e.preventDefault();
+            if (this.email && this.password) {
+                try {
+                    await this.$fireAuth.signInWithEmailAndPassword(this.email,  this.password);
+                    this.$router.push('/admin/history');
+                } catch (e) {
+                    this.$router.push('/admin');
+                }
+            }
 
-	}
-
+        }
+        
+    }
 }
 </script>
 <style scoped>

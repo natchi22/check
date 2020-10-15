@@ -2,7 +2,7 @@
   <div class="card">
     <div class="name">
 		<div class="cover">
-			<!-- <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์"> -->
+			<img class="pic" :src="freelanceData.pictureUrl" alt="รูปโปรไฟล์">
 		</div>
 		<h1>{{freelanceData.firstName}} {{freelanceData.lastName}}</h1>
     </div>
@@ -20,7 +20,7 @@
 </template>
 <script>
 export default {
-  	props: ['profile', 'tasks','freelanceData'],
+  	props: ['tasks','freelanceData'],
 	methods: {
 		seemore () {
 		this.open = !this.open
