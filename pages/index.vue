@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="loaddata">
 		<!-- ใส่ตัวโหลด -->
-    <a-icon type="loading" />
+    <a-icon type="loading"  :style="{ fontSize: '64px', color: '#08c' }"/>
 	</div>
 </template>
 
@@ -88,12 +88,6 @@ export default {
 						
 					}
 					else{
-						if(this.inforFrelance.lineId && 
-						this.inforFrelance.firstName && 
-						this.inforFrelance.lastName && 
-						this.inforFrelance.phone){
-
-						}
 						this.$router.replace('/freelance')
 					}
 				}
@@ -117,5 +111,8 @@ export default {
 }
 </script>
 <style>
-
+.loaddata{
+	display: flex;
+	justify-content: center;
+}
 </style>
