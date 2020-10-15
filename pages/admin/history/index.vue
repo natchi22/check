@@ -22,7 +22,7 @@
 					class="margin-card"
 					v-for="free in freelanceData" 
 					:key="free.freelanceId"
-					:profile="{pictureUrl:''}" 
+					:profile="pictureUrl" 
 					:freelanceData="free"
 				/>
 				<!-- เหลือ date detail ทำให้มันขึ้นมาก่อน ใส่รูปด้วย-->
@@ -51,7 +51,8 @@ export default {
 			dateFormatList: ['DD/MM/YYYY', 'DD/MM/YY'],
 			freelanceData:[],
 			freelanceProfile: null,
-			tasks: []
+			tasks: [],
+			pictureUrl: ''
 		}
 	},
 	methods: {
