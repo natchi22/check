@@ -6,7 +6,7 @@
           <a-date-picker
 		  	@change="showData"
 			  v-model="selectedDate"
-            :default-value="moment('01/10/2020', dateFormatList[0])"
+            :default-value="moment(today, dateFormatList[0])"
             :format="dateFormatList"
           />
         </div>
@@ -52,7 +52,8 @@ export default {
 			freelanceProfile: null,
 			tasks: [],
 			someting:{},
-			selectedDate: null
+			selectedDate: null,
+			today: moment().format('DD/MM/YYYY')
 		}
 	},
 	methods: {
@@ -70,7 +71,6 @@ export default {
 				this.tasks.push(doc.data())
 				console.log(doc.data())
 			})
-
 		},
 		moment
 	},
@@ -91,6 +91,7 @@ export default {
 			this.tasks.push(doc.data())
 			// console.log(doc.data());
 		})
+		
   	}
 }
 </script>
@@ -124,6 +125,9 @@ border-color: #3ABCA7;
 }
 .ant-calendar-selected-day .ant-calendar-date{
 background: rgba(58, 188, 167,0.1);
+}
+a{
+	color: #3ABCA7;
 }
 /* date */
 </style>
