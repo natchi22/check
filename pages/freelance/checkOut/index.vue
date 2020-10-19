@@ -91,7 +91,7 @@ export default {
 		
 		const today = new Date();  //เวลา
 		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		const timeOut = today.getHours() + ":" + today.getMinutes();
+		const timeOut = today.getHours() + ":" + String(today.getMinutes()).padStart(2,'0');
 		// const dateTime = date+' '+time;
 		this.showTimeOut = timeOut;
 		this.showDateOut = dateOut;

@@ -43,7 +43,7 @@ export default {
 		})
 		const today = new Date();
 		const dateIn = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		const timeIn = today.getHours() + ":" + today.getMinutes();
+		const timeIn = today.getHours() + ":" + String(today.getMinutes()).padStart(2,'0');
 		// const dateTime = date+' '+timeIn;
 		this.showTimeIn = timeIn;
 		this.showDateIn = dateIn;
