@@ -4,7 +4,9 @@
       <a-tab-pane key="1" tab="วันที่">
         <div class="picker">
           <a-date-picker
-            :default-value="moment('01/01/2015', dateFormatList[0])"
+		  	@change="showData"
+			  v-model="selectedDate"
+            :default-value="moment('01/10/2020', dateFormatList[0])"
             :format="dateFormatList"
           />
         </div>
@@ -50,16 +52,29 @@ export default {
 			freelanceProfile: null,
 			tasks: [],
 			someting:{},
+			selectedDate: null
 		}
 	},
 	methods: {
 		callback (key) {
 			console.log(key)
 		},
+		async showData (){
+			// console.log(moment(this.selectedDate).format('DD/MM/YYYY'))
+			const selectedDate = moment(this.selectedDate).format('DD/MM/YYYY')
+			const dateTime = await this.$fireStore.collection("Task")
+			.where('dateIn','==', selectedDate)
+			.get()
+			this.tasks = []
+			dateTime.forEach((doc)=>{
+				this.tasks.push(doc.data())
+				console.log(doc.data())
+			})
+
+		},
 		moment
 	},
 	async mounted(){
-
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
 		const freelance = await this.$fireStore.collection("Freelance").get()
 		freelance.forEach((doc)=>{
@@ -69,8 +84,9 @@ export default {
 		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
 		const dateTime = await this.$fireStore.collection("Task")
+		// .where('dateIn','===',this.tasks.dateIn)
 		.get()
-		// dateTime.orderByChild('dateIn').limitToFirst(30)
+		
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
 			// console.log(doc.data());

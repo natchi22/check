@@ -36,7 +36,8 @@ export default {
 		}
 	},
 	async mounted(){
-		const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+		const freelance = await this.$fireStore.collection("Freelance")
+		.where("lineId",'==',this.profile.userId ).get()
 		freelance.forEach((doc)=>{
 		this.freelanceData = doc.data()
 		})
