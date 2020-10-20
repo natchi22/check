@@ -42,7 +42,7 @@ export default {
     },
     methods:{  ///แก้ตรงนี้ แก้โปรไฟล์
         async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-			const edit = this.$fireStore.collection("Freelance")
+			const edit = await this.$fireStore.collection("Freelance")
 			.where('lineId','==', this.profile.userId)
 			.get().then((query) => {
 				const profile = query.docs[0]
