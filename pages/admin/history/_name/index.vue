@@ -1,14 +1,14 @@
 <template>
   <div>
     <div>
-		<nuxt-link to="/admin/history">
+		<!-- <nuxt-link to="/admin/history">
 			<a-icon
 			type="left"
 			:style="{
 				fontSize: '20px'
 			}"
 			/>
-		</nuxt-link>
+		</nuxt-link> -->
 		</div>
 		<div class="profile-img">
 		<img class="pic size-pic" :src="freelanceData.pictureUrl" alt="รูปโปรไฟล์">

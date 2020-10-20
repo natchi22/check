@@ -1,13 +1,14 @@
 <template>
   <div class="tabs">
     <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="วันที่">
+      	<a-tab-pane key="1" tab="วันที่">
         <div class="picker">
           <a-date-picker
 		  	@change="showData"
 			  v-model="selectedDate"
             :default-value="moment(today, dateFormatList[0])"
             :format="dateFormatList"
+			:allowClear="true"
           />
         </div>
         <CallCardDate    
