@@ -52,7 +52,7 @@ export default {
                     phone : this.telNumber
 			    })
             })
-            this.$router.replace('/freelance/profile/edit')
+            this.$router.replace('/freelance/profile')
         // console.log(edit)
         }
     }
