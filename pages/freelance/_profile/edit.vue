@@ -52,13 +52,7 @@ export default {
                     phone : this.telNumber
 			    })
             })
-            
-             const infor = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-                infor.forEach((doc)=>{
-                this.fName = doc.data().firstName
-                this.lName = doc.data().lastName
-                this.telNumber = doc.data().phone
-        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+            this.$router.replace('/freelance/profile/edit')
         // console.log(edit)
         }
     }
