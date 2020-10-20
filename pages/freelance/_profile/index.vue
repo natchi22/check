@@ -47,6 +47,7 @@ computed: { //นำstoreไปใช้ วางไว้หน้าที่
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
         
         console.log(this.inforFrelance)
+        
     }
 
 }
