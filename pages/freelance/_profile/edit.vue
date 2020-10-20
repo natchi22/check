@@ -52,7 +52,7 @@ export default {
                     phone : this.telNumber
 			    })
             })
-            location.reload()
+            // location.reload()
         // console.log(edit)
         }
     }
