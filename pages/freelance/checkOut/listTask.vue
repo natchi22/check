@@ -51,7 +51,7 @@ export default { ///ดึง วัน เวลา ออก มาไว้�
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		const today = new Date();
 		const dateOut = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-		const timeOut = today.getHours() + ":" + today.getMinutes();
+		const timeOut = today.getHours() + ":" + String(today.getMinutes()).padStart(2,'0');
 		// const dateTime = date+' '+time;
 		this.showTimeOut = timeOut;
 		this.showDateOut = dateOut;
