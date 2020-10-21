@@ -8,9 +8,9 @@
         <h2>เบอร์โทรศัพท์</h2>
         <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
         <div class="div-btn">
-            <nuxt-link to="/freelance/profile">
+
                 <button class="btn btn-green" @click="summit">บันทึก</button>
-            </nuxt-link>
+
         </div> 
 	</div>
 </template>
@@ -51,9 +51,9 @@ export default {
                     lastName : this.lName,
                     phone : this.telNumber
 			    })
-               
             })
-            await location.reload()
+            await this.$router.replace('/freelance/profile')
+            // await location.reload()
         // console.log(edit)
         }
     }
