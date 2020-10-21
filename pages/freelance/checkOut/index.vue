@@ -83,7 +83,10 @@ export default {
 			this.freelanceData = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		
-		const dateTime = await this.$fireStore.collection("Task").where("freelanceId",'==',  this.freelanceData.freelanceId).get()
+		const dateTime = await this.$fireStore.collection("Task")
+		.where("freelanceId",'==',  this.freelanceData.freelanceId)
+		.where("status","==",false)
+		.get()
 		dateTime.forEach((doc)=>{
 			this.showDateTime = doc.data()
 		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
