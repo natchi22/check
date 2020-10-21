@@ -32,7 +32,7 @@ export default {
 		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา 
 		const freelance = await this.$fireStore.collection("Freelance")
 		.where("lineId",'==', this.profile.userId )
-		.orderBy(this.freelanceData.dateIn)
+		// .orderBy(this.freelanceData.dateIn)
 		.get()
 		freelance.forEach((doc)=>{
 			this.freelanceData = doc.data()
