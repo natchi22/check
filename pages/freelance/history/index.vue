@@ -41,7 +41,7 @@ export default {
 		
 		const dateTime = await this.$fireStore.collection("Task")
 		.where("freelanceId",'==',  this.freelanceData.freelanceId)
-		.orderBy( "dateIn" , "desc").orderBy( "timeIn" , "desc")
+		.orderBy( "timeStampIn" , "desc")
 		.get()
 		// dateTime.orderByChild('dateIn').limitToFirst(30)
 		dateTime.forEach((doc)=>{
