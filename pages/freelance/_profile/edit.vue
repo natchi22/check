@@ -10,7 +10,6 @@
         <div class="div-btn">
 
                 <button class="btn btn-green" @click="summit">บันทึก</button>
-
         </div> 
 	</div>
 </template>
@@ -50,9 +49,9 @@ export default {
 					firstName : this.fName,
                     lastName : this.lName,
                     phone : this.telNumber
-			    })
+                })
+                this.$router.replace('/freelance/profile')
             })
-            await this.$router.replace('/freelance/profile')
             // await location.reload()
         // console.log(edit)
         }
