@@ -51,9 +51,9 @@ export default {
                     lastName : this.lName,
                     phone : this.telNumber
 			    })
-                location.reload()
+               
             })
-            
+            await location.reload()
         // console.log(edit)
         }
     }
