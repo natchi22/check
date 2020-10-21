@@ -66,6 +66,7 @@ export default {
 			const selectedDate = moment(this.selectedDate).format('DD/MM/YYYY')
 			const dateTime = await this.$fireStore.collection("Task")
 			.where('dateIn','==', selectedDate)
+			.orderBy( "timeIn" , "desc")
 			.get()
 			this.tasks = []
 			dateTime.forEach((doc)=>{

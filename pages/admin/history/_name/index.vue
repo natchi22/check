@@ -48,9 +48,10 @@ export default {
 		})
 		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 		const dateTime = await this.$fireStore.collection("Task")   ////จะเอาแค่task คนเดียว แต่มาหมดเลย
+		
 		.where("freelanceId",'==', this.$route.params.name)
 		.where("status",'==', true)
-		.orderBy( this.tasks.dateIn , "desc")
+		.orderBy( "dateIn" , "desc").orderBy( "timeIn" , "desc")
 		.get()
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
