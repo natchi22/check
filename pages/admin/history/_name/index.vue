@@ -1,14 +1,6 @@
 <template>
   <div>
     <div>
-		<!-- <nuxt-link to="/admin/history">
-			<a-icon
-			type="left"
-			:style="{
-				fontSize: '20px'
-			}"
-			/>
-		</nuxt-link> -->
 		</div>
 		<div class="profile-img">
 		<img class="pic size-pic" :src="freelanceData.pictureUrl" alt="รูปโปรไฟล์">
@@ -58,6 +50,7 @@ export default {
 		const dateTime = await this.$fireStore.collection("Task")   ////จะเอาแค่task คนเดียว แต่มาหมดเลย
 		.where("freelanceId",'==', this.$route.params.name)
 		.where("status",'==', true)
+		.orderBy( this.tasks.dateIn , "desc")
 		.get()
 		dateTime.forEach((doc)=>{
 			this.tasks.push(doc.data())
