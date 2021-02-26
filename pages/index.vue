@@ -1,9 +1,7 @@
 <template>
     <div class="loaddata">
         <!-- ใส่ตัวโหลด -->
-        {{ profile }}
         <a-icon
-            v-if="!profile"
             type="loading"
             :style="{ fontSize: '64px', color: '#3ABCA7' }"
         />
@@ -43,6 +41,7 @@ export default {
     watch: {
         async profile() {
             const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
+            console.log(freelance)
             if (freelance) {
                 this.$router.push(`/freelance/${this.profile.userId}`)
             }
