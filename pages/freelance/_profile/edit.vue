@@ -1,14 +1,14 @@
 <template>
     <div class="regis">
         <div class="cover">
-            <h1 style="margin-bottom: 5px;">
-                แก้ไขข้อมูลส่วนตัว
-            </h1>
             <img
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
+            <h1 style="margin-bottom: 5px;">
+                แก้ไขข้อมูลส่วนตัว
+            </h1>
         </div>
         <h2>ชื่อ*</h2>
         <input
@@ -52,7 +52,7 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
-            email
+            email: '',
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -102,8 +102,10 @@ export default {
     font-size: 24px;
 }
 .size-pic{
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 h2{
     font-size: 14px;
@@ -118,5 +120,7 @@ h2{
     display: flex;
     justify-content: center;
     padding: 10px;
+    flex-direction: column;
+    text-align: center;
 }
 </style>
