@@ -1,7 +1,9 @@
 <template>
     <div class="loaddata">
         <!-- ใส่ตัวโหลด -->
+        {{ profile }}
         <a-icon
+            v-if="!profile"
             type="loading"
             :style="{ fontSize: '64px', color: '#3ABCA7' }"
         />
@@ -65,9 +67,7 @@ export default {
                             getInfo.forEach((doc) => {
                                 this.inforFrelance = doc.data()
                             })
-                            if (this.inforFrelance.lineId && this.inforFrelance.firstName &&
-							this.inforFrelance.lastName &&
-							this.inforFrelance.phone) {
+                            if (this.inforFrelance.lineId && this.inforFrelance.firstName && this.inforFrelance.lastName && this.inforFrelance.phone) {
                                 const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
                                 freelance.forEach((doc) => {
                                     this.freelanceData = doc.data()
