@@ -44,64 +44,65 @@ export default {
      	name : this.name
 	}
 	
-    liff.init({ liffId: '1654989800-V2XxzW4z' })
+    liff.init({ liffId: '1655688087-NzP8r7n2' })
       	.then(() => {
         	if (liff.isLoggedIn()) {
 				const queryString = decodeURIComponent(window.location.search).replace("?liff.state=", "")
                 const params = new URLSearchParams(queryString)
-          	liff.getProfile().then(async (profile) => { 
-            	const userId = profile.userId ///เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
-            	const image = profile.pictureUrl
-            	const name = profile.displayName
-            	this.userId = userId
-            	this.name = name
-            	this.image = image
-				this.saveProfile(profile)
-				if (params.get('page') === 'freelance'){
-					const getInfo = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-					getInfo.forEach((doc)=>{
-						this.inforFrelance = doc.data()
-					}) 
-					if(this.inforFrelance.lineId && 
-						this.inforFrelance.firstName && 
-						this.inforFrelance.lastName && 
-						this.inforFrelance.phone)
-					{
-							const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
-							freelance.forEach((doc)=>{
-							this.freelanceData = doc.data()
-							})
-
-						const dateTime = await this.$fireStore.collection("Task")
-						.where("freelanceId",'==',  this.freelanceData.freelanceId)
-						.where("status",'==',  false).get()
-						dateTime.forEach((doc)=>{
-							this.task = doc.data()
+          		liff.getProfile().then(async (profile) => { 
+					console.log(profile)
+					const userId = profile.userId ///เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
+					const image = profile.pictureUrl
+					const name = profile.displayName
+					this.userId = userId
+					this.name = name
+					this.image = image
+					this.saveProfile(profile)
+					if (params.get('page') === 'freelance'){
+						const getInfo = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+						getInfo.forEach((doc)=>{
+							this.inforFrelance = doc.data()
 						}) 
+						if(this.inforFrelance.lineId && 
+							this.inforFrelance.firstName && 
+							this.inforFrelance.lastName && 
+							this.inforFrelance.phone)
+						{
+								const freelance = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+								freelance.forEach((doc)=>{
+								this.freelanceData = doc.data()
+								})
 
-						if (this.task !== null) {
-							this.$router.replace('/freelance/checkout')
+							const dateTime = await this.$fireStore.collection("Task")
+							.where("freelanceId",'==',  this.freelanceData.freelanceId)
+							.where("status",'==',  false).get()
+							dateTime.forEach((doc)=>{
+								this.task = doc.data()
+							}) 
+
+							if (this.task !== null) {
+								this.$router.replace('/freelance/checkout')
+							}
+							else {
+								this.$router.replace('/freelance/checkin')
+							}
+							
 						}
-						else {
-							this.$router.replace('/freelance/checkin')
+						else{
+							this.$router.replace('/freelance')
 						}
-						
 					}
-					else{
-						this.$router.replace('/freelance')
+					else if (params.get('page') === 'profile'){
+						this.$router.replace('/freelance/profile')
 					}
+					else if (params.get('page') === 'history'){
+						this.$router.replace('/freelance/history')
+					} 
+					})
 				}
-				else if (params.get('page') === 'profile'){
-					this.$router.replace('/freelance/profile')
+				else{
+					liff.login()
 				}
-				else if (params.get('page') === 'history'){
-					this.$router.replace('/freelance/history')
-				} 
-          		})
-       		}
-        	else{
-          		liff.login()
-        	}
       	})
       	.catch((err) => {
             alert('Connect failed, please try again.')
