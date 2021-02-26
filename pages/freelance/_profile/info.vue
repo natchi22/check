@@ -1,30 +1,40 @@
 <template>
     <div class="body">
-        <img
-            class="pic size-pic"
-            :src="profile.pictureUrl"
-            alt="รูปโปรไฟล์"
-        >
+        <div class="profile-img">
+            <img
+                class="pic size-pic"
+                :src="profile.pictureUrl"
+                alt="รูปโปรไฟล์"
+            >
+        </div>
         <div class="form">
             <a-icon
                 type="user"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{ fName }}   {{ lName }}</h2>
+            <p>{{ fName }}   {{ lName }}</p>
         </div>
         <div class="form">
             <a-icon
                 type="phone"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{ telNumber }}</h2>
+            <p>{{ telNumber }}</p>
         </div>
         <div class="form">
             <a-icon
                 type="mail"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{ email }}</h2>
+            <p>{{ email }}</p>
+        </div>
+        <div class="div-btn">
+            <button
+                class="btn btn-green"
+                @click="back"
+            >
+                ย้อนกลับ
+            </button>
         </div>
     </div>
 </template>
@@ -44,6 +54,11 @@ export default {
             email: '',
         }
     },
+    methods: {
+        back() {
+            this.$router.push(`/freelance/${this.profile.userId}`)
+        }
+    },
     async mounted () {
         const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
@@ -56,9 +71,13 @@ export default {
 }
 </script>
 <style scoped>
+.profile-img{
+    display: flex;
+    justify-content: center;
+}
 .size-pic{
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
 }
 .body img{
     margin: 0 0 40px 0;
@@ -80,5 +99,11 @@ export default {
     width: 800px;
     margin: 0 auto;
 }
+}
+.btn{
+    margin-top: 28px;
+}
+.div-btn{
+    text-align: center;
 }
 </style>
