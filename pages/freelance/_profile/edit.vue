@@ -1,23 +1,38 @@
 <template>
     <div class="regis">
-        <h1>แก้ไขข้อมูลส่วนตัว</h1>
-        <h2>ชื่อ</h2>
+        <div class="cover">
+            <h1 style="margin-bottom: 5px;">
+                แก้ไขข้อมูลส่วนตัว
+            </h1>
+            <img
+                class="pic size-pic"
+                :src="profile.pictureUrl"
+                alt="รูปโปรไฟล์"
+            >
+        </div>
+        <h2>ชื่อ*</h2>
         <input
             type="text"
             placeholder="ชื่อ*"
             v-model="fName"
         >
-        <h2>นามสกุล</h2>
+        <h2>นามสกุล*</h2>
         <input
             type="text"
             placeholder="นามสกุล*"
             v-model="lName"
         >
-        <h2>เบอร์โทรศัพท์</h2>
+        <h2>เบอร์โทรศัพท์*</h2>
         <input
             type="text"
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
+        >
+        <h2>Email*</h2>
+        <input
+            type="text"
+            placeholder="Email*"
+            v-model="email"
         >
         <div class="div-btn">
             <button
@@ -36,7 +51,8 @@ export default {
         return {
             fName: '',
             lName: '',
-            telNumber: ''
+            telNumber: '',
+            email
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -51,22 +67,24 @@ export default {
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
+            this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 
-        console.log(this.inforFrelance)
+        // console.log(this.inforFrelance)
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-            const edit = await this.$fireStore.collection("Freelance")
+            await this.$fireStore.collection("Freelance")
                 .where('lineId', '==', this.profile.userId)
                 .get().then((query) => {
                     const profile = query.docs[0]
                     profile.ref.update({
                         firstName: this.fName,
                         lastName: this.lName,
-                        phone: this.telNumber
+                        phone: this.telNumber,
+                        email: this.email
                     })
-                    this.$router.replace('/freelance/profile')
+                    this.$router.replace(`/freelance/${this.profile.userId}`)
                 })
             // await location.reload()
         // console.log(edit)
@@ -94,5 +112,10 @@ h2{
 }
 .div-btn{
     text-align: center;
+}
+.cover{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 </style>
