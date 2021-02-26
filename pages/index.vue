@@ -41,17 +41,12 @@ export default {
     watch: {
         async profile() {
             const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
-            console.log('>>>', freelance)
-            getInfo.forEach((doc, index) => {
-                // this.inforFrelance = doc.data()
-                console.log(index, doc.data())
-            })
-            // if (freelance) {
-            //     this.$router.push(`/freelance/${this.profile.userId}`)
-            // }
-            // else {
-            //     this.$router.push(`/freelance`)
-            // }
+            if (!freelance.empty) {
+                this.$router.push(`/freelance/${this.profile.userId}`)
+            }
+            else {
+                this.$router.push(`/freelance`)
+            }
         }
     },
     async mounted () {
