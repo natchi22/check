@@ -40,15 +40,15 @@ export default {
 
     },
     async mounted () {
-        const data = {
-            img: this.image,
-            id: this.userId,
-            name: this.name
-        }
-
+        // const data = {
+        //     img: this.image,
+        //     id: this.userId,
+        //     name: this.name
+        // }
         liff.init({ liffId: '1655688087-NzP8r7n2' })
             .then(() => {
                 if (liff.isLoggedIn()) {
+                    console.log('login!!!')
                     const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
                     const params = new URLSearchParams(queryString)
                     liff.getProfile().then(async (profile) => {

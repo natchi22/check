@@ -1,22 +1,26 @@
 <template>
-  <div class="card">
-    <div class="name">
-		<div class="cover">
-			<img class="pic" :src="freelance? freelance.pictureUrl: ''" alt="รูปโปรไฟล์">
-		</div>
-		<h1>{{freelance? freelance.firstName: ''}} {{freelance? freelance.lastName: ''}}</h1>
+    <div class="card">
+        <div class="name">
+            <div class="cover">
+                <img
+                    class="pic"
+                    :src="freelance? freelance.pictureUrl: ''"
+                    alt="รูปโปรไฟล์"
+                >
+            </div>
+            <h1>{{ freelance? freelance.firstName: '' }} {{ freelance? freelance.lastName: '' }}</h1>
+        </div>
+        <div class="content">
+            <div class="title">
+                <h2>เวลาเข้า - ออก</h2>
+                <h2>รายละเอียด</h2>
+            </div>
+            <div class="detail">
+                <h3>{{ task.timeIn }} น. - {{ task.timeOut }} น.</h3>
+                <h3>{{ task.detail }}</h3>
+            </div>
+        </div>
     </div>
-    <div class="content">
-		<div class="title">
-			<h2>เวลาเข้า - ออก</h2>
-			<h2>รายละเอียด</h2>
-		</div>
-		<div class="detail">
-			<h3>{{task.timeIn}} น. - {{task.timeOut}} น.</h3>
-			<h3>{{task.detail}}</h3>
-		</div>
-    </div>
-  </div>
 </template>
 <script>
 export default {
@@ -25,19 +29,19 @@ export default {
             freelance: null,
         }
     },
-  	props: ['task'],
-	methods: {
-		seemore () {
-		this.open = !this.open
+    props: [ 'task' ],
+    methods: {
+        seemore () {
+            this.open = !this.open
         },
         async getFreelanceData() {
-			const freelance = await this.$fireStore.collection("Freelance")
-				.where('freelanceId', '==', this.task.freelanceId)
-				.get()
-			freelance.forEach((doc)=>{
-				this.freelance = doc.data()
-			})
-		},
+            const freelance = await this.$fireStore.collection("Freelance")
+                .where('freelanceId', '==', this.task.freelanceId)
+                .get()
+            freelance.forEach((doc)=>{
+                this.freelance = doc.data()
+            })
+        },
     },
     mounted() {
         this.getFreelanceData()

@@ -1,19 +1,22 @@
 <template>
-  <div>
     <div>
-		</div>
-		<div class="profile-img">
-		<img class="pic size-pic" :src="freelanceData.pictureUrl" alt="รูปโปรไฟล์">
-		<h2>{{freelanceData.firstName}} {{ freelanceData.lastName }}</h2>
-		</div>
-    <CallCardDetail 
-		class="card" 
-		v-for="item in tasks"
-		:key="item.taskId"
-		:showDateTime="item"
-		:profile="item" 
-	/>
-  </div>
+        <div />
+        <div class="profile-img">
+            <img
+                class="pic size-pic"
+                :src="freelanceData.pictureUrl"
+                alt="รูปโปรไฟล์"
+            >
+            <h2>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h2>
+        </div>
+        <CallCardDetail
+            class="card"
+            v-for="item in tasks"
+            :key="item.taskId"
+            :showDateTime="item"
+            :profile="item"
+        />
+    </div>
 </template>
 <script>
 // import { mapState,mapMutations } from 'vuex'
@@ -24,42 +27,42 @@ export default {
 //     profile: state => state.profile.profileData // มาทำอันนี้พรุ่งนี้
 //   })
 // },
-	components: {
-		CallCardDetail
-	},
-	data () {
-		return {
-			freelanceData: {},
-			tasks: [],
-		}
-	},
-	methods:{
+    components: {
+        CallCardDetail
+    },
+    data () {
+        return {
+            freelanceData: {},
+            tasks: [],
+        }
+    },
+    methods: {
 
-	},
-	async mounted(){
-		console.log(this.$route.params.name)
-		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-		const freelance = await this.$fireStore.collection("Freelance")
-		.where("freelanceId",'==', this.$route.params.name)
-		.get()
-		freelance.forEach((doc)=>{
-			// console.log(doc.data());
-			this.freelanceData = doc.data()
-		})
-		 //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-		const dateTime = await this.$fireStore.collection("Task")   ////จะเอาแค่task คนเดียว แต่มาหมดเลย
-		
-		.where("freelanceId",'==', this.$route.params.name)
-		.where("status",'==', true)
-		.orderBy( "dateIn" , "desc").orderBy( "timeIn" , "desc")
-		.get()
-		dateTime.forEach((doc)=>{
-			this.tasks.push(doc.data())
-			console.log(doc.data());
-		})
+    },
+    async mounted() {
+        console.log(this.$route.params.name)
+        // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
+        const freelance = await this.$fireStore.collection("Freelance")
+            .where("freelanceId", '==', this.$route.params.name)
+            .get()
+        freelance.forEach((doc)=>{
+            // console.log(doc.data());
+            this.freelanceData = doc.data()
+        })
+        //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        const dateTime = await this.$fireStore.collection("Task") ////จะเอาแค่task คนเดียว แต่มาหมดเลย
 
-		
-  	}
+            .where("freelanceId", '==', this.$route.params.name)
+            .where("status", '==', true)
+            .orderBy("dateIn", "desc").orderBy("timeIn", "desc")
+            .get()
+        dateTime.forEach((doc)=>{
+            this.tasks.push(doc.data())
+            console.log(doc.data())
+        })
+
+
+    }
 }
 </script>
 <style scoped>

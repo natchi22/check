@@ -1,9 +1,9 @@
 export const state = () => ({
-  profileData: {}
+    profileData: {}
 
 })
 export const mutations = {
-  saveProfile (state, profile) {
-    state.profileData = profile
-  }
+    saveProfile (state, profile) {
+        state.profileData = profile
+    }
 }

@@ -1,23 +1,39 @@
 <template>
-    <div class="regis">	
+    <div class="regis">
         <h1>แก้ไขข้อมูลส่วนตัว</h1>
         <h2>ชื่อ</h2>
-        <input type="text" placeholder="ชื่อ*" v-model="fName">
+        <input
+            type="text"
+            placeholder="ชื่อ*"
+            v-model="fName"
+        >
         <h2>นามสกุล</h2>
-        <input type="text" placeholder="นามสกุล*" v-model="lName">
+        <input
+            type="text"
+            placeholder="นามสกุล*"
+            v-model="lName"
+        >
         <h2>เบอร์โทรศัพท์</h2>
-        <input type="text" placeholder="เบอร์โทรศัพท์*" v-model="telNumber">
+        <input
+            type="text"
+            placeholder="เบอร์โทรศัพท์*"
+            v-model="telNumber"
+        >
         <div class="div-btn">
-
-                <button class="btn btn-green" @click="summit">บันทึก</button>
-        </div> 
-	</div>
+            <button
+                class="btn btn-green"
+                @click="summit"
+            >
+                บันทึก
+            </button>
+        </div>
+    </div>
 </template>
 <script>
-import { mapState,mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
-    data(){
-        return{
+    data() {
+        return {
             fName: '',
             lName: '',
             telNumber: ''
@@ -28,30 +44,30 @@ export default {
             profile: state => state.profile.profileData
         })
     },
-    async mounted(){
+    async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("lineId",'==',this.profile.userId ).get()
+        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-        
+
         console.log(this.inforFrelance)
     },
-    methods:{  ///แก้ตรงนี้ แก้โปรไฟล์
-        async summit(){ ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-			const edit = await this.$fireStore.collection("Freelance")
-			.where('lineId','==', this.profile.userId)
-			.get().then((query) => {
-				const profile = query.docs[0]
-				profile.ref.update({
-					firstName : this.fName,
-                    lastName : this.lName,
-                    phone : this.telNumber
+    methods: { ///แก้ตรงนี้ แก้โปรไฟล์
+        async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
+            const edit = await this.$fireStore.collection("Freelance")
+                .where('lineId', '==', this.profile.userId)
+                .get().then((query) => {
+                    const profile = query.docs[0]
+                    profile.ref.update({
+                        firstName: this.fName,
+                        lastName: this.lName,
+                        phone: this.telNumber
+                    })
+                    this.$router.replace('/freelance/profile')
                 })
-                this.$router.replace('/freelance/profile')
-            })
             // await location.reload()
         // console.log(edit)
         }

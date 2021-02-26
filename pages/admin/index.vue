@@ -1,37 +1,49 @@
 <template>
-	<div class="login">
-		<h1>เข้าสู่ระบบ</h1>
-		<input type="email" placeholder="ชื่อผู้ใช้" v-model="email">
-		<input type="password" placeholder="รหัสผ่าน" v-model="password">
-		<button class="btn btn-green" @click="login" >
-			เข้าสู่ระบบ
-		</button>
-	</div>
+    <div class="login">
+        <h1>เข้าสู่ระบบ</h1>
+        <input
+            type="email"
+            placeholder="ชื่อผู้ใช้"
+            v-model="email"
+        >
+        <input
+            type="password"
+            placeholder="รหัสผ่าน"
+            v-model="password"
+        >
+        <button
+            class="btn btn-green"
+            @click="login"
+        >
+            เข้าสู่ระบบ
+        </button>
+    </div>
 </template>
 <script>
 // import liff from '@line/liff'
-import { mapState,mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
-    data(){
-        return{
+    data() {
+        return {
             email: '',
             password: ''
         }
     },
-    methods:{
+    methods: {
         async login(e) {
-            e.preventDefault();
+            e.preventDefault()
             if (this.email && this.password) {
                 try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.email,  this.password);
-                    this.$router.push('/admin/history');
-                } catch (e) {
-                    this.$router.push('/admin');
+                    await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
+                    this.$router.push('/admin/history')
+                }
+                catch (e) {
+                    this.$router.push('/admin')
                 }
             }
 
         }
-        
+
     }
 }
 </script>

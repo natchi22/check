@@ -1,54 +1,54 @@
 <template>
-	<div>
-		<h1>ประวัติการทำงานของคุณ</h1> 
-		<CallHistory
-			v-for="(item, index) in tasks"
-			:key="index"
-			:showDateTime="item"
-			class="history"
-		/> 
-		<!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
-	</div>
+    <div>
+        <h1>ประวัติการทำงานของคุณ</h1>
+        <CallHistory
+            v-for="(item, index) in tasks"
+            :key="index"
+            :showDateTime="item"
+            class="history"
+        />
+        <!-- ทำ v-for  ให้มันวนงานทุกอันที่มี-->
+    </div>
 </template>
 <script>
-import { mapState,mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import CallHistory from '@/components/Freelance/CallHistory'
 export default {
-	computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
         ...mapState({
             profile: state => state.profile.profileData
         })
     },
-	components: {
-		CallHistory
-	},
-	data() {
-		return {
-			freelanceData:'',
-			tasks: []
-		}
-	},
-	async mounted(){
-		// .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา 
-		const freelance = await this.$fireStore.collection("Freelance")
-		.where("lineId",'==', this.profile.userId )
-		// .orderBy(this.freelanceData.dateIn)
-		.get()
-		freelance.forEach((doc)=>{
-			this.freelanceData = doc.data()
+    components: {
+        CallHistory
+    },
+    data() {
+        return {
+            freelanceData: '',
+            tasks: []
+        }
+    },
+    async mounted() {
+        // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา
+        const freelance = await this.$fireStore.collection("Freelance")
+            .where("lineId", '==', this.profile.userId)
+        // .orderBy(this.freelanceData.dateIn)
+            .get()
+        freelance.forEach((doc)=>{
+            this.freelanceData = doc.data()
 
-		}) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-		
-		const dateTime = await this.$fireStore.collection("Task")
-		.where("freelanceId",'==',  this.freelanceData.freelanceId)
-		.orderBy( "timeStampIn" , "desc")
-		.get()
-		// dateTime.orderByChild('dateIn').limitToFirst(30)
-		dateTime.forEach((doc)=>{
-			this.tasks.push(doc.data())
-		})
-		console.log(this.showDateTime)
-  	}
+        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+
+        const dateTime = await this.$fireStore.collection("Task")
+            .where("freelanceId", '==', this.freelanceData.freelanceId)
+            .orderBy("timeStampIn", "desc")
+            .get()
+        // dateTime.orderByChild('dateIn').limitToFirst(30)
+        dateTime.forEach((doc)=>{
+            this.tasks.push(doc.data())
+        })
+        console.log(this.showDateTime)
+    }
 }
 </script>
 <style scoped>
