@@ -16,25 +16,11 @@
                     :style="{ color: '#555555' }"
                 />
             </nuxt-link>
-        </div>
-        <div class="data-profile">
-            <div class="title">
-                <h1>ชื่อ</h1>
-                <h1>นามสกุล</h1>
-                <h1>เบอร์โทรศัพท์</h1>
-            </div>
-            <!-- เรียกข้อมูลมาโชว์ -->
-            <div class="main">
-                <h1>{{ inforFrelance.firstName }}</h1>
-                <h1>{{ inforFrelance.lastName }}</h1>
-                <h1>{{ inforFrelance.phone }}</h1>
-            </div>
-        </div>
-        <div class="cover">
-            <nuxt-link to="/freelance/profile/edit">
-                <button class="size btn btn-green">
-                    แก้ไขข้อมูลส่วนตัว
-                </button>
+            <nuxt-link :to="`/freelance/${inforFrelance.lineId}/info`">
+                <a-icon
+                    type="info-circle"
+                    :style="{ color: '#555555' }"
+                />
             </nuxt-link>
         </div>
     </div>

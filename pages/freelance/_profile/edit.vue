@@ -84,8 +84,9 @@ export default {
                         lastName: this.lName,
                         phone: this.telNumber,
                         email: this.email
+                    }).then(() => {
+                        this.$router.replace(`/freelance/${this.profile.userId}`)
                     })
-                    this.$router.replace(`/freelance/${this.profile.userId}`)
                 })
             // await location.reload()
         // console.log(edit)
