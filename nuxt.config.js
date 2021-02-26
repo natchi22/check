@@ -41,7 +41,7 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    // '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -57,8 +57,8 @@ export default {
       projectId: 'check-b9516',
       storageBucket: 'check-b9516.appspot.com',
       messagingSenderId: '101675041173',
-      appId: '1:101675041173:web:c3fe4663b3c7aecd71b69c',
-      measurementId: 'G-1KB12R0VKS'
+      appId: '1:101675041173:web:f930ca3efe8dff0371b69c',
+      measurementId: 'G-JZ145Q2LEB'
     },
     services: {
       auth: true,
