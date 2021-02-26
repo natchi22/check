@@ -9,8 +9,8 @@
         </div>
         <!-- {{$route.params.profile}} -->
         <div class="head">
-            <h2>{{ fName }} {{ lName }}</h2>
-            <nuxt-link :to="`/freelance/${profileId}/edit`">
+            <h2>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h2>
+            <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
                 <a-icon
                     type="edit"
                     :style="{ color: '#555555' }"
@@ -50,7 +50,6 @@ export default {
     data() {
         return {
             inforFrelance: {},
-
         }
     },
     async mounted() {
