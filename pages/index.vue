@@ -39,7 +39,17 @@ export default {
         ...mapMutations({
             saveProfile: 'profile/saveProfile'
         })
-
+    },
+    watch: {
+        async profile() {
+            const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
+            if (freelance) {
+                this.$router.push(`/freelance/${this.profile.userId}`)
+            }
+            else {
+                this.$router.push(`/freelance`)
+            }
+        }
     },
     async mounted () {
         // const data = {
@@ -50,11 +60,9 @@ export default {
         liff.init({ liffId: '1655688087-NzP8r7n2' })
             .then(() => {
                 if (liff.isLoggedIn()) {
-                    console.log('login!!!')
-                    const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
-                    const params = new URLSearchParams(queryString)
+                    // const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
+                    // const params = new URLSearchParams(queryString)
                     liff.getProfile().then(async (profile) => {
-                        console.log(profile)
                         const userId = profile.userId /// เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
                         const image = profile.pictureUrl
                         const name = profile.displayName
@@ -62,41 +70,41 @@ export default {
                         this.name = name
                         this.image = image
                         this.saveProfile(profile)
-                        if (params.get('page') === 'freelance') {
-                            const getInfo = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
-                            getInfo.forEach((doc) => {
-                                this.inforFrelance = doc.data()
-                            })
-                            if (this.inforFrelance.lineId && this.inforFrelance.firstName && this.inforFrelance.lastName && this.inforFrelance.phone) {
-                                const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
-                                freelance.forEach((doc) => {
-                                    this.freelanceData = doc.data()
-                                })
+                        // if (params.get('page') === 'freelance') {
+                        //     const getInfo = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
+                        //     getInfo.forEach((doc) => {
+                        //         this.inforFrelance = doc.data()
+                        //     })
+                        //     if (this.inforFrelance.lineId && this.inforFrelance.firstName && this.inforFrelance.lastName && this.inforFrelance.phone) {
+                        //         const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
+                        //         freelance.forEach((doc) => {
+                        //             this.freelanceData = doc.data()
+                        //         })
 
-                                const dateTime = await this.$fireStore.collection('Task')
-                                    .where('freelanceId', '==', this.freelanceData.freelanceId)
-                                    .where('status', '==', false).get()
-                                dateTime.forEach((doc) => {
-                                    this.task = doc.data()
-                                })
+                        //         const dateTime = await this.$fireStore.collection('Task')
+                        //             .where('freelanceId', '==', this.freelanceData.freelanceId)
+                        //             .where('status', '==', false).get()
+                        //         dateTime.forEach((doc) => {
+                        //             this.task = doc.data()
+                        //         })
 
-                                if (this.task !== null) {
-                                    this.$router.replace('/freelance/checkout')
-                                }
-                                else {
-                                    this.$router.replace('/freelance/checkin')
-                                }
-                            }
-                            else {
-                                this.$router.replace('/freelance')
-                            }
-                        }
-                        else if (params.get('page') === 'profile') {
-                            this.$router.replace('/freelance/profile')
-                        }
-                        else if (params.get('page') === 'history') {
-                            this.$router.replace('/freelance/history')
-                        }
+                        //         if (this.task !== null) {
+                        //             this.$router.replace('/freelance/checkout')
+                        //         }
+                        //         else {
+                        //             this.$router.replace('/freelance/checkin')
+                        //         }
+                        //     }
+                        //     else {
+                        //         this.$router.replace('/freelance')
+                        //     }
+                        // }
+                        // else if (params.get('page') === 'profile') {
+                        //     this.$router.replace('/freelance/profile')
+                        // }
+                        // else if (params.get('page') === 'history') {
+                        //     this.$router.replace('/freelance/history')
+                        // }
                     })
                 }
                 else {

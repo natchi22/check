@@ -28,6 +28,12 @@
                 placeholder="เบอร์โทรศัพท์*"
                 v-model="telNumber"
             >
+            <h2>E-mail</h2>
+            <input
+                type="text"
+                placeholder="E-mail*"
+                v-model="email"
+            >
             <nuxt-link to="/freelance/checkIn">
                 <button
                     class="btn btn-green"
@@ -52,6 +58,7 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
+            email: '',
             lineId: '',
             task: null,
         }
@@ -72,6 +79,7 @@ export default {
                 firstName: this.fName,
                 lastName: this.lName,
                 phone: this.telNumber,
+                email: this.email,
                 lineId: this.profile.userId,
                 pictureUrl: this.profile.pictureUrl
             })
