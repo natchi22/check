@@ -42,7 +42,8 @@ export default {
         async profile() {
             const freelance = await this.$fireStore.collection('Freelance').where('lineId', '==', this.profile.userId).get()
             if (!freelance.empty) {
-                this.$router.push(`/freelance/${this.profile.userId}`)
+                console.log(freelance)
+                //this.$router.push(`/freelance/${this.profile.userId}`)
             }
             else {
                 this.$router.push(`/freelance`)

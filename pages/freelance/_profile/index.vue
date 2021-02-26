@@ -8,6 +8,15 @@
             >
         </div>
         <!-- {{$route.params.profile}} -->
+        <div class="head">
+            <h2>{{ fName }} {{ lName }}</h2>
+            <nuxt-link :to="`/freelance/${profileId}/edit`">
+                <a-icon
+                    type="edit"
+                    :style="{ color: '#555555' }"
+                />
+            </nuxt-link>
+        </div>
         <div class="data-profile">
             <div class="title">
                 <h1>ชื่อ</h1>
@@ -84,5 +93,54 @@ export default {
 }
 .main h1{
     color: rgba(0,0,0,0.7);
+}
+</style>
+
+<style scoped>
+.box{
+    width: 100%;
+    box-shadow: 4px 4px 8px rgb(229,229,229);
+    padding: 24px;
+    margin: 0 auto 24px auto;
+}
+.dateTask{
+    display: flex;
+    padding: 0 0 0 10px;
+}
+.topic{
+    width: 56px;
+}
+h1{
+    text-align: center;
+}
+/* รูป */
+.size-pic{
+    width: 80px;
+    height: 80px;
+}
+.cover{
+    display: flex;
+    justify-content: center;
+    margin: 0 0 24px 0;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    margin: 0 0 20px 0;
+}
+.head h2{
+    margin: 0 8px 0 0;
+}
+.btn{
+    width: 180px;
+}
+.div-submit{
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 1920px ) and (min-width: 768px ){
+.box{
+    width: 700px;
+}
 }
 </style>

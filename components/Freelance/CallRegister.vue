@@ -1,19 +1,34 @@
 <template>
-	<div class="regis">
+    <div class="regis">
         <div class="cover">
-            <img class="pic size-pic" src="../../assets/som.jpeg" alt="รูปโปรไฟล์">
+            <img
+                class="pic size-pic"
+                src="../../assets/som.jpeg"
+                alt="รูปโปรไฟล์"
+            >
         </div>
-		
+
         <h1>ชื่อ</h1>
-        <input type="text" placeholder="ชื่อ*">
+        <input
+            type="text"
+            placeholder="ชื่อ*"
+        >
         <h1>นามสกุล</h1>
-        <input type="text" placeholder="นามสกุล*">
+        <input
+            type="text"
+            placeholder="นามสกุล*"
+        >
         <h1>เบอร์โทรศัพท์</h1>
-        <input type="text" placeholder="เบอร์โทรศัพท์*">
+        <input
+            type="text"
+            placeholder="เบอร์โทรศัพท์*"
+        >
         <nuxt-link to="/user/checkin">
-            <button class="btn btn-green">ถัดไป</button>
+            <button class="btn btn-green">
+                ถัดไป
+            </button>
         </nuxt-link>
-	</div>
+    </div>
 </template>
 <style>
 .regis{

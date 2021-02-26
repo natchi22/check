@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="regis">
-            {{ profile }}
             <h1>กรอกข้อมูลส่วนตัว</h1>
             <div class="cover">
                 <img
@@ -34,7 +33,7 @@
                 placeholder="E-mail*"
                 v-model="email"
             >
-            <nuxt-link to="/freelance/checkIn">
+            <nuxt-link :to="`/freelance/${profile.userId}`">
                 <button
                     class="btn btn-green"
                     @click="summit"
