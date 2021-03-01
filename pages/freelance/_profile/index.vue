@@ -9,7 +9,7 @@
         </div>
         <!-- {{$route.params.profile}} -->
         <div class="head">
-            <h2>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h2>
+            <h3>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h3>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
                 <a-icon
                     type="edit"
@@ -23,19 +23,54 @@
                 />
             </nuxt-link>
         </div>
+        <div class="task">
+            <CellProjectEmploy
+                v-for="task in tasks"
+                :key="task.id"
+            />
+            <div class="div-submit">
+                <nuxt-link to="/employ/work">
+                    <button
+                        class="btn btn-green"
+                        @click="submit"
+                    >
+                        เพิ่มงาน
+                    </button>
+                </nuxt-link>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
+import CellProjectEmploy from '~/components/Freelance/CellProjectEmploy'
+
 export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
         })
     },
+    components: {
+        CellProjectEmploy
+    },
     data() {
         return {
             inforFrelance: {},
+            tasks: [ {
+                id: 'xkkxj3',
+                name: 'โปรเจกต์บ้านและสวน',
+                dateStart: '02/02/2021',
+                dateEnd: '10/02/2021',
+                taskList: [ {
+                    name: 'จัดสวน',
+                    dateEnd: '05/02/2021'
+                },
+                {
+                    name: 'ตัดหญ้า',
+                    dateEnd: '10/02/2021'
+                } ]
+            } ]
         }
     },
     async mounted() {

@@ -80,7 +80,7 @@ export default {
     height: 90px;
 }
 .body img{
-    margin: 0 0 40px 0;
+    margin: 20px 0px;
 }
 .form{
     display: flex;
@@ -95,13 +95,10 @@ export default {
     margin: 0 0 0 16px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
-.body{
-    width: 800px;
-    margin: 0 auto;
-}
-}
-.btn{
-    margin-top: 28px;
+    .body{
+        width: 800px;
+        margin: 0 auto;
+    }
 }
 .div-btn{
     text-align: center;
