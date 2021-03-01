@@ -32,7 +32,7 @@
                 <nuxt-link to="/employ/work">
                     <button
                         class="btn btn-green"
-                        @click="submit"
+                        @click="addTask"
                     >
                         เพิ่มงาน
                     </button>
@@ -43,7 +43,7 @@
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
-import CellProjectEmploy from '~/components/Freelance/CellProjectEmploy'
+import CellProjectEmploy from '@/components/Freelance/CellProjectEmploy'
 
 export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
@@ -71,6 +71,11 @@ export default {
                     dateEnd: '10/02/2021'
                 } ]
             } ]
+        }
+    },
+    methods: {
+        addTask() {
+            this.$router.push(`/freelance/${this.inforFrelance.lineId}/edit`)
         }
     },
     async mounted() {
