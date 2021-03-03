@@ -42,7 +42,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import CellProjectEmploy from '@/components/Freelance/CellProjectEmploy'
 
 export default {
@@ -60,7 +60,7 @@ export default {
             inforFrelance: {},
             tasks: [ {
                 id: 'xkkxj3',
-                name: 'โปรเจกต์บ้านและสวน',
+                name: 'จัดบ้านและสวน',
                 dateStart: '02/02/2021',
                 dateEnd: '10/02/2021',
                 taskList: [ {

@@ -1,29 +1,29 @@
 <template>
     <div class="body">
-        <nuxt-link to="/employ/work/stepproject">
+        <nuxt-link :to="`/freelance/task/${task.id}`">
             <div class="box">
-                <h1>{{ task.name }}</h1>
+                <h2>{{ task.name }}</h2>
                 <div class="dateTask">
-                    <h2 class="topic">
+                    <h3 class="topic">
                         เริ่ม :
-                    </h2>
-                    <h2>{{ task.dateStart }}</h2>
+                    </h3>
+                    <h3>{{ task.dateStart }}</h3>
                 </div>
                 <div class="dateTask">
-                    <h2 class="topic">
+                    <h3 class="topic">
                         สิ้นสุด :
-                    </h2>
-                    <h2>{{ task.dateEnd }}</h2>
+                    </h3>
+                    <h3>{{ task.dateEnd }}</h3>
                 </div>
                 <div>
-                    <h3>ความสำเร็จตามแผน</h3>
+                    <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
                         :percent="calPlan(task.taskList)"
                         status="active"
                     />
                 </div>
                 <div>
-                    <h3>ความสำเร็จปัจจุบัน</h3>
+                    <h4>ความสำเร็จปัจจุบัน</h4>
                     <a-progress
                         :percent="calReal(task.taskList)"
                         status="active"
