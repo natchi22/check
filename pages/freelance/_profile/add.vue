@@ -188,7 +188,7 @@ export default {
 	height: 32px;
 }
 .box{
-	width: 300px;
+	width: 100%;
 	padding: 32px 32px 14px 32px;
 }
 .box h2{
