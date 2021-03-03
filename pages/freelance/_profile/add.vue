@@ -147,15 +147,12 @@ export default {
         handleMenuClick(e) {
             this.form.manager = e.key
         },
-  	},
+    },
 }
 </script>
 <style scope>
-.body{
-	padding: 48px;
-}
 .div-top{
-	width: 300px;
+	width: 100%;
 	padding: 0 18px;
 }
 .div-top h2{
