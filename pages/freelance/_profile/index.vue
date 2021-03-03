@@ -29,10 +29,9 @@
                 :key="task.id"
             />
             <div class="div-submit">
-                <nuxt-link to="/employ/work">
+                <nuxt-link :to="`/freelance/${inforFrelance.lineId}/add`">
                     <button
                         class="btn btn-green"
-                        @click="addTask"
                     >
                         เพิ่มงาน
                     </button>
@@ -56,6 +55,7 @@ export default {
     },
     data() {
         return {
+            profileId: this.$route.params.profile,
             inforFrelance: {},
             tasks: [ {
                 id: 'xkkxj3',
@@ -74,13 +74,10 @@ export default {
         }
     },
     methods: {
-        addTask() {
-            this.$router.push(`/freelance/${this.inforFrelance.lineId}/edit`)
-        }
     },
     async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
+        const infor = await this.$fireStore.collection("Freelance").doc("lineId", '==', this.profile.userId).get()
         // console.log(infor)
         infor.forEach((doc)=>{
             this.inforFrelance = doc.data()

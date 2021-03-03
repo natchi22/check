@@ -1,7 +1,8 @@
 <template>
     <div class="body">
         <nuxt-link to="/employ/work/stepproject">
-            <div class="box">
+            {{ task }}
+            <!-- <div class="box">
                 <h1>{{ task.name }}</h1>
                 <div class="dateTask">
                     <h2 class="topic">
@@ -29,7 +30,7 @@
                         status="active"
                     />
                 </div>
-            </div>
+            </div> -->
         </nuxt-link>
     </div>
 </template>
