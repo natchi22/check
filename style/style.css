@@ -5,6 +5,7 @@
 }
 .layout-margin{
     margin: 16px 20px 0;
+    overflow-y: scroll;
 }
 @font-face{
     font-family: 'Prompt';
@@ -98,13 +99,14 @@ input{
 .box-status{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
     /* กรอบวันที่เล็ก */
 .box-date{
     display: flex;
     border-radius: 4px;
-    width: 96px;
-    height: 20px;
+    width: 120px;
+    height: 29px;
     background-color: #FF0000;
     padding: 3px 6px;
 }
@@ -126,8 +128,9 @@ input{
 }
 .btn-status{
     border-radius: 4px;
-    width: 80px;
-    height: 20px;
+    width: 82px;
+    height: 29px;
+    padding: 3px 0px;
 }
 .btn-succeed{
     background-color: #0BB807;
@@ -138,6 +141,7 @@ input{
 .btn-status h3{
     color: #ffffff;
     text-align: center;
+    margin-bottom: 0px;
 }
 
 .main{

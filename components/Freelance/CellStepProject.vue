@@ -6,7 +6,7 @@
                 <div class="boxTime">
                     <a-icon
                         type="clock-circle"
-                        :style="{ fontSize: '24px', color: '#ffffff' }"
+                        :style="{ fontSize: '24px', color: '#ffffff', padding: '4px' }"
                     />
                     <h2>{{ form.date }}</h2>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="box-date">
                     <a-icon
                         type="clock-circle"
-                        :style="{ fontSize: '14px', color: '#ffffff' }"
+                        :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
                     />
                     <h3>{{ taskList.date }}</h3>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="box-date">
                     <a-icon
                         type="clock-circle"
-                        :style="{ fontSize: '14px', color: '#ffffff' }"
+                        :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
                     />
                     <h3>{{ taskList.date }}</h3>
                 </div>
@@ -199,9 +199,8 @@ export default {
 }
 .boxTime h2{
     color: #ffffff;
-}
-h2{
-    padding: 0 0 0 4px;
+    padding: 4px 0 0 4px;
+    margin-bottom: 0px;
 }
 .progress{
     margin: 0 0 20px 0;
