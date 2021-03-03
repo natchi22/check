@@ -17,29 +17,36 @@
             />
 
             <h2>หัวหน้างาน</h2>
-            <a-dropdown-button>
-                หัวหน้างาน*
-                <a-menu
-                    class="boxDropdown"
-                    slot="overlay"
-                    @click="handleMenuClick"
-                    v-model="form.manager"
-                >
-                    <a-menu-item key="1">
-                        <a-icon type="user" />หัวหน้าคนที่่ 1
-                    </a-menu-item>
-                    <a-menu-item key="2">
-                        <a-icon type="user" />หัวหน้าคนที่ 2
-                    </a-menu-item>
-                    <a-menu-item key="3">
-                        <a-icon type="user" />หัวหน้าคนที่ 3
-                    </a-menu-item>
-                </a-menu>
+            <a-select
+                default-value="lucy"
+                style="width: 120px"
+                @change="handleChange"
+            >
                 <a-icon
-                    slot="icon"
-                    type="user"
+                    slot="suffixIcon"
+                    type="smile"
                 />
-            </a-dropdown-button>
+                <a-select-option
+                    v-for="(mn,index) in managers"
+                    :value="mn"
+                    :key="index"
+                >
+                    {{ mn }}
+                </a-select-option>
+            </a-select>
+            <a-select
+                default-value="lucy"
+                style="width: 120px"
+                disabled
+            >
+                <a-icon
+                    slot="suffixIcon"
+                    type="meh"
+                />
+                <a-select-option value="lucy">
+                    Lucy
+                </a-select-option>
+            </a-select>
         </div>
 
 
@@ -103,7 +110,6 @@
 <script>
 import moment from 'moment'
 export default {
-
     data() {
         return {
             moment,
@@ -118,8 +124,9 @@ export default {
                 name: null,
                 date: null
             },
+            managers: [ 'มานะ พากเพียร' ]
         }
-  	},
+    },
     methods: {
         addList() {
             this.form.tasks.push({
