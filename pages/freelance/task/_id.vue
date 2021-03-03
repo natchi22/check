@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import CellStepProject from '@/components/CellStepProject'
+import CellStepProject from '@/components/Freelance/CellStepProject'
 export default {
     components: {
         CellStepProject
