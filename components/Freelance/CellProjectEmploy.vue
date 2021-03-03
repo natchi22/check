@@ -1,8 +1,7 @@
 <template>
     <div class="body">
         <nuxt-link to="/employ/work/stepproject">
-            {{ task }}
-            <!-- <div class="box">
+            <div class="box">
                 <h1>{{ task.name }}</h1>
                 <div class="dateTask">
                     <h2 class="topic">
@@ -30,7 +29,7 @@
                         status="active"
                     />
                 </div>
-            </div> -->
+            </div>
         </nuxt-link>
     </div>
 </template>
@@ -40,16 +39,14 @@ export default {
     props: [ 'task' ],
     data() {
         return {
-            fName: 'จิรัชญา',
-            lName: 'นวลแก้ว',
-            nameTask: 'งานขึ้นบ้านใหม่',
-            dateStart: '01/01/2021',
-            dateEnd: '01/02/2021',
         }
     },
     methods: {
-        submit() {
-
+        calPlan(arr) {
+            return 50
+        },
+        calReal(arr) {
+            return 20
         }
     }
 }

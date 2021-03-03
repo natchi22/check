@@ -27,6 +27,7 @@
             <CellProjectEmploy
                 v-for="task in tasks"
                 :key="task.id"
+                :task="task"
             />
             <div class="div-submit">
                 <nuxt-link :to="`/freelance/${inforFrelance.lineId}/add`">
