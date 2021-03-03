@@ -90,9 +90,9 @@ export default {
 
 }
 </script>
-<style scoped>
+<style lang="css" scoped>
 .profile{
-    padding: 0 30px;
+    padding: 0 10px;
 }
 .size-pic{
     width: 140px;
