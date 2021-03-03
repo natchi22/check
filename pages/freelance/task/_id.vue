@@ -35,10 +35,16 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import CellStepProject from '@/components/Freelance/CellStepProject'
 export default {
     components: {
         CellStepProject
+    },
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
     },
     data() {
         return {
