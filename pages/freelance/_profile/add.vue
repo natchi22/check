@@ -209,6 +209,15 @@ export default {
 .boxDropdown{
 	width: 100%;
 }
+.ant-btn-group.ant-dropdown-button{
+	width: 100%;
+}
+.ant-btn.ant-btn-default{
+	width: 85%;
+}
+.ant-btn.ant-btn-default.ant-dropdown-trigger{
+	width: 15%;
+}
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 .div-top{
 	width: 600px;
