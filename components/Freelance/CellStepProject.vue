@@ -1,83 +1,52 @@
 <template>
-    <div class="body">
-        <div class="top">
-            <div>
-                <h1>{{ form.taskName }}</h1>
-                <div class="boxTime">
-                    <a-icon
-                        type="clock-circle"
-                        :style="{ fontSize: '24px', color: '#ffffff', padding: '4px' }"
-                    />
-                    <h2>{{ form.date }}</h2>
-                </div>
+    <!-- <div class="body"> -->
+    <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
+    <div class="status">
+        <div class="top-succeed">
+            <h2>1.ชื่อstep</h2>
+        </div>
+        <div class="box-status">
+            <div class="box-date">
+                <a-icon
+                    type="clock-circle"
+                    :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
+                />
+                <h3>{{ taskList.date }}</h3>
             </div>
-            <div>
-                <img
-                    class="pic size-pic"
-                    :src="profile.pictureUrl"
-                    alt="รูปโปรไฟล์"
-                >
+            <div class="btn-status btn-succeed">
+                <h3>ตรวจแล้ว</h3>
             </div>
         </div>
-        <h2>ความสำเร็จตามแผน</h2>
-        <a-progress
-            :percent="50"
-            status="active"
-            class="progress"
-        />
-        <h2>ความสำเร็จปัจจุบัน</h2>
-        <a-progress
-            :percent="60"
-            status="active"
-            class="progress"
-        />
-        <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
-        <div class="status">
-            <div class="top-succeed">
-                <h2>1.ชื่อstep</h2>
-            </div>
-            <div class="box-status">
-                <div class="box-date">
-                    <a-icon
-                        type="clock-circle"
-                        :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
-                    />
-                    <h3>{{ taskList.date }}</h3>
-                </div>
-                <div class="btn-status btn-succeed">
-                    <h3>ตรวจแล้ว</h3>
-                </div>
-            </div>
-            <div class="main">
-                <h3 class="topic">
-                    แนบงาน
-                </h3>
-                <h3>:</h3>
-                <h3 class="detail">
-                    {{ urlTask }}
-                </h3>
-            </div>
-            <div class="main">
-                <h3 class="topic">
-                    รายละเอียด
-                </h3>
-                <h3>:</h3>
-                <h3 class="detail">
-                    {{ detailTask }}
-                </h3>
-            </div>
-            <hr>
-            <div class="main">
-                <h3 class="topic">
-                    ความคิดเห็น
-                </h3>
-                <h3>:</h3>
-                <h3 class="detail">
-                    {{ commentTask }}
-                </h3>
-            </div>
+        <div class="main">
+            <h3 class="topic">
+                แนบงาน
+            </h3>
+            <h3>:</h3>
+            <h3 class="detail">
+                {{ urlTask }}
+            </h3>
         </div>
-        <!-- งานที่ยังไม่ได้ส่ง แสดงช่องนี้ -->
+        <div class="main">
+            <h3 class="topic">
+                รายละเอียด
+            </h3>
+            <h3>:</h3>
+            <h3 class="detail">
+                {{ detailTask }}
+            </h3>
+        </div>
+        <hr>
+        <div class="main">
+            <h3 class="topic">
+                ความคิดเห็น
+            </h3>
+            <h3>:</h3>
+            <h3 class="detail">
+                {{ commentTask }}
+            </h3>
+        </div>
+    </div>
+    <!-- งานที่ยังไม่ได้ส่ง แสดงช่องนี้
         <div class="status">
             <div class="top-succeed">
                 <h2>2.ชื่อstep</h2>
@@ -132,8 +101,8 @@
                     ตรวจ
                 </button>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 </template>
 <script>
 import { mapState } from 'vuex'
@@ -145,7 +114,6 @@ export default {
     },
     data() {
         return {
-
             dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่',
