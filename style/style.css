@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family:'Prompt';
@@ -87,10 +87,97 @@ input{
     color: #E76E54;
     border: 1px solid  #E76E54;
 }
+.btn-white:active{
+    background: #3ABCA7;
+    color: #FFFFFF;
+}
 /* ปุ่ม */
 
+
+/* กรอบสเต็ปงาน */
+.box-status{
+    display: flex;
+    justify-content: space-between;
+}
+    /* กรอบวันที่เล็ก */
+.box-date{
+    display: flex;
+    border-radius: 4px;
+    width: 96px;
+    height: 20px;
+    background-color: #FF0000;
+    padding: 3px 6px;
+}
+.box-date h3{
+    color: #ffffff;
+    margin: 0 0 0 6px;
+}
 .status{
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 16px 18px 12px 18px;
     margin: 0 0 20px 0;
+}
+.top-succeed{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0 0 2px 0;
+}
+.btn-status{
+    border-radius: 4px;
+    width: 80px;
+    height: 20px;
+}
+.btn-succeed{
+    background-color: #0BB807;
+}
+.btn-wait{
+    background-color: #FFB524;
+}
+.btn-status h3{
+    color: #ffffff;
+    text-align: center;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    padding: 6px 0;
+}
+.topic{
+    width: 80px;
+    
+}
+.detail{
+    /* width: 200px; */
+    margin: 0 0 0 5px;
+}
+.boxInput{
+    width: 80%;
+    margin: 0 0 0 5px;
+}
+.btn-size{
+    width: 80px;
+    height: 20px;
+    font-size: 12px;
+}
+.btn-check{
+    display: flex;
+    justify-content: center;
+}
+.upload{
+    width: 250px;
+}
+/* กรอบสเต็ปงาน */
+/* หัวชื่อผู้จัดการ */
+.profile-head{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin: 0 0 24px 0;
+}
+.profile-head h2{
+	height: 18px;
+	margin-top: 6px;
 }
