@@ -62,7 +62,7 @@ export default {
                 id: 'xkkxj3',
                 name: 'จัดบ้านและสวน',
                 dateStart: '01/03/2021',
-                dateEnd: '20/03/2021',
+                dateEnd: '15/03/2021',
                 taskList: [ {
                     name: 'จัดสวน',
                     dateEnd: '03/03/2021',
@@ -75,7 +75,7 @@ export default {
                 },
                 {
                     name: 'ตัดหญ้า',
-                    dateEnd: '20/03/2021',
+                    dateEnd: '15/03/2021',
                     status: 'IN_PROCESS'
                 } ]
             } ]
@@ -85,11 +85,11 @@ export default {
     },
     async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
-        // console.log(infor)
-        infor.forEach((doc)=>{
-            this.inforFrelance = doc.data()
-        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        // const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
+        // // console.log(infor)
+        // infor.forEach((doc)=>{
+        //     this.inforFrelance = doc.data()
+        // }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
 
         // console.log(this.inforFrelance)
         // await location.reload()

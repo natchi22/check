@@ -18,7 +18,7 @@
                 <div>
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
-                        :percent="calPlan(task.dateStart,task.dateStart)"
+                        :percent="calPlan(task.dateStart,task.dateEnd)"
                         status="active"
                     />
                 </div>
@@ -49,13 +49,11 @@ export default {
         diff,
         calPlan(startDate, endDate) {
             const today = moment()
-            const start = moment(startDate, "MM-DD-YYYY")
-            const end = moment(endDate, "MM-DD-YYYY")
-            console.log('before diff')
+            const start = moment(startDate, "DD/MM/YYYY")
+            const end = moment(endDate, "DD/MM/YYYY")
             const count = today.diff(start, 'days')
             const length = end.diff(start, 'days')
-            console.log(today, count, length)
-            return parseInt((count/length)*100)
+            return parseInt((count/length)*100) < 100 ? parseInt((count/length)*100) : 100
         },
         calReal(arr) {
             const lengthTasks = arr.length
