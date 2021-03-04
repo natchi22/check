@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import { moment, diff } from 'moment'
 export default {
     props: [ 'task' ],
     data() {
@@ -44,10 +44,11 @@ export default {
     },
     methods: {
         moment,
+        diff,
         calPlan(startDate, endDate) {
             const today = moment().format()
             const start = moment(startDate, "MM-DD-YYYY").format()
-            const end = moment(startDate, "MM-DD-YYYY").format()
+            const end = moment(endDate, "MM-DD-YYYY").format()
             const count = today.diff(start, 'days')
             const length = end.diff(start, 'days')
             console.log(today, count, length)
