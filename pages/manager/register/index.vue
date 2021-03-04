@@ -44,12 +44,14 @@
             placeholder="E-mail*"
             v-model="email"
         >
-        <button
-            class="btn btn-green"
-            @click="register"
-        >
-            สมัครสมาชิก
-        </button>
+        <nuxt-link to="/manager">
+            <button
+                class="btn btn-green"
+                @click="register"
+            >
+                สมัครสมาชิก
+            </button>
+        </nuxt-link>
     </div>
 </template>
 <script>
@@ -64,6 +66,7 @@ export default {
             email: '',
             lineId: '',
             telNumber: '',
+            rank:'หัวหน้างาน',
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
@@ -84,7 +87,8 @@ export default {
                 phone: this.telNumber,
                 email: this.email,
                 lineId: this.profile.userId,
-                pictureUrl: this.profile.pictureUrl
+                pictureUrl: this.profile.pictureUrl,
+                rank: this.rank,
             })
             console.log(user)
         },
