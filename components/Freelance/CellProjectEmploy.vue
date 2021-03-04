@@ -18,7 +18,7 @@
                 <div>
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
-                        :percent="calPlan(task.taskList)"
+                        :percent="calPlan(task.dateStart,task.dateStart)"
                         status="active"
                     />
                 </div>
@@ -42,8 +42,12 @@ export default {
         }
     },
     methods: {
-        calPlan(arr) {
-            return 50
+        calPlan(startDate, endDate) {
+            const today = moment()
+            const count = today - moment(startDate)
+            const length = moment(endDate) - moment(startDate)
+            console.log(today, count, length)
+            return parseInt((count/length)*100)
         },
         calReal(arr) {
             const lengthTasks = arr.length

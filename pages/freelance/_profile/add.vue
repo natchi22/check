@@ -10,6 +10,7 @@
 
             <h2>กำหนดส่งงาน</h2>
             <a-date-picker
+                :format="dateFormatList"
                 class="boxDate"
                 @change="onChange"
                 placeholder="กำหนดส่ง Project*"
