@@ -78,7 +78,7 @@
                 <h2>{{ index+1 }}. {{ item.name }}</h2>
             </div>
             <div class="topic">
-                <h3>กำหนดส่ง : {{ moment(item.dateEnd).format('DD/MM/YYYY') }}</h3>
+                <h3>กำหนดส่ง : {{ moment(item.endDate).format('DD/MM/YYYY') }}</h3>
             </div>
         </div>
         <br>
@@ -118,7 +118,7 @@ export default {
         addList() {
             this.form.taskList.push({
                 name: this.subTaskFocus,
-                dateEnd: this.dateFocus,
+                endDate: this.dateFocus,
                 status: 'IN_PROCESS'
             })
             console.log(this.form)

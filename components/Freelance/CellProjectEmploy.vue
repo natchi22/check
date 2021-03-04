@@ -7,18 +7,18 @@
                     <h3 class="topic">
                         เริ่ม :
                     </h3>
-                    <h3>{{ task.dateStart }}</h3>
+                    <h3>{{ task.startDate }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
                         สิ้นสุด :
                     </h3>
-                    <h3>{{ task.dateEnd }}</h3>
+                    <h3>{{ task.endDate }}</h3>
                 </div>
                 <div>
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
-                        :percent="calPlan(task.dateStart,task.dateEnd)"
+                        :percent="calPlan(task.startDate,task.endDate)"
                         status="active"
                     />
                 </div>

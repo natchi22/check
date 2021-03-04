@@ -11,7 +11,7 @@
                     type="clock-circle"
                     :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
                 />
-                <h3>{{ task.dateEnd }}</h3>
+                <h3>{{ task.endDate }}</h3>
             </div>
             <div class="btn-status btn-succeed">
                 <h3>ตรวจแล้ว</h3>

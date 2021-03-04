@@ -8,7 +8,7 @@
                         type="clock-circle"
                         :style="{ fontSize: '24px', color: '#ffffff', padding: '4px' }"
                     />
-                    <h2>{{ task.dateEnd }}</h2>
+                    <h2>{{ task.endDate }}</h2>
                 </div>
             </div>
             <div>
@@ -21,7 +21,7 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="calPlan(task.dateStart,task.endDate)"
+            :percent="calPlan(task.startDate,task.endDate)"
             status="active"
             class="progress"
         />
@@ -71,21 +71,21 @@ export default {
             task: {
                 id: 'xkkxj3',
                 name: 'จัดบ้านและสวน',
-                dateStart: '01/03/2021',
-                dateEnd: '15/03/2021',
+                startDate: '01/03/2021',
+                endDate: '15/03/2021',
                 taskList: [ {
                     name: 'จัดสวน',
-                    dateEnd: '03/03/2021',
+                    endDate: '03/03/2021',
                     status: 'APPROVE'
                 },
                 {
                     name: 'วางหิน',
-                    dateEnd: '10/03/2021',
+                    endDate: '10/03/2021',
                     status: 'PENDING'
                 },
                 {
                     name: 'ตัดหญ้า',
-                    dateEnd: '15/03/2021',
+                    endDate: '15/03/2021',
                     status: 'IN_PROCESS'
                 } ]
             }
