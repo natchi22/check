@@ -15,7 +15,7 @@
             v-model="email"
         >
         <h2>Password</h2>
-        <a-input-password
+        <input
             type="text"
             placeholder="รหัสผ่าน"
             v-model="password"
