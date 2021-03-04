@@ -46,9 +46,10 @@ export default {
         moment,
         diff,
         calPlan(startDate, endDate) {
-            const today = moment().format()
-            const start = moment(startDate, "MM-DD-YYYY").format()
-            const end = moment(endDate, "MM-DD-YYYY").format()
+            const today = moment()
+            const start = moment(startDate, "MM-DD-YYYY")
+            const end = moment(endDate, "MM-DD-YYYY")
+            console.log('before diff')
             const count = today.diff(start, 'days')
             const length = end.diff(start, 'days')
             console.log(today, count, length)
