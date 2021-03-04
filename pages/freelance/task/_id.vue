@@ -87,7 +87,7 @@ export default {
         calReal(arr) {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
-            conosole.log(count, lengthTasks)
+            console.log(count, lengthTasks)
             return count/lengthTasks
         }
     }
