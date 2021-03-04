@@ -21,13 +21,13 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="calReal(task.taskList)"
+            :percent="calPlan(task.taskList)"
             status="active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
-            :percent="calPlan(task.taskList)"
+            :percent="calReal(task.taskList)"
             status="active"
             class="progress"
         />
@@ -87,6 +87,7 @@ export default {
         calReal(arr) {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
+            conosole.log(count, lengthTasks)
             return count/lengthTasks
         }
     }
