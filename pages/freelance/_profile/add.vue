@@ -5,7 +5,7 @@
             <a-input
                 class="boxInput"
                 placeholder="ชื่อ Project*"
-                v-model="form.taskName"
+                v-model="form.name"
             />
 
             <h2>กำหนดส่งงาน</h2>
@@ -13,14 +13,14 @@
                 class="boxDate"
                 @change="onChange"
                 placeholder="กำหนดส่ง Project*"
-                v-model="form.date"
+                v-model="form.endDate"
             />
 
             <h2>หัวหน้างาน</h2>
             <a-select
                 default-value="มานะ พากเพียร"
                 style="width: 100%"
-                @change="handleChange"
+                @change="handleChangeManager"
             >
                 <a-icon
                     slot="suffixIcon"
@@ -36,22 +36,21 @@
             </a-select>
         </div>
         <div class="box">
-            <h2>ลำดับงาน :</h2>
+            <h2>งานย่อย :</h2>
             <a-input
                 class="boxInput"
-                placeholder="ลำดับงาน*"
+                placeholder="งานย่อย*"
                 allow-clear
-                v-model="taskList.name"
+                v-model="subTaskFocus"
             />
 
             <h2>นัดตรวจ :</h2>
             <a-date-picker
                 class="boxDate"
-                @change="onChange"
                 :format="dateFormatList"
                 :disabled-date="disabledDate"
                 placeholder="นัดตรวจ*"
-                v-model="taskList.date"
+                v-model="dateFocus"
             />
         </div>
         <div class="div-list">
@@ -98,33 +97,33 @@ export default {
     data() {
         return {
             moment,
-            dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
+            dateFormatList: 'DD/MM/YYYY',
             form: {
-                taskName: '',
-                date: null,
-                manager: null,
-                tasks: []
+                name: '',
+                startDate: moment().format('DD/MM/YYYY'),
+                endDate: '',
+                manager: 'มานะ พากเพียร',
+                taskList: []
             },
-            taskList: {
-                name: null,
-                date: null
-            },
+            subTaskFocus: '',
+            dateFocus: '',
             managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
         }
     },
     methods: {
+        handleChangeManager(value) {
+            this.form.manager = value
+        },
         addList() {
-            this.form.tasks.push({
-                name: this.taskList.name,
-                date: this.taskList.date
+            this.form.taskList.push({
+                name: this.subTaskFocus,
+                dateEnd: this.dateFocus,
+                status: 'IN_PROCESS'
             })
-            this.taskList = {
-                name: null,
-                date: null
-            }
+            console.log(this.form)
         },
         remove(index) {
-            this.form.tasks.splice(index, 1)
+            this.form.taskList.splice(index, 1)
         },
         // addWork() {
         //   this.work.push(this.nameWork)

@@ -69,9 +69,14 @@ export default {
                     status: 'APPROVE'
                 },
                 {
+                    name: 'วางหิน',
+                    dateEnd: '05/02/2021',
+                    status: 'PENDING'
+                },
+                {
                     name: 'ตัดหญ้า',
                     dateEnd: '10/02/2021',
-                    status: 'PENDING'
+                    status: 'IN_PROCESS'
                 } ]
             } ]
         }
