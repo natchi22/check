@@ -35,7 +35,9 @@
 </template>
 
 <script>
-import { moment, diff } from 'moment'
+import moment from 'moment'
+import diff from 'moment'
+
 export default {
     props: [ 'task' ],
     data() {
