@@ -47,7 +47,7 @@
 
 <script>
 // import liff from '@line/liff'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
     data() {
         return {

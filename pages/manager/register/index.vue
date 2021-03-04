@@ -1,40 +1,41 @@
 <template>
-	<div class="login">
-		<h1>สมัครสมาชิก</h1>
+    <div class="login">
+        <h1>สมัครสมาชิก</h1>
         <div class="div-pic">
-            <img 
-                class="pic size-pic" 
-                :src="profile.pictureUrl" 
+            <img
+                class="pic size-pic"
+                :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
         </div>
         <h2>Username</h2>
-		<input 
-            type="text" 
-            placeholder="ชื่อผู้ใช้" 
-            v-model="user">
+        <input
+            type="text"
+            placeholder="ชื่อผู้ใช้"
+            v-model="user"
+        >
         <h2>Password</h2>
-		<input 
-            type="text" 
-            placeholder="รหัสผ่าน" 
+        <input
+            type="text"
+            placeholder="รหัสผ่าน"
             v-model="password"
         >
         <h2>ชื่อ</h2>
-        <input 
-            type="text" 
-            placeholder="ชื่อ" 
+        <input
+            type="text"
+            placeholder="ชื่อ"
             v-model="fName"
         >
         <h2>นามสกุล</h2>
-        <input 
-            type="text" 
-            placeholder="นามสกุล" 
+        <input
+            type="text"
+            placeholder="นามสกุล"
             v-model="lName"
         >
         <h2>เบอร์โทรศัพท์</h2>
-        <input 
-            type="text" 
-            placeholder="เบอร์โทรศัพท์" 
+        <input
+            type="text"
+            placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
         <h2>E-mail</h2>
@@ -43,26 +44,26 @@
             placeholder="E-mail*"
             v-model="email"
         >
-        <button 
-            class="btn btn-green" 
-            @click="register" 
+        <button
+            class="btn btn-green"
+            @click="register"
         >
             สมัครสมาชิก
         </button>
-	</div>
+    </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-    data(){
-        return{
-            user:'',
-            password:'',
+    data() {
+        return {
+            user: '',
+            password: '',
             fName: '',
             lName: '',
             email: '',
             lineId: '',
-			telNumber: '',
+            telNumber: '',
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
@@ -73,7 +74,7 @@ export default {
     async mounted() {
 
     },
-    methods:{
+    methods: {
         async register() {
             const user = this.$fireStore.collection("Manager").doc()
             await user.set({
@@ -87,7 +88,7 @@ export default {
             })
             console.log(user)
         },
-        
+
     }
 }
 </script>

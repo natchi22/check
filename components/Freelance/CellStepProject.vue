@@ -3,7 +3,7 @@
     <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
-            <h2>1.ชื่อstep</h2>
+            <h2>{{ key }} {{ task.name }}</h2>
         </div>
         <div class="box-status">
             <div class="box-date">
@@ -11,7 +11,7 @@
                     type="clock-circle"
                     :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
                 />
-                <h3>{{ taskList.date }}</h3>
+                <h3>{{ task.endDate }}</h3>
             </div>
             <div class="btn-status btn-succeed">
                 <h3>ตรวจแล้ว</h3>
@@ -107,6 +107,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+    props: [ 'task', 'key' ],
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData

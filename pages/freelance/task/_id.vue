@@ -2,13 +2,13 @@
     <div class="body">
         <div class="top">
             <div>
-                <h1>{{ form.taskName }}</h1>
+                <h1>{{ task.name }}</h1>
                 <div class="boxTime">
                     <a-icon
                         type="clock-circle"
                         :style="{ fontSize: '24px', color: '#ffffff', padding: '4px' }"
                     />
-                    <h2>{{ form.date }}</h2>
+                    <h2>{{ task.endDate }}</h2>
                 </div>
             </div>
             <div>
@@ -21,22 +21,37 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="50"
+            :percent="calPlan(task.startDate,task.endDate)"
             status="active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
-            :percent="60"
+            :percent="calReal(task.taskList)"
             status="active"
             class="progress"
         />
-        <CellStepProject />
+        <CellStepProject
+            v-for="(ts,index) in task.taskList"
+            :key="index"
+            :task="ts"
+        />
+        <div class="div-submit">
+            <button
+                class="btn btn-green"
+                @click="$router.go(-1)"
+            >
+                ย้อนกลับ
+            </button>
+        </div>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+import moment from 'moment'
+import diff from 'moment'
 import CellStepProject from '@/components/Freelance/CellStepProject'
+
 export default {
     components: {
         CellStepProject
@@ -48,7 +63,6 @@ export default {
     },
     data() {
         return {
-            dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่',
                 date: '01/01/2021',
@@ -61,9 +75,46 @@ export default {
             },
             urlTask: 'URLงานที่แนบมา',
             detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
-            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน'
+            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน',
+            task: {
+                id: 'xkkxj3',
+                name: 'จัดบ้านและสวน',
+                startDate: '01/03/2021',
+                endDate: '15/03/2021',
+                taskList: [ {
+                    name: 'จัดสวน',
+                    endDate: '03/03/2021',
+                    status: 'APPROVE'
+                },
+                {
+                    name: 'วางหิน',
+                    endDate: '10/03/2021',
+                    status: 'PENDING'
+                },
+                {
+                    name: 'ตัดหญ้า',
+                    endDate: '15/03/2021',
+                    status: 'IN_PROCESS'
+                } ]
+            }
         }
     },
+    methods: {
+        diff,
+        calPlan(startDate, endDate) {
+            const today = moment()
+            const start = moment(startDate, "DD/MM/YYYY")
+            const end = moment(endDate, "DD/MM/YYYY")
+            const count = today.diff(start, 'days')
+            const length = end.diff(start, 'days')
+            return parseInt((count/length)*100) < 100 ? parseInt((count/length)*100) : 100
+        },
+        calReal(arr) {
+            const lengthTasks = arr.length
+            const count = arr.filter((item) => item.status === 'APPROVE').length
+            return parseInt((count/lengthTasks)*100)
+        }
+    }
 }
 </script>
 
@@ -96,6 +147,9 @@ export default {
     margin: 0 0 20px 0;
 }
 /* กรอบตรวจแล้ว อยู่style*/
-
+.div-submit{
+    display: flex;
+    justify-content: center;
+}
 </style>
 

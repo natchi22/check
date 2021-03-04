@@ -7,18 +7,18 @@
                     <h3 class="topic">
                         เริ่ม :
                     </h3>
-                    <h3>{{ task.dateStart }}</h3>
+                    <h3>{{ task.startDate }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
                         สิ้นสุด :
                     </h3>
-                    <h3>{{ task.dateEnd }}</h3>
+                    <h3>{{ task.endDate }}</h3>
                 </div>
                 <div>
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
-                        :percent="calPlan(task.taskList)"
+                        :percent="calPlan(task.startDate,task.endDate)"
                         status="active"
                     />
                 </div>
@@ -35,6 +35,9 @@
 </template>
 
 <script>
+import moment from 'moment'
+import diff from 'moment'
+
 export default {
     props: [ 'task' ],
     data() {
@@ -42,11 +45,20 @@ export default {
         }
     },
     methods: {
-        calPlan(arr) {
-            return 50
+        moment,
+        diff,
+        calPlan(startDate, endDate) {
+            const today = moment()
+            const start = moment(startDate, "DD/MM/YYYY")
+            const end = moment(endDate, "DD/MM/YYYY")
+            const count = today.diff(start, 'days')
+            const length = end.diff(start, 'days')
+            return parseInt((count/length)*100) < 100 ? parseInt((count/length)*100) : 100
         },
         calReal(arr) {
-            return 20
+            const lengthTasks = arr.length
+            const count = arr.filter((item) => item.status === 'APPROVE').length
+            return parseInt((count/lengthTasks)*100)
         }
     }
 }

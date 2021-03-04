@@ -5,61 +5,53 @@
             <a-input
                 class="boxInput"
                 placeholder="ชื่อ Project*"
-                v-model="form.taskName"
+                v-model="form.name"
             />
 
             <h2>กำหนดส่งงาน</h2>
             <a-date-picker
+                :format="dateFormatList"
                 class="boxDate"
                 @change="onChange"
                 placeholder="กำหนดส่ง Project*"
-                v-model="form.date"
+                v-model="form.endDate"
             />
 
             <h2>หัวหน้างาน</h2>
-            <a-dropdown-button>
-                หัวหน้างาน*
-                <a-menu
-                    class="boxDropdown"
-                    slot="overlay"
-                    @click="handleMenuClick"
-                    v-model="form.manager"
-                >
-                    <a-menu-item key="1">
-                        <a-icon type="user" />หัวหน้าคนที่่ 1
-                    </a-menu-item>
-                    <a-menu-item key="2">
-                        <a-icon type="user" />หัวหน้าคนที่ 2
-                    </a-menu-item>
-                    <a-menu-item key="3">
-                        <a-icon type="user" />หัวหน้าคนที่ 3
-                    </a-menu-item>
-                </a-menu>
+            <a-select
+                default-value="มานะ พากเพียร"
+                style="width: 100%"
+                @change="handleChangeManager"
+            >
                 <a-icon
-                    slot="icon"
+                    slot="suffixIcon"
                     type="user"
                 />
-            </a-dropdown-button>
+                <a-select-option
+                    v-for="(mn,index) in managers"
+                    :value="mn"
+                    :key="index"
+                >
+                    {{ mn }}
+                </a-select-option>
+            </a-select>
         </div>
-
-
         <div class="box">
-            <h2>ลำดับงาน :</h2>
+            <h2>งานย่อย :</h2>
             <a-input
                 class="boxInput"
-                placeholder="ลำดับงาน*"
+                placeholder="งานย่อย*"
                 allow-clear
-                v-model="taskList.name"
+                v-model="subTaskFocus"
             />
 
             <h2>นัดตรวจ :</h2>
             <a-date-picker
                 class="boxDate"
-                @change="onChange"
                 :format="dateFormatList"
                 :disabled-date="disabledDate"
                 placeholder="นัดตรวจ*"
-                v-model="taskList.date"
+                v-model="dateFocus"
             />
         </div>
         <div class="div-list">
@@ -73,7 +65,7 @@
 
         <div
             class="box-list"
-            v-for="(item,index) in form.tasks"
+            v-for="(item,index) in form.taskList"
             :key="index"
         >
             <div class="div-delete">
@@ -86,7 +78,7 @@
                 <h2>{{ index+1 }}. {{ item.name }}</h2>
             </div>
             <div class="topic">
-                <h3>กำหนดส่ง : {{ item.date }}</h3>
+                <h3>กำหนดส่ง : {{ moment(item.endDate).format('DD/MM/YYYY') }}</h3>
             </div>
         </div>
         <br>
@@ -103,36 +95,36 @@
 <script>
 import moment from 'moment'
 export default {
-
     data() {
         return {
             moment,
-            dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
+            dateFormatList: 'DD/MM/YYYY',
             form: {
-                taskName: '',
-                date: null,
-                manager: null,
-                tasks: []
+                name: '',
+                startDate: moment().format('DD/MM/YYYY'),
+                endDate: '',
+                manager: 'มานะ พากเพียร',
+                taskList: []
             },
-            taskList: {
-                name: null,
-                date: null
-            },
+            subTaskFocus: '',
+            dateFocus: '',
+            managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
         }
-  	},
+    },
     methods: {
+        handleChangeManager(value) {
+            this.form.manager = value
+        },
         addList() {
-            this.form.tasks.push({
-                name: this.taskList.name,
-                date: this.taskList.date
+            this.form.taskList.push({
+                name: this.subTaskFocus,
+                endDate: this.dateFocus,
+                status: 'IN_PROCESS'
             })
-            this.taskList = {
-                name: null,
-                date: null
-            }
+            console.log(this.form)
         },
         remove(index) {
-            this.form.tasks.splice(index, 1)
+            this.form.taskList.splice(index, 1)
         },
         // addWork() {
         //   this.work.push(this.nameWork)
@@ -150,7 +142,7 @@ export default {
     },
 }
 </script>
-<style scope>
+<style scoped>
 .div-top{
 	width: 100%;
 	padding: 0 18px;
@@ -234,5 +226,11 @@ export default {
 	width: 504px;
 	margin: 0 auto 20px auto;
 }
+}
+</style>
+
+<style>
+.ant-select-open .ant-select-icon-arrow-icon svg {
+    transform: rotate(0deg);
 }
 </style>

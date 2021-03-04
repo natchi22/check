@@ -1,33 +1,39 @@
 <template>
-	<div class="login">
-		<h1>เข้าสู่ระบบ</h1>
-        <a-input 
+    <div class="login">
+        <h1>เข้าสู่ระบบ</h1>
+        <a-input
             class="input"
-            placeholder="ชื่อผู้ใช้" 
-            v-model="user" 
+            placeholder="ชื่อผู้ใช้"
+            v-model="user"
         />
-        <a-input-password 
+        <a-input-password
             class="input"
-            placeholder="รหัสผ่าน" 
-            v-model="password" 
+            placeholder="รหัสผ่าน"
+            v-model="password"
         />
-		
-		<button class="btn btn-green" @click="login" >
-			เข้าสู่ระบบ
-		</button>
+
+        <button
+            class="btn btn-green"
+            @click="login"
+        >
+            เข้าสู่ระบบ
+        </button>
         <nuxt-link to="/manager/register">
-            <button class="btn btn-green" @click="register" >
+            <button
+                class="btn btn-green"
+                @click="register"
+            >
                 สมัครสมาชิก
             </button>
         </nuxt-link>
-	</div>
+    </div>
 </template>
 <script>
 import liff from '@line/liff'
 import { mapState,mapMutations } from 'vuex'
 export default {
-    data(){
-        return{
+    data() {
+        return {
             user: '',
             password: ''
         }
@@ -50,7 +56,7 @@ export default {
     //         }
 
     //     }
-        
+
     // }
 }
 </script>

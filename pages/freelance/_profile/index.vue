@@ -61,15 +61,22 @@ export default {
             tasks: [ {
                 id: 'xkkxj3',
                 name: 'จัดบ้านและสวน',
-                dateStart: '02/02/2021',
-                dateEnd: '10/02/2021',
+                startDate: '01/03/2021',
+                endDate: '15/03/2021',
                 taskList: [ {
                     name: 'จัดสวน',
-                    dateEnd: '05/02/2021'
+                    endDate: '03/03/2021',
+                    status: 'APPROVE'
+                },
+                {
+                    name: 'วางหิน',
+                    endDate: '10/03/2021',
+                    status: 'PENDING'
                 },
                 {
                     name: 'ตัดหญ้า',
-                    dateEnd: '10/02/2021'
+                    endDate: '15/03/2021',
+                    status: 'IN_PROCESS'
                 } ]
             } ]
         }
