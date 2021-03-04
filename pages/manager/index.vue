@@ -58,6 +58,36 @@ export default {
             
         }
     },
+    async mounted () {
+        // const data = {
+        //     img: this.image,
+        //     id: this.userId,
+        //     name: this.name
+        // }
+        liff.init({ liffId: '1655688087-m6GLXp2q' })
+            .then(() => {
+                if (liff.isLoggedIn()) {
+                    // const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
+                    // const params = new URLSearchParams(queryString)
+                    liff.getProfile().then(async (profile) => {
+                        const userId = profile.userId /// เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
+                        const image = profile.pictureUrl
+                        const name = profile.displayName
+                        this.userId = userId
+                        this.name = name
+                        this.image = image
+                        this.saveProfile(profile)
+                    })
+                }
+                else {
+                    liff.login()
+                }
+            })
+            .catch(() => {
+                alert('Connect failed, please try again.')
+                liff.closeWindow()
+            })
+    }
     // methods:{
     //     async login(e) {
     //         e.preventDefault();
