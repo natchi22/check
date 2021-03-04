@@ -88,21 +88,21 @@ export default {
                 liff.closeWindow()
             })
     }
-    // methods:{
-    //     async login(e) {
-    //         e.preventDefault();
-    //         if (this.user && this.password) {
-    //             try {
-    //                 await this.$fireAuth.signInWithEmailAndPassword(this.user,  this.password);
-    //                 this.$router.push('/admin/history');
-    //             } catch (e) {
-    //                 this.$router.push('/admin');
-    //             }
-    //         }
+    methods:{
+        async login(e) {
+            e.preventDefault();
+            if (this.user && this.password) {
+                try {
+                    await this.$fireAuth.signInWithEmailAndPassword(this.user,  this.password);
+                    this.$router.push('/manager/info');
+                } catch (e) {
+                    this.$router.push('/manager');
+                }
+            }
 
-    //     }
+        }
 
-    // }
+    }
 }
 </script>
 <style scoped>
