@@ -18,13 +18,13 @@
 
             <h2>หัวหน้างาน</h2>
             <a-select
-                default-value="lucy"
-                style="width: 120px"
+                default-value="มานะ พากเพียร"
+                style="width: 100%"
                 @change="handleChange"
             >
                 <a-icon
                     slot="suffixIcon"
-                    type="smile"
+                    type="user"
                 />
                 <a-select-option
                     v-for="(mn,index) in managers"
@@ -34,22 +34,7 @@
                     {{ mn }}
                 </a-select-option>
             </a-select>
-            <a-select
-                default-value="lucy"
-                style="width: 120px"
-                disabled
-            >
-                <a-icon
-                    slot="suffixIcon"
-                    type="meh"
-                />
-                <a-select-option value="lucy">
-                    Lucy
-                </a-select-option>
-            </a-select>
         </div>
-
-
         <div class="box">
             <h2>ลำดับงาน :</h2>
             <a-input
@@ -124,7 +109,7 @@ export default {
                 name: null,
                 date: null
             },
-            managers: [ 'มานะ พากเพียร' ]
+            managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
         }
     },
     methods: {
