@@ -21,7 +21,7 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="calPlan(task.taskList)"
+            :percent="calPlan(task.dateStart,task.endDate)"
             status="active"
             class="progress"
         />
@@ -31,12 +31,19 @@
             status="active"
             class="progress"
         />
-        <CellStepProject />
+        <CellStepProject
+            v-for="(ts,index) in task.taskList"
+            :key="index"
+            :task="ts"
+        />
     </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+import moment from 'moment'
+import diff from 'moment'
 import CellStepProject from '@/components/Freelance/CellStepProject'
+
 export default {
     components: {
         CellStepProject
@@ -48,7 +55,6 @@ export default {
     },
     data() {
         return {
-            dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่',
                 date: '01/01/2021',
@@ -86,8 +92,14 @@ export default {
         }
     },
     methods: {
-        calPlan(arr) {
-            return 50
+        diff,
+        calPlan(startDate, endDate) {
+            const today = moment()
+            const start = moment(startDate, "DD/MM/YYYY")
+            const end = moment(endDate, "DD/MM/YYYY")
+            const count = today.diff(start, 'days')
+            const length = end.diff(start, 'days')
+            return parseInt((count/length)*100) < 100 ? parseInt((count/length)*100) : 100
         },
         calReal(arr) {
             const lengthTasks = arr.length
