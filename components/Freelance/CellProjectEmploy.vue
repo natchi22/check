@@ -45,9 +45,9 @@ export default {
     methods: {
         moment,
         calPlan(startDate, endDate) {
-            const today = moment()
-            const count = today - moment(startDate)
-            const length = moment(endDate) - moment(startDate)
+            const today = moment().format()
+            const count = today - moment(startDate).format()
+            const length = moment(endDate).format() - moment(startDate).format()
             console.log(today, count, length)
             return parseInt((count/length)*100)
         },
