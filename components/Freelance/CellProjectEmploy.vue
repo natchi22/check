@@ -48,7 +48,7 @@ export default {
         calReal(arr) {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
-            return (count/lengthTasks)*100
+            return parseInt((count/lengthTasks)*100)
         }
     }
 }

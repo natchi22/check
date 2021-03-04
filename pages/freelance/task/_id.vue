@@ -93,7 +93,7 @@ export default {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
             console.log(count, lengthTasks)
-            return (count/lengthTasks)*100
+            return parseInt((count/lengthTasks)*100)
         }
     }
 }
