@@ -64,7 +64,7 @@
 
         <div
             class="box-list"
-            v-for="(item,index) in form.tasks"
+            v-for="(item,index) in form.taskList"
             :key="index"
         >
             <div class="div-delete">
@@ -77,7 +77,7 @@
                 <h2>{{ index+1 }}. {{ item.name }}</h2>
             </div>
             <div class="topic">
-                <h3>กำหนดส่ง : {{ item.date }}</h3>
+                <h3>กำหนดส่ง : {{ moment(item.dateEnd).format('DD/MM/YYYY') }}</h3>
             </div>
         </div>
         <br>
