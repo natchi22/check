@@ -23,13 +23,19 @@
 	</div>
 </template>
 <script>
-// import { mapState,mapMutations } from 'vuex'
+import liff from '@line/liff'
+import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
             user: '',
             password: ''
         }
+    },
+    computed: { // นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
     },
     // methods:{
     //     async login(e) {
