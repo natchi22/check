@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
     props: [ 'task' ],
     data() {
@@ -42,6 +43,7 @@ export default {
         }
     },
     methods: {
+        moment,
         calPlan(startDate, endDate) {
             const today = moment()
             const count = today - moment(startDate)
