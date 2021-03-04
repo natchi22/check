@@ -36,6 +36,14 @@
             :key="index"
             :task="ts"
         />
+        <div class="div-submit">
+            <button
+                class="btn btn-green"
+                @click="$router.go(-1)"
+            >
+                ย้อนกลับ
+            </button>
+        </div>
     </div>
 </template>
 <script>
@@ -104,7 +112,6 @@ export default {
         calReal(arr) {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
-            console.log(count, lengthTasks)
             return parseInt((count/lengthTasks)*100)
         }
     }
@@ -140,6 +147,9 @@ export default {
     margin: 0 0 20px 0;
 }
 /* กรอบตรวจแล้ว อยู่style*/
-
+.div-submit{
+    display: flex;
+    justify-content: center;
+}
 </style>
 
