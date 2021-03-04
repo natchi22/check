@@ -8,14 +8,14 @@
                 alt="รูปโปรไฟล์"
             >
         </div>
-        <h2>Username</h2>
+        <h2>E-mail</h2>
         <input
             type="text"
-            placeholder="ชื่อผู้ใช้"
-            v-model="user"
+            placeholder="E-mail*"
+            v-model="email"
         >
         <h2>Password</h2>
-        <input
+        <a-input-password
             type="text"
             placeholder="รหัสผ่าน"
             v-model="password"
@@ -38,12 +38,6 @@
             placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
-        <h2>E-mail</h2>
-        <input
-            type="text"
-            placeholder="E-mail*"
-            v-model="email"
-        >
         <nuxt-link to="/manager">
             <button
                 class="btn btn-green"
@@ -59,7 +53,6 @@ import { mapState, mapMutations } from 'vuex'
 export default {
     data() {
         return {
-            user: '',
             password: '',
             fName: '',
             lName: '',

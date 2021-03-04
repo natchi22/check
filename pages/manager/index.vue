@@ -3,8 +3,8 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-input
             class="input"
-            placeholder="ชื่อผู้ใช้"
-            v-model="user"
+            placeholder="E-mail"
+            v-model="email"
         />
         <a-input-password
             class="input"
@@ -34,7 +34,7 @@ import { mapState,mapMutations } from 'vuex'
 export default {
     data() {
         return {
-            user: '',
+            email: '',
             password: ''
         }
     },
