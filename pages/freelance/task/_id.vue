@@ -2,13 +2,13 @@
     <div class="body">
         <div class="top">
             <div>
-                <h1>{{ form.taskName }}</h1>
+                <h1>{{ task.name }}</h1>
                 <div class="boxTime">
                     <a-icon
                         type="clock-circle"
                         :style="{ fontSize: '24px', color: '#ffffff', padding: '4px' }"
                     />
-                    <h2>{{ form.date }}</h2>
+                    <h2>{{ task.dateEnd }}</h2>
                 </div>
             </div>
             <div>
@@ -21,13 +21,13 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="50"
+            :percent="calReal(task.taskList)"
             status="active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
-            :percent="60"
+            :percent="calPlan(task.taskList)"
             status="active"
             class="progress"
         />
@@ -61,9 +61,35 @@ export default {
             },
             urlTask: 'URLงานที่แนบมา',
             detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
-            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน'
+            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน',
+            task: {
+                id: 'xkkxj3',
+                name: 'จัดบ้านและสวน',
+                dateStart: '02/02/2021',
+                dateEnd: '10/02/2021',
+                taskList: [ {
+                    name: 'จัดสวน',
+                    dateEnd: '05/02/2021',
+                    status: 'APPROVE'
+                },
+                {
+                    name: 'ตัดหญ้า',
+                    dateEnd: '10/02/2021',
+                    status: 'PENDING'
+                } ]
+            }
         }
     },
+    methods: {
+        calPlan(arr) {
+            return 50
+        },
+        calReal(arr) {
+            const lengthTasks = arr.length
+            const count = arr.filter((item) => item.status === 'APPROVE').length
+            return count/lengthTasks
+        }
+    }
 }
 </script>
 

@@ -142,7 +142,7 @@ export default {
     },
 }
 </script>
-<style scope>
+<style scoped>
 .div-top{
 	width: 100%;
 	padding: 0 18px;
@@ -226,5 +226,11 @@ export default {
 	width: 504px;
 	margin: 0 auto 20px auto;
 }
+}
+</style>
+
+<style>
+.ant-select-open .ant-select-icon-arrow-icon svg {
+    transform: rotate(0deg);
 }
 </style>

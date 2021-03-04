@@ -65,11 +65,13 @@ export default {
                 dateEnd: '10/02/2021',
                 taskList: [ {
                     name: 'จัดสวน',
-                    dateEnd: '05/02/2021'
+                    dateEnd: '05/02/2021',
+                    status: 'APPROVE'
                 },
                 {
                     name: 'ตัดหญ้า',
-                    dateEnd: '10/02/2021'
+                    dateEnd: '10/02/2021',
+                    status: 'PENDING'
                 } ]
             } ]
         }
