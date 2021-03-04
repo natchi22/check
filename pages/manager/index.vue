@@ -43,6 +43,21 @@ export default {
             profile: state => state.profile.profileData
         })
     },
+    methods: {
+        ...mapMutations({
+            saveProfile: 'profile/saveProfile'
+        })
+    },
+    watch: {
+        async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
+            const manager = await this.$fireStore.collection('Manager')
+                .where('lineId', '==', this.profile.userId).get()
+            if(!manager.empty){
+                this.$router.push(`/manager`)
+            }
+            
+        }
+    },
     // methods:{
     //     async login(e) {
     //         e.preventDefault();

@@ -41,17 +41,8 @@ export default {
     watch: {
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
             
-            const manager = await this.$fireStore.collection('Manager')
-                .where('lineId', '==', this.profile.userId).get()
-            // if(!manager.empty){
-            //     this.$router.push(`/manager`)
-            // }
-            
             const freelance = await this.$fireStore.collection('Freelance')
                 .where('lineId', '==', this.profile.userId).get()
-            if(!manager.empty){
-                this.$router.push(`/manager`)
-            }
             if (!freelance.empty) {  //ถ้ามันแม่น get ข้อมูล ไปพาร์ทตัวเอง
                 this.$router.push(`/freelance/${this.profile.userId}`)
             } 
