@@ -144,7 +144,10 @@ export default {
                 startDate: this.form.startDate,
                 endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
                 manager: this.form.manager,
-                taskList: this.form.taskList
+                taskList: this.form.taskList,
+                linkUrl: "",
+                comment: "",
+                desc: "",
             }).then(()=>{
                 toastr.success('เพิ่มงานสำเร็จ')
                 this.$router.go(-1)

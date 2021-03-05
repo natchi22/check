@@ -64,14 +64,11 @@ export default {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
         const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
-            console.log(doc.data())
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
             this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-
-        // console.log(this.inforFrelance)
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
@@ -88,8 +85,6 @@ export default {
                         this.$router.replace(`/freelance/${this.profile.userId}`)
                     })
                 })
-            // await location.reload()
-        // console.log(edit)
         }
     }
 }

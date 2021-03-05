@@ -41,6 +41,7 @@
                 แนบ link งาน
             </h2>
             <a-input
+                v-model="linkUrl"
                 v-if="!task.linkUrl"
                 placeholder="link งาน หรือ url รูปภาพ"
             />
@@ -63,6 +64,7 @@
                 class="boxInput"
                 placeholder="รายละเอียดงาน*"
                 :rows="4"
+                v-model="desc"
             />
             <h3
                 class="detail"
@@ -86,12 +88,21 @@
                 {{ task.comment }}
             </h3>
         </div>
+        <div class="submit-task">
+            <a-button
+                type="primary"
+                v-if="task.status === `IN_PROCESS`"
+                @click="submit(task)"
+            >
+                ส่งงาน
+            </a-button>
+        </div>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex'
 export default {
-    props: [ 'task' ],
+    props: [ 'task', 'taskId' ],
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -100,33 +111,66 @@ export default {
     data() {
         return {
             dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
-            form: {
-                taskName: 'งานขึ้นบ้านใหม่',
-                date: '01/01/2021',
-                manager: null,
-                tasks: []
-            },
-            taskList: {
-                name: null,
-                date: '16/01/2021'
-            },
-            urlTask: 'URLงานที่แนบมา',
-            detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
-            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน'
+            linkUrl: '',
+            desc: ''
+            // taskShow: {
+            //     taskId: this.task.taskId,
+            //     name: this.task.name,
+            //     freelanceId: this.task.freelanceId,
+            //     startDate: this.task.startDate,
+            //     endDate: this.task.endDate,
+            //     manager: this.task.manager,
+            //     taskList: this.task.taskList,
+            //     linkUrl: this.task.linkUrl,
+            //     comment: this.task.comment,
+            //     desc: this.task.desc,
+            // }
         }
     },
+    // watch: {
+    //     'task.taskId'(val){
+    //         this.taskShow.taskId = val
+    //     },
+    //     'task.name'(val){
+    //         this.taskShow.name = val
+    //     },
+    //     'task.freelanceId'(val){
+    //         this.taskShow.freelanceId = val
+    //     },
+    //     'task.startDate'(val){
+    //         this.taskShow.startDate = val
+    //     },
+    //     'task.endDate'(val){
+    //         this.taskShow.endDate = val
+    //     },
+    //     'task.manager'(val){
+    //         this.taskShow.manager = val
+    //     },
+    //     'task.linkUrl'(val){
+    //         this.taskShow.linkUrl = val
+    //     },
+    //     'task.comment'(val){
+    //         this.taskShow.comment = val
+    //     },
+    //     'task.desc'(val){
+    //         this.taskShow.desc = val
+    //     }
+    // },
     methods: {
-        check() {
-            this.form.tasks.push({
-                name: this.taskList.name,
-                date: this.taskList.date
-            })
-            this.taskList = {
-                name: null,
-                date: null
-            }
-        },
-
+        async submit() {
+            await this.$fireStore.collection("Task")
+                .where('taskId', '==', this.taskId)
+                .get().then((query) => {
+                    const task = query.docs[0]
+                    task.ref.update({
+                        linkUrl: this.linkUrl,
+                        desc: this.desc,
+                        status: 'PENDING'
+                    }).then(() => {
+                        toastr.success('ส่งงานสำเร็จ')
+                    })
+                })
+        }
     },
 }
 </script>
@@ -169,5 +213,9 @@ export default {
 .linkUrl {
     color: blue;
     text-decoration: underline;
+}
+.submit-task{
+    display: flex;
+    justify-content: flex-end;
 }
 </style>

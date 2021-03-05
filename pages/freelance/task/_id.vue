@@ -34,7 +34,8 @@
         <CellStepProject
             v-for="(ts,index) in task.taskList"
             :key="index"
-            :task="ts"
+            :task="{...ts,index}"
+            :taskId="taskId"
         />
         <div class="div-submit">
             <button
