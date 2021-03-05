@@ -96,7 +96,7 @@ export default {
             return parseInt((count/lengthTasks)*100)
         },
         getData() {
-            var docRef = db.collection("Task").doc(this.taskId)
+            var docRef = this.$fireStore.collection("Task").doc(this.taskId)
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     this.task = doc.data()
