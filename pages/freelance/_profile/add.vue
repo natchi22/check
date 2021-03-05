@@ -92,7 +92,9 @@
         </div>
     </div>
 </template>
+
 <script>
+import { mapState } from 'vuex'
 import moment from 'moment'
 export default {
     data() {
@@ -111,6 +113,11 @@ export default {
             managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
         }
     },
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
     methods: {
         handleChangeManager(value) {
             this.form.manager = value
@@ -121,28 +128,23 @@ export default {
                 endDate: this.dateFocus,
                 status: 'IN_PROCESS'
             })
-            console.log(this.form)
         },
         remove(index) {
             this.form.taskList.splice(index, 1)
         },
         async addWork() {
-            const user = this.$fireStore.collection("Task").doc()
-            await user.set({
-                freelanceId: user.id,
-                firstName: this.fName,
-                lastName: this.lName,
-                phone: this.telNumber,
-                email: this.email,
-                lineId: this.profile.userId,
-                pictureUrl: this.profile.pictureUrl
+            const task = this.$fireStore.collection("Task").doc()
+            await task.set({
+                taskId: task.id,
+                name: this.form.name,
+                freelanceId: this.profile.userId,
+                startDate: this.form.startDate,
+                endDate: this.form.endDate,
+                manager: this.form.manager,
+                taskList: this.form.taskList
+            }).then(()=>{
+                this.$router.go(-1)
             })
-        },
-        handleButtonClick(e) {
-            console.log('click left button', e)
-        },
-        handleMenuClick(e) {
-            this.form.manager = e.key
         },
     },
 }
