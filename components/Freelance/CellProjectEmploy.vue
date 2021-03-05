@@ -1,6 +1,6 @@
 <template>
     <div class="body">
-        <nuxt-link :to="`/freelance/task/${task.id}`">
+        <nuxt-link :to="`/freelance/task/${task.taskId}`">
             <div class="box">
                 <h2>{{ task.name }}</h2>
                 <div class="dateTask">

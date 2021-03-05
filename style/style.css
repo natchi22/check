@@ -149,10 +149,6 @@ input{
     flex-direction: row;
     padding: 6px 0;
 }
-.topic{
-    width: 80px;
-    
-}
 .detail{
     /* width: 200px; */
     margin: 0 0 0 5px;
