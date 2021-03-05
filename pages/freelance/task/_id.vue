@@ -21,7 +21,7 @@
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
-            :percent="calPlan(task.startDate,task.endDate)"
+            :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
             status="active"
             class="progress"
         />
