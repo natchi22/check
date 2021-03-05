@@ -138,6 +138,9 @@ input{
 .btn-wait{
     background-color: #FFB524;
 }
+.btn-process{
+    background-color: #8b1c24;
+}
 .btn-status h3{
     color: #ffffff;
     text-align: center;

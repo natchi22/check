@@ -13,8 +13,27 @@
                 />
                 <h3>{{ task.endDate }}</h3>
             </div>
-            <div class="btn-status btn-succeed">
+            <div
+                v-if="task.status === `APPROVE`"
+                class="btn-status btn-succeed"
+            >
                 <h3>ตรวจแล้ว</h3>
+            </div>
+            <div
+                v-if="task.status === `PENDING`"
+                class="btn-status btn-wait"
+            >
+                <h3>
+                    รอตรวจ
+                </h3>
+            </div>
+            <div
+                v-if="task.status === `IN_PROCESS`"
+                class="btn-status btn-process"
+            >
+                <h3>
+                    รอส่ง
+                </h3>
             </div>
         </div>
         <div class="main">
