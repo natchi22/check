@@ -76,7 +76,7 @@ export default {
         }
     },
     async mounted() {
-        //this.getUserData()
+        this.getUserData()
         this.getTasksData()
     }
 

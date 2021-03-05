@@ -125,21 +125,24 @@ export default {
         addList() {
             this.form.taskList.push({
                 name: this.subTaskFocus,
-                endDate: this.dateFocus,
+                endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
                 status: 'IN_PROCESS'
             })
+            this.subTaskFocus = ''
+            this.dateFocus = ''
         },
         remove(index) {
             this.form.taskList.splice(index, 1)
         },
         async addWork() {
+            console.log(this.form)
             const task = this.$fireStore.collection("Task").doc()
             await task.set({
                 taskId: task.id,
                 name: this.form.name,
                 freelanceId: this.profile.userId,
                 startDate: this.form.startDate,
-                endDate: this.form.endDate,
+                endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
                 manager: this.form.manager,
                 taskList: this.form.taskList
             }).then(()=>{
