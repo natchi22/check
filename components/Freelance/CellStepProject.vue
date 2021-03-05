@@ -164,12 +164,15 @@ export default {
                 .where('taskId', '==', this.taskId)
                 .get().then((query) => {
                     const task = query.docs[0]
+                    var taskList = task.taskList[this.task.index]
+                    taskList.linkUrl = this.linkUrl
+                    taskList.desc = this.desc
+                    taskList.status = 'PENDING'
                     task.ref.update({
-                        linkUrl: this.linkUrl,
-                        desc: this.desc,
-                        status: 'PENDING'
+                        taskList: taskList
                     }).then(() => {
                         toastr.success('ส่งงานสำเร็จ')
+                        this.$emit('reCall')
                     })
                 })
         }

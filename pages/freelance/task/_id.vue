@@ -36,6 +36,7 @@
             :key="index"
             :task="{...ts,index}"
             :taskId="taskId"
+            @reCall="getData"
         />
         <div class="div-submit">
             <button
