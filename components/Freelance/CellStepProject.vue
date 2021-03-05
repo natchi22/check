@@ -164,10 +164,10 @@ export default {
                 .where('taskId', '==', this.taskId)
                 .get().then((query) => {
                     const task = query.docs[0]
-                    var taskList = task.taskList[this.task.index]
-                    taskList.linkUrl = this.linkUrl
-                    taskList.desc = this.desc
-                    taskList.status = 'PENDING'
+                    var taskList = task.data().taskList
+                    taskList[this.task.index].linkUrl = this.linkUrl
+                    taskList[this.task.index].desc = this.desc
+                    taskList[this.task.index].status = 'PENDING'
                     task.ref.update({
                         taskList: taskList
                     }).then(() => {
