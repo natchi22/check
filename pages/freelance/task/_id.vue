@@ -64,6 +64,7 @@ export default {
     data() {
         return {
             taskId: this.$route.params.id,
+            task: {},
             form: {
                 taskName: 'งานขึ้นบ้านใหม่',
                 date: '01/01/2021',
@@ -93,7 +94,20 @@ export default {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
             return parseInt((count/lengthTasks)*100)
+        },
+        getData() {
+            var docRef = db.collection("Task").doc(this.taskId)
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    this.task = doc.data()
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error)
+            })
         }
+    },
+    mounted() {
+        this.getData()
     }
 }
 </script>
