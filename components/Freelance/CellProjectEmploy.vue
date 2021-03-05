@@ -76,7 +76,7 @@ export default {
     padding: 0 0 0 10px;
 }
 .topic{
-    width: 56px;
+    width: 100%
 }
 h1{
     text-align: center;

@@ -149,16 +149,15 @@ input{
 
 .main{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 6px 0;
 }
 .detail{
-    /* width: 200px; */
-    margin: 0 0 0 5px;
+    width: 100%;
+    word-wrap: break-word;
 }
 .boxInput{
-    width: 80%;
-    margin: 0 0 0 5px;
+    width: 100%;
 }
 .btn-size{
     width: 80px;
