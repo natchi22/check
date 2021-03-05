@@ -96,6 +96,8 @@
 <script>
 import { mapState } from 'vuex'
 import moment from 'moment'
+import toastr from 'toastr'
+
 export default {
     data() {
         return {
@@ -123,7 +125,6 @@ export default {
             this.form.manager = value
         },
         addList() {
-            console.log(this.dateFocus)
             this.form.taskList.push({
                 name: this.subTaskFocus,
                 endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
