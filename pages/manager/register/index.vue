@@ -59,7 +59,7 @@ export default {
             email: '',
             lineId: '',
             telNumber: '',
-            rank:'หัวหน้างาน',
+            rank: 'หัวหน้างาน',
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย

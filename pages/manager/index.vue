@@ -30,7 +30,7 @@
 </template>
 <script>
 import liff from '@line/liff'
-import { mapState,mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
     data() {
         return {
@@ -46,16 +46,29 @@ export default {
     methods: {
         ...mapMutations({
             saveProfile: 'profile/saveProfile'
-        })
+        }),
+        async login(e) {
+            e.preventDefault()
+            if (this.user && this.password) {
+                try {
+                    await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
+                    this.$router.push('/manager/info')
+                }
+                catch (e) {
+                    this.$router.push('/manager')
+                }
+            }
+
+        }
     },
     watch: {
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
             const manager = await this.$fireStore.collection('Manager')
                 .where('lineId', '==', this.profile.userId).get()
-            if(!manager.empty){
+            if (!manager.empty) {
                 this.$router.push(`/manager`)
             }
-            
+
         }
     },
     async mounted () {
@@ -87,22 +100,7 @@ export default {
                 alert('Connect failed, please try again.')
                 liff.closeWindow()
             })
-    }
-    methods:{
-        async login(e) {
-            e.preventDefault();
-            if (this.user && this.password) {
-                try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.user,  this.password);
-                    this.$router.push('/manager/info');
-                } catch (e) {
-                    this.$router.push('/manager');
-                }
-            }
-
-        }
-
-    }
+    },
 }
 </script>
 <style scoped>

@@ -126,13 +126,18 @@ export default {
         remove(index) {
             this.form.taskList.splice(index, 1)
         },
-        // addWork() {
-        //   this.work.push(this.nameWork)
-        // },
-        //     onChange(date, dateString) {
-
-        //       console.log(date, dateString)
-        // },
+        async addWork() {
+            const user = this.$fireStore.collection("Task").doc()
+            await user.set({
+                freelanceId: user.id,
+                firstName: this.fName,
+                lastName: this.lName,
+                phone: this.telNumber,
+                email: this.email,
+                lineId: this.profile.userId,
+                pictureUrl: this.profile.pictureUrl
+            })
+        },
         handleButtonClick(e) {
             console.log('click left button', e)
         },

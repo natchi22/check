@@ -63,6 +63,7 @@ export default {
     },
     data() {
         return {
+            taskId: this.$route.params.id,
             form: {
                 taskName: 'งานขึ้นบ้านใหม่',
                 date: '01/01/2021',
@@ -76,27 +77,6 @@ export default {
             urlTask: 'URLงานที่แนบมา',
             detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
             commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน',
-            task: {
-                id: 'xkkxj3',
-                name: 'จัดบ้านและสวน',
-                startDate: '01/03/2021',
-                endDate: '15/03/2021',
-                taskList: [ {
-                    name: 'จัดสวน',
-                    endDate: '03/03/2021',
-                    status: 'APPROVE'
-                },
-                {
-                    name: 'วางหิน',
-                    endDate: '10/03/2021',
-                    status: 'PENDING'
-                },
-                {
-                    name: 'ตัดหญ้า',
-                    endDate: '15/03/2021',
-                    status: 'IN_PROCESS'
-                } ]
-            }
         }
     },
     methods: {
@@ -150,6 +130,7 @@ export default {
 .div-submit{
     display: flex;
     justify-content: center;
+    margin-bottom: 26px;
 }
 </style>
 

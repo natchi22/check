@@ -82,7 +82,6 @@ export default {
                 lineId: this.profile.userId,
                 pictureUrl: this.profile.pictureUrl
             })
-            console.log(user)
         },
         //เอาidมาเก็บหน้านี้ ละโยนเข้าfirestore
     }

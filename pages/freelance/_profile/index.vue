@@ -7,7 +7,6 @@
                 alt="รูปโปรไฟล์"
             >
         </div>
-        <!-- {{$route.params.profile}} -->
         <div class="head">
             <h3>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h3>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
@@ -58,41 +57,27 @@ export default {
         return {
             // profileId: this.$route.params.profile,
             inforFrelance: {},
-            tasks: [ {
-                id: 'xkkxj3',
-                name: 'จัดบ้านและสวน',
-                startDate: '01/03/2021',
-                endDate: '15/03/2021',
-                taskList: [ {
-                    name: 'จัดสวน',
-                    endDate: '03/03/2021',
-                    status: 'APPROVE'
-                },
-                {
-                    name: 'วางหิน',
-                    endDate: '10/03/2021',
-                    status: 'PENDING'
-                },
-                {
-                    name: 'ตัดหญ้า',
-                    endDate: '15/03/2021',
-                    status: 'IN_PROCESS'
-                } ]
-            } ]
+            tasks: []
         }
     },
     methods: {
+        async getUserData() {
+            const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
+            infor.forEach((doc)=>{
+                this.inforFrelance = doc.data()
+            })
+        },
+        async getTasksData() {
+            const tasks = await this.$fireStore.collection("Task").get()
+            tasks.forEach((doc)=>{
+                console.log(doc)
+                this.tasks.push(doc.data())
+            })
+        }
     },
     async mounted() {
-        // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
-        // console.log(infor)
-        infor.forEach((doc)=>{
-            this.inforFrelance = doc.data()
-        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
-
-        // console.log(this.inforFrelance)
-        // await location.reload()
+        //this.getUserData()
+        this.getTasksData()
     }
 
 }
