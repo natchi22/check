@@ -136,7 +136,6 @@ export default {
             this.form.taskList.splice(index, 1)
         },
         async addWork() {
-            console.log(this.form)
             const task = this.$fireStore.collection("Task").doc()
             await task.set({
                 taskId: task.id,
@@ -147,7 +146,10 @@ export default {
                 manager: this.form.manager,
                 taskList: this.form.taskList
             }).then(()=>{
+                toastr.success('เพิ่มงานสำเร็จ')
                 this.$router.go(-1)
+            }).catch(()=>{
+                toastr.error('ส่งคำขอเปลี่ยนรหัสผ่านไปที่อีเมล สำเร็จ')
             })
         },
     },

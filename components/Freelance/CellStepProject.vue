@@ -3,7 +3,7 @@
     <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
-            <h2>{{ key }} {{ task.name }}</h2>
+            <h2>{{ task.name }}</h2>
         </div>
         <div class="box-status">
             <div class="box-date">
@@ -107,7 +107,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-    props: [ 'task', 'key' ],
+    props: [ 'task' ],
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData

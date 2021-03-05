@@ -27,7 +27,7 @@
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
-            :percent="calReal(task.taskList)"
+            :percent="task.taskList ? calReal(task.taskList) : 0"
             status="active"
             class="progress"
         />
@@ -101,8 +101,6 @@ export default {
                 if (doc.exists) {
                     this.task = doc.data()
                 }
-            }).catch((error) => {
-                console.log("Error getting document:", error)
             })
         }
     },
