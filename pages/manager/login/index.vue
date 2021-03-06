@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
     data() {
         return {
@@ -38,11 +38,11 @@ export default {
             password: ''
         }
     },
-    // computed: { // นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
-    //     ...mapState({
-    //         profile: state => state.profile.profileData
-    //     })
-    // },
+    computed: { // นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
     methods: { //ปิดloginไว้ก่อน ทำสมัครสมาชิกไม่ได้
         // ...mapMutations({
         //     saveProfile: 'profile/saveProfile'
@@ -62,46 +62,46 @@ export default {
 
         }
     },
-    // watch: { //เซฟไลน์เข้า DB
-    //     async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
-    //         const manager = await this.$fireStore.collection('Manager')
-    //             .where('lineId', '==', this.profile.userId).get()
-    //         if (!manager.empty) {
-    //             this.$router.push(`/manager`)
-    //         }
+    watch: { //เซฟไลน์เข้า DB
+        async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
+            const manager = await this.$fireStore.collection('Manager')
+                .where('lineId', '==', this.profile.userId).get()
+            if (!manager.empty) {
+                this.$router.push(`/manager`)
+            }
 
-    //     }
-    // },
-    // async mounted () {
-    //     // const data = {
-    //     //     img: this.image,
-    //     //     id: this.userId,
-    //     //     name: this.name
-    //     // }
-    //     liff.init({ liffId: '1655688087-m6GLXp2q' })
-    //         .then(() => {
-    //             if (liff.isLoggedIn()) {
-    //                 // const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
-    //                 // const params = new URLSearchParams(queryString)
-    //                 liff.getProfile().then(async (profile) => {
-    //                     const userId = profile.userId /// เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
-    //                     const image = profile.pictureUrl
-    //                     const name = profile.displayName
-    //                     this.userId = userId
-    //                     this.name = name
-    //                     this.image = image
-    //                     this.saveProfile(profile)
-    //                 })
-    //             }
-    //             else {
-    //                 liff.login()
-    //             }
-    //         })
-    //         .catch(() => {
-    //             alert('Connect failed, please try again.')
-    //             liff.closeWindow()
-    //         })
-    // },
+        }
+    },
+    async mounted () {
+        // const data = {
+        //     img: this.image,
+        //     id: this.userId,
+        //     name: this.name
+        // }
+        liff.init({ liffId: '1655688087-m6GLXp2q' })
+            .then(() => {
+                if (liff.isLoggedIn()) {
+                    // const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
+                    // const params = new URLSearchParams(queryString)
+                    liff.getProfile().then(async (profile) => {
+                        const userId = profile.userId /// เอาuser id line จากที่ได้ตรงนี้ไปเก็บใน firestore get เข้าไปพร้อมกับหน้าfreelance index
+                        const image = profile.pictureUrl
+                        const name = profile.displayName
+                        this.userId = userId
+                        this.name = name
+                        this.image = image
+                        this.saveProfile(profile)
+                    })
+                }
+                else {
+                    liff.login()
+                }
+            })
+            .catch(() => {
+                alert('Connect failed, please try again.')
+                liff.closeWindow()
+            })
+    },
 }
 </script>
 <style scoped>
