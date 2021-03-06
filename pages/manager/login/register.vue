@@ -11,7 +11,7 @@
         <h2>E-mail</h2>
         <input
             type="text"
-            placeholder="E-mail*"
+            placeholder="E-mail"
             v-model="email"
         >
         <h2>Password</h2>
@@ -72,6 +72,11 @@ export default {
     },
     methods: {
         async register() {
+            // const email = document.getElementById('email').value;
+            // const password = document.getElementById('password').value;
+            // if(password.length<8){
+            //     alert("ตั้งรหัสผ่านใหม่")
+            // } //เงื่อนไขตั้งรหัสผ่าน
             const user = this.$fireStore.collection("Manager").doc()
             await user.set({
                 freelanceId: user.id,
@@ -84,7 +89,12 @@ export default {
                 rank: this.rank,
             })
             console.log(user)
-        },
+            
+            // firebase.auth().createUserWithEmailAndPassword(email, password)
+            // .catch(function(error){
+            //     const
+            // }
+        }
 
     }
 }
