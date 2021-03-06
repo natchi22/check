@@ -87,6 +87,7 @@ export default {
                 lineId: this.profile.userId,
                 pictureUrl: this.profile.pictureUrl,
                 rank: this.rank,
+                password: this.password,
             })
             console.log(user)
             

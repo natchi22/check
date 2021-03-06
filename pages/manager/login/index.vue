@@ -43,7 +43,7 @@ export default {
     //         profile: state => state.profile.profileData
     //     })
     // },
-    methods: {
+    methods: { //ปิดloginไว้ก่อน ทำสมัครสมาชิกไม่ได้
         // ...mapMutations({
         //     saveProfile: 'profile/saveProfile'
         // }),
