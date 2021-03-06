@@ -90,10 +90,10 @@ export default {
                 password: this.password,
             })
             console.log(user)
-            
+
             // firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
             //     .then((userCredential) => {
-            //     // Signed in 
+            //     // Signed in
             //     var user = userCredential.user;
             //     // ...
             //     })

@@ -47,7 +47,7 @@ export default {
         // ...mapMutations({
         //     saveProfile: 'profile/saveProfile'
         // }),
-        
+
         async login(e) {
             e.preventDefault()
             if (this.email && this.password) {
