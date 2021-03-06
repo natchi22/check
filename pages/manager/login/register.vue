@@ -90,17 +90,17 @@ export default {
             })
             console.log(user)
             
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-                .then((userCredential) => {
-                // Signed in 
-                var user = userCredential.user;
-                // ...
-                })
-                .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ..
-                });
+            // firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            //     .then((userCredential) => {
+            //     // Signed in 
+            //     var user = userCredential.user;
+            //     // ...
+            //     })
+            //     .catch((error) => {
+            //     var errorCode = error.code;
+            //     var errorMessage = error.message;
+            //     // ..
+            //     });
 
         }
 
