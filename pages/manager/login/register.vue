@@ -11,7 +11,7 @@
         <h2>E-mail</h2>
         <input
             type="text"
-            placeholder="E-mail*"
+            placeholder="E-mail"
             v-model="email"
         >
         <h2>Password</h2>
@@ -38,7 +38,7 @@
             placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
-        <nuxt-link to="/manager">
+        <nuxt-link to="/manager/login">
             <button
                 class="btn btn-green"
                 @click="register"
@@ -72,6 +72,11 @@ export default {
     },
     methods: {
         async register() {
+            // const email = document.getElementById('email').value;
+            // const password = document.getElementById('password').value;
+            // if(password.length<8){
+            //     alert("ตั้งรหัสผ่านใหม่")
+            // } //เงื่อนไขตั้งรหัสผ่าน
             const user = this.$fireStore.collection("Manager").doc()
             await user.set({
                 freelanceId: user.id,
@@ -82,9 +87,23 @@ export default {
                 lineId: this.profile.userId,
                 pictureUrl: this.profile.pictureUrl,
                 rank: this.rank,
+                password: this.password,
             })
             console.log(user)
-        },
+            
+            // firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            //     .then((userCredential) => {
+            //     // Signed in 
+            //     var user = userCredential.user;
+            //     // ...
+            //     })
+            //     .catch((error) => {
+            //     var errorCode = error.code;
+            //     var errorMessage = error.message;
+            //     // ..
+            //     });
+
+        }
 
     }
 }
