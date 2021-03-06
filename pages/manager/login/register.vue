@@ -38,7 +38,7 @@
             placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
-        <nuxt-link to="/manager">
+        <nuxt-link to="/manager/login">
             <button
                 class="btn btn-green"
                 @click="register"

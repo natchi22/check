@@ -101,9 +101,9 @@ export default {
     margin: 0 10px 20px 10px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
-.tabs{
+/* .tabs{
 
-}
+} */
 }
 </style>
 <style>
