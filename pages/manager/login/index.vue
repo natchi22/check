@@ -18,7 +18,7 @@
         >
             เข้าสู่ระบบ
         </button>
-        <nuxt-link to="/manager/register">
+        <nuxt-link to="/manager/login/register">
             <button
                 class="btn btn-green"
                 @click="register"
@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+// import { mapState, mapMutations } from 'vuex'
 export default {
     data() {
         return {
