@@ -51,7 +51,7 @@ export default {
             if (this.email && this.password) {
                 try {
                     await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
-                    this.$router.push(`/manager/profile`)
+                    this.$router.push(`/manager/${this.profile.userId}`)
                 }
                 catch (e) {
                     this.$router.push('/manager')
