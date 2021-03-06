@@ -32,7 +32,7 @@ export default {
             const manager = await this.$fireStore.collection('Manager')
                 .where('lineId', '==', this.profile.userId).get()
             if (!manager.empty) {
-                this.$router.push('/manager')
+                this.$router.push('/manager/login')
             }
 
         }

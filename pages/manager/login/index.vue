@@ -11,26 +11,26 @@
             placeholder="รหัสผ่าน"
             v-model="password"
         />
-        <nuxt-link to="/manager/profile/info">
+        <!-- <nuxt-link to="/manager/profile/info"> -->
         <button
             class="btn btn-green"
             @click="login"
         >
             เข้าสู่ระบบ
         </button>
-        </nuxt-link>
-        <!-- <nuxt-link to="/manager/login/register"> -->
+        <!-- </nuxt-link> -->
+        <nuxt-link to="/manager/login/register">
             <button
                 class="btn btn-green"
                 @click="register"
             >
                 สมัครสมาชิก
             </button>
-        <!-- </nuxt-link> -->
+        </nuxt-link>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้รูปไม่ต้องเอามา
 export default {
     data() {
         return {
