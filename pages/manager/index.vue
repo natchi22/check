@@ -1,31 +1,10 @@
 <template>
-    <div class="login">
-        <h1>เข้าสู่ระบบ</h1>
-        <a-input
-            class="input"
-            placeholder="E-mail"
-            v-model="email"
+    <div class="loaddata">
+        <!-- ใส่ตัวโหลด -->
+        <a-icon
+            type="loading"
+            :style="{ fontSize: '64px', color: '#3ABCA7' }"
         />
-        <a-input-password
-            class="input"
-            placeholder="รหัสผ่าน"
-            v-model="password"
-        />
-
-        <button
-            class="btn btn-green"
-            @click="login"
-        >
-            เข้าสู่ระบบ
-        </button>
-        <nuxt-link to="/manager/register">
-            <button
-                class="btn btn-green"
-                @click="register"
-            >
-                สมัครสมาชิก
-            </button>
-        </nuxt-link>
     </div>
 </template>
 <script>
@@ -47,26 +26,13 @@ export default {
         ...mapMutations({
             saveProfile: 'profile/saveProfile'
         }),
-        async login(e) {
-            e.preventDefault()
-            if (this.user && this.password) {
-                try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
-                    this.$router.push('/manager/info')
-                }
-                catch (e) {
-                    this.$router.push('/manager')
-                }
-            }
-
-        }
     },
     watch: {
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
             const manager = await this.$fireStore.collection('Manager')
                 .where('lineId', '==', this.profile.userId).get()
             if (!manager.empty) {
-                this.$router.push(`/manager`)
+                this.$router.push(`/manager/login`)
             }
 
         }
@@ -104,24 +70,7 @@ export default {
 }
 </script>
 <style scoped>
-.login{
-    display: flex;
-    flex-direction: column;
-    width: 245px;
-    margin: 0 auto;
-    color: #000000;
-}
-.login h1{
-    font-size: 36px;
-    font-weight: bold;
-    color: #3ABCA7;
-    margin: 100px 0 26px 0;
-    text-align: center;
-}
-.input{
-    margin: 0 0 16px 0;
-}
-.btn-green{
-    margin: 0 0 16px 0;
+.loaddata{
+	margin: 60% 0 0 40%;
 }
 </style>
