@@ -48,19 +48,19 @@ export default {
         //     saveProfile: 'profile/saveProfile'
         // }),
 
-        async login(e) {
-            e.preventDefault()
-            if (this.email && this.password) {
-                try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
-                    this.$router.push(`/manager/${this.profile.userId}`)
-                }
-                catch (e) {
-                    this.$router.push('/manager')
-                }
-            }
+        // async login(e) {
+        //     e.preventDefault()
+        //     if (this.email && this.password) {
+        //         try {
+        //             await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
+        //             this.$router.push(`/manager/${this.profile.userId}`)
+        //         }
+        //         catch (e) {
+        //             this.$router.push('/manager')
+        //         }
+        //     }
 
-        }
+        // }
     },
     watch: { //เซฟไลน์เข้า DB
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
