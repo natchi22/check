@@ -87,7 +87,7 @@ export default {
                         lastName: this.lName,
                         phone: this.telNumber,
                         // email: this.email, //ไม่ให้แก้ email
-                        pass: this.password,
+                        password: this.password,
                     }).then(() => {
                         this.$router.replace(`/manager/${this.profile.userId}`)
                     })
