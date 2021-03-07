@@ -81,7 +81,7 @@ export default {
         async getUserData() {
             const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
             infor.forEach((doc)=>{
-                this.inforFrelance = doc.data()
+                this.inforManager = doc.data()
             })
         },
         callback(key) {
