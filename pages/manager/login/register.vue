@@ -79,7 +79,7 @@ export default {
             // } //เงื่อนไขตั้งรหัสผ่าน
             const user = this.$fireStore.collection("Manager").doc()
             await user.set({
-                freelanceId: user.id,
+                managerId: user.id,
                 firstName: this.fName,
                 lastName: this.lName,
                 phone: this.telNumber,

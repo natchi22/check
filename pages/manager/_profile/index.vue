@@ -3,6 +3,7 @@
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>{{inforManager.firstName}}  {{inforManager.lastName}}</h2>
+            console.log{{inforManager}}
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -66,6 +67,7 @@ export default {
     data() {
         return {
             inforManager: {},
+            tasks: [],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
                 date: null,
@@ -73,8 +75,8 @@ export default {
                 tasks: []
             },
             //ชื่อพนักงานที่หัวหน้าคนนี้ดูแลทั้งหมด
-            fName: 'จิรัชญา',
-            lName: 'นวลแก้ว',
+            fName: '',
+            lName: '',
         }
     },
     methods: {
@@ -83,6 +85,7 @@ export default {
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
             })
+            
         },
         callback(key) {
             console.log(key)
