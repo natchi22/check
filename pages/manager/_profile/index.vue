@@ -93,6 +93,10 @@ export default {
             console.log(e, 'I was closed.')
         },
     },
+    async mounted() {
+        this.getUserData()
+        this.getTasksData()
+    }
 }
 </script>
 <style scoped>
