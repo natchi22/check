@@ -11,14 +11,14 @@
             placeholder="รหัสผ่าน"
             v-model="password"
         />
-        <!-- <nuxt-link to="/manager/profile/info"> -->
+        <nuxt-link to="/manager/profile">
         <button
             class="btn btn-green"
             @click="login"
         >
             เข้าสู่ระบบ
         </button>
-        <!-- </nuxt-link> -->
+        </nuxt-link>
         <nuxt-link to="/manager/login/register">
             <button
                 class="btn btn-green"
