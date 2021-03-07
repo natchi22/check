@@ -3,13 +3,13 @@
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>ชื่อหัวหน้า งาน</h2>
-            <nuxt-link :to="`/freelance/${profile.userId}`">
+            <!-- <nuxt-link :to="`/manager/${profile.userId}/info`"> -->
                 <img
                     class="pic size-pic"
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
-            </nuxt-link>
+            <!-- </nuxt-link> -->
         </div>
         <div class="tabs">
             <a-alert
