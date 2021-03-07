@@ -3,7 +3,6 @@
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>{{inforManager.firstName}}  {{inforManager.lastName}}</h2>
-            {{form.taskName}}
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -35,7 +34,7 @@
                             class="box"
                             
                         >
-                            <h1>{{ form.taskName }}</h1>
+                            <h1>{{ inforTask.name }}</h1>
                         </div>
                     </nuxt-link>
                 </a-tab-pane>
@@ -67,7 +66,7 @@ export default {
     data() {
         return {
             inforManager: {},
-            tasks: [],
+            inforTask: {},
             form: {
                 taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
                 date: null,
@@ -85,6 +84,12 @@ export default {
             })
             console.log(infor)
           
+        },
+        async getTasksData() {
+            const tasks = await this.$fireStore.collection("Task").where("freelanceId", '==', this.profile.userId).get()
+            tasks.forEach((doc)=>{
+                this.inforTask = doc.data()
+            })
         },
         callback(key) {
             console.log(key)
