@@ -100,7 +100,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
-            head: [],
+            head: ['มานะ พากเพียร', 'สมบัติ วันดี'],
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
