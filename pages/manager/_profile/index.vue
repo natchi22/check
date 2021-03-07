@@ -3,7 +3,7 @@
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>{{inforManager.firstName}}  {{inforManager.lastName}}</h2>
-            console.log{{inforManager}}
+            console.log(inforManager)
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
