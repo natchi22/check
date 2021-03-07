@@ -1,11 +1,11 @@
 <template>
     <div class="body">	
         <div class="edit">
-            <!-- <img 
+            <img 
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
-            > -->
+            >
             <nuxt-link to="/manager/profile/edit">
                 <button class="btn btn-green btn-size">แก้ไขข้อมูลส่วนตัว</button>
             </nuxt-link>
