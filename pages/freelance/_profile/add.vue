@@ -100,7 +100,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
-            head: ['มานะ พากเพียร', 'สมบัติ วันดี'],
+            head: [],
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
@@ -122,7 +122,10 @@ export default {
     },
     methods: {
         async handleChangeManager(value) {
-            const inforhead = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            const inforhead = await this.$fireStore.collection("Manager")
+            .where("firstName", '==', this.fName)
+            .where("lastName", '==', this.lName)
+            .get()
             inforhead.forEach((doc)=>{
                 this.head = doc.data()
             })
