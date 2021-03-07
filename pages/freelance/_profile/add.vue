@@ -122,8 +122,8 @@ export default {
     },
     methods: {
         async handleChangeManager(value) {
-            const head = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
-            infor.forEach((doc)=>{
+            const inforhead = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            inforhead.forEach((doc)=>{
                 this.head = doc.data()
             })
             this.form.manager = value
