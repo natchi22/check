@@ -27,7 +27,7 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for="(mn,index) in managers"
+                    v-for="(mn,index) in head"
                     :value="mn"
                     :key="index"
                 >
@@ -100,6 +100,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
+            head: [],
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
@@ -120,7 +121,11 @@ export default {
         })
     },
     methods: {
-        handleChangeManager(value) {
+        async handleChangeManager(value) {
+            const head = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            infor.forEach((doc)=>{
+                this.head = doc.data()
+            })
             this.form.manager = value
         },
         addList() {

@@ -30,26 +30,26 @@
                     key="1"
                     tab="ตรวจงาน"
                 >
-                    <!-- <nuxt-link to="/head/foremen/checkProject">
+                    <nuxt-link to="/head/foremen/checkProject">
                         <div
                             class="box"
-                            v-for=""
+                            
                         >
                             <h1>{{ form.taskName }}</h1>
                         </div>
-                    </nuxt-link> -->
+                    </nuxt-link>
                 </a-tab-pane>
                 <a-tab-pane
                     key="2"
                     tab="รายชื่อ"
                 >
                     <nuxt-link to="/head/foremen/checkEmploy">
-                        <!-- <div
+                        <div
                             class="box"
-                            v-for=""
+                            
                         >
                             <h1>{{ fName }} {{ lName }}</h1>
-                        </div> -->
+                        </div>
                     </nuxt-link>
                 </a-tab-pane>
             </a-tabs>
@@ -74,9 +74,6 @@ export default {
                 manager: null,
                 tasks: []
             },
-            //ชื่อพนักงานที่หัวหน้าคนนี้ดูแลทั้งหมด
-            fName: '',
-            lName: '',
         }
     },
     methods: {
