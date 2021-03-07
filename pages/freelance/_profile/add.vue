@@ -12,7 +12,6 @@
             <a-date-picker
                 :format="dateFormatList"
                 class="boxDate"
-                @change="onChange"
                 placeholder="กำหนดส่ง Project*"
                 v-model="form.endDate"
             />
@@ -78,7 +77,7 @@
                 <h2>{{ index+1 }}. {{ item.name }}</h2>
             </div>
             <div class="topic">
-                <h3>กำหนดส่ง : {{ moment(item.endDate).format('DD/MM/YYYY') }}</h3>
+                <h3>กำหนดส่ง : {{ item.endDate }}</h3>
             </div>
         </div>
         <br>
@@ -146,9 +145,6 @@ export default {
                 endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
                 manager: this.form.manager,
                 taskList: this.form.taskList,
-                linkUrl: "",
-                comment: "",
-                desc: "",
             }).then(()=>{
                 toastr.success('เพิ่มงานสำเร็จ')
                 this.$router.go(-1)
