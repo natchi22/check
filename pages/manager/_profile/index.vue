@@ -3,7 +3,7 @@
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>{{inforManager.firstName}}  {{inforManager.lastName}}</h2>
-            console.log{{form.taskName}}
+            {{form.taskName}}
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -83,7 +83,7 @@ export default {
                 this.inforManager = doc.data()
                 
             })
-            console.log(this.infor)
+            console.log(infor)
           
         },
         callback(key) {
