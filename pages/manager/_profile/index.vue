@@ -2,14 +2,14 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>ชื่อหัวหน้า งาน</h2>
-            <!-- <nuxt-link :to="`/manager/${profile.userId}/info`"> -->
+            <h2>{{inforFrelance.firstName}}  {{inforFrelance.lastName}}</h2>
+            <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
-            <!-- </nuxt-link> -->
+            </nuxt-link>
         </div>
         <div class="tabs">
             <a-alert
@@ -65,6 +65,7 @@ export default {
     },
     data() {
         return {
+            inforManager: {},
             form: {
                 taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
                 date: null,
@@ -77,6 +78,12 @@ export default {
         }
     },
     methods: {
+        async getUserData() {
+            const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            infor.forEach((doc)=>{
+                this.inforFrelance = doc.data()
+            })
+        },
         callback(key) {
             console.log(key)
         },
