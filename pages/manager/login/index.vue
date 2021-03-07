@@ -11,7 +11,7 @@
             placeholder="รหัสผ่าน"
             v-model="password"
         />
-        <nuxt-link to="/manager/profile/info">
+        <nuxt-link :to="`/manager/${profile.userId}`">
         <button
             class="btn btn-green"
             @click="login"

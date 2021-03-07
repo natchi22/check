@@ -85,7 +85,7 @@ export default {
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
             })
-            
+            console.log(this.inforManager)
         },
         callback(key) {
             console.log(key)
