@@ -110,7 +110,7 @@ export default {
                 name: '',
                 startDate: moment().format('DD/MM/YYYY'),
                 endDate: '',
-                manager: 'มานะ พากเพียร',
+                manager: 'ชื่อหัวหน้าไม่ขึ้น อีเวร',
                 taskList: []
             },
             subTaskFocus: '',
@@ -126,11 +126,11 @@ export default {
     methods: {
         async handleChangeManager(value) {
             const inforhead = await this.$fireStore.collection("Manager")
-            .where("firstName", '==', this.profile.userId)
-            
+            .where("lineId", '==', this.profile.userId)
             .get()
             inforhead.forEach((doc)=>{
-                this.head.firstName = doc.data()
+                this.head.firstName = doc.data().firstName
+                this.head.lastName = doc.data().lastName
             })
             this.form.manager = value
         },
