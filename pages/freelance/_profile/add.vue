@@ -27,9 +27,9 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for="(item,index) in head"
+                    v-for=" lastName in head"
                     
-                    :key="index"
+                    :key="lastName.id"
                 >
                    {{head.firstName}} {{ head.lastName }}
                 </a-select-option>
@@ -100,10 +100,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
-            head: [
-                {firstName: '',
-                lastName:''}
-            ],
+            head: [],
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
