@@ -131,6 +131,7 @@ export default {
                 this.inforhead.push(doc.data())
             })
             this.form.manager = value
+            console.log(head)
         },
         addList() {
             this.form.taskList.push({
