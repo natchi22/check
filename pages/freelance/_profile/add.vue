@@ -28,7 +28,7 @@
                 />
                 <a-select-option
                     v-for="item in inforhead"
-                    
+                    :value="item"
                     :key="item.id"
                 >
                    <!-- {{head.firstName}} {{ head.lastName }} -->
