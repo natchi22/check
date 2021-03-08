@@ -52,7 +52,7 @@
                         >
                             <img
                                 class="pic size-pic"
-                                :src="profile.pictureUrl"
+                                :src="item.pictureUrl"
                                 alt="รูปโปรไฟล์"
                             >
                             <h1>{{ item.firstName }} {{ item.lastName }}</h1>
