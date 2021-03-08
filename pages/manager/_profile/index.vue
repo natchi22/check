@@ -51,7 +51,7 @@
                             :key="item.id"
                         >
                             <img
-                                class="pic size-pic"
+                                class="pic size-picfreelance"
                                 :src="item.pictureUrl"
                                 alt="รูปโปรไฟล์"
                             >
@@ -140,10 +140,16 @@ export default {
 	height: 30px;
 	margin: 0 0 0 15px;
 }
+.size-picfreelance{
+    width: 40px;
+	height: 40px;
+	margin: 0 24px 0 0;
+}
 .box{
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 24px;
     margin: 0 10px 20px 10px;
+    display: flex;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 /* .tabs{
