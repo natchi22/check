@@ -27,9 +27,9 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for="(mn,index) in inforhead"
+                    v-for="item in inforhead"
                     :value="mn"
-                    :key="index"
+                    :key="item"
                 >
                    <!-- {{head.firstName}} {{ head.lastName }} -->
                     {{mn}}
@@ -130,9 +130,10 @@ export default {
                 // this.head.firstName = doc.data().firstName
                 // this.head.lastName = doc.data().lastName
                 this.inforhead.push(doc.data())
+                console.log(doc.data())
             })
             this.form.manager = value
-            // console.log(head)
+            
         },
         addList() {
             this.form.taskList.push({
