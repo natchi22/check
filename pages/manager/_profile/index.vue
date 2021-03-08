@@ -44,7 +44,7 @@
                     key="2"
                     tab="รายชื่อ"
                 >
-                    <nuxt-link :to="`/freelance/task/${item.taskId}`">
+                    <!-- <nuxt-link :to="`/freelance/task/${item.taskId}`"> -->
                         <div
                             class="box"
                             v-for="item in inforFreelance"
@@ -57,7 +57,7 @@
                             >
                             <h1>{{ item.firstName }} {{ item.lastName }}</h1>
                         </div>
-                    </nuxt-link>
+                    <!-- </nuxt-link> -->
                 </a-tab-pane>
             </a-tabs>
         </div>

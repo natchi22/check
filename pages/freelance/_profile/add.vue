@@ -28,11 +28,11 @@
                 />
                 <a-select-option
                     v-for="item in inforhead"
-                    :value="mn"
+                    
                     :key="item"
                 >
                    <!-- {{head.firstName}} {{ head.lastName }} -->
-                    {{mn}}
+                    {{item.firstName}} {{item.lastName}}
                 </a-select-option>
             </a-select>
         </div>
@@ -108,7 +108,7 @@ export default {
                 name: '',
                 startDate: moment().format('DD/MM/YYYY'),
                 endDate: '',
-                manager: 'ชื่อหัวหน้าไม่ขึ้น อีเวร',
+                manager: 'คือไร',
                 taskList: []
             },
             subTaskFocus: '',
@@ -124,8 +124,8 @@ export default {
     methods: {
         async handleChangeManager(value) {
             const inforhead = await this.$fireStore.collection("Manager")
-            .where("lineId", '==', this.profile.userId)
-            .get()
+            // .where("lineId", '==', this.profile.userId)
+            .get()          
             inforhead.forEach((doc)=>{
                 // this.head.firstName = doc.data().firstName
                 // this.head.lastName = doc.data().lastName
