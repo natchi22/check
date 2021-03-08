@@ -27,11 +27,12 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for="item in head"
-                    
-                    :key="item"
+                    v-for="(mn,index) in managers"
+                    :value="mn"
+                    :key="index"
                 >
-                   {{head.firstName}} {{ head.lastName }}
+                   <!-- {{head.firstName}} {{ head.lastName }} -->
+                    {{mn}}
                 </a-select-option>
             </a-select>
         </div>
@@ -122,14 +123,14 @@ export default {
     },
     methods: {
         async handleChangeManager(value) {
-            const inforhead = await this.$fireStore.collection("Manager")
-            .where("lineId", '==', this.profile.userId)
-            .get()
-            inforhead.forEach((doc)=>{
-                // this.head.firstName = doc.data().firstName
-                // this.head.lastName = doc.data().lastName
-                this.inforhead.push(doc.data())
-            })
+            // const inforhead = await this.$fireStore.collection("Manager")
+            // .where("lineId", '==', this.profile.userId)
+            // .get()
+            // inforhead.forEach((doc)=>{
+            //     // this.head.firstName = doc.data().firstName
+            //     // this.head.lastName = doc.data().lastName
+            //     this.inforhead.push(doc.data())
+            // })
             this.form.manager = value
             console.log(head)
         },
