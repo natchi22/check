@@ -62,13 +62,17 @@ export default {
     },
     methods: {
         async getUserData() {
-            const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
+            const infor = await this.$fireStore.collection("Freelance")
+            .where("lineId", '==', this.profile.userId)
+            .get()
             infor.forEach((doc)=>{
                 this.inforFrelance = doc.data()
             })
         },
         async getTasksData() {
-            const tasks = await this.$fireStore.collection("Task").where("freelanceId", '==', this.profile.userId).get()
+            const tasks = await this.$fireStore.collection("Task")
+            .where("freelanceId", '==', this.profile.userId)
+            .get()
             tasks.forEach((doc)=>{
                 this.tasks.push(doc.data())
             })
