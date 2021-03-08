@@ -129,8 +129,9 @@ export default {
             .where("lineId", '==', this.profile.userId)
             .get()
             inforhead.forEach((doc)=>{
-                this.head.firstName = doc.data().firstName
-                this.head.lastName = doc.data().lastName
+                // this.head.firstName = doc.data().firstName
+                // this.head.lastName = doc.data().lastName
+                this.inforhead.push(doc.data())
             })
             this.form.manager = value
         },
