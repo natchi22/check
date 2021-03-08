@@ -44,7 +44,7 @@
                     key="2"
                     tab="รายชื่อ"
                 >
-                    <nuxt-link to="/head/foremen/checkEmploy">
+                    <nuxt-link :to="`/freelance/task/${task.taskId}`">
                         <div
                             class="box"
                             v-for="item in inforFreelance"
@@ -147,7 +147,7 @@ export default {
 }
 .box{
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 30px 22px;
+    padding: 22px 30px;
     margin: 0 10px 20px 10px;
     display: flex;
 }
