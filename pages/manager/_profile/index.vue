@@ -32,7 +32,9 @@
                     <nuxt-link to="/head/foremen/checkProject">
                         <div
                             class="box"
-                            
+                            v-for="task in inforTask"
+                            :key="task.id"
+
                         >
                             <h1>{{ inforTask.name }}</h1>
                         </div>
@@ -66,7 +68,7 @@ export default {
     data() {
         return {
             inforManager: {},
-            inforTask: {},
+            inforTask: [],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
                 date: null,
