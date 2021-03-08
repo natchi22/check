@@ -161,6 +161,10 @@ export default {
             })
         },
     },
+    async mounted() {
+        this.handleChangeManager()
+    
+    }
 }
 </script>
 <style scoped>
