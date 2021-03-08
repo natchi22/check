@@ -79,7 +79,8 @@ export default {
     },
     methods: {
         async getUserData() {
-            const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            const infor = await this.$fireStore.collection("Manager")
+            .where("lineId", '==', this.profile.userId).get()
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
                 
@@ -88,9 +89,11 @@ export default {
           
         },
         async getTasksData() {
-            const inforTask = await this.$fireStore.collection("Task").where("freelanceId", '==', this.profile.userId).get()
+            const inforTask = await this.$fireStore.collection("Task")
+            .where("freelanceId", '==', this.profile.userId).get()
             inforTask.forEach((doc)=>{
                 this.inforTask.push(doc.data())
+                console.log(doc.data())
             })
         },
         callback(key) {
