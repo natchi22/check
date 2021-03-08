@@ -123,8 +123,8 @@ export default {
     methods: {
         async handleChangeManager(value) {
             const inforhead = await this.$fireStore.collection("Manager")
-            .where("firstName", '==', this.fName)
-            .where("lastName", '==', this.lName)
+            .where("firstName", '==', this.profile.userId)
+            .where("lastName", '==', this.profile.userId)
             .get()
             inforhead.forEach((doc)=>{
                 this.head = doc.data()
@@ -162,9 +162,9 @@ export default {
         },
     },
     async mounted() {
-        this.handleChangeManager()
-    
+        this.handleChangeManager(value)
     }
+    
 }
 </script>
 <style scoped>
