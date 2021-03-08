@@ -36,7 +36,7 @@
                             :key="task.id"
 
                         >
-                            <h1>{{ inforTask.name }}</h1>
+                            <h1>{{ task.name }}</h1>
                         </div>
                     </nuxt-link>
                 </a-tab-pane>
