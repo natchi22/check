@@ -50,6 +50,11 @@
                             v-for="item in inforFreelance"
                             :key="item.id"
                         >
+                            <img
+                                class="pic size-pic"
+                                :src="profile.pictureUrl"
+                                alt="รูปโปรไฟล์"
+                            >
                             <h1>{{ item.firstName }} {{ item.lastName }}</h1>
                         </div>
                     </nuxt-link>
