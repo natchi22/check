@@ -100,10 +100,10 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
-            head: {
-                firstName: '',
-                lastName:'',
-            },
+            head: [
+                {firstName: '',
+                lastName:''}
+            ],
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
