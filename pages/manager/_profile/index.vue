@@ -71,12 +71,12 @@ export default {
             inforManager: {},
             inforTask: [],
             inforFreelance: [],
-            form: {
-                taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
-                date: null,
-                manager: null,
-                tasks: []
-            },
+            // form: {
+            //     taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
+            //     date: null,
+            //     manager: null,
+            //     tasks: []
+            // },
         }
     },
     methods: {
@@ -92,7 +92,7 @@ export default {
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task")
-            .where("freelanceId", '==', this.profile.userId).get()
+            .get()
             inforTask.forEach((doc)=>{
                 this.inforTask.push(doc.data())
                 console.log(doc.data())
@@ -100,7 +100,7 @@ export default {
         },
         async getFreelanceData() {
             const inforFreelance = await this.$fireStore.collection("Freelance")
-            .where("freelanceId", '==', this.profile.userId).get()
+            .get()
             inforFreelance.forEach((doc)=>{
                 this.inforFreelance.push(doc.data())
                 console.log(doc.data())
