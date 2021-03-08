@@ -44,7 +44,7 @@
                     key="2"
                     tab="รายชื่อ"
                 >
-                    <nuxt-link :to="`/freelance/task/${task.taskId}`">
+                    <nuxt-link to="/head/foremen/checkEmploy">
                         <div
                             class="box"
                             v-for="item in inforFreelance"
@@ -97,7 +97,7 @@ export default {
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task")
-            .get()
+            .where("freelanceId", '==', this.profile.userId).get()
             inforTask.forEach((doc)=>{
                 this.inforTask.push(doc.data())
                 console.log(doc.data())
