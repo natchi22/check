@@ -18,7 +18,7 @@
 
             <h2>หัวหน้างาน</h2>
             <a-select
-                default-value="มานะ พากเพียร"
+                default-value="ชื่อไม่มา!"
                 style="width: 100%"
                 @change="handleChangeManager"
             >
@@ -27,9 +27,9 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for="item in head"
+                    v-for="(item,index) in head"
                     
-                    :key="item"
+                    :key="index"
                 >
                    {{head.firstName}} {{ head.lastName }}
                 </a-select-option>
