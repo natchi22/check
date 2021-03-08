@@ -29,7 +29,7 @@
                 <a-select-option
                     v-for="item in inforhead"
                     
-                    :key="item"
+                    :key="item.id"
                 >
                    <!-- {{head.firstName}} {{ head.lastName }} -->
                     {{item.firstName}} {{item.lastName}}
