@@ -147,7 +147,7 @@ export default {
 }
 .box{
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 24px;
+    padding: 30px 22px;
     margin: 0 10px 20px 10px;
     display: flex;
 }
