@@ -88,9 +88,9 @@ export default {
           
         },
         async getTasksData() {
-            const tasks = await this.$fireStore.collection("Task").where("freelanceId", '==', this.profile.userId).get()
-            tasks.forEach((doc)=>{
-                this.inforTask = doc.data()
+            const inforTask = await this.$fireStore.collection("Task").where("freelanceId", '==', this.profile.userId).get()
+            inforTask.forEach((doc)=>{
+                this.inforTask.push(doc.data())
             })
         },
         callback(key) {
