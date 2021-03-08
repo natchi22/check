@@ -31,7 +31,7 @@
                     
                     :key="item"
                 >
-                    {{ head.lastName }}
+                   {{head.firstName}} {{ head.lastName }}
                 </a-select-option>
             </a-select>
         </div>
@@ -127,10 +127,10 @@ export default {
         async handleChangeManager(value) {
             const inforhead = await this.$fireStore.collection("Manager")
             .where("firstName", '==', this.profile.userId)
-            .where("lastName", '==', this.profile.userId)
+            
             .get()
             inforhead.forEach((doc)=>{
-                this.head = doc.data()
+                this.head.firstName = doc.data()
             })
             this.form.manager = value
         },
