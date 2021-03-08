@@ -47,9 +47,10 @@
                     <nuxt-link to="/head/foremen/checkEmploy">
                         <div
                             class="box"
-                            
+                            v-for="item in inforFreelance"
+                            :key="item.id"
                         >
-                            <h1>{{ fName }} {{ lName }}</h1>
+                            <h1>{{ item.firstName }} {{ item.lastName }}</h1>
                         </div>
                     </nuxt-link>
                 </a-tab-pane>
@@ -69,6 +70,7 @@ export default {
         return {
             inforManager: {},
             inforTask: [],
+            inforFreelance: [],
             form: {
                 taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
                 date: null,
@@ -96,6 +98,14 @@ export default {
                 console.log(doc.data())
             })
         },
+        async getFreelanceData() {
+            const inforFreelance = await this.$fireStore.collection("Freelance")
+            .where("freelanceId", '==', this.profile.userId).get()
+            inforFreelance.forEach((doc)=>{
+                this.inforFreelance.push(doc.data())
+                console.log(doc.data())
+            })
+        },
         callback(key) {
             console.log(key)
         },
@@ -106,6 +116,7 @@ export default {
     async mounted() {
         this.getUserData()
         this.getTasksData()
+        this.getFreelanceData()
     }
 }
 </script>
