@@ -27,9 +27,9 @@
                     type="user"
                 />
                 <a-select-option
-                    v-for=" lastName in head"
+                    v-for="(item,index) in head"
                     
-                    :key="lastName.id"
+                    :key="index"
                 >
                    {{head.firstName}} {{ head.lastName }}
                 </a-select-option>
