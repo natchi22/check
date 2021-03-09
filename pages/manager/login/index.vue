@@ -3,30 +3,30 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-input
             class="input"
-            placeholder="E-mail"
-            v-model="email"
+            placeholder="Username"
+            v-model="username"
         />
         <a-input-password
             class="input"
             placeholder="รหัสผ่าน"
             v-model="password"
         />
-        <nuxt-link :to="`/manager/${profile.userId}`">
+        <!-- <nuxt-link :to="`/manager/${profile.userId}`"> -->
         <button
             class="btn btn-green"
             @click="login"
         >
             เข้าสู่ระบบ
         </button>
-        </nuxt-link>
-        <nuxt-link to="/manager/login/register">
+        <!-- </nuxt-link> -->
+        <!-- <nuxt-link to="/manager/login/register">
             <button
                 class="btn btn-green"
                 @click="register"
             >
                 สมัครสมาชิก
             </button>
-        </nuxt-link>
+        </nuxt-link> -->
     </div>
 </template>
 <script>
@@ -34,7 +34,7 @@ import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้ร�
 export default {
     data() {
         return {
-            email: '',
+            username: '',
             password: ''
         }
     },
@@ -48,19 +48,18 @@ export default {
         //     saveProfile: 'profile/saveProfile'
         // }),
 
-        // async login(e) {
-        //     e.preventDefault()
-        //     if (this.email && this.password) {
-        //         try {
-        //             await this.$fireAuth.signInWithEmailAndPassword(this.user, this.password)
-        //             this.$router.push(`/manager/${this.profile.userId}`)
-        //         }
-        //         catch (e) {
-        //             this.$router.push('/manager')
-        //         }
-        //     }
-
-        // }
+        async login(e) {
+            e.preventDefault()
+            if (this.email && this.password) {
+                try {
+                    await this.$fireAuth.signInWithEmailAndPassword(this.username, this.password)
+                    this.$router.push(`/manager/${this.profile.userId}`)
+                }
+                catch (e) {
+                    this.$router.push('/manager')
+                }
+            }
+        }
     },
     watch: { //เซฟไลน์เข้า DB
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา

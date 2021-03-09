@@ -35,7 +35,7 @@ export default {
                 this.$router.push(`/manager/login`)
             }
             else {
-                this.$router.push(`/manager/login/register`)
+                this.$router.push(`/manager/login`)
             }
 
         }

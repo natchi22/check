@@ -2,7 +2,7 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>{{inforManager.firstName}}  {{inforManager.lastName}}</h2>
+            <h2>{{ inforManager.firstName }}  {{ inforManager.lastName }}</h2>
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -34,7 +34,6 @@
                             class="box"
                             v-for="task in inforTask"
                             :key="task.id"
-
                         >
                             <h1>{{ task.name }}</h1>
                         </div>
@@ -45,18 +44,18 @@
                     tab="รายชื่อ"
                 >
                     <!-- <nuxt-link :to="`/freelance/task/${item.taskId}`"> -->
-                        <div
-                            class="box"
-                            v-for="item in inforFreelance"
-                            :key="item.id"
+                    <div
+                        class="box"
+                        v-for="item in inforFreelance"
+                        :key="item.id"
+                    >
+                        <img
+                            class="pic size-picfreelance"
+                            :src="item.pictureUrl"
+                            alt="รูปโปรไฟล์"
                         >
-                            <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <h1>{{ item.firstName }} {{ item.lastName }}</h1>
-                        </div>
+                        <h1>{{ item.firstName }} {{ item.lastName }}</h1>
+                    </div>
                     <!-- </nuxt-link> -->
                 </a-tab-pane>
             </a-tabs>
@@ -87,17 +86,17 @@ export default {
     methods: {
         async getUserData() {
             const infor = await this.$fireStore.collection("Manager")
-            .where("lineId", '==', this.profile.userId).get()
+                .where("lineId", '==', this.profile.userId).get()
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
-                
+
             })
             console.log(infor)
-          
+
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task")
-            .where("freelanceId", '==', this.profile.userId).get()
+                .where("freelanceId", '==', this.profile.userId).get()
             inforTask.forEach((doc)=>{
                 this.inforTask.push(doc.data())
                 console.log(doc.data())
@@ -105,7 +104,7 @@ export default {
         },
         async getFreelanceData() {
             const inforFreelance = await this.$fireStore.collection("Freelance")
-            .get()
+                .get()
             inforFreelance.forEach((doc)=>{
                 this.inforFreelance.push(doc.data())
                 console.log(doc.data())

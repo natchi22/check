@@ -40,16 +40,16 @@ export default {
     },
     watch: {
         async profile() { //ต่อไฟเบสเข้า คอลเลคชัน freelance ถ้าเจอ lineId = profile.userId(?) เหมือนกัน get ข้อมูลออกมา
-            
+
             const freelance = await this.$fireStore.collection('Freelance')
                 .where('lineId', '==', this.profile.userId).get()
-            if (!freelance.empty) {  //ถ้ามันแม่น get ข้อมูล ไปพาร์ทตัวเอง
+            if (!freelance.empty) { //ถ้ามันแม่น get ข้อมูล ไปพาร์ทตัวเอง
                 this.$router.push(`/freelance/${this.profile.userId}`)
-            } 
+            }
             else {
                 this.$router.push(`/freelance`)
             }
-            
+
         }
     },
     async mounted () {

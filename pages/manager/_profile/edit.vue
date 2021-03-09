@@ -1,63 +1,63 @@
 <template>
-    <div class="body">	
-        <img 
+    <div class="body">
+        <img
             class="pic size-pic"
             :src="profile.pictureUrl"
             alt="รูปโปรไฟล์"
         >
         <h2>ชื่อ</h2>
-        <input 
-            type="text" 
-            placeholder="ชื่อ*" 
+        <input
+            type="text"
+            placeholder="ชื่อ*"
             v-model="fName"
         >
         <h2>นามสกุล</h2>
-        <input 
-            type="text" 
-            placeholder="นามสกุล*" 
+        <input
+            type="text"
+            placeholder="นามสกุล*"
             v-model="lName"
         >
         <h2>เบอร์โทรศัพท์</h2>
-        <input 
-            type="text" 
-            placeholder="เบอร์โทรศัพท์*" 
+        <input
+            type="text"
+            placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
         >
-		<h2>E-mail</h2>
-        <input 
-            type="text" 
-            placeholder="E-mail*" 
+        <h2>E-mail</h2>
+        <input
+            type="text"
+            placeholder="E-mail*"
             v-model="email"
         >
         <h2>Password</h2>
-        <input 
-            type="text" 
-            placeholder="Password*" 
+        <input
+            type="text"
+            placeholder="Password*"
             v-model="password"
         >
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
         <!-- <nuxt-link to="/head/profile/boss"> -->
-            <div class="div-btn">
-                <button 
-                    class="btn btn-green" 
-                    @click="summit"
-                >
-                    บันทึก
-                </button>
-            </div> 
+        <div class="div-btn">
+            <button
+                class="btn btn-green"
+                @click="summit"
+            >
+                บันทึก
+            </button>
+        </div>
         <!-- </nuxt-link> -->
-	</div>
+    </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-	data(){
-        return{
+    data() {
+        return {
             fName: '',
             lName: '',
-			telNumber: '',
-            email:'',
-            password:''
+            telNumber: '',
+            email: '',
+            password: ''
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้

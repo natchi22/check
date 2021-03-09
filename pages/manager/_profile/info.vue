@@ -1,38 +1,40 @@
 <template>
-    <div class="body">	
+    <div class="body">
         <div class="edit">
-            <img 
+            <img
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
             <nuxt-link to="/manager/profile/edit">
-                <button class="btn btn-green btn-size">แก้ไขข้อมูลส่วนตัว</button>
+                <button class="btn btn-green btn-size">
+                    แก้ไขข้อมูลส่วนตัว
+                </button>
             </nuxt-link>
         </div>
-        
+
         <div class="form">
-            <a-icon 
-                type="user" 
+            <a-icon
+                type="user"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{fName}}     {{lName}}</h2>
+            <h2>{{ fName }}  {{ lName }}</h2>
         </div>
         <div class="form">
-            <a-icon 
-                type="phone" 
+            <a-icon
+                type="phone"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{telNumber}}</h2>
+            <h2>{{ telNumber }}</h2>
         </div>
         <div class="form">
-            <a-icon 
-                type="mail" 
+            <a-icon
+                type="mail"
                 :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
             />
-            <h2>{{email}}</h2>
+            <h2>{{ email }}</h2>
         </div>
-	</div>
+    </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
@@ -42,12 +44,12 @@ export default {
             profile: state => state.profile.profileData
         })
     },
-	data(){
-        return{
+    data() {
+        return {
             fName: '',
             lName: '',
-			telNumber: '',
-			email:'',
+            telNumber: '',
+            email: '',
         }
     },
     async mounted () {
