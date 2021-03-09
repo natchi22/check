@@ -28,7 +28,7 @@
                 />
                 <a-select-option
                     v-for="item in inforhead"
-                    
+                    :value="item"
                     :key="item.id"
                 >
                    <!-- {{head.firstName}} {{ head.lastName }} -->
@@ -122,18 +122,18 @@ export default {
         })
     },
     methods: {
-        async handleChangeManager(value) {
-            // const inforhead = await this.$fireStore.collection("Manager")
-            // // .where("lineId", '==', this.profile.userId)
-            // .get()          
-            // inforhead.forEach((doc)=>{
-            //     // this.head.firstName = doc.data().firstName
-            //     // this.head.lastName = doc.data().lastName
-            //     this.inforhead.push(doc.data())
-            //     console.log(doc.data())
-            // })
-            this.form.manager = value 
-        },
+        // async handleChangeManager(value) {
+        //     // const inforhead = await this.$fireStore.collection("Manager")
+        //     // // .where("lineId", '==', this.profile.userId)
+        //     // .get()          
+        //     // inforhead.forEach((doc)=>{
+        //     //     // this.head.firstName = doc.data().firstName
+        //     //     // this.head.lastName = doc.data().lastName
+        //     //     this.inforhead.push(doc.data())
+        //     //     console.log(doc.data())
+        //     // })
+        //     this.form.manager = value 
+        // },
         async getManagerData() {
             const inforhead = await this.$fireStore.collection("Manager")
             .get()
