@@ -140,9 +140,11 @@ export default {
             inforhead.forEach((doc)=>{
                 this.inforhead.push(doc.data())
                 // console.log(doc.data())
-                console.log(inforhead)
+                // console.log(inforhead)
             })
+            console.log(inforhead)
         },
+        
         addList() {
             this.form.taskList.push({
                 name: this.subTaskFocus,
