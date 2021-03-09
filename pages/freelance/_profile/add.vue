@@ -139,7 +139,8 @@ export default {
             .get()
             inforhead.forEach((doc)=>{
                 this.inforhead.push(doc.data())
-                console.log(doc.data())
+                // console.log(doc.data())
+                console.log(inforhead)
             })
         },
         addList() {
