@@ -3,8 +3,8 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-input
             class="input"
-            placeholder="Username"
-            v-model="username"
+            placeholder="Email"
+            v-model="email"
         />
         <a-input-password
             class="input"
@@ -34,7 +34,7 @@ import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้ร�
 export default {
     data() {
         return {
-            username: '',
+            email: '',
             password: ''
         }
     },
@@ -52,7 +52,7 @@ export default {
             e.preventDefault()
             if (this.email && this.password) {
                 try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.username, this.password)
+                    await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
                     this.$router.push(`/manager/${this.profile.userId}`)
                 }
                 catch (e) {
