@@ -78,9 +78,9 @@ export default {
                 })
             const user = await this.$fireStore.collection("Manager").doc(this.uid)
             await user.set({
-                firstName: this.fName,
-                lastName: this.lName,
-                phoneNumber: this.telNumber,
+                fName: this.fName,
+                lName: this.lName,
+                telNumber: this.telNumber,
                 email: this.email,
             }).then(()=>{
                 this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')

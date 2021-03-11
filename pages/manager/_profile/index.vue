@@ -70,7 +70,7 @@
                         v-for="item in inforManagers"
                         :key="item.id"
                     >
-                        <h3>{{ item.firstName }} {{ item.lastName }}</h3>
+                        <h3>{{ item.fName }} {{ item.lName }}</h3>
                     </div>
                 </a-tab-pane>
             </a-tabs>
@@ -110,6 +110,7 @@ export default {
         async getManagersData() {
             const inforManagers = await this.$fireStore.collection("Manager").get()
             inforManagers.forEach((doc)=>{
+                console.log(doc.data())
                 this.inforManagers.push(doc.data())
             })
         },
@@ -126,7 +127,7 @@ export default {
             console.log(e, 'I was closed.')
         },
         countTask(id) {
-            return this.inforTask.filter(item => item.freelanceId === id).length
+            return this.inforTask.filter(item => item.lineId === id).length
         }
     },
     async mounted() {
