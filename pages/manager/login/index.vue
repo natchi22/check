@@ -52,11 +52,13 @@ export default {
             e.preventDefault()
             if (this.email && this.password) {
                 try {
-                    await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
-                    this.$router.push(`/manager/${this.profile.userId}`)
+                    await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password).then((response)=>{
+                        console.log(response)
+                        this.$router.push(`/manager/${this.profile.userId}`)
+                    })
                 }
                 catch (e) {
-                    this.$router.push('/manager')
+                    toastr.error('Email หรือ Password ไม่ถูกต้อง')
                 }
             }
         }

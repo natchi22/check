@@ -31,8 +31,8 @@
                     :value="item"
                     :key="item.id"
                 >
-                   <!-- {{head.firstName}} {{ head.lastName }} -->
-                    {{item.firstName}} {{item.lastName}}
+                    <!-- {{head.firstName}} {{ head.lastName }} -->
+                    {{ item.firstName }} {{ item.lastName }}
                 </a-select-option>
             </a-select>
         </div>
@@ -125,18 +125,18 @@ export default {
         // async handleChangeManager(value) {
         //     // const inforhead = await this.$fireStore.collection("Manager")
         //     // // .where("lineId", '==', this.profile.userId)
-        //     // .get()          
+        //     // .get()
         //     // inforhead.forEach((doc)=>{
         //     //     // this.head.firstName = doc.data().firstName
         //     //     // this.head.lastName = doc.data().lastName
         //     //     this.inforhead.push(doc.data())
         //     //     console.log(doc.data())
         //     // })
-        //     this.form.manager = value 
+        //     this.form.manager = value
         // },
         async getManagerData() {
             const inforhead = await this.$fireStore.collection("Manager")
-            .get()
+                .get()
             inforhead.forEach((doc)=>{
                 this.inforhead.push(doc.data())
                 // console.log(doc.data())
@@ -144,7 +144,7 @@ export default {
             })
             console.log(inforhead)
         },
-        
+
         addList() {
             this.form.taskList.push({
                 name: this.subTaskFocus,
@@ -171,7 +171,7 @@ export default {
                 toastr.success('เพิ่มงานสำเร็จ')
                 this.$router.go(-1)
             }).catch(()=>{
-                toastr.error('ส่งคำขอเปลี่ยนรหัสผ่านไปที่อีเมล สำเร็จ')
+                toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
             })
         },
     },
@@ -181,7 +181,7 @@ export default {
     async mounted() {
         this.getManagerData(value)
     }
-    
+
 }
 </script>
 <style scoped>
