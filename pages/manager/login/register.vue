@@ -85,6 +85,9 @@ export default {
                 email: this.email,
             }).then(()=>{
                 this.$route.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
+            }).catch((error) => {
+                var errorMessage = error.message
+                toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
             })
         }
 
