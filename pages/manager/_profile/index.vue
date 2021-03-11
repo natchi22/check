@@ -44,7 +44,7 @@
                                 <h3>
                                     {{ item.firstName }} {{ item.lastName }}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
+                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
                             </div>
                         </div>
                     </div>
@@ -103,13 +103,13 @@ export default {
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task").get()
             inforTask.forEach((doc)=>{
+                console.log(doc.data())
                 this.inforTask.push(doc.data())
             })
         },
         async getManagersData() {
             const inforManagers = await this.$fireStore.collection("Manager").get()
             inforManagers.forEach((doc)=>{
-                console.log(doc.data())
                 this.inforManagers.push(doc.data())
             })
         },
@@ -126,7 +126,7 @@ export default {
             console.log(e, 'I was closed.')
         },
         countTask(id) {
-            return this.inforTask.filter(item => item.lineId === id).length
+            return this.inforTask.filter(item => item.freelanceId === id).length
         }
     },
     async mounted() {
@@ -164,7 +164,7 @@ export default {
     display: flex;
 }
 .box-manager{
-    max-height: 400px;
+    max-height: 440px;
     overflow-y: scroll;
     padding: 7px;
 }
