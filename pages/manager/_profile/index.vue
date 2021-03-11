@@ -43,7 +43,13 @@
                     key="2"
                     tab="รายชื่อ"
                 >
-                    <!-- <nuxt-link :to="`/freelance/task/${item.taskId}`"> -->
+                    <button
+                        style="margin-top: 8px"
+                        class="btn btn-green"
+                        @click="$router.push('/manager/login/register')"
+                    >
+                        เพิ่มหัวหน้างาน
+                    </button>
                     <div
                         class="box"
                         v-for="item in inforFreelance"
