@@ -62,7 +62,18 @@
                     >
                         เพิ่มหัวหน้างาน
                     </button>
-                    <!-- </nuxt-link> -->
+                    <div
+                        class="box"
+                        v-for="item in inforManagers"
+                        :key="item.id"
+                    >
+                        <img
+                            class="pic size-picfreelance"
+                            :src="item.pictureUrl"
+                            alt="รูปโปรไฟล์"
+                        >
+                        <h1>{{ item.firstName }} {{ item.lastName }}</h1>
+                    </div>
                 </a-tab-pane>
             </a-tabs>
         </div>
@@ -81,12 +92,7 @@ export default {
             inforManager: {},
             inforTask: [],
             inforFreelance: [],
-            // form: {
-            //     taskName: 'งานขึ้นบ้านใหม่', //ชื่องานที่หัวหน้าคนนี้งานดูแลทั้งหมด
-            //     date: null,
-            //     manager: null,
-            //     tasks: []
-            // },
+            inforManagers: []
         }
     },
     methods: {
@@ -95,14 +101,12 @@ export default {
                 .where("lineId", '==', this.profile.userId).get()
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
-
             })
         },
-        async getTasksData() {
-            const inforTask = await this.$fireStore.collection("Task")
-                .where("freelanceId", '==', this.profile.userId).get()
-            inforTask.forEach((doc)=>{
-                this.inforTask.push(doc.data())
+        async getManagersData() {
+            const inforManagers = await this.$fireStore.collection("Manager")
+            inforManagers.forEach((doc)=>{
+                this.inforManagers.push(doc.data())
             })
         },
         async getFreelanceData() {
@@ -123,6 +127,7 @@ export default {
         this.getUserData()
         this.getTasksData()
         this.getFreelanceData()
+        this.getManagersData()
     }
 }
 </script>
