@@ -29,28 +29,23 @@
                     key="1"
                     tab="ตรวจงาน"
                 >
-                    <!-- <nuxt-link to="/head/foremen/checkProject">
+                    <div class="box-manager">
                         <div
                             class="box"
-                            v-for="task in inforTask"
-                            :key="task.id"
+                            v-for="item in inforFreelance"
+                            :key="item.id"
                         >
-                            <h1>{{ task.name }}</h1>
-                        </div>
-                    </nuxt-link> -->
-                    <div
-                        class="box"
-                        v-for="item in inforFreelance"
-                        :key="item.id"
-                    >
-                        <img
-                            class="pic size-picfreelance"
-                            :src="item.pictureUrl"
-                            alt="รูปโปรไฟล์"
-                        >
-                        <div>
-                            <h3>{{ item.firstName }} {{ item.lastName }}</h3>
-                            <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
+                            <img
+                                class="pic size-picfreelance"
+                                :src="item.pictureUrl"
+                                alt="รูปโปรไฟล์"
+                            >
+                            <div>
+                                <h3>
+                                    {{ item.firstName }} {{ item.lastName }}
+                                </h3>
+                                <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
@@ -65,12 +60,16 @@
                     >
                         เพิ่มหัวหน้างาน
                     </button>
-                    <div
-                        class="box"
-                        v-for="item in inforManagers"
-                        :key="item.id"
-                    >
-                        <h3>{{ item.fName }} {{ item.lName }}</h3>
+                    <div class="box-manager">
+                        <div
+                            class="box"
+                            v-for="item in inforManagers"
+                            :key="item.id"
+                        >
+                            <h3 style="margin-bottom: 0px !important;">
+                                {{ item.fName }} {{ item.lName }}
+                            </h3>
+                        </div>
                     </div>
                 </a-tab-pane>
             </a-tabs>
@@ -163,6 +162,11 @@ export default {
     padding: 17px 30px;
     margin: 0 10px 20px 10px;
     display: flex;
+}
+.box-manager{
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 7px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 /* .tabs{
