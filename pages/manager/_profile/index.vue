@@ -125,7 +125,6 @@ export default {
     },
     async mounted() {
         this.getUserData()
-        this.getTasksData()
         this.getFreelanceData()
         this.getManagersData()
     }
