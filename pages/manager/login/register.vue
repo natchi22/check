@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         async register() {
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            this.$fire.auth.createUserWithEmailAndPassword(this.email, this.password)
                 .then((userCredential) => {
                     var user = userCredential.user
                     console.log(user)
