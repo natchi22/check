@@ -3,11 +3,13 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-input
             class="input"
+            name="email"
             placeholder="Email"
             v-model="email"
         />
         <a-input-password
             class="input"
+            name="password"
             placeholder="รหัสผ่าน"
             v-model="password"
         />

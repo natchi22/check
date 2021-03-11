@@ -11,10 +11,9 @@
                 >
             </nuxt-link>
         </div>
-        {{ inforManager }}
+        {{ $fireAuth }}
         <div
             class="tabs"
-            v-if="inforManager"
         >
             <a-alert
                 message="งานขึ้นบ้านใหม่"
