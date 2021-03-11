@@ -1,13 +1,6 @@
 <template>
     <div class="login">
-        <h1>สมัครสมาชิก</h1>
-        <div class="div-pic">
-            <img
-                class="pic size-pic"
-                :src="profile.pictureUrl"
-                alt="รูปโปรไฟล์"
-            >
-        </div>
+        <h1>เพิ่มหัวหน้างาน</h1>
         <h2>E-mail</h2>
         <input
             type="text"
@@ -38,18 +31,17 @@
             placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
-        <nuxt-link to="/manager/login">
-            <button
-                class="btn btn-green"
-                @click="register"
-            >
-                สมัครสมาชิก
-            </button>
-        </nuxt-link>
+        <button
+            class="btn btn-green"
+            @click="register"
+        >
+            เพิ่มหัวหน้างาน
+        </button>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+import toastr from 'toastr'
+
 export default {
     data() {
         return {
@@ -57,52 +49,32 @@ export default {
             fName: '',
             lName: '',
             email: '',
-            lineId: '',
             telNumber: '',
             rank: 'หัวหน้างาน',
         }
-    },
-    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
     },
     async mounted() {
 
     },
     methods: {
         async register() {
-            // const email = document.getElementById('email').value;
-            // const password = document.getElementById('password').value;
-            // if(password.length<8){
-            //     alert("ตั้งรหัสผ่านใหม่")
-            // } //เงื่อนไขตั้งรหัสผ่าน
-            const user = this.$fireStore.collection("Manager").doc()
-            await user.set({
-                managerId: user.id,
-                firstName: this.fName,
-                lastName: this.lName,
-                phone: this.telNumber,
-                email: this.email,
-                lineId: this.profile.userId,
-                pictureUrl: this.profile.pictureUrl,
-                rank: this.rank,
-                password: this.password,
-            })
-            console.log(user)
-
-            // firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-            //     .then((userCredential) => {
-            //     // Signed in
-            //     var user = userCredential.user;
-            //     // ...
-            //     })
-            //     .catch((error) => {
-            //     var errorCode = error.code;
-            //     var errorMessage = error.message;
-            //     // ..
-            //     });
-
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then((userCredential) => {
+                    var user = userCredential.user
+                    console.log(user)
+                })
+                .catch((error) => {
+                    var errorMessage = error.message
+                    toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
+                })
+            // const user = this.$fireStore.collection("Manager").doc()
+            // await user.set({
+            //     managerId: user.id,
+            //     firstName: this.fName,
+            //     lastName: this.lName,
+            //     phone: this.telNumber,
+            //     email: this.email,
+            // })
         }
 
     }

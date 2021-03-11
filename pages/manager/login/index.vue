@@ -68,7 +68,6 @@ export default {
             if (!manager.empty) {
                 this.$router.push(`/manager`)
             }
-
         }
     },
     async mounted () {
