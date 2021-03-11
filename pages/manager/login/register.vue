@@ -70,8 +70,8 @@ export default {
                 .then((userCredential) => {
                     var user = userCredential.user
                     this.uid = user.uid
-                    this.$fireAuth.signOut()
-                    this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
+                    //this.$fireAuth.signOut()
+                    //this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
                 })
                 .catch((error) => {
                     var errorMessage = error.message
