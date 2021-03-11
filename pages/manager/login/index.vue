@@ -42,9 +42,9 @@ export default {
         })
     },
     methods: { //ปิดloginไว้ก่อน ทำสมัครสมาชิกไม่ได้
-        // ...mapMutations({
-        //     saveProfile: 'profile/saveProfile'
-        // }),
+        ...mapMutations({
+            saveProfile: 'profile/saveProfile'
+        }),
 
         async login(e) {
             e.preventDefault()
