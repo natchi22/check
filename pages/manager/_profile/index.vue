@@ -104,14 +104,13 @@ export default {
             })
         },
         async getManagersData() {
-            const inforManagers = await this.$fireStore.collection("Manager")
+            const inforManagers = await this.$fireStore.collection("Manager").get()
             inforManagers.forEach((doc)=>{
                 this.inforManagers.push(doc.data())
             })
         },
         async getFreelanceData() {
-            const inforFreelance = await this.$fireStore.collection("Freelance")
-                .get()
+            const inforFreelance = await this.$fireStore.collection("Freelance").get()
             inforFreelance.forEach((doc)=>{
                 this.inforFreelance.push(doc.data())
             })
