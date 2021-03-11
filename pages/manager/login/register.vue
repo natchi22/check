@@ -9,7 +9,7 @@
         >
         <h2>Password</h2>
         <input
-            type="text"
+            type="password"
             placeholder="รหัสผ่าน"
             v-model="password"
         >
@@ -37,6 +37,12 @@
         >
             เพิ่มหัวหน้างาน
         </button>
+        <button
+            class="btn btn-wait"
+            @click="$router.go(-1)"
+        >
+            ย้อนกลับ
+        </button>
     </div>
 </template>
 <script>
@@ -58,7 +64,7 @@ export default {
     },
     methods: {
         async register() {
-            this.$fire.auth.createUserWithEmailAndPassword(this.email, this.password)
+            this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
                 .then((userCredential) => {
                     var user = userCredential.user
                     console.log(user)

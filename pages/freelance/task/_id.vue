@@ -40,7 +40,7 @@
         />
         <div class="div-submit">
             <button
-                class="btn btn-green"
+                class="btn btn-wait"
                 @click="$router.go(-1)"
             >
                 ย้อนกลับ
