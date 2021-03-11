@@ -48,8 +48,10 @@
                             :src="item.pictureUrl"
                             alt="รูปโปรไฟล์"
                         >
-                        <h3>{{ item.firstName }} {{ item.lastName }}</h3>
-                        <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
+                        <div>
+                            <h3>{{ item.firstName }} {{ item.lastName }}</h3>
+                            <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
+                        </div>
                     </div>
                 </a-tab-pane>
                 <a-tab-pane
@@ -151,13 +153,13 @@ export default {
 	margin: 0 0 0 15px;
 }
 .size-picfreelance{
-    width: 40px;
-	height: 40px;
+    width: 60px;
+	height: 60px;
 	margin: 0 24px 0 0;
 }
 .box{
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 22px 30px;
+    padding: 17px 30px;
     margin: 0 10px 20px 10px;
     display: flex;
 }
