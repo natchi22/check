@@ -11,8 +11,8 @@
                 >
             </nuxt-link>
         </div>
-        {{ $fireAuth }}
         <div
+            v-if="$fireAuth.email === `superAdmin@gmail.com`"
             class="tabs"
         >
             <a-alert
@@ -76,6 +76,17 @@
                     </div>
                 </a-tab-pane>
             </a-tabs>
+        </div>
+        <div v-else>
+            <a-alert
+                message="งานขึ้นบ้านใหม่"
+                description="ช้ากว่ากำหนดแล้ว"
+                type="warning"
+                show-icon
+                closable
+                @close="onClose"
+                class="alert"
+            />
         </div>
     </div>
 </template>
