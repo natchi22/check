@@ -71,7 +71,6 @@ export default {
                     var user = userCredential.user
                     this.uid = user.uid
                     //this.$fireAuth.signOut()
-                    //this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
                 })
                 .catch((error) => {
                     var errorMessage = error.message
@@ -84,7 +83,8 @@ export default {
                 phoneNumber: this.telNumber,
                 email: this.email,
             }).then(()=>{
-                this.$route.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
+                this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
+                this.$router.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
             }).catch((error) => {
                 var errorMessage = error.message
                 toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
