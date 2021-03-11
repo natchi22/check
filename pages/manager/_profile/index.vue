@@ -91,15 +91,12 @@ export default {
                 this.inforManager = doc.data()
 
             })
-            console.log(infor)
-
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task")
                 .where("freelanceId", '==', this.profile.userId).get()
             inforTask.forEach((doc)=>{
                 this.inforTask.push(doc.data())
-                console.log(doc.data())
             })
         },
         async getFreelanceData() {
@@ -107,7 +104,6 @@ export default {
                 .get()
             inforFreelance.forEach((doc)=>{
                 this.inforFreelance.push(doc.data())
-                console.log(doc.data())
             })
         },
         callback(key) {
@@ -129,7 +125,7 @@ export default {
 	padding: 16px;
 }
 .tabs{
-	padding: 0 32px;
+	/* padding: 0 32px; */
 }
 .alert{
     margin: 0 0 20px 0;

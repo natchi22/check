@@ -117,7 +117,7 @@ export default {
     font-size: 36px;
     font-weight: bold;
     color: #3ABCA7;
-    margin: 100px 0 26px 0;
+    margin: 30px 0 26px 0;
     text-align: center;
 }
 .input{
