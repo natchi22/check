@@ -38,6 +38,7 @@
             เพิ่มหัวหน้างาน
         </button>
         <button
+            style="margin-top: 8px"
             class="btn btn-wait"
             @click="$router.go(-1)"
         >
@@ -51,6 +52,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
+            uid: '',
             password: '',
             fName: '',
             lName: '',
@@ -64,23 +66,26 @@ export default {
     },
     methods: {
         async register() {
-            this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
+            await this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
                 .then((userCredential) => {
                     var user = userCredential.user
-                    console.log(user)
+                    this.uid = user.uid
+                    this.$fireAuth.signOut()
+                    this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
                 })
                 .catch((error) => {
                     var errorMessage = error.message
                     toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
                 })
-            // const user = this.$fireStore.collection("Manager").doc()
-            // await user.set({
-            //     managerId: user.id,
-            //     firstName: this.fName,
-            //     lastName: this.lName,
-            //     phone: this.telNumber,
-            //     email: this.email,
-            // })
+            const user = await this.$fireStore.collection("Manager").doc(this.uid)
+            await user.set({
+                firstName: this.fName,
+                lastName: this.lName,
+                phoneNumber: this.telNumber,
+                email: this.email,
+            }).then(()=>{
+                this.$route.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
+            })
         }
 
     }

@@ -52,7 +52,7 @@ export default {
                 try {
                     await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password).then((response)=>{
                         console.log(response)
-                        this.$router.push(`/manager/${this.profile.userId}`)
+                        this.$router.push(`/manager/${response.uid}`)
                     })
                 }
                 catch (e) {
