@@ -81,6 +81,7 @@ export default {
                 fName: this.fName,
                 lName: this.lName,
                 telNumber: this.telNumber,
+                managerId: this.uid,
                 email: this.email,
             }).then(()=>{
                 this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')

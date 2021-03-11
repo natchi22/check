@@ -1,14 +1,19 @@
 <template>
-  <nuxt-link :to="'/admin/history/'+freelanceData.freelanceId" class="card">
-
-      <img class="pic" :src="profile.pictureUrl" alt="รูปโปรไฟล์">
-      <h1>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h1>
-
-  </nuxt-link>
+    <nuxt-link
+        :to="'/admin/history/'+freelanceData.freelanceId"
+        class="card"
+    >
+        <img
+            class="pic"
+            :src="profile.pictureUrl"
+            alt="รูปโปรไฟล์"
+        >
+        <h1>{{ freelanceData.firstName }} {{ freelanceData.lastName }}</h1>
+    </nuxt-link>
 </template>
 <script>
 export default {
-  props: ['profile', 'freelanceData'],
+    props: [ 'profile', 'freelanceData' ],
 }
 </script>
 <style scoped>

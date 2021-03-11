@@ -64,7 +64,7 @@
                         <div
                             class="box"
                             v-for="item in inforManagers"
-                            :key="item.id"
+                            :key="item.managerId"
                         >
                             <h3 style="margin-bottom: 0px !important;">
                                 {{ item.fName }} {{ item.lName }}

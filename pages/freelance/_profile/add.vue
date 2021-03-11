@@ -18,9 +18,9 @@
 
             <h2>หัวหน้างาน</h2>
             <a-select
-                default-value="ชื่อไม่มา!"
                 style="width: 100%"
                 @change="handleChangeManager"
+                placeholder="หัวหน้างาน*"
             >
                 <a-icon
                     slot="suffixIcon"
@@ -28,11 +28,10 @@
                 />
                 <a-select-option
                     v-for="item in inforhead"
-                    :value="item"
-                    :key="item.id"
+                    :value="item.managerId"
+                    :key="item.managerId"
                 >
-                    <!-- {{head.firstName}} {{ head.lastName }} -->
-                    {{ item.firstName }} {{ item.lastName }}
+                    {{ item.fName }} {{ item.lName }}
                 </a-select-option>
             </a-select>
         </div>
@@ -49,7 +48,6 @@
             <a-date-picker
                 class="boxDate"
                 :format="dateFormatList"
-                :disabled-date="disabledDate"
                 placeholder="นัดตรวจ*"
                 v-model="dateFocus"
             />
@@ -62,7 +60,6 @@
                 เพิ่มลิส
             </button>
         </div>
-
         <div
             class="box-list"
             v-for="(item,index) in form.taskList"
@@ -84,6 +81,7 @@
         <br>
         <div class="div-add">
             <button
+                style="margin-bottom: 24px;"
                 class="btn btn-green btn-size-add"
                 @click="addWork()"
             >
@@ -108,7 +106,7 @@ export default {
                 name: '',
                 startDate: moment().format('DD/MM/YYYY'),
                 endDate: '',
-                manager: 'คือไร',
+                manager: '',
                 taskList: []
             },
             subTaskFocus: '',
@@ -122,29 +120,17 @@ export default {
         })
     },
     methods: {
-        // async handleChangeManager(value) {
-        //     // const inforhead = await this.$fireStore.collection("Manager")
-        //     // // .where("lineId", '==', this.profile.userId)
-        //     // .get()
-        //     // inforhead.forEach((doc)=>{
-        //     //     // this.head.firstName = doc.data().firstName
-        //     //     // this.head.lastName = doc.data().lastName
-        //     //     this.inforhead.push(doc.data())
-        //     //     console.log(doc.data())
-        //     // })
-        //     this.form.manager = value
-        // },
         async getManagerData() {
             const inforhead = await this.$fireStore.collection("Manager")
                 .get()
             inforhead.forEach((doc)=>{
+                console.log(doc.data())
                 this.inforhead.push(doc.data())
                 // console.log(doc.data())
                 // console.log(inforhead)
             })
-            console.log(inforhead)
-        },
 
+        },
         addList() {
             this.form.taskList.push({
                 name: this.subTaskFocus,
@@ -174,16 +160,16 @@ export default {
                 toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
             })
         },
+        handleChangeManager(value) {
+            this.form.manager = value
+        }
     },
-    // async mounted() {
-    //     this.handleChangeManager(value)
-    // }
     async mounted() {
-        this.getManagerData(value)
+        this.getManagerData()
     }
-
 }
 </script>
+
 <style scoped>
 .div-top{
 	width: 100%;
