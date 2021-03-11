@@ -48,7 +48,8 @@
                             :src="item.pictureUrl"
                             alt="รูปโปรไฟล์"
                         >
-                        <h1>{{ item.firstName }} {{ item.lastName }}</h1>
+                        <h3>{{ item.firstName }} {{ item.lastName }}</h3>
+                        <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
                     </div>
                 </a-tab-pane>
                 <a-tab-pane
@@ -67,13 +68,7 @@
                         v-for="item in inforManagers"
                         :key="item.id"
                     >
-                        <img
-                            class="pic size-picfreelance"
-                            :src="item.pictureUrl"
-                            alt="รูปโปรไฟล์"
-                        >
                         <h3>{{ item.firstName }} {{ item.lastName }}</h3>
-                        <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
                     </div>
                 </a-tab-pane>
             </a-tabs>
@@ -129,7 +124,7 @@ export default {
             console.log(e, 'I was closed.')
         },
         countTask(id) {
-            return storage.filter(item => item.freelanceId === id).length
+            return this.inforTask.filter(item => item.freelanceId === id).length
         }
     },
     async mounted() {
