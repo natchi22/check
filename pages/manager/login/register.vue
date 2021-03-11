@@ -98,7 +98,7 @@ export default {
 .login{
     display: flex;
     flex-direction: column;
-    width: 245px;
+    width: 85%;
     margin: 0 auto;
     text-align: center;
     color: #000000;
