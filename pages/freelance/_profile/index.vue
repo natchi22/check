@@ -31,6 +31,7 @@
             <div class="div-submit">
                 <nuxt-link :to="`/freelance/${inforFrelance.lineId}/add`">
                     <button
+                        style="margin-bottom: 24px;"
                         class="btn btn-green"
                     >
                         เพิ่มงาน

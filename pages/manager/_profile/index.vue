@@ -11,7 +11,11 @@
                 >
             </nuxt-link>
         </div>
-        <div class="tabs">
+        {{ inforManager }}
+        <div
+            class="tabs"
+            v-if="inforManager"
+        >
             <a-alert
                 message="งานขึ้นบ้านใหม่"
                 description="ช้ากว่ากำหนดแล้ว"
@@ -164,7 +168,7 @@ export default {
     display: flex;
 }
 .box-manager{
-    max-height: 440px;
+    max-height: 500px;
     overflow-y: scroll;
     padding: 7px;
 }

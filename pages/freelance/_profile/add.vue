@@ -81,7 +81,6 @@
         <br>
         <div class="div-add">
             <button
-                style="margin-bottom: 24px;"
                 class="btn btn-green btn-size-add"
                 @click="addWork()"
             >
