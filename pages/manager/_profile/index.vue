@@ -72,7 +72,8 @@
                             :src="item.pictureUrl"
                             alt="รูปโปรไฟล์"
                         >
-                        <h1>{{ item.firstName }} {{ item.lastName }}</h1>
+                        <h3>{{ item.firstName }} {{ item.lastName }}</h3>
+                        <p>จำนวนงาน: {{ countTask(item.freelanceId) }}</p>
                     </div>
                 </a-tab-pane>
             </a-tabs>
@@ -103,6 +104,12 @@ export default {
                 this.inforManager = doc.data()
             })
         },
+        async getTasksData() {
+            const inforTask = await this.$fireStore.collection("Task").get()
+            inforTask.forEach((doc)=>{
+                this.inforTask.push(doc.data())
+            })
+        },
         async getManagersData() {
             const inforManagers = await this.$fireStore.collection("Manager").get()
             inforManagers.forEach((doc)=>{
@@ -121,9 +128,13 @@ export default {
         onClose(e) {
             console.log(e, 'I was closed.')
         },
+        countTask(id) {
+            return storage.filter(item => item.freelanceId === id).length
+        }
     },
     async mounted() {
         this.getUserData()
+        this.getTasksData()
         this.getFreelanceData()
         this.getManagersData()
     }
