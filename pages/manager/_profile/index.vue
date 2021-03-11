@@ -29,7 +29,7 @@
                     key="1"
                     tab="ตรวจงาน"
                 >
-                    <nuxt-link to="/head/foremen/checkProject">
+                    <!-- <nuxt-link to="/head/foremen/checkProject">
                         <div
                             class="box"
                             v-for="task in inforTask"
@@ -37,19 +37,7 @@
                         >
                             <h1>{{ task.name }}</h1>
                         </div>
-                    </nuxt-link>
-                </a-tab-pane>
-                <a-tab-pane
-                    key="2"
-                    tab="รายชื่อ"
-                >
-                    <button
-                        style="margin-top: 8px"
-                        class="btn btn-green"
-                        @click="$router.push('/manager/login/register')"
-                    >
-                        เพิ่มหัวหน้างาน
-                    </button>
+                    </nuxt-link> -->
                     <div
                         class="box"
                         v-for="item in inforFreelance"
@@ -62,6 +50,18 @@
                         >
                         <h1>{{ item.firstName }} {{ item.lastName }}</h1>
                     </div>
+                </a-tab-pane>
+                <a-tab-pane
+                    key="2"
+                    tab="รายชื่อ"
+                >
+                    <button
+                        style="margin-top: 8px; margin-bottom: 8px"
+                        class="btn btn-green"
+                        @click="$router.push('/manager/login/register')"
+                    >
+                        เพิ่มหัวหน้างาน
+                    </button>
                     <!-- </nuxt-link> -->
                 </a-tab-pane>
             </a-tabs>
