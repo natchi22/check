@@ -11,8 +11,9 @@
                 >
             </nuxt-link>
         </div>
+        {{ $fireAuth.currentUser.email }}
         <div
-            v-if="$fireAuth.email === `superAdmin@gmail.com`"
+            v-if="$fireAuth.currentUser.email === `superAdmin@gmail.com`"
             class="tabs"
         >
             <a-alert

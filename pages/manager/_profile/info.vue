@@ -6,7 +6,10 @@
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
-            <nuxt-link to="/manager/profile/edit">
+            <nuxt-link
+                :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
+                v-if="$fireAuth.currentUser.email !== `superAdmin@gmail.com`"
+            >
                 <button class="btn btn-green btn-size">
                     แก้ไขข้อมูลส่วนตัว
                 </button>
@@ -37,29 +40,25 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+// import { mapState, mapMutations } from 'vuex'
 export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
+        // ...mapState({
+        //     profile: state => state.profile.profileData
+        // })
     },
     data() {
         return {
-            fName: '',
-            lName: '',
-            telNumber: '',
-            email: '',
         }
     },
     async mounted () {
-        const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
-        infor.forEach((doc)=>{
-            this.fName = doc.data().firstName
-            this.lName = doc.data().lastName
-            this.telNumber = doc.data().phone
-            this.email = doc.data().email
-        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        // const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+        // infor.forEach((doc)=>{
+        //     this.fName = doc.data().firstName
+        //     this.lName = doc.data().lastName
+        //     this.telNumber = doc.data().phone
+        //     this.email = doc.data().email
+        // }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     }
 }
 </script>
@@ -68,8 +67,9 @@ export default {
     width: 80px;
     height: 80px;
 }
-.body img{
+.body img, .body a{
     margin: 0 0 10px 0;
+    margin: 10px auto;
 }
 .edit{
     display: flex;
