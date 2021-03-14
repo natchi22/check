@@ -4,8 +4,11 @@
             <div class="box">
                 <h2>{{ task.name }}</h2>
                 <div>
-                    <a-icon type="phone" />
-                    <h3>{{manager}}</h3>
+                    <a-icon 
+                        type="phone" 
+                        :style="{ color: '#555555' }"
+                    />
+                    <h3>ติดต่อหัวหน้า : {{manager}}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
