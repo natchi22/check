@@ -20,11 +20,11 @@
             </div>
             <!-- เพิ่มติดิต่อหัวหน้า -->
             <div class="div-contact-mn">
-                <a-icon 
-                    type="phone" 
+                <a-icon
+                    type="phone"
                     :style="{ color: '#3ABCA7',fontSize: '20px' }"
                 />
-                <h3>ติดต่อหัวหน้า : {{manager}}</h3>
+                <h3>ติดต่อหัวหน้า : {{ manager }}</h3>
             </div>
         </div>
         <div class="div-contact-mn">
@@ -37,13 +37,11 @@
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
-            status="active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
             :percent="task.taskList ? calReal(task.taskList) : 0"
-            status="active"
             class="progress"
         />
         <CellStepProject
@@ -80,7 +78,7 @@ export default {
     },
     data() {
         return {
-            manager:'ชื่อหัวหน้า กดไอคอนไปหน้า ข้อมูลหัวหน้า',
+            manager: 'ชื่อหัวหน้า กดไอคอนไปหน้า ข้อมูลหัวหน้า',
             taskId: this.$route.params.id,
             task: {},
             form: {
