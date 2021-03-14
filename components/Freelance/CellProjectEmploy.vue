@@ -2,32 +2,35 @@
     <div class="body">
         <nuxt-link :to="`/freelance/task/${task.taskId}`">
             <div class="box">
-                <h2>{{ task.name }}</h2>
-                <!-- สถานะงานใหญ่ -->
-                <div
-                    
-                    class="btn-status btn-succeed"
-                >
-                    <h3>
-                        ช้ากว่่ากำหนด
-                    </h3>
+                <div class="div-nameproject">
+                    <h2>{{ task.name }}</h2>
+                    <!-- สถานะงานใหญ่ -->
+                    <div
+                        
+                        class="btn-status btn-succeed"
+                    >
+                        <h3>
+                            ช้ากว่่ากำหนด
+                        </h3>
+                    </div>
+                    <!-- <div
+                        v-if="task.status === `PENDING`"
+                        class="btn-status btn-wait"
+                    >
+                        <h3>
+                            ตามแผนการ
+                        </h3>
+                    </div>
+                    <div
+                        v-if="task.status === `IN_PROCESS`"
+                        class="btn-status btn-process"
+                    >
+                        <h3>
+                            งานสำเร็จ
+                        </h3>
+                    </div> -->
                 </div>
-                <!-- <div
-                    v-if="task.status === `PENDING`"
-                    class="btn-status btn-wait"
-                >
-                    <h3>
-                        ตามแผนการ
-                    </h3>
-                </div>
-                <div
-                    v-if="task.status === `IN_PROCESS`"
-                    class="btn-status btn-process"
-                >
-                    <h3>
-                        งานสำเร็จ
-                    </h3>
-                </div> -->
+                
                 <div class="div-contact-mn">
                     <a-icon 
                         type="phone" 
@@ -116,6 +119,10 @@ export default {
 }
 h1{
     text-align: center;
+}
+.div-nameproject{
+    display: flex;
+    justify-content: flex-end;
 }
 .div-contact-mn{
     display: flex;
