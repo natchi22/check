@@ -12,7 +12,7 @@
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
                 <a-icon
                     type="edit"
-                    :style="{ color: '#555555' }"
+                    :style="{ color: '#555555' ,margin: '0 7px'}"
                 />
             </nuxt-link>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/info`">

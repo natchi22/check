@@ -3,10 +3,10 @@
         <nuxt-link :to="`/freelance/task/${task.taskId}`">
             <div class="box">
                 <h2>{{ task.name }}</h2>
-                <div>
+                <div class="div-contact-mn">
                     <a-icon 
                         type="phone" 
-                        :style="{ color: '#555555' }"
+                        :style="{ color: '#555555',fontSize: '16px' }"
                     />
                     <h3>ติดต่อหัวหน้า : {{manager}}</h3>
                 </div>
@@ -89,6 +89,10 @@ export default {
 }
 h1{
     text-align: center;
+}
+.div-contact-mn{
+    display: flex;
+    margin: 0 5px 0 0;
 }
 /* รูป */
 .size-pic{
