@@ -6,7 +6,7 @@
                     <h2>{{ task.name }}</h2>
                     <!-- สถานะงานใหญ่ -->
                     <div
-                        v-if="checkStatus(task.taskList) === `DONE`"
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
                         class="btn-status btn-succeed"
                     >
                         <h3>
@@ -14,7 +14,7 @@
                         </h3>
                     </div>
                     <div
-                        v-if="checkStatus(task.taskList) === `ON_PLAN`"
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
                         class="btn-status btn-wait"
                     >
                         <h3>
@@ -22,7 +22,7 @@
                         </h3>
                     </div>
                     <div
-                        v-if="checkStatus(task.taskList) === `LATE`"
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
                         class="btn-status btn-process"
                     >
                         <h3>
@@ -36,7 +36,7 @@
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{ showManager(calPlan(task.startDate,task.endDate),calReal(task.taskList)) }}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ showManager(task.manager) }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
