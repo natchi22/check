@@ -6,7 +6,7 @@
                     <h2>{{ task.name }}</h2>
                     <!-- สถานะงานใหญ่ -->
                     <div
-                        
+
                         class="btn-status btn-succeed"
                     >
                         <h3>
@@ -30,13 +30,13 @@
                         </h3>
                     </div> -->
                 </div>
-                
+
                 <div class="div-contact-mn">
-                    <a-icon 
-                        type="phone" 
+                    <a-icon
+                        type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{manager}}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ task.manager }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
@@ -64,7 +64,9 @@
                         status="active"
                     />
                 </div>
-                <h3>ความคืบหน้างาน : {{list}}</h3>
+                <div class="process">
+                    <h3>ความคืบหน้างาน : {{ list }}</h3>
+                </div>
             </div>
         </nuxt-link>
     </div>
@@ -78,9 +80,6 @@ export default {
     props: [ 'task' ],
     data() {
         return {
-            manager:'ชื่อหัวหน้าที่ดูแล',
-            list:'ลิสงานปัจจุบันที่กำลังทำ'
-
         }
     },
     methods: {
@@ -120,9 +119,13 @@ export default {
 h1{
     text-align: center;
 }
-.div-nameproject{
+.process{
     display: flex;
     justify-content: flex-end;
+}
+.div-nameproject{
+    display: flex;
+    justify-content: space-between;
 }
 .div-contact-mn{
     display: flex;
