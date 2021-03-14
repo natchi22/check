@@ -10,7 +10,7 @@
                         class="btn-status btn-succeed"
                     >
                         <h3>
-                            ช้ากว่่ากำหนด
+                            งานสำเร็จ
                         </h3>
                     </div>
                     <!-- <div
@@ -26,7 +26,7 @@
                         class="btn-status btn-process"
                     >
                         <h3>
-                            งานสำเร็จ
+                            ช้ากว่ากำหนด
                         </h3>
                     </div> -->
                 </div>
@@ -64,7 +64,10 @@
                         status="active"
                     />
                 </div>
-                <h3>ความคืบหน้างาน : {{list}}</h3>
+                <div class="div-progress">
+                    <h3>ความคืบหน้างาน : {{list}}</h3>
+                </div>
+                
             </div>
         </nuxt-link>
     </div>
@@ -122,7 +125,7 @@ h1{
 }
 .div-nameproject{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 .div-contact-mn{
     display: flex;
@@ -130,6 +133,10 @@ h1{
 }
 .div-contact-mn h3{
     margin: 0 0 0 5px;
+}
+.div-progress{
+    display: flex;
+    justify-content: flex-end;
 }
 /* รูป */
 .size-pic{
@@ -155,6 +162,13 @@ h1{
 .div-submit{
     display: flex;
     justify-content: center;
+}
+.btn-status{
+    width: 80px;
+    height: 20px;
+}
+.btn-status h3{
+    font-size: 11px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 .box{
