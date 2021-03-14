@@ -6,7 +6,7 @@
                 <div class="div-contact-mn">
                     <a-icon 
                         type="phone" 
-                        :style="{ color: '#555555',fontSize: '20px' }"
+                        :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
                     <h3>ติดต่อหัวหน้า : {{manager}}</h3>
                 </div>
@@ -92,10 +92,10 @@ h1{
 }
 .div-contact-mn{
     display: flex;
-    margin: 0 5px 0 0;
+    margin: 16px 0 22px 0;
 }
 .div-contact-mn h3{
-    margin: 0 5px 0 0;
+    margin: 0 0 0 5px;
 }
 /* รูป */
 .size-pic{
