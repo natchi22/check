@@ -2,7 +2,6 @@
     <div class="body">
         <div class="top">
             <div>
-                {{ inforManagers }}
                 <h1>{{ task.name }}</h1>
                 <div class="boxTime">
                     <a-icon
@@ -71,7 +70,7 @@ export default {
     },
     data() {
         return {
-            manager: 'ชื่อหัวหน้า กดไอคอนไปหน้า ข้อมูลหัวหน้า',
+            inforManagers: [],
             taskId: this.$route.params.id,
             task: {},
             form: {
@@ -93,7 +92,9 @@ export default {
         diff,
         showManager(managerId) {
             const manager = this.inforManagers.find(el => el.managerId == managerId)
-            return `${manager.fName} ${manager.lName}`
+            if (manager) {
+                return `${manager.fName} ${manager.lName}`
+            }
         },
         calPlan(startDate, endDate) {
             const today = moment()
