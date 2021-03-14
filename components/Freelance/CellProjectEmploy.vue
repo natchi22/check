@@ -137,6 +137,7 @@ h1{
 .div-progress{
     display: flex;
     justify-content: flex-end;
+    padding: 16px 0 0 0;
 }
 /* รูป */
 .size-pic{

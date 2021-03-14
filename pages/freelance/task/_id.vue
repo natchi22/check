@@ -18,6 +18,14 @@
                     alt="รูปโปรไฟล์"
                 >
             </div>
+            <!-- เพิ่มติดิต่อหัวหน้า -->
+            <div class="div-contact-mn">
+                <a-icon 
+                    type="phone" 
+                    :style="{ color: '#3ABCA7',fontSize: '20px' }"
+                />
+                <h3>ติดต่อหัวหน้า : {{manager}}</h3>
+            </div>
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
@@ -65,6 +73,7 @@ export default {
     },
     data() {
         return {
+            manager:'ชื่อหัวหน้า กดไอคอนไปหน้า ข้อมูลหัวหน้า',
             taskId: this.$route.params.id,
             task: {},
             form: {
@@ -113,6 +122,10 @@ export default {
 </script>
 
 <style scoped>
+.div-contact-mn{
+    display: flex;
+    margin: 16px 0 22px 0;
+}
 /* รูป */
 .size-pic{
     width: 80px;
