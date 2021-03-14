@@ -3,6 +3,10 @@
         <nuxt-link :to="`/freelance/task/${task.taskId}`">
             <div class="box">
                 <h2>{{ task.name }}</h2>
+                <div>
+                    <a-icon type="phone" />
+                    <h3>{{manager}}</h3>
+                </div>
                 <div class="dateTask">
                     <h3 class="topic">
                         เริ่ม :
@@ -42,6 +46,8 @@ export default {
     props: [ 'task' ],
     data() {
         return {
+            manager:'ชื่อหัวหน้าที่ดูแล'
+
         }
     },
     methods: {

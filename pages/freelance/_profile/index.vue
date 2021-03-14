@@ -17,7 +17,7 @@
             </nuxt-link>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/info`">
                 <a-icon
-                    type="info-circle"
+                    type="user"
                     :style="{ color: '#555555' }"
                 />
             </nuxt-link>
