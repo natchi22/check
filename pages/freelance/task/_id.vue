@@ -91,6 +91,10 @@ export default {
     },
     methods: {
         diff,
+        showManager(managerId) {
+            const manager = this.inforManagers.find(el => el.managerId == managerId)
+            return `${manager.fName} ${manager.lName}`
+        },
         calPlan(startDate, endDate) {
             const today = moment()
             const start = moment(startDate, "DD/MM/YYYY")
