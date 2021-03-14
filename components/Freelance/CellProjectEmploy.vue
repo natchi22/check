@@ -54,14 +54,12 @@
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
                         :percent="calPlan(task.startDate,task.endDate)"
-                        status="active"
                     />
                 </div>
                 <div>
                     <h4>ความสำเร็จปัจจุบัน</h4>
                     <a-progress
                         :percent="calReal(task.taskList)"
-                        status="active"
                     />
                 </div>
                 <div class="div-progress">
