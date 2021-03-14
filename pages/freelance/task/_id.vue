@@ -19,6 +19,13 @@
                 >
             </div>
         </div>
+        <div class="div-contact-mn">
+            <a-icon
+                type="phone"
+                :style="{ color: '#3ABCA7',fontSize: '20px' }"
+            />
+            <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+        </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
@@ -117,6 +124,13 @@ export default {
 .size-pic{
     width: 80px;
     height: 80px;
+}
+.div-contact-mn{
+    display: flex;
+    margin: 16px 0 22px 0;
+}
+.div-contact-mn h3{
+    margin: 0 0 0 5px;
 }
 .top{
     display: flex;

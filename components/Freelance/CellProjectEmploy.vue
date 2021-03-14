@@ -36,7 +36,7 @@
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{ showManager(task.manager) }}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
