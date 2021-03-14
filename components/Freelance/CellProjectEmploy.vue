@@ -36,7 +36,7 @@
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{ task.manager }}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ showManager(task.manager) }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
@@ -77,7 +77,7 @@ import moment from 'moment'
 import diff from 'moment'
 
 export default {
-    props: [ 'task' ],
+    props: [ 'task', 'inforManagers' ],
     data() {
         return {
         }
@@ -97,6 +97,10 @@ export default {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
             return parseInt((count/lengthTasks)*100)
+        },
+        showManager(managerId) {
+            const manager = this.inforManagers.find(el => el.managerId == managerId)
+            return `${manager.fName} ${manager.lName}`
         }
     }
 }
