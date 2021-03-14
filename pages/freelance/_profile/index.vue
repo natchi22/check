@@ -27,6 +27,7 @@
                 v-for="task in tasks"
                 :key="task.id"
                 :task="task"
+                :inforManagers="inforManagers"
             />
             <div class="div-submit">
                 <nuxt-link :to="`/freelance/${inforFrelance.lineId}/add`">
@@ -58,7 +59,8 @@ export default {
         return {
             // profileId: this.$route.params.profile,
             inforFrelance: {},
-            tasks: []
+            tasks: [],
+            inforManagers: []
         }
     },
     methods: {
@@ -77,11 +79,18 @@ export default {
             tasks.forEach((doc)=>{
                 this.tasks.push(doc.data())
             })
-        }
+        },
+        async getManagersData() {
+            const inforManagers = await this.$fireStore.collection("Manager").get()
+            inforManagers.forEach((doc)=>{
+                this.inforManagers.push(doc.data())
+            })
+        },
     },
     async mounted() {
         this.getUserData()
         this.getTasksData()
+        this.getManagersData()
     }
 
 }

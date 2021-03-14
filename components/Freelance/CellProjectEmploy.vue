@@ -6,15 +6,15 @@
                     <h2>{{ task.name }}</h2>
                     <!-- สถานะงานใหญ่ -->
                     <div
-                        
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
                         class="btn-status btn-succeed"
                     >
                         <h3>
                             งานสำเร็จ
                         </h3>
                     </div>
-                    <!-- <div
-                        v-if="task.status === `PENDING`"
+                    <div
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
                         class="btn-status btn-wait"
                     >
                         <h3>
@@ -22,21 +22,21 @@
                         </h3>
                     </div>
                     <div
-                        v-if="task.status === `IN_PROCESS`"
+                        v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
                         class="btn-status btn-process"
                     >
                         <h3>
                             ช้ากว่ากำหนด
                         </h3>
-                    </div> -->
+                    </div>
                 </div>
-                
+
                 <div class="div-contact-mn">
-                    <a-icon 
-                        type="phone" 
+                    <a-icon
+                        type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{manager}}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ showManager(task.manager) }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
@@ -65,9 +65,8 @@
                     />
                 </div>
                 <div class="div-progress">
-                    <h3>ความคืบหน้างาน : {{list}}</h3>
+                    <h3>ความคืบหน้างาน : {{ list }}</h3>
                 </div>
-                
             </div>
         </nuxt-link>
     </div>
@@ -78,12 +77,9 @@ import moment from 'moment'
 import diff from 'moment'
 
 export default {
-    props: [ 'task' ],
+    props: [ 'task', 'inforManagers' ],
     data() {
         return {
-            manager:'ชื่อหัวหน้าที่ดูแล',
-            list:'ลิสงานปัจจุบันที่กำลังทำ'
-
         }
     },
     methods: {
@@ -101,6 +97,21 @@ export default {
             const lengthTasks = arr.length
             const count = arr.filter((item) => item.status === 'APPROVE').length
             return parseInt((count/lengthTasks)*100)
+        },
+        showManager(managerId) {
+            const manager = this.inforManagers.find(el => el.managerId == managerId)
+            return `${manager.fName} ${manager.lName}`
+        },
+        checkStatus(calPlan, calReal) {
+            if (calReal === 100) {
+                return `DONE`
+            }
+            else if (calReal !== 100 && calReal >= calPlan) {
+                return `ON_PLAN`
+            }
+            else {
+                return `LATE`
+            }
         }
     }
 }
@@ -137,7 +148,7 @@ h1{
 .div-progress{
     display: flex;
     justify-content: flex-end;
-    padding: 16px 0 0 0;
+    margin: 17px 0px 0px 0px;
 }
 /* รูป */
 .size-pic{

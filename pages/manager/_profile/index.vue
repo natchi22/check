@@ -134,10 +134,10 @@ export default {
             })
         },
         callback(key) {
-            console.log(key)
+            //console.log(key)
         },
         onClose(e) {
-            console.log(e, 'I was closed.')
+            //console.log(e, 'I was closed.')
         },
         countTask(id) {
             return this.inforTask.filter(item => item.freelanceId === id).length
