@@ -30,13 +30,11 @@
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
-            :status="calPlan(task.startDate,task.endDate) === 100 ? success : active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
             :percent="task.taskList ? calReal(task.taskList) : 0"
-            :status="calReal(task.taskList) === 100 ? success : active"
             class="progress"
         />
         <CellStepProject
@@ -117,10 +115,17 @@ export default {
                     this.task = doc.data()
                 }
             })
-        }
+        },
+        async getManagersData() {
+            const inforManagers = await this.$fireStore.collection("Manager").get()
+            inforManagers.forEach((doc)=>{
+                this.inforManagers.push(doc.data())
+            })
+        },
     },
     mounted() {
         this.getData()
+        this.getManagersData()
     }
 }
 </script>
