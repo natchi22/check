@@ -6,15 +6,15 @@
                     <h2>{{ task.name }}</h2>
                     <!-- สถานะงานใหญ่ -->
                     <div
-
+                        v-if="checkStatus(task.taskList) === `DONE`"
                         class="btn-status btn-succeed"
                     >
                         <h3>
                             งานสำเร็จ
                         </h3>
                     </div>
-                    <!-- <div
-                        v-if="task.status === `PENDING`"
+                    <div
+                        v-if="checkStatus(task.taskList) === `ON_PLAN`"
                         class="btn-status btn-wait"
                     >
                         <h3>
@@ -22,13 +22,13 @@
                         </h3>
                     </div>
                     <div
-                        v-if="task.status === `IN_PROCESS`"
+                        v-if="checkStatus(task.taskList) === `LATE`"
                         class="btn-status btn-process"
                     >
                         <h3>
                             ช้ากว่ากำหนด
                         </h3>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="div-contact-mn">
@@ -36,7 +36,7 @@
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{ showManager(task.manager) }}</h3>
+                    <h3>ติดต่อหัวหน้า : {{ showManager(calPlan(task.startDate,task.endDate),calReal(task.taskList)) }}</h3>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
@@ -101,6 +101,17 @@ export default {
         showManager(managerId) {
             const manager = this.inforManagers.find(el => el.managerId == managerId)
             return `${manager.fName} ${manager.lName}`
+        },
+        checkStatus(calPlan, calReal) {
+            if (calReal === 100) {
+                return `DONE`
+            }
+            else if (calReal !== 100 && calReal >= calPlan) {
+                return `ON_PLAN`
+            }
+            else {
+                return `LATE`
+            }
         }
     }
 }
@@ -137,6 +148,7 @@ h1{
 .div-progress{
     display: flex;
     justify-content: flex-end;
+    margin: 17px 0px 0px 0px;
 }
 /* รูป */
 .size-pic{
