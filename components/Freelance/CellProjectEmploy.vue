@@ -31,13 +31,13 @@
                     </div>
                 </div>
 
-                <div class="div-contact-mn">
+                <!-- <div class="div-contact-mn">
                     <a-icon
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
                     <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
-                </div>
+                </div> -->
                 <div class="dateTask">
                     <h3 class="topic">
                         เริ่ม :
@@ -54,14 +54,12 @@
                     <h4>ความสำเร็จตามแผน</h4>
                     <a-progress
                         :percent="calPlan(task.startDate,task.endDate)"
-                        status="active"
                     />
                 </div>
                 <div>
                     <h4>ความสำเร็จปัจจุบัน</h4>
                     <a-progress
                         :percent="calReal(task.taskList)"
-                        status="active"
                     />
                 </div>
                 <div class="div-progress">
@@ -100,7 +98,9 @@ export default {
         },
         showManager(managerId) {
             const manager = this.inforManagers.find(el => el.managerId == managerId)
-            return `${manager.fName} ${manager.lName}`
+            if (manager) {
+                return `${manager.fName} ${manager.lName}`
+            }
         },
         checkStatus(calPlan, calReal) {
             if (calReal === 100) {

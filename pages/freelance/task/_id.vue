@@ -2,7 +2,6 @@
     <div class="body">
         <div class="top">
             <div>
-                {{ inforManagers }}
                 <h1>{{ task.name }}</h1>
                 <div class="boxTime">
                     <a-icon
@@ -30,13 +29,11 @@
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
-            :status="calPlan(task.startDate,task.endDate) === 100 ? success : active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
             :percent="task.taskList ? calReal(task.taskList) : 0"
-            :status="calReal(task.taskList) === 100 ? success : active"
             class="progress"
         />
         <CellStepProject
@@ -73,7 +70,7 @@ export default {
     },
     data() {
         return {
-            manager: 'ชื่อหัวหน้า กดไอคอนไปหน้า ข้อมูลหัวหน้า',
+            inforManagers: [],
             taskId: this.$route.params.id,
             task: {},
             form: {
@@ -95,7 +92,9 @@ export default {
         diff,
         showManager(managerId) {
             const manager = this.inforManagers.find(el => el.managerId == managerId)
-            return `${manager.fName} ${manager.lName}`
+            if (manager) {
+                return `${manager.fName} ${manager.lName}`
+            }
         },
         calPlan(startDate, endDate) {
             const today = moment()
@@ -117,10 +116,17 @@ export default {
                     this.task = doc.data()
                 }
             })
-        }
+        },
+        async getManagersData() {
+            const inforManagers = await this.$fireStore.collection("Manager").get()
+            inforManagers.forEach((doc)=>{
+                this.inforManagers.push(doc.data())
+            })
+        },
     },
     mounted() {
         this.getData()
+        this.getManagersData()
     }
 }
 </script>
