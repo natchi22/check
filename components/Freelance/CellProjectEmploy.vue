@@ -3,6 +3,31 @@
         <nuxt-link :to="`/freelance/task/${task.taskId}`">
             <div class="box">
                 <h2>{{ task.name }}</h2>
+                <!-- สถานะงานใหญ่ -->
+                <div
+                    
+                    class="btn-status btn-succeed"
+                >
+                    <h3>
+                        ช้ากว่่ากำหนด
+                    </h3>
+                </div>
+                <!-- <div
+                    v-if="task.status === `PENDING`"
+                    class="btn-status btn-wait"
+                >
+                    <h3>
+                        ตามแผนการ
+                    </h3>
+                </div>
+                <div
+                    v-if="task.status === `IN_PROCESS`"
+                    class="btn-status btn-process"
+                >
+                    <h3>
+                        งานสำเร็จ
+                    </h3>
+                </div> -->
                 <div class="div-contact-mn">
                     <a-icon 
                         type="phone" 
@@ -36,6 +61,7 @@
                         status="active"
                     />
                 </div>
+                <h3>ความคืบหน้างาน : {{list}}</h3>
             </div>
         </nuxt-link>
     </div>
@@ -49,7 +75,8 @@ export default {
     props: [ 'task' ],
     data() {
         return {
-            manager:'ชื่อหัวหน้าที่ดูแล'
+            manager:'ชื่อหัวหน้าที่ดูแล',
+            list:'ลิสงานปัจจุบันที่กำลังทำ'
 
         }
     },
