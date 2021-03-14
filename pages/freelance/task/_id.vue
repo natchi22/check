@@ -2,6 +2,7 @@
     <div class="body">
         <div class="top">
             <div>
+                {{ inforManagers }}
                 <h1>{{ task.name }}</h1>
                 <div class="boxTime">
                     <a-icon
@@ -18,14 +19,6 @@
                     alt="รูปโปรไฟล์"
                 >
             </div>
-            <!-- เพิ่มติดิต่อหัวหน้า -->
-            <div class="div-contact-mn">
-                <a-icon
-                    type="phone"
-                    :style="{ color: '#3ABCA7',fontSize: '20px' }"
-                />
-                <h3>ติดต่อหัวหน้า : {{ manager }}</h3>
-            </div>
         </div>
         <div class="div-contact-mn">
             <a-icon
@@ -37,11 +30,13 @@
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
+            :status="calPlan(task.startDate,task.endDate) === 100 ? success : active"
             class="progress"
         />
         <h2>ความสำเร็จปัจจุบัน</h2>
         <a-progress
             :percent="task.taskList ? calReal(task.taskList) : 0"
+            :status="calReal(task.taskList) === 100 ? success : active"
             class="progress"
         />
         <CellStepProject
