@@ -11,20 +11,23 @@
                 >
             </nuxt-link>
         </div>
-        <div>
-            <h1>
-                {{name}}
-            </h1>
+        <div class="box">
+            <div>
+                <h1>
+                    {{name}}
+                </h1>
+            </div>
+            <div>
+                <!-- รูปfreelance -->
+                <img
+                        class="pic size-picfreelance"
+                        :src="inforFreelance.pictureUrl"
+                        alt="รูปโปรไฟล์"
+                    >
+                <h3>{{fName }} {{ lName}}</h3>
+            </div>
         </div>
-        <div>
-            <!-- รูปfreelance -->
-            <img
-                    class="pic size-picfreelance"
-                    :src="inforFreelance.pictureUrl"
-                    alt="รูปโปรไฟล์"
-                >
-            <h3>{{fNaem }} {{ lName}}</h3>
-        </div>
+        
     </div>
 </template>
 <script>
@@ -94,5 +97,13 @@ export default {
     width: 60px;
 	height: 60px;
 	margin: 0 24px 0 0;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 8px rgb(229,229,229);
+    padding: 26px 30px;
+    margin: 0 10px 20px 10px;
+    display: flex;
 }
 </style>
