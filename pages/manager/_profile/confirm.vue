@@ -12,7 +12,7 @@
                 >
             </nuxt-link>
         </div>
-        <div>
+        <div class="div-project">
             <h1>
                 {{project}}
             </h1>
@@ -177,5 +177,13 @@ export default {
 }
 .detail{
     margin: 0 0 0 16px;
+}
+.linkUrl {
+    color: blue;
+    text-decoration: underline;
+}
+.div-project{
+    display: flex;
+    justify-content: center;
 }
 </style>
