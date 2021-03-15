@@ -49,41 +49,13 @@ export default {
             project:'ชื่อโปรเจค',
             fName:'ชื่อ',
             lName:'สกุล ฟรีแลนซ์',
+            inforManager:{
+                firstName:'ชื่อ',
+                lastName:'สกุล หัวหน้า',
+            }
         }
     },
-    methods: {
-        async getUserData() {
-            const infor = await this.$fireStore.collection("Manager")
-                .where("lineId", '==', this.profile.userId).get()
-            infor.forEach((doc)=>{
-                this.inforManager = doc.data()
-            })
-        },
-        async getTasksData() {
-            const inforTask = await this.$fireStore.collection("Task").get()
-            inforTask.forEach((doc)=>{
-                this.inforTask.push(doc.data())
-            })
-        },
-        async getManagersData() {
-            const inforManagers = await this.$fireStore.collection("Manager").get()
-            inforManagers.forEach((doc)=>{
-                this.inforManagers.push(doc.data())
-            })
-        },
-        async getFreelanceData() {
-            const inforFreelance = await this.$fireStore.collection("Freelance").get()
-            inforFreelance.forEach((doc)=>{
-                this.inforFreelance.push(doc.data())
-            })
-        },
-    },
-    async mounted() {
-        this.getUserData()
-        this.getTasksData()
-        this.getFreelanceData()
-        this.getManagersData()
-    }
+    
 }
 </script>
 <style scoped>
