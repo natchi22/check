@@ -42,7 +42,7 @@
                             {{ item }}
                             <div class="box-top">
                                 <h1>
-                                    {{name.item}}
+                                    ชื่อโปรเจค
                                 </h1>
                                 <!-- สถานะงานใหญ่ -->
                                 <div
@@ -72,13 +72,13 @@
                                 <!-- จบสถานะงานใหญ่ -->
                             </div>
                             <div class="box-end">
-                                <img
+                                <!-- <img
                                     class="pic size-pic"
                                     :src="profile.pictureUrl"
                                     alt="รูปโปรไฟล์"
-                                >
+                                > -->
                                 <h3 style="margin-bottom: 0px !important;">
-                                    ชื่อ สกุล
+                                    ผู้ดูแล : {{manager}}
                                 </h3>
                             </div>
                         </div>
@@ -149,58 +149,18 @@
                         เพิ่มหัวหน้างาน
                     </button>
                     <div class="box-manager">
-                        <!-- <div
-                            class="box"
-                            v-for="item in inforManagers"
-                            :key="item.managerId"
-                        >
-                            <h3 style="margin-bottom: 0px !important;">
-                                {{ item.fName }} {{ item.lName }}
-                            </h3>
-                        </div> -->
                         <div
                             class="box"
                         >
-                            <div class="box-top">
-                                <h1>
-                                    ชื่อโปรเจค
-                                </h1>
-                                <!-- สถานะงานใหญ่ -->
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
-                                    class="btn-status btn-succeed"
-                                >
-                                    <h3>
-                                        งานสำเร็จ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
-                                    class="btn-status btn-wait"
-                                >
-                                    <h3>
-                                        ตามแผนการ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
-                                    class="btn-status btn-process"
-                                >
-                                    <h3>
-                                        ช้ากว่ากำหนด
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="box-end">
-                                <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                >
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ชื่อ สกุล
+                            <div class="box-tab4">
+                                <h2>
+                                    {{manager}}
+                                </h2>
+                                <h3>
+                                    {{email}}
                                 </h3>
                             </div>
+                            
                         </div>
                     </div>
                 </a-tab-pane>
@@ -233,6 +193,8 @@ export default {
     },
     data() {
         return {
+            manager:'ชื่อหัวหน้า',
+            email:'email',
             inforManager: {},
             inforTask: [],
             inforFreelance: [],
@@ -324,6 +286,10 @@ export default {
     display: flex;
 }
 .box-end h3{
+    margin: 5px 0 0 7px;
+    height: 20px;
+}
+.box-tab4 h3{
     margin: 5px 0 0 7px;
     height: 20px;
 }
