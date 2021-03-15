@@ -305,6 +305,7 @@ export default {
 }
 .box{
     display: flex;
+    flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 17px 30px;
     margin: 0 10px 20px 10px;
