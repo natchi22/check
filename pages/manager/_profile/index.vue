@@ -15,7 +15,7 @@
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
             class="tabs"
         >
-            <a-alert
+            <!-- <a-alert
                 message="งานขึ้นบ้านใหม่"
                 description="ช้ากว่ากำหนดแล้ว"
                 type="warning"
@@ -23,7 +23,7 @@
                 closable
                 @close="onClose"
                 class="alert"
-            />
+            /> -->
             <a-tabs
                 type="card"
                 @change="callback"
@@ -240,7 +240,40 @@ export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
-        })
+        }),
+        lateTask() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (checkStatus(calPlan, calReal) === `LATE`) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        onPlanTask() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (checkStatus(calPlan, calReal) === `ON_PLAN`) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        successTask() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (checkStatus(calPlan, calReal) === `DONE`) {
+                    res.push(element)
+                }
+            })
+            return res
+        }
     },
     data() {
         return {
@@ -286,6 +319,30 @@ export default {
         },
         countTask(id) {
             return this.inforTask.filter(item => item.freelanceId === id).length
+        },
+        calPlan(startDate, endDate) {
+            const today = moment()
+            const start = moment(startDate, "DD/MM/YYYY")
+            const end = moment(endDate, "DD/MM/YYYY")
+            const count = today.diff(start, 'days')
+            const length = end.diff(start, 'days')
+            return parseInt((count/length)*100) < 100 ? parseInt((count/length)*100) : 100
+        },
+        calReal(arr) {
+            const lengthTasks = arr.length
+            const count = arr.filter((item) => item.status === 'APPROVE').length
+            return parseInt((count/lengthTasks)*100)
+        },
+        checkStatus(calPlan, calReal) {
+            if (calReal === 100) {
+                return `DONE`
+            }
+            else if (calReal !== 100 && calReal >= calPlan) {
+                return `ON_PLAN`
+            }
+            else {
+                return `LATE`
+            }
         }
     },
     async mounted() {
