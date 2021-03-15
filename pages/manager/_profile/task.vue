@@ -1,0 +1,98 @@
+<template>
+    <div class="body">
+        <div class="profile-head">
+            <!-- กดรูปดูโปรไฟล์ -->
+            <h2>{{ inforManager.firstName }}  {{ inforManager.lastName }}</h2>
+            <nuxt-link :to="`/manager/${profile.userId}/info`">
+                <img
+                    class="pic size-pic"
+                    :src="profile.pictureUrl"
+                    alt="รูปโปรไฟล์"
+                >
+            </nuxt-link>
+        </div>
+        <div>
+            <h1>
+                {{name}}
+            </h1>
+        </div>
+        <div>
+            <!-- รูปfreelance -->
+            <img
+                    class="pic size-picfreelance"
+                    :src="inforFreelance.pictureUrl"
+                    alt="รูปโปรไฟล์"
+                >
+            <h3>{{fNaem }} {{ lName}}</h3>
+        </div>
+    </div>
+</template>
+<script>
+import { mapState } from 'vuex'
+export default {
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
+    data() {
+        return {
+            name:'ชื่อโปรเจค',
+            fName:'ชื่อ',
+            lName:'สกุล freelance',
+            inforManager: {},
+            inforTask: [],
+            inforFreelance: [],
+            inforManagers: []
+        }
+    },
+    methods: {
+        async getUserData() {
+            const infor = await this.$fireStore.collection("Manager")
+                .where("lineId", '==', this.profile.userId).get()
+            infor.forEach((doc)=>{
+                this.inforManager = doc.data()
+            })
+        },
+        async getTasksData() {
+            const inforTask = await this.$fireStore.collection("Task").get()
+            inforTask.forEach((doc)=>{
+                this.inforTask.push(doc.data())
+            })
+        },
+        async getManagersData() {
+            const inforManagers = await this.$fireStore.collection("Manager").get()
+            inforManagers.forEach((doc)=>{
+                this.inforManagers.push(doc.data())
+            })
+        },
+        async getFreelanceData() {
+            const inforFreelance = await this.$fireStore.collection("Freelance").get()
+            inforFreelance.forEach((doc)=>{
+                this.inforFreelance.push(doc.data())
+            })
+        },
+    },
+    async mounted() {
+        this.getUserData()
+        this.getTasksData()
+        this.getFreelanceData()
+        this.getManagersData()
+    }
+}
+</script>
+<style scoped>
+.body{
+	padding: 16px;
+}
+.size-pic{
+    width: 30px;
+	height: 30px;
+	margin: 0 0 0 15px;
+}
+.size-picfreelance{
+    width: 60px;
+	height: 60px;
+	margin: 0 24px 0 0;
+}
+</style>

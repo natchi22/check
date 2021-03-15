@@ -96,17 +96,47 @@
                             :key="item.id"
                         >
                             {{ item }}
-                            <!-- <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <div>
-                                <h3>
-                                    {{ item.firstName }} {{ item.lastName }}
+                            <div class="box-top">
+                                <h1>
+                                    ชื่อโปรเจค
+                                </h1>
+                                <!-- สถานะงานใหญ่ -->
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    class="btn-status btn-succeed"
+                                >
+                                    <h3>
+                                        งานสำเร็จ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    class="btn-status btn-wait"
+                                >
+                                    <h3>
+                                        ตามแผนการ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    class="btn-status btn-process"
+                                >
+                                    <h3>
+                                        ช้ากว่ากำหนด
+                                    </h3>
+                                </div>
+                                <!-- จบสถานะงานใหญ่ -->
+                            </div>
+                            <div class="box-end">
+                                <!-- <img
+                                    class="pic size-pic"
+                                    :src="profile.pictureUrl"
+                                    alt="รูปโปรไฟล์"
+                                > -->
+                                <h3 style="margin-bottom: 0px !important;">
+                                    ผู้ดูแล : {{manager}}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
@@ -122,17 +152,47 @@
                             :key="item.id"
                         >
                             {{ item }}
-                            <!-- <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <div>
-                                <h3>
-                                    {{ item.firstName }} {{ item.lastName }}
+                            <div class="box-top">
+                                <h1>
+                                    ชื่อโปรเจค
+                                </h1>
+                                <!-- สถานะงานใหญ่ -->
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    class="btn-status btn-succeed"
+                                >
+                                    <h3>
+                                        งานสำเร็จ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    class="btn-status btn-wait"
+                                >
+                                    <h3>
+                                        ตามแผนการ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    class="btn-status btn-process"
+                                >
+                                    <h3>
+                                        ช้ากว่ากำหนด
+                                    </h3>
+                                </div>
+                                <!-- จบสถานะงานใหญ่ -->
+                            </div>
+                            <div class="box-end">
+                                <!-- <img
+                                    class="pic size-pic"
+                                    :src="profile.pictureUrl"
+                                    alt="รูปโปรไฟล์"
+                                > -->
+                                <h3 style="margin-bottom: 0px !important;">
+                                    ผู้ดูแล : {{manager}}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
