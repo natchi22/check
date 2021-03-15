@@ -8,7 +8,7 @@
             >
             <nuxt-link
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
-                v-if="$fireAuth.currentUser.email !== `superAdmin@gmail.com`"
+                v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`"
             >
                 <button class="btn btn-green btn-size">
                     แก้ไขข้อมูลส่วนตัว

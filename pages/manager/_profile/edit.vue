@@ -1,5 +1,6 @@
 <template>
     <div class="body">
+        {{ $fireAuth.currentUser.email }}
         <img
             class="pic size-pic"
             :src="profile.pictureUrl"
