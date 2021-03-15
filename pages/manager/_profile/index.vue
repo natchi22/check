@@ -69,7 +69,6 @@
                             v-for="item in onPlanTask"
                             :key="item.id"
                         >
-                            {{ item }}
                             <div class="box-top">
                                 <h2>
                                     {{ item.name }}
