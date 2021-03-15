@@ -30,15 +30,16 @@
             >
                 <a-tab-pane
                     key="1"
-                    tab="ล่าช้า"
+                    tab="ช้ากว่ากำหนด"
                 >
                     <div class="box-manager">
                         <div
                             class="box"
-                            v-for="item in inforFreelance"
+                            v-for="item in inforTask"
                             :key="item.id"
                         >
-                            <img
+                            {{ item }}
+                            <!-- <img
                                 class="pic size-picfreelance"
                                 :src="item.pictureUrl"
                                 alt="รูปโปรไฟล์"
@@ -48,21 +49,22 @@
                                     {{ item.firstName }} {{ item.lastName }}
                                 </h3>
                                 <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </a-tab-pane>
                 <a-tab-pane
                     key="2"
-                    tab="ตามแพลน"
+                    tab="ตามแผนงาน"
                 >
                     <div class="box-manager">
                         <div
                             class="box"
-                            v-for="item in inforFreelance"
+                            v-for="item in inforTask"
                             :key="item.id"
                         >
-                            <img
+                            {{ item }}
+                            <!-- <img
                                 class="pic size-picfreelance"
                                 :src="item.pictureUrl"
                                 alt="รูปโปรไฟล์"
@@ -72,21 +74,22 @@
                                     {{ item.firstName }} {{ item.lastName }}
                                 </h3>
                                 <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </a-tab-pane>
                 <a-tab-pane
                     key="3"
-                    tab="สำเร็จ"
+                    tab="งานสำเร็จ"
                 >
                     <div class="box-manager">
                         <div
                             class="box"
-                            v-for="item in inforFreelance"
+                            v-for="item in inforTask"
                             :key="item.id"
                         >
-                            <img
+                            {{ item }}
+                            <!-- <img
                                 class="pic size-picfreelance"
                                 :src="item.pictureUrl"
                                 alt="รูปโปรไฟล์"
@@ -96,7 +99,7 @@
                                     {{ item.firstName }} {{ item.lastName }}
                                 </h3>
                                 <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </a-tab-pane>
