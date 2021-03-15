@@ -40,25 +40,25 @@
     </div>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
-        // ...mapState({
-        //     profile: state => state.profile.profileData
-        // })
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
     },
     data() {
         return {
         }
     },
     async mounted () {
-        // const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
-        // infor.forEach((doc)=>{
-        //     this.fName = doc.data().firstName
-        //     this.lName = doc.data().lastName
-        //     this.telNumber = doc.data().phone
-        //     this.email = doc.data().email
-        // }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+        infor.forEach((doc)=>{
+            this.fName = doc.data().firstName
+            this.lName = doc.data().lastName
+            this.telNumber = doc.data().phone
+            this.email = doc.data().email
+        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     }
 }
 </script>
