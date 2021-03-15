@@ -36,7 +36,7 @@
                         <!-- <CellBoxProject/> -->
                         <div
                             class="box"
-                            v-for="item in inforTask"
+                            v-for="item in lateTask"
                             :key="item.id"
                         >
                             {{ item }}
@@ -92,7 +92,7 @@
                     <div class="box-manager">
                         <div
                             class="box"
-                            v-for="item in inforTask"
+                            v-for="item in onPlanTask"
                             :key="item.id"
                         >
                             {{ item }}
@@ -143,7 +143,7 @@
                     <div class="box-manager">
                         <div
                             class="box"
-                            v-for="item in inforTask"
+                            v-for="item in successTask"
                             :key="item.id"
                         >
                             {{ item }}
