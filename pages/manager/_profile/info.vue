@@ -56,15 +56,20 @@ export default {
             email: ''
         }
     },
+    methods: {
+        async getManager() {
+            const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            infor.forEach((doc)=>{
+                console.log('!!!!', doc.data())
+                this.fName = doc.data().firstName
+                this.lName = doc.data().lastName
+                this.telNumber = doc.data().phone
+                this.email = doc.data().email
+            }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        }
+    },
     async mounted () {
-        const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
-        infor.forEach((doc)=>{
-            console.log(doc.data())
-            this.fName = doc.data().firstName
-            this.lName = doc.data().lastName
-            this.telNumber = doc.data().phone
-            this.email = doc.data().email
-        }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+        await this.getManager()
     }
 }
 </script>
@@ -99,7 +104,6 @@ export default {
     height: 24px;
 }
 .div-contact{
-    width: 100%;
-    margin: 0px 20px;
+    margin: 0px 30px;
 }
 </style>
