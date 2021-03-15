@@ -45,11 +45,11 @@
     </div>
 </template>
 <script>
-import CellBoxProject from '@/component/CellBoxProject'
+//import CellBoxProject from '@/component/CellBoxProject'
 import { mapState } from 'vuex'
 export default {
-    components:{
-        CellBoxProject,
+    components: {
+        //CellBoxProject,
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
@@ -90,7 +90,17 @@ export default {
                 this.inforFreelance.push(doc.data())
             })
         },
-      
+        checkStatus(calPlan, calReal) {
+            if (calReal === 100) {
+                return `DONE`
+            }
+            else if (calReal !== 100 && calReal >= calPlan) {
+                return `ON_PLAN`
+            }
+            else {
+                return `LATE`
+            }
+        }
     },
     async mounted() {
         this.getUserData()
