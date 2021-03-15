@@ -115,7 +115,7 @@
                         เพิ่มหัวหน้างาน
                     </button>
                     <div class="box-manager">
-                        <!-- <div
+                        <div
                             class="box"
                             v-for="item in inforManagers"
                             :key="item.managerId"
@@ -123,50 +123,6 @@
                             <h3 style="margin-bottom: 0px !important;">
                                 {{ item.fName }} {{ item.lName }}
                             </h3>
-                        </div> -->
-                        <div
-                            class="box"
-                        >
-                            <div class="box-top">
-                                <h1>
-                                    ชื่อโปรเจค
-                                </h1>
-                                <!-- สถานะงานใหญ่ -->
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
-                                    class="btn-status btn-succeed"
-                                >
-                                    <h3>
-                                        งานสำเร็จ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
-                                    class="btn-status btn-wait"
-                                >
-                                    <h3>
-                                        ตามแผนการ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
-                                    class="btn-status btn-process"
-                                >
-                                    <h3>
-                                        ช้ากว่ากำหนด
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="box-end">
-                                <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                >
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ชื่อ สกุล
-                                </h3>
-                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
