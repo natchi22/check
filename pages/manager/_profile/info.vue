@@ -16,26 +16,28 @@
             </nuxt-link>
         </div>
 
-        <div class="form">
-            <a-icon
-                type="user"
-                :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
-            />
-            <h2>{{ fName }}  {{ lName }}</h2>
-        </div>
-        <div class="form">
-            <a-icon
-                type="phone"
-                :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
-            />
-            <h2>{{ telNumber }}</h2>
-        </div>
-        <div class="form">
-            <a-icon
-                type="mail"
-                :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
-            />
-            <h2>{{ email }}</h2>
+        <div class="div-contact">
+            <div class="form">
+                <a-icon
+                    type="user"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <h2>{{ fName }}  {{ lName }}</h2>
+            </div>
+            <div class="form">
+                <a-icon
+                    type="phone"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <h2>{{ telNumber }}</h2>
+            </div>
+            <div class="form">
+                <a-icon
+                    type="mail"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <h2>{{ email }}</h2>
+            </div>
         </div>
     </div>
 </template>
@@ -49,6 +51,10 @@ export default {
     },
     data() {
         return {
+            fName: '',
+            lName: '',
+            telNumber: '',
+            email: ''
         }
     },
     async mounted () {
@@ -91,5 +97,9 @@ export default {
 .btn-size{
     width: 124px;
     height: 24px;
+}
+.div-contact{
+    width: 100%;
+    margin: 0px 20px;
 }
 </style>
