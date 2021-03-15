@@ -11,6 +11,9 @@
     font-family: 'Prompt';
     src: url(../assets/font/Prompt-Regular.ttf);
 }
+.body{
+	padding: 16px;
+}
 /* รูป */
 .pic{
     border-radius: 100%;

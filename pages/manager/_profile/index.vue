@@ -33,26 +33,58 @@
                     tab="ช้ากว่ากำหนด"
                 >
                     <div class="box-manager">
+                        <!-- <CellBoxProject/> -->
                         <div
                             class="box"
                             v-for="item in inforTask"
                             :key="item.id"
                         >
                             {{ item }}
-                            <!-- <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <div>
-                                <h3>
-                                    {{ item.firstName }} {{ item.lastName }}
+                            <div class="box-top">
+                                <h1>
+                                    ชื่อโปรเจค
+                                </h1>
+                                <!-- สถานะงานใหญ่ -->
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    class="btn-status btn-succeed"
+                                >
+                                    <h3>
+                                        งานสำเร็จ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    class="btn-status btn-wait"
+                                >
+                                    <h3>
+                                        ตามแผนการ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    class="btn-status btn-process"
+                                >
+                                    <h3>
+                                        ช้ากว่ากำหนด
+                                    </h3>
+                                </div>
+                                <!-- จบสถานะงานใหญ่ -->
+                            </div>
+                            <div class="box-end">
+                                <!-- <img
+                                    class="pic size-pic"
+                                    :src="profile.pictureUrl"
+                                    alt="รูปโปรไฟล์"
+                                > -->
+                                <h3 style="margin-bottom: 0px !important;">
+                                    ผู้ดูแล : {{ manager }}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
+
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
@@ -64,20 +96,46 @@
                             :key="item.id"
                         >
                             {{ item }}
-                            <!-- <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <div>
-                                <h3>
-                                    {{ item.firstName }} {{ item.lastName }}
+                            <div class="box-top">
+                                <h1>
+                                    ชื่อโปรเจค
+                                </h1>
+                                <!-- สถานะงานใหญ่ -->
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    class="btn-status btn-succeed"
+                                >
+                                    <h3>
+                                        งานสำเร็จ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    class="btn-status btn-wait"
+                                >
+                                    <h3>
+                                        ตามแผนการ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    class="btn-status btn-process"
+                                >
+                                    <h3>
+                                        ช้ากว่ากำหนด
+                                    </h3>
+                                </div>
+                                <!-- จบสถานะงานใหญ่ -->
+                            </div>
+                            <div class="box-end">
+                                <h3 style="margin-bottom: 0px !important;">
+                                    ผู้ดูแล : {{ manager }}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
+
                 <a-tab-pane
                     key="3"
                     tab="งานสำเร็จ"
@@ -89,20 +147,51 @@
                             :key="item.id"
                         >
                             {{ item }}
-                            <!-- <img
-                                class="pic size-picfreelance"
-                                :src="item.pictureUrl"
-                                alt="รูปโปรไฟล์"
-                            >
-                            <div>
-                                <h3>
-                                    {{ item.firstName }} {{ item.lastName }}
+                            <div class="box-top">
+                                <h1>
+                                    ชื่อโปรเจค
+                                </h1>
+                                <!-- สถานะงานใหญ่ -->
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    class="btn-status btn-succeed"
+                                >
+                                    <h3>
+                                        งานสำเร็จ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    class="btn-status btn-wait"
+                                >
+                                    <h3>
+                                        ตามแผนการ
+                                    </h3>
+                                </div>
+                                <div
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    class="btn-status btn-process"
+                                >
+                                    <h3>
+                                        ช้ากว่ากำหนด
+                                    </h3>
+                                </div>
+                                <!-- จบสถานะงานใหญ่ -->
+                            </div>
+                            <div class="box-end">
+                                <!-- <img
+                                    class="pic size-pic"
+                                    :src="profile.pictureUrl"
+                                    alt="รูปโปรไฟล์"
+                                > -->
+                                <h3 style="margin-bottom: 0px !important;">
+                                    ผู้ดูแล : {{ manager }}
                                 </h3>
-                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </a-tab-pane>
+
                 <a-tab-pane
                     key="4"
                     tab="หัวหน้างาน"
@@ -142,8 +231,12 @@
     </div>
 </template>
 <script>
+// import CellBoxProject from '@/component/CellBoxProject'
 import { mapState } from 'vuex'
 export default {
+    // components:{
+    //     CellBoxProject,
+    // },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -151,6 +244,8 @@ export default {
     },
     data() {
         return {
+            manager: 'ชื่อหัวหน้า',
+            email: 'email',
             inforManager: {},
             inforTask: [],
             inforFreelance: [],
@@ -202,12 +297,9 @@ export default {
 }
 </script>
 <style scoped>
-.body{
-	padding: 16px;
-}
-.tabs{
-	/* padding: 0 32px; */
-}
+/* .tabs{
+	padding: 0 32px;
+} */
 .alert{
     margin: 0 0 20px 0;
 }
@@ -222,10 +314,11 @@ export default {
 	margin: 0 24px 0 0;
 }
 .box{
-    box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 17px 30px;
-    margin: 0 10px 20px 10px;
     display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 8px rgb(229,229,229);
+    padding: 26px 30px;
+    margin: 0 10px 20px 10px;
 }
 .box-manager{
     max-height: 500px;
@@ -238,6 +331,14 @@ export default {
 }
 .box-end{
     display: flex;
+}
+.box-end h3{
+    margin: 5px 0 0 7px;
+    height: 20px;
+}
+.box-tab4 h3{
+    margin: 5px 0 0 7px;
+    height: 20px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 /* .tabs{
