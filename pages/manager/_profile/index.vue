@@ -306,9 +306,6 @@ export default {
 }
 </script>
 <style scoped>
-.body{
-	padding: 16px;
-}
 /* .tabs{
 	padding: 0 32px;
 } */
