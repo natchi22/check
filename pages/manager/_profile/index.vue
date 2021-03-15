@@ -30,7 +30,7 @@
             >
                 <a-tab-pane
                     key="1"
-                    tab="ตรวจงาน"
+                    tab="ล่าช้า"
                 >
                     <div class="box-manager">
                         <div
@@ -54,7 +54,55 @@
                 </a-tab-pane>
                 <a-tab-pane
                     key="2"
-                    tab="รายชื่อ"
+                    tab="ตามแพลน"
+                >
+                    <div class="box-manager">
+                        <div
+                            class="box"
+                            v-for="item in inforFreelance"
+                            :key="item.id"
+                        >
+                            <img
+                                class="pic size-picfreelance"
+                                :src="item.pictureUrl"
+                                alt="รูปโปรไฟล์"
+                            >
+                            <div>
+                                <h3>
+                                    {{ item.firstName }} {{ item.lastName }}
+                                </h3>
+                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a-tab-pane>
+                <a-tab-pane
+                    key="3"
+                    tab="สำเร็จ"
+                >
+                    <div class="box-manager">
+                        <div
+                            class="box"
+                            v-for="item in inforFreelance"
+                            :key="item.id"
+                        >
+                            <img
+                                class="pic size-picfreelance"
+                                :src="item.pictureUrl"
+                                alt="รูปโปรไฟล์"
+                            >
+                            <div>
+                                <h3>
+                                    {{ item.firstName }} {{ item.lastName }}
+                                </h3>
+                                <p>จำนวนงาน: {{ countTask(item.lineId) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a-tab-pane>
+                <a-tab-pane
+                    key="4"
+                    tab="หัวหน้างาน"
                 >
                     <button
                         style="margin-top: 8px; margin-bottom: 8px"
