@@ -331,7 +331,6 @@ export default {
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 26px 30px;
     margin: 0 10px 20px 10px;
-    display: flex;
 }
 .box-manager{
     max-height: 500px;
