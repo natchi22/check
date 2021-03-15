@@ -41,35 +41,9 @@
                         >
                             {{ item }}
                             <div class="box-top">
-                                <h1>
-                                    ชื่อโปรเจค
-                                </h1>
-                                <!-- สถานะงานใหญ่ -->
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
-                                    class="btn-status btn-succeed"
-                                >
-                                    <h3>
-                                        งานสำเร็จ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
-                                    class="btn-status btn-wait"
-                                >
-                                    <h3>
-                                        ตามแผนการ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
-                                    class="btn-status btn-process"
-                                >
-                                    <h3>
-                                        ช้ากว่ากำหนด
-                                    </h3>
-                                </div>
-                                <!-- จบสถานะงานใหญ่ -->
+                                <h2>
+                                    {{ item.name }}
+                                </h2>
                             </div>
                             <div class="box-end">
                                 <!-- <img
@@ -78,7 +52,7 @@
                                     alt="รูปโปรไฟล์"
                                 > -->
                                 <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ manager }}
+                                    ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
                             </div>
                         </div>
@@ -97,39 +71,13 @@
                         >
                             {{ item }}
                             <div class="box-top">
-                                <h1>
-                                    ชื่อโปรเจค
-                                </h1>
-                                <!-- สถานะงานใหญ่ -->
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
-                                    class="btn-status btn-succeed"
-                                >
-                                    <h3>
-                                        งานสำเร็จ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
-                                    class="btn-status btn-wait"
-                                >
-                                    <h3>
-                                        ตามแผนการ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
-                                    class="btn-status btn-process"
-                                >
-                                    <h3>
-                                        ช้ากว่ากำหนด
-                                    </h3>
-                                </div>
-                                <!-- จบสถานะงานใหญ่ -->
+                                <h2>
+                                    {{ item.name }}
+                                </h2>
                             </div>
                             <div class="box-end">
                                 <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ manager }}
+                                    ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
                             </div>
                         </div>
@@ -148,35 +96,9 @@
                         >
                             {{ item }}
                             <div class="box-top">
-                                <h1>
-                                    ชื่อโปรเจค
-                                </h1>
-                                <!-- สถานะงานใหญ่ -->
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
-                                    class="btn-status btn-succeed"
-                                >
-                                    <h3>
-                                        งานสำเร็จ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
-                                    class="btn-status btn-wait"
-                                >
-                                    <h3>
-                                        ตามแผนการ
-                                    </h3>
-                                </div>
-                                <div
-                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
-                                    class="btn-status btn-process"
-                                >
-                                    <h3>
-                                        ช้ากว่ากำหนด
-                                    </h3>
-                                </div>
-                                <!-- จบสถานะงานใหญ่ -->
+                                <h2>
+                                    {{ item.name }}
+                                </h2>
                             </div>
                             <div class="box-end">
                                 <!-- <img
@@ -185,7 +107,7 @@
                                     alt="รูปโปรไฟล์"
                                 > -->
                                 <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ manager }}
+                                    ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
                             </div>
                         </div>
@@ -203,7 +125,6 @@
                     >
                         เพิ่มหัวหน้างาน
                     </button>
-                    {{ inforManagers }}
                     <div class="box-manager">
                         <div
                             class="box"
@@ -302,7 +223,6 @@ export default {
             inforManagers.forEach((doc)=>{
                 this.inforManagers.push(doc.data())
             })
-            console.log(this.inforManagers)
         },
         async getFreelanceData() {
             const inforFreelance = await this.$fireStore.collection("Freelance").get()
@@ -342,7 +262,13 @@ export default {
             else {
                 return `LATE`
             }
-        }
+        },
+        showManager(managerId) {
+            const manager = this.inforManagers.find(el => el.managerId == managerId)
+            if (manager) {
+                return `${manager.fName} ${manager.lName}`
+            }
+        },
     },
     async mounted() {
         this.getUserData()
