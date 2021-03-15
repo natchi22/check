@@ -75,7 +75,6 @@
                         </div> -->
                         <div
                             class="box"
-                          
                         >
                             <div class="box-top">
                                 <h1>
@@ -113,11 +112,10 @@
                                     :src="profile.pictureUrl"
                                     alt="รูปโปรไฟล์"
                                 >
-                               <h3 style="margin-bottom: 0px !important;">
+                                <h3 style="margin-bottom: 0px !important;">
                                     ชื่อ สกุล
-                                </h3> 
+                                </h3>
                             </div>
-                            
                         </div>
                     </div>
                 </a-tab-pane>
@@ -163,7 +161,6 @@ export default {
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task").get()
             inforTask.forEach((doc)=>{
-                console.log(doc.data())
                 this.inforTask.push(doc.data())
             })
         },
