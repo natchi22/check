@@ -73,6 +73,9 @@ export default {
                 lastName:'สกุล หัวหน้า',
             },
             list:'ลิสงาน',
+            task:{
+                endDate:'12/03/2021',
+            }
         }
     },
     
