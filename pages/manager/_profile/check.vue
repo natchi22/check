@@ -1,5 +1,6 @@
 <template>
     <div class="body">
+        <!-- หน้าเลือกตรวจงาน -->
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
             <h2>{{ inforManager.firstName }}  {{ inforManager.lastName }}</h2>
@@ -25,21 +26,17 @@
                 >
                 <h3>{{fName }} {{lName}}</h3>
             </div>
-            <CellStepProject/>
+            
             <div class="div-task">
-
+                ...
             </div>
 
         </div>
     </div>
 </template>
 <script>
-import CellStepProject from '@/component/freelance/CellStepProject'
 import { mapState } from 'vuex'
 export default {
-    components:{
-        CellStepProject
-    },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
