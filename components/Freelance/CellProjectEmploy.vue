@@ -31,13 +31,13 @@
                     </div>
                 </div>
 
-                <!-- <div class="div-contact-mn">
+                <div class="div-contact-mn">
                     <a-icon
                         type="phone"
                         :style="{ color: '#3ABCA7',fontSize: '20px' }"
                     />
                     <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
-                </div> -->
+                </div>
                 <div class="dateTask">
                     <h3 class="topic">
                         เริ่ม :
