@@ -51,7 +51,7 @@
                 <div class="">
                     <div class="main">
                         <h2 class="topic">
-                            แนบ link งาน
+                            แนบ link งาน :
                         </h2>
                         <a
                            
@@ -63,7 +63,7 @@
                     </div>
                     <div class="main">
                         <h2 class="topic">
-                            รายละเอียด
+                            รายละเอียด :
                         </h2>
                         <h3
                             class="detail"
@@ -81,7 +81,7 @@
                         v-if="task.comment"
                     >
                         <h2 class="topic">
-                            ความคิดเห็น
+                            ความคิดเห็น :
                         </h2>
                         <!-- <h3 class="detail">
                             {{ task.comment }}
@@ -96,12 +96,12 @@
                 </div>
                 <div class="div-btn">
                     <button
-                        class="btn btn-green"
+                        class="btn btn-size btn-green"
                     >
                         ยืนยัน
                     </button>
                     <button
-                        class="btn btn-wait"
+                        class="btn btn-size btn-wait"
                     >
                         แก้ไข
                     </button>
@@ -135,6 +135,7 @@ export default {
                 endDate:'12/03/2021',
                 desc:'รายละเอียด',
                 comment:'เม้น',
+                linkUrl:'งานจ่ะงาน',
 
             }
         }
@@ -169,9 +170,12 @@ export default {
     justify-content: space-between;
     margin: 0 auto;
 }
-ิ.btn{
+ิ.btn-size{
     width: 80px;
     height: 20px;
     font-size: 11px;
+}
+.detail{
+    margin: 0 0 0 16px;
 }
 </style>
