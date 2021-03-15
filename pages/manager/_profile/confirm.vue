@@ -40,13 +40,25 @@
                         <h3>{{ task.endDate }}</h3>
                     </div>
                     <div
-                        v-if="task.status === `PENDING`"
+                        
                         class="btn-status btn-wait"
                     >
                         <h3>
                             รอตรวจ
                         </h3>
                     </div>
+                </div>
+                <div class="div-btn">
+                    <a-button
+                        
+                    >
+                        ยืนยัน
+                    </a-button>
+                    <a-button
+                        
+                    >
+                        แก้ไข
+                    </a-button>
                 </div>
             </div>
 
@@ -101,5 +113,10 @@ export default {
 }
 .div-name{
     display: flex;
+}
+.div-btn{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
 }
 </style>
