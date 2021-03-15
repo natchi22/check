@@ -82,7 +82,7 @@
                                 </h1>
                                 <!-- สถานะงานใหญ่ -->
                                 <div
-                                    v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `DONE`"
                                     class="btn-status btn-succeed"
                                 >
                                     <h3>
@@ -90,7 +90,7 @@
                                     </h3>
                                 </div>
                                 <div
-                                    v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `ON_PLAN`"
                                     class="btn-status btn-wait"
                                 >
                                     <h3>
@@ -98,7 +98,7 @@
                                     </h3>
                                 </div>
                                 <div
-                                    v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
+                                    v-if="task && checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) === `LATE`"
                                     class="btn-status btn-process"
                                 >
                                     <h3>
