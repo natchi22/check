@@ -53,10 +53,6 @@
                         <h2 class="topic">
                             แนบ link งาน
                         </h2>
-                        <a-input
-                         
-                            placeholder="link งาน หรือ url รูปภาพ"
-                        />
                         <a
                            
                         >
@@ -69,12 +65,6 @@
                         <h2 class="topic">
                             รายละเอียด
                         </h2>
-                        <a-textarea
-                          
-                            class="boxInput"
-                            placeholder="รายละเอียดงาน*"
-                           
-                        />
                         <h3
                             class="detail"
                             v-if="task.desc"
@@ -93,9 +83,15 @@
                         <h2 class="topic">
                             ความคิดเห็น
                         </h2>
-                        <h3 class="detail">
+                        <!-- <h3 class="detail">
                             {{ task.comment }}
-                        </h3>
+                        </h3> -->
+                        <a-textarea
+                          
+                            class="boxInput"
+                            placeholder="ความคิดเห็น*"
+                           
+                        />
                     </div>
                 </div>
                 <div class="div-btn">
@@ -172,5 +168,10 @@ export default {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
+}
+ิ.btn{
+    width: 80px;
+    height: 20px;
+    font-size: 11px;
 }
 </style>
