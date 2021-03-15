@@ -48,17 +48,67 @@
                         </h3>
                     </div>
                 </div>
+                <div class="">
+                    <div class="main">
+                        <h2 class="topic">
+                            แนบ link งาน
+                        </h2>
+                        <a-input
+                         
+                            placeholder="link งาน หรือ url รูปภาพ"
+                        />
+                        <a
+                           
+                        >
+                            <h3 class="detail linkUrl">
+                                {{ task.linkUrl }}
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <h2 class="topic">
+                            รายละเอียด
+                        </h2>
+                        <a-textarea
+                          
+                            class="boxInput"
+                            placeholder="รายละเอียดงาน*"
+                           
+                        />
+                        <h3
+                            class="detail"
+                            v-if="task.desc"
+                        >
+                            {{ task.desc }}
+                        </h3>
+                    </div>
+                    <hr
+                        class="line"
+                        v-if="task.comment"
+                    >
+                    <div
+                        class="main"
+                        v-if="task.comment"
+                    >
+                        <h2 class="topic">
+                            ความคิดเห็น
+                        </h2>
+                        <h3 class="detail">
+                            {{ task.comment }}
+                        </h3>
+                    </div>
+                </div>
                 <div class="div-btn">
-                    <a-button
-                        
+                    <button
+                        class="btn btn-green"
                     >
                         ยืนยัน
-                    </a-button>
-                    <a-button
-                        
+                    </button>
+                    <button
+                        class="btn btn-wait"
                     >
                         แก้ไข
-                    </a-button>
+                    </button>
                 </div>
             </div>
 
@@ -87,6 +137,9 @@ export default {
             list:'ลิสงาน',
             task:{
                 endDate:'12/03/2021',
+                desc:'รายละเอียด',
+                comment:'เม้น',
+
             }
         }
     },
@@ -118,5 +171,6 @@ export default {
     width: 200px;
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
 }
 </style>
