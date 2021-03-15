@@ -203,6 +203,7 @@
                     >
                         เพิ่มหัวหน้างาน
                     </button>
+                    {{ inforManagers }}
                     <div class="box-manager">
                         <div
                             class="box"
@@ -243,7 +244,7 @@ export default {
             this.inforTask.forEach(element => {
                 const calPlan = this.calPlan(element.startDate, element.endDate)
                 const calReal = this.calReal(element.taskList)
-                if (checkStatus(calPlan, calReal) === `LATE`) {
+                if (this.checkStatus(calPlan, calReal) === `LATE`) {
                     res.push(element)
                 }
             })
@@ -254,7 +255,7 @@ export default {
             this.inforTask.forEach(element => {
                 const calPlan = this.calPlan(element.startDate, element.endDate)
                 const calReal = this.calReal(element.taskList)
-                if (checkStatus(calPlan, calReal) === `ON_PLAN`) {
+                if (this.checkStatus(calPlan, calReal) === `ON_PLAN`) {
                     res.push(element)
                 }
             })
@@ -265,7 +266,7 @@ export default {
             this.inforTask.forEach(element => {
                 const calPlan = this.calPlan(element.startDate, element.endDate)
                 const calReal = this.calReal(element.taskList)
-                if (checkStatus(calPlan, calReal) === `DONE`) {
+                if (this.checkStatus(calPlan, calReal) === `DONE`) {
                     res.push(element)
                 }
             })
