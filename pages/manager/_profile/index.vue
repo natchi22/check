@@ -42,7 +42,7 @@
                             {{ item }}
                             <div class="box-top">
                                 <h1>
-                                    ชื่อโปรเจค
+                                    {{name.item}}
                                 </h1>
                                 <!-- สถานะงานใหญ่ -->
                                 <div
@@ -307,7 +307,7 @@ export default {
     display: flex;
     flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 17px 30px;
+    padding: 26px 30px;
     margin: 0 10px 20px 10px;
     display: flex;
 }
@@ -322,6 +322,10 @@ export default {
 }
 .box-end{
     display: flex;
+}
+.box-end h3{
+    margin: 5px 0 0 7px;
+    height: 20px;
 }
 @media screen and (max-width: 1920px ) and (min-width: 768px ){
 /* .tabs{
