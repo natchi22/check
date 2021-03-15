@@ -231,12 +231,9 @@
     </div>
 </template>
 <script>
-// import CellBoxProject from '@/component/CellBoxProject'
+import moment from 'moment'
 import { mapState } from 'vuex'
 export default {
-    // components:{
-    //     CellBoxProject,
-    // },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -304,6 +301,7 @@ export default {
             inforManagers.forEach((doc)=>{
                 this.inforManagers.push(doc.data())
             })
+            console.log(this.inforManagers)
         },
         async getFreelanceData() {
             const inforFreelance = await this.$fireStore.collection("Freelance").get()
