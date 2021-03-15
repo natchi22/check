@@ -8,7 +8,6 @@
             >
             <nuxt-link
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
-                v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`"
             >
                 <button class="btn btn-green btn-size">
                     แก้ไขข้อมูลส่วนตัว
@@ -60,6 +59,7 @@ export default {
     async mounted () {
         const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
+            console.log(doc.data())
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
