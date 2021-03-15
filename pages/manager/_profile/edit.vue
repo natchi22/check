@@ -5,20 +5,29 @@
             :src="profile.pictureUrl"
             alt="รูปโปรไฟล์"
         >
-        <h2>ชื่อ</h2>
+        <h2 v-if="!isAdmin">
+            ชื่อ
+        </h2>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="ชื่อ*"
             v-model="fName"
         >
-        <h2>นามสกุล</h2>
+        <h2 v-if="!isAdmin">
+            นามสกุล
+        </h2>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="นามสกุล*"
             v-model="lName"
         >
-        <h2>เบอร์โทรศัพท์</h2>
+        <h2 v-if="!isAdmin">
+            เบอร์โทรศัพท์
+        </h2>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
@@ -63,17 +72,20 @@ export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
         ...mapState({
             profile: state => state.profile.profileData
-        })
+        }),
+        isAdmin() {
+            return this.$fireAuth.currentUser.email === `superadmin@gmail.com`
+        }
     },
     async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
         const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
+            console.log(doc.data())
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
             this.email = doc.data().email
-            this.password = doc.data().password
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
