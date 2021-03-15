@@ -17,7 +17,7 @@
                     {{name}}
                 </h1>
             </div>
-            <div>
+            <div class="div-freelance">
                 <!-- รูปfreelance -->
                 <img
                         class="pic size-picfreelance"
@@ -104,6 +104,12 @@ export default {
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 26px 30px;
     margin: 0 10px 20px 10px;
+}
+.div-freelance{
     display: flex;
+}
+.div-freelance h3{
+    margin: 5px 0 0 7px;
+    height: 20px;
 }
 </style>
