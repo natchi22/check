@@ -28,7 +28,26 @@
             </div>
             
             <div class="div-task">
-                ...
+                <h2>
+                    {{list}}
+                </h2>
+                <div class="box-status">
+                    <div class="box-date">
+                        <a-icon
+                            type="clock-circle"
+                            :style="{ fontSize: '14px', color: '#ffffff', padding: '4px 0px' }"
+                        />
+                        <h3>{{ task.endDate }}</h3>
+                    </div>
+                    <div
+                        v-if="task.status === `PENDING`"
+                        class="btn-status btn-wait"
+                    >
+                        <h3>
+                            รอตรวจ
+                        </h3>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -52,7 +71,8 @@ export default {
             inforManager:{
                 firstName:'ชื่อ',
                 lastName:'สกุล หัวหน้า',
-            }
+            },
+            list:'ลิสงาน',
         }
     },
     
@@ -65,6 +85,16 @@ export default {
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 26px 30px;
     margin: 0 10px 20px 10px;
+}
+.size-pic{
+    width: 30px;
+	height: 30px;
+	margin: 0 0 0 15px;
+}
+.size-picfreelance{
+    width: 60px;
+	height: 60px;
+	margin: 0 24px 0 0;
 }
 .div-name{
     display: flex;
