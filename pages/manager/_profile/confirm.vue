@@ -14,7 +14,7 @@
         </div>
         <div class="div-project">
             <h1>
-                {{project}}
+                {{ project }}
             </h1>
         </div>
         <div class="box">
@@ -24,12 +24,12 @@
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
-                <h3>{{fName }} {{lName}}</h3>
+                <h3>{{ fName }} {{ lName }}</h3>
             </div>
-            
+
             <div class="div-task">
                 <h2>
-                    {{list}}
+                    {{ list }}
                 </h2>
                 <div class="box-status">
                     <div class="box-date">
@@ -40,7 +40,7 @@
                         <h3>{{ task.endDate }}</h3>
                     </div>
                     <div
-                        
+
                         class="btn-status btn-wait"
                     >
                         <h3>
@@ -53,9 +53,7 @@
                         <h2 class="topic">
                             แนบ link งาน :
                         </h2>
-                        <a
-                           
-                        >
+                        <a>
                             <h3 class="detail linkUrl">
                                 {{ task.linkUrl }}
                             </h3>
@@ -87,10 +85,9 @@
                             {{ task.comment }}
                         </h3> -->
                         <a-textarea
-                          
+
                             class="boxInput"
                             placeholder="ความคิดเห็น*"
-                           
                         />
                     </div>
                 </div>
@@ -107,7 +104,6 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -121,26 +117,26 @@ export default {
     },
     data() {
         return {
-            manager:'ชื่อหัวหน้า',
-            email:'email',
-            project:'ชื่อโปรเจค',
-            fName:'ชื่อ',
-            lName:'สกุล ฟรีแลนซ์',
-            inforManager:{
-                firstName:'ชื่อ',
-                lastName:'สกุล หัวหน้า',
+            manager: 'ชื่อหัวหน้า',
+            email: 'email',
+            project: 'ชื่อโปรเจค',
+            fName: 'ชื่อ',
+            lName: 'สกุล ฟรีแลนซ์',
+            inforManager: {
+                firstName: 'ชื่อ',
+                lastName: 'สกุล หัวหน้า',
             },
-            list:'ลิสงาน',
-            task:{
-                endDate:'12/03/2021',
-                desc:'รายละเอียด',
-                comment:'เม้น',
-                linkUrl:'งานจ่ะงาน',
+            list: 'ลิสงาน',
+            task: {
+                endDate: '12/03/2021',
+                desc: 'รายละเอียด',
+                comment: 'เม้น',
+                linkUrl: 'งานจ่ะงาน',
 
             }
         }
     },
-    
+
 }
 </script>
 <style scoped>

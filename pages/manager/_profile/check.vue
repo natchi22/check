@@ -14,7 +14,7 @@
         </div>
         <div>
             <h1>
-                {{project}}
+                {{ project }}
             </h1>
         </div>
         <div class="box">
@@ -24,13 +24,12 @@
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
-                <h3>{{fName }} {{lName}}</h3>
+                <h3>{{ fName }} {{ lName }}</h3>
             </div>
-            
+
             <div class="div-task">
                 ...
             </div>
-
         </div>
     </div>
 </template>
@@ -44,14 +43,14 @@ export default {
     },
     data() {
         return {
-            manager:'ชื่อหัวหน้า',
-            email:'email',
-            project:'ชื่อโปรเจค',
-            fName:'ชื่อ',
-            lName:'สกุล ฟรีแลนซ์',
+            manager: 'ชื่อหัวหน้า',
+            email: 'email',
+            project: 'ชื่อโปรเจค',
+            fName: 'ชื่อ',
+            lName: 'สกุล ฟรีแลนซ์',
         }
     },
-  
+
 }
 </script>
 <style scoped>
