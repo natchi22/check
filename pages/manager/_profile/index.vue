@@ -15,15 +15,6 @@
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
             class="tabs"
         >
-            <!-- <a-alert
-                message="งานขึ้นบ้านใหม่"
-                description="ช้ากว่ากำหนดแล้ว"
-                type="warning"
-                show-icon
-                closable
-                @close="onClose"
-                class="alert"
-            /> -->
             <a-tabs
                 type="card"
                 @change="callback"
@@ -45,11 +36,9 @@
                                 </h2>
                             </div>
                             <div class="box-end">
-                                <!-- <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                > -->
+                                <a-avatar :size="52">
+                                    {{ showManager(item.manager).charAt(0) }}
+                                </a-avatar>
                                 <h3 style="margin-bottom: 0px !important;">
                                     ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
@@ -74,6 +63,9 @@
                                 </h2>
                             </div>
                             <div class="box-end">
+                                <a-avatar :size="52">
+                                    {{ showManager(item.manager).charAt(0) }}
+                                </a-avatar>
                                 <h3 style="margin-bottom: 0px !important;">
                                     ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
@@ -98,11 +90,9 @@
                                 </h2>
                             </div>
                             <div class="box-end">
-                                <!-- <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                > -->
+                                <a-avatar :size="52">
+                                    {{ showManager(item.manager).charAt(0) }}
+                                </a-avatar>
                                 <h3 style="margin-bottom: 0px !important;">
                                     ผู้ดูแล : {{ showManager(item.manager) }}
                                 </h3>
