@@ -5,7 +5,7 @@
             v-for="item in tasks"
             :key="item.id"
         >
-            <div v-if="tasks.length > 0">
+            <div>
                 <div
                     class="box-top"
                     v-if="item"
@@ -26,15 +26,19 @@
                     </h3>
                 </div>
             </div>
-            <div
-                class="no-task"
+        </div>
+        <div
+            v-if="tasks.length === 0"
+            class="no-task"
+        >
+            <img
+                class="icon-empty"
+                style="opacity: 0.5"
+                src="~/assets/images/empty-box.png"
             >
-                <img
-                    class="icon-empty"
-                    src="~/assets/images/empty-box.png"
-                >
-                <p>ไม่มีงานในสถานะนี้</p>
-            </div>
+            <p style="margin-top: 5px">
+                ไม่มีงานในสถานะนี้
+            </p>
         </div>
     </div>
 </template>
