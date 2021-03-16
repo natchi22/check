@@ -39,7 +39,6 @@
                             v-for="item in lateTask"
                             :key="item.id"
                         >
-                            {{ item }}
                             <div class="box-top">
                                 <h2>
                                     {{ item.name }}
@@ -93,7 +92,6 @@
                             v-for="item in successTask"
                             :key="item.id"
                         >
-                            {{ item }}
                             <div class="box-top">
                                 <h2>
                                     {{ item.name }}
@@ -157,6 +155,8 @@
 <script>
 import moment from 'moment'
 import { mapState } from 'vuex'
+
+
 export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({

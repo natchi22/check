@@ -31,6 +31,8 @@
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้รูปไม่ต้องเอามา
+import toastr from 'toastr'
+
 export default {
     data() {
         return {
