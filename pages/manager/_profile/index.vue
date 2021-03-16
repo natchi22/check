@@ -299,7 +299,7 @@ export default {
     margin: 0 10px 20px 10px;
 }
 .box-manager{
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: scroll;
     padding: 7px;
 }
