@@ -11,7 +11,7 @@
                 </h2>
             </div>
             <div class="box-end">
-                <a-avatar :size="52">
+                <a-avatar :size="36">
                     {{ showManager(item.manager).charAt(0) }}
                 </a-avatar>
                 <h3 style="margin-bottom: 0px !important;">

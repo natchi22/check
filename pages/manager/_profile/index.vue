@@ -17,7 +17,6 @@
         >
             <a-tabs
                 type="card"
-                @change="callback"
             >
                 <a-tab-pane
                     key="1"
@@ -69,15 +68,30 @@
             </a-tabs>
         </div>
         <div v-else>
-            <a-alert
-                message="งานขึ้นบ้านใหม่"
-                description="ช้ากว่ากำหนดแล้ว"
-                type="warning"
-                show-icon
-                closable
-                @close="onClose"
-                class="alert"
-            />
+            <a-tabs
+                type="card"
+            >
+                <a-tab-pane
+                    key="1"
+                    tab="ช้ากว่ากำหนด"
+                >
+                    <CheckTaskBox :tasks="lateTask" />
+                </a-tab-pane>
+
+                <a-tab-pane
+                    key="2"
+                    tab="ตามแผนงาน"
+                >
+                    <CheckTaskBox :tasks="onPlanTask" />
+                </a-tab-pane>
+
+                <a-tab-pane
+                    key="3"
+                    tab="งานสำเร็จ"
+                >
+                    <CheckTaskBox :tasks="successTask" />
+                </a-tab-pane>
+            </a-tabs>
         </div>
     </div>
 </template>
