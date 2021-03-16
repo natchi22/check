@@ -14,20 +14,19 @@
         <div class="box">
             <div>
                 <h1>
-                    {{name}}
+                    {{ name }}
                 </h1>
             </div>
             <div class="div-freelance">
                 <!-- รูปfreelance -->
                 <img
-                        class="pic size-picfreelance"
-                        :src="inforFreelance.pictureUrl"
-                        alt="รูปโปรไฟล์"
-                    >
-                <h3>{{fName }} {{ lName}}</h3>
+                    class="pic size-picfreelance"
+                    :src="inforFreelance.pictureUrl"
+                    alt="รูปโปรไฟล์"
+                >
+                <h3>{{ fName }} {{ lName }}</h3>
             </div>
         </div>
-        
     </div>
 </template>
 <script>
@@ -40,9 +39,9 @@ export default {
     },
     data() {
         return {
-            name:'ชื่อโปรเจค',
-            fName:'ชื่อ',
-            lName:'สกุล freelance',
+            name: 'ชื่อโปรเจค',
+            fName: 'ชื่อ',
+            lName: 'สกุล freelance',
             inforManager: {},
             inforTask: [],
             inforFreelance: [],

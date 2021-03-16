@@ -5,24 +5,36 @@
             v-for="item in tasks"
             :key="item.id"
         >
-            <div
-                class="box-top"
-                v-if="item"
-            >
-                <h2>
-                    {{ item.name }}
-                </h2>
+            <div v-if="tasks.length > 0">
+                <div
+                    class="box-top"
+                    v-if="item"
+                >
+                    <h2>
+                        {{ item.name }}
+                    </h2>
+                </div>
+                <div
+                    class="box-end"
+                    v-if="item"
+                >
+                    <a-avatar :size="36">
+                        {{ showManager(item.manager).charAt(0) }}
+                    </a-avatar>
+                    <h3 style="margin-bottom: 0px !important;">
+                        ผู้ดูแล : {{ showManager(item.manager) }}
+                    </h3>
+                </div>
             </div>
             <div
-                class="box-end"
-                v-if="item"
+                v-else
+                class="no-task"
             >
-                <a-avatar :size="36">
-                    {{ showManager(item.manager).charAt(0) }}
-                </a-avatar>
-                <h3 style="margin-bottom: 0px !important;">
-                    ผู้ดูแล : {{ showManager(item.manager) }}
-                </h3>
+                <img
+                    class="icon-empty"
+                    src="~/assets/images/empty-box.png"
+                >
+                <p>ไม่มีงานในสถานะนี้</p>
             </div>
         </div>
     </div>
@@ -65,5 +77,13 @@ export default {
 .box-end h3{
     margin: 5px 0 0 7px;
     height: 20px;
+}
+.no-task{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 </style>
