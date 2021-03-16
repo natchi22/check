@@ -1,5 +1,6 @@
 <template>
     <div class="box-manager">
+        {{ tasks.length }}
         <div
             class="box"
             v-for="item in tasks"
