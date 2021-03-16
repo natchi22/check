@@ -22,21 +22,30 @@
                     key="1"
                     tab="ช้ากว่ากำหนด"
                 >
-                    <CheckTaskBox :tasks="lateTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="lateTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
-                    <CheckTaskBox :tasks="onPlanTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="onPlanTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="3"
                     tab="งานสำเร็จ"
                 >
-                    <CheckTaskBox :tasks="successTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="successTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
@@ -75,21 +84,30 @@
                     key="1"
                     tab="ช้ากว่ากำหนด"
                 >
-                    <CheckTaskBox :tasks="lateTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="lateTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
-                    <CheckTaskBox :tasks="onPlanTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="onPlanTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="3"
                     tab="งานสำเร็จ"
                 >
-                    <CheckTaskBox :tasks="successTask" />
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="successTask"
+                    />
                 </a-tab-pane>
             </a-tabs>
         </div>

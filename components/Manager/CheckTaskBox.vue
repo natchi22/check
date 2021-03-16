@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    props: [ 'tasks' ],
+    props: [ 'tasks', 'inforManagers' ],
     methods: {
         showManager(managerId) {
             const manager = this.inforManagers.find(el => el.managerId == managerId)
