@@ -5,12 +5,18 @@
             v-for="item in tasks"
             :key="item.id"
         >
-            <div class="box-top">
+            <div
+                class="box-top"
+                v-if="item"
+            >
                 <h2>
                     {{ item.name }}
                 </h2>
             </div>
-            <div class="box-end">
+            <div
+                class="box-end"
+                v-if="item"
+            >
                 <a-avatar :size="36">
                     {{ showManager(item.manager).charAt(0) }}
                 </a-avatar>
