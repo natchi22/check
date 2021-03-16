@@ -55,7 +55,6 @@ export default {
             if (this.email && this.password) {
                 try {
                     await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password).then((response)=>{
-                        console.log(response)
                         this.$router.push(`/manager/${response.user.uid}`)
                     })
                 }

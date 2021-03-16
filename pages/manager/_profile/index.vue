@@ -23,82 +23,21 @@
                     key="1"
                     tab="ช้ากว่ากำหนด"
                 >
-                    <div class="box-manager">
-                        <!-- <CellBoxProject/> -->
-                        <div
-                            class="box"
-                            v-for="item in lateTask"
-                            :key="item.id"
-                        >
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <a-avatar :size="52">
-                                    {{ showManager(item.manager).charAt(0) }}
-                                </a-avatar>
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox :tasks="lateTask" />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
-                    <div class="box-manager">
-                        <div
-                            class="box"
-                            v-for="item in onPlanTask"
-                            :key="item.id"
-                        >
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <a-avatar :size="52">
-                                    {{ showManager(item.manager).charAt(0) }}
-                                </a-avatar>
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox :tasks="onPlanTask" />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="3"
                     tab="งานสำเร็จ"
                 >
-                    <div class="box-manager">
-                        <div
-                            class="box"
-                            v-for="item in successTask"
-                            :key="item.id"
-                        >
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <a-avatar :size="52">
-                                    {{ showManager(item.manager).charAt(0) }}
-                                </a-avatar>
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox :tasks="successTask" />
                 </a-tab-pane>
 
                 <a-tab-pane
@@ -145,9 +84,12 @@
 <script>
 import moment from 'moment'
 import { mapState } from 'vuex'
-
+import CheckTaskBox from '~/components/Manager/CheckTaskBox'
 
 export default {
+    components: {
+        CheckTaskBox
+    },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -313,7 +255,4 @@ export default {
 
 } */
 }
-</style>
-<style>
-
 </style>
