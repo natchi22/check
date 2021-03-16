@@ -1,6 +1,5 @@
 <template>
     <div class="box-manager">
-        {{ tasks.length }}
         <div
             class="box"
             v-for="item in tasks"
@@ -28,7 +27,7 @@
                 </div>
             </div>
             <div
-                v-else
+                v-if="tasks.length === 0"
                 class="no-task"
             >
                 <img
