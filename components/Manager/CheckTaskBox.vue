@@ -27,7 +27,6 @@
                 </div>
             </div>
             <div
-                v-if="tasks.length === 0"
                 class="no-task"
             >
                 <img
