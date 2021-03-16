@@ -133,6 +133,9 @@
                             <h3 style="margin-bottom: 0px !important;">
                                 {{ item.fName }} {{ item.lName }}
                             </h3>
+                            <h4>
+                                Email : {{ item.email }}
+                            </h4>
                         </div>
                     </div>
                 </a-tab-pane>
