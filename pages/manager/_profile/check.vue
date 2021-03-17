@@ -20,7 +20,7 @@
         <div class="box">
             <div class="div-name">
                 <img
-                    class="pic size-pic"
+                    class="pic picfreelance"
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
@@ -67,5 +67,10 @@ export default {
 }
 .div-name{
     display: flex;
+}
+.size-picfreelance{
+    width: 60px;
+	height: 60px;
+	margin: 0 24px 0 0;
 }
 </style>
