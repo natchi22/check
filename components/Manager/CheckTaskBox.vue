@@ -59,7 +59,9 @@ export default {
             }
         },
         alertApprove(list) {
-            return list.includes(el => el.status === 'PENDING')
+            const isShow = list.includes(el => el.status === 'PENDING')
+            console.log(isShow, list)
+            return isShow
         }
     }
 }
