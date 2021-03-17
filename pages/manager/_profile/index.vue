@@ -86,17 +86,16 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="lateTask"
+                        :tasks="filterByManager(lateTask)"
                     />
                 </a-tab-pane>
-
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="onPlanTask"
+                        :tasks="filterByManager(onPlanTask)"
                     />
                 </a-tab-pane>
 
@@ -106,7 +105,7 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="successTask"
+                        :tasks="filterByManager(successTask)"
                     />
                 </a-tab-pane>
             </a-tabs>
@@ -177,7 +176,6 @@ export default {
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
             })
-            console.log(infor, this.$fireAuth.currentUser.uid)
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task").get()
@@ -224,12 +222,11 @@ export default {
                 return `LATE`
             }
         },
-        showManager(managerId) {
-            const manager = this.inforManagers.find(el => el.managerId == managerId)
-            if (manager) {
-                return `${manager.fName} ${manager.lName}`
-            }
-        },
+        async filterByManager(tasks) {
+            const managerId = this.$fireAuth.currentUser.uid
+            const res = tasks.filter(el => el.manager === managerId)
+            return res
+        }
     },
     async mounted() {
         this.getUserData()
