@@ -2,7 +2,7 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>{{ inforManager }}  {{ inforManager }}</h2>
+            <h2>{{ inforManager.fName }}  {{ inforManager.lName }}</h2>
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -173,7 +173,7 @@ export default {
     methods: {
         async getUserData() {
             const infor = await this.$fireStore.collection("Manager")
-                .where("lineId", '==', this.profile.userId).get()
+                .where("managerId", '==', this.profile.userId).get()
             console.log(infor, this.profile.userId)
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
