@@ -73,7 +73,7 @@
         >
         <div
             class="main"
-            v-if="!task.comment && task.status !== `IN_PROCESS`"
+            v-if="task.status !== `IN_PROCESS`"
         >
             <h2 class="topic">
                 ความคิดเห็น
@@ -81,7 +81,7 @@
             <a-textarea
                 v-if="!task.comment"
                 class="boxInput"
-                placeholder="ความคิดเห็นจากผู้ตรวจ*"
+                placeholder="ความคิดเห็น*"
                 :rows="4"
                 v-model="comment"
             />
