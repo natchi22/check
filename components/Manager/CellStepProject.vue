@@ -73,7 +73,7 @@
         >
         <div
             class="main"
-            v-if="task.comment && task.status !== `IN_PROCESS`"
+            v-if="!task.comment && task.status !== `IN_PROCESS`"
         >
             <h2 class="topic">
                 ความคิดเห็น
