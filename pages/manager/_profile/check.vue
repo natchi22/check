@@ -20,7 +20,7 @@
         <div class="box">
             <div class="div-name">
                 <img
-                    class="pic picfreelance"
+                    class="pic size-picfreelance"
                     :src="profile.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
