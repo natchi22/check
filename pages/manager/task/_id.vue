@@ -57,7 +57,7 @@
 import { mapState } from 'vuex'
 import moment from 'moment'
 import diff from 'moment'
-import CellStepProject from '@/components/Freelance/CellStepProject'
+import CellStepProject from '@/components/Manager/CellStepProject'
 
 export default {
     components: {
