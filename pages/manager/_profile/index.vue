@@ -86,7 +86,7 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="filterByManager(lateTask)"
+                        :tasks="lateTaskFilter"
                     />
                 </a-tab-pane>
                 <a-tab-pane
@@ -95,7 +95,7 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="filterByManager(onPlanTask)"
+                        :tasks="onPlanTaskFilter"
                     />
                 </a-tab-pane>
 
@@ -105,7 +105,7 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="filterByManager(successTask)"
+                        :tasks="successTaskFilter"
                     />
                 </a-tab-pane>
             </a-tabs>
@@ -157,7 +157,40 @@ export default {
                 }
             })
             return res
-        }
+        },
+        lateTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `LATE` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        onPlanTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `ON_PLAN` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        successTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `DONE` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
     },
     data() {
         return {
@@ -222,12 +255,6 @@ export default {
                 return `LATE`
             }
         },
-        async filterByManager(tasks) {
-            const managerId = this.$fireAuth.currentUser.uid
-            const res = tasks.filter(el => el.manager === managerId)
-            console.log(tasks, managerId, res)
-            return res
-        }
     },
     async mounted() {
         this.getUserData()
