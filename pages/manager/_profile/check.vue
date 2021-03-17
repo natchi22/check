@@ -44,6 +44,10 @@ export default {
     },
     data() {
         return {
+            inforManager:{
+                firstName:'ชื่อ',
+                lastName:'สกุล หัวหน้า',
+            },
             manager:'ชื่อหัวหน้า',
             email:'email',
             project:'ชื่อโปรเจค',
