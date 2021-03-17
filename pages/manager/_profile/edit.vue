@@ -59,7 +59,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -82,7 +82,6 @@ export default {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
         const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
         infor.forEach((doc)=>{
-            console.log(doc.data())
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone

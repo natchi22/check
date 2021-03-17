@@ -15,102 +15,37 @@
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
             class="tabs"
         >
-            <!-- <a-alert
-                message="งานขึ้นบ้านใหม่"
-                description="ช้ากว่ากำหนดแล้ว"
-                type="warning"
-                show-icon
-                closable
-                @close="onClose"
-                class="alert"
-            /> -->
             <a-tabs
                 type="card"
-                @change="callback"
             >
                 <a-tab-pane
                     key="1"
                     tab="ช้ากว่ากำหนด"
                 >
-                    <div class="box-manager">
-                        <!-- <CellBoxProject/> -->
-                        <div
-                            class="box"
-                            v-for="item in lateTask"
-                            :key="item.id"
-                        >
-                            {{ item }}
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <!-- <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                > -->
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="lateTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
-                    <div class="box-manager">
-                        <div
-                            class="box"
-                            v-for="item in onPlanTask"
-                            :key="item.id"
-                        >
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="onPlanTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
                     key="3"
                     tab="งานสำเร็จ"
                 >
-                    <div class="box-manager">
-                        <div
-                            class="box"
-                            v-for="item in successTask"
-                            :key="item.id"
-                        >
-                            {{ item }}
-                            <div class="box-top">
-                                <h2>
-                                    {{ item.name }}
-                                </h2>
-                            </div>
-                            <div class="box-end">
-                                <!-- <img
-                                    class="pic size-pic"
-                                    :src="profile.pictureUrl"
-                                    alt="รูปโปรไฟล์"
-                                > -->
-                                <h3 style="margin-bottom: 0px !important;">
-                                    ผู้ดูแล : {{ showManager(item.manager) }}
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="successTask"
+                    />
                 </a-tab-pane>
 
                 <a-tab-pane
@@ -133,28 +68,60 @@
                             <h3 style="margin-bottom: 0px !important;">
                                 {{ item.fName }} {{ item.lName }}
                             </h3>
+                            <h4>
+                                Email : {{ item.email }}
+                            </h4>
                         </div>
                     </div>
                 </a-tab-pane>
             </a-tabs>
         </div>
         <div v-else>
-            <a-alert
-                message="งานขึ้นบ้านใหม่"
-                description="ช้ากว่ากำหนดแล้ว"
-                type="warning"
-                show-icon
-                closable
-                @close="onClose"
-                class="alert"
-            />
+            <a-tabs
+                type="card"
+            >
+                <a-tab-pane
+                    key="1"
+                    tab="ช้ากว่ากำหนด"
+                >
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="lateTask"
+                    />
+                </a-tab-pane>
+
+                <a-tab-pane
+                    key="2"
+                    tab="ตามแผนงาน"
+                >
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="onPlanTask"
+                    />
+                </a-tab-pane>
+
+                <a-tab-pane
+                    key="3"
+                    tab="งานสำเร็จ"
+                >
+                    <CheckTaskBox
+                        :inforManagers="inforManagers"
+                        :tasks="successTask"
+                    />
+                </a-tab-pane>
+            </a-tabs>
         </div>
     </div>
 </template>
 <script>
 import moment from 'moment'
 import { mapState } from 'vuex'
+import CheckTaskBox from '~/components/Manager/CheckTaskBox'
+
 export default {
+    components: {
+        CheckTaskBox
+    },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -229,12 +196,6 @@ export default {
                 this.inforFreelance.push(doc.data())
             })
         },
-        callback(key) {
-            //console.log(key)
-        },
-        onClose(e) {
-            //console.log(e, 'I was closed.')
-        },
         countTask(id) {
             return this.inforTask.filter(item => item.freelanceId === id).length
         },
@@ -302,7 +263,7 @@ export default {
     margin: 0 10px 20px 10px;
 }
 .box-manager{
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: scroll;
     padding: 7px;
 }
@@ -326,7 +287,4 @@ export default {
 
 } */
 }
-</style>
-<style>
-
 </style>
