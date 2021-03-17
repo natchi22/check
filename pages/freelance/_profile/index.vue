@@ -154,7 +154,6 @@ h1{
 .head{
     display: flex;
     justify-content: center;
-    margin: 0 0 20px 0;
 }
 .head h2{
     margin: 0 8px 0 0;

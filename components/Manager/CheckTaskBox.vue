@@ -5,7 +5,7 @@
             v-for="item in tasks"
             :key="item.id"
         >
-            <div>
+            <nuxt-link :to="`/manager/task/${item.taskId}`">
                 <div
                     class="box-top"
                     v-if="item"
@@ -30,7 +30,7 @@
                         ผู้ดูแล : {{ showManager(item.manager) }}
                     </h3>
                 </div>
-            </div>
+            </nuxt-link>
         </div>
         <div
             v-if="tasks.length === 0"

@@ -30,6 +30,14 @@
                 />
                 <h2>{{ email }}</h2>
             </div>
+            <div class="div-btn">
+                <button
+                    class="btn btn-green"
+                    @click="back"
+                >
+                    ย้อนกลับ
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -95,5 +103,8 @@ export default {
 }
 .div-contact{
     margin: 0px 30px;
+}
+.div-btn{
+    text-align: center;
 }
 </style>
