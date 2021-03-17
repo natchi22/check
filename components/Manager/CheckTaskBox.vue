@@ -13,6 +13,10 @@
                     <h2>
                         {{ item.name }}
                     </h2>
+                    <img
+                        src="~/assets/images/stamp.png"
+                        style="transform: rotateZ(15deg); width: 100px;"
+                    >
                 </div>
                 <div
                     class="box-end"
