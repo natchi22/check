@@ -43,23 +43,15 @@ export default {
     },
     data() {
         return {
-<<<<<<< HEAD
             inforManager:{
                 firstName:'ชื่อ',
                 lastName:'สกุล หัวหน้า',
             },
-            manager:'ชื่อหัวหน้า',
-            email:'email',
-            project:'ชื่อโปรเจค',
-            fName:'ชื่อ',
-            lName:'สกุล ฟรีแลนซ์',
-=======
             manager: 'ชื่อหัวหน้า',
             email: 'email',
             project: 'ชื่อโปรเจค',
             fName: 'ชื่อ',
             lName: 'สกุล ฟรีแลนซ์',
->>>>>>> f573799e88c63aae643ea8a2d40ec398360fb01d
         }
     },
 
