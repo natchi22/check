@@ -25,13 +25,6 @@
             </div>
             <div class="form">
                 <a-icon
-                    type="phone"
-                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
-                />
-                <h2>{{ telNumber }}</h2>
-            </div>
-            <div class="form">
-                <a-icon
                     type="mail"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
@@ -41,31 +34,22 @@
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 export default {
-    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
-    },
     data() {
         return {
             fName: '',
             lName: '',
-            telNumber: '',
             email: ''
         }
     },
     methods: {
         async getManager() {
-            const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+            const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.$fireAuth.currentUser.uid).get()
             infor.forEach((doc)=>{
-                console.log('!!!!', doc.data())
-                this.fName = doc.data().firstName
-                this.lName = doc.data().lastName
-                this.telNumber = doc.data().phone
+                this.fName = doc.data().fName
+                this.lName = doc.data().lName
                 this.email = doc.data().email
-            }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
+            })
         }
     },
     async mounted () {
