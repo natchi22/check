@@ -41,6 +41,7 @@
             :key="index"
             :task="{...ts,index}"
             :taskId="taskId"
+            forManager
             @reCall="getData"
         />
         <div class="div-submit">

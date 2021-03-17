@@ -36,13 +36,15 @@
                 </h3>
             </div>
         </div>
-        <div class="main">
+        <div
+            class="main"
+        >
             <h2 class="topic">
                 แนบ link งาน
             </h2>
             <a-input
                 v-model="linkUrl"
-                v-if="!task.linkUrl"
+                v-if="!task.linkUrl && !forManager"
                 placeholder="link งาน หรือ url รูปภาพ"
             />
             <a
@@ -60,7 +62,7 @@
                 รายละเอียด
             </h2>
             <a-textarea
-                v-if="!task.desc"
+                v-if="!task.desc && !forManager"
                 class="boxInput"
                 placeholder="รายละเอียดงาน*"
                 :rows="4"
@@ -75,26 +77,45 @@
         </div>
         <hr
             class="line"
-            v-if="task.comment"
+            v-if="task.comment || forManager"
         >
         <div
             class="main"
-            v-if="task.comment"
         >
-            <h2 class="topic">
+            <h2
+                class="topic"
+                v-if="task.comment || forManager"
+            >
                 ความคิดเห็น
             </h2>
-            <h3 class="detail">
+            <a-textarea
+                v-if="!task.comment && forManager"
+                class="boxInput"
+                placeholder="ความคิดเห็นจากผู้ตรวจ*"
+                :rows="4"
+                v-model="comment"
+            />
+            <h3
+                class="detail"
+                v-if="task.comment && task.status !== `APPROVE`"
+            >
                 {{ task.comment }}
             </h3>
         </div>
         <div class="submit-task">
             <a-button
                 type="primary"
-                v-if="task.status === `IN_PROCESS`"
-                @click="submit(task)"
+                v-if="task.status === `IN_PROCESS` && !forManager"
+                @click="submit()"
             >
                 ส่งงาน
+            </a-button>
+            <a-button
+                type="primary"
+                v-if="task.status === `PENDING` && forManager"
+                @click="approve()"
+            >
+                ตรวจงาน
             </a-button>
         </div>
     </div>
@@ -104,7 +125,7 @@ import { mapState } from 'vuex'
 import toastr from 'toastr'
 
 export default {
-    props: [ 'task', 'taskId' ],
+    props: [ 'task', 'taskId', 'forManager' ],
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
@@ -114,50 +135,10 @@ export default {
         return {
             dateFormatList: [ 'DD/MM/YYYY', 'DD/MM/YY' ],
             linkUrl: '',
-            desc: ''
-            // taskShow: {
-            //     taskId: this.task.taskId,
-            //     name: this.task.name,
-            //     freelanceId: this.task.freelanceId,
-            //     startDate: this.task.startDate,
-            //     endDate: this.task.endDate,
-            //     manager: this.task.manager,
-            //     taskList: this.task.taskList,
-            //     linkUrl: this.task.linkUrl,
-            //     comment: this.task.comment,
-            //     desc: this.task.desc,
-            // }
+            desc: '',
+            comment: ''
         }
     },
-    // watch: {
-    //     'task.taskId'(val){
-    //         this.taskShow.taskId = val
-    //     },
-    //     'task.name'(val){
-    //         this.taskShow.name = val
-    //     },
-    //     'task.freelanceId'(val){
-    //         this.taskShow.freelanceId = val
-    //     },
-    //     'task.startDate'(val){
-    //         this.taskShow.startDate = val
-    //     },
-    //     'task.endDate'(val){
-    //         this.taskShow.endDate = val
-    //     },
-    //     'task.manager'(val){
-    //         this.taskShow.manager = val
-    //     },
-    //     'task.linkUrl'(val){
-    //         this.taskShow.linkUrl = val
-    //     },
-    //     'task.comment'(val){
-    //         this.taskShow.comment = val
-    //     },
-    //     'task.desc'(val){
-    //         this.taskShow.desc = val
-    //     }
-    // },
     methods: {
         async submit() {
             await this.$fireStore.collection("Task")
@@ -172,6 +153,22 @@ export default {
                         taskList: taskList
                     }).then(() => {
                         toastr.success('ส่งงานสำเร็จ')
+                        this.$emit('reCall')
+                    })
+                })
+        },
+        async approve() {
+            await this.$fireStore.collection("Task")
+                .where('taskId', '==', this.taskId)
+                .get().then((query) => {
+                    const task = query.docs[0]
+                    var taskList = task.data().taskList
+                    taskList[this.task.index].comment = this.comment
+                    taskList[this.task.index].status = 'APPROVE'
+                    task.ref.update({
+                        taskList: taskList
+                    }).then(() => {
+                        toastr.success('ตรวจงานสำเร็จ')
                         this.$emit('reCall')
                     })
                 })

@@ -30,10 +30,10 @@
                 />
                 <h2>{{ email }}</h2>
             </div>
-            <div class="div-btn">
+            <div class="div-submit">
                 <button
-                    class="btn btn-green"
-                    @click="back"
+                    class="btn btn-wait"
+                    @click="$router.go(-1)"
                 >
                     ย้อนกลับ
                 </button>
@@ -64,7 +64,7 @@ export default {
                 this.lName = doc.data().lName
                 this.email = doc.data().email
             })
-        }
+        },
     },
     async mounted () {
         await this.getManager()
