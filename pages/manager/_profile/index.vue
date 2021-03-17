@@ -173,11 +173,11 @@ export default {
     methods: {
         async getUserData() {
             const infor = await this.$fireStore.collection("Manager")
-                .where("managerId", '==', this.profile.userId).get()
-            console.log(infor, this.profile.userId)
+                .where("managerId", '==', this.$fireAuth.currentUser.uid).get()
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
             })
+            console.log(infor, this.$fireAuth.currentUser.uid)
         },
         async getTasksData() {
             const inforTask = await this.$fireStore.collection("Task").get()
