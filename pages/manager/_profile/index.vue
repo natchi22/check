@@ -225,6 +225,7 @@ export default {
         async filterByManager(tasks) {
             const managerId = this.$fireAuth.currentUser.uid
             const res = tasks.filter(el => el.manager === managerId)
+            console.log(tasks, managerId, res)
             return res
         }
     },
