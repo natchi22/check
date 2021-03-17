@@ -14,8 +14,9 @@
                         {{ item.name }}
                     </h2>
                     <img
+                        v-if="alertApprove(item.taskList) && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                         src="~/assets/images/stamp.png"
-                        style="transform: rotateZ(15deg); width: 100px;"
+                        style="transform: rotateZ(7deg); width: 108px;"
                     >
                 </div>
                 <div
@@ -57,6 +58,9 @@ export default {
                 return `${manager.fName} ${manager.lName}`
             }
         },
+        alertApprove(list) {
+            return list.includes(el => el.status === 'PENDING')
+        }
     }
 }
 </script>
@@ -66,7 +70,7 @@ export default {
     display: flex;
     flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 26px 30px;
+    padding: 14px;
     margin: 0 10px 20px 10px;
 }
 .box-manager{
