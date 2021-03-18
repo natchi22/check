@@ -79,7 +79,7 @@
                 ความคิดเห็น
             </h2>
             <a-textarea
-                v-if="task.status !== `IN_PROCESS`"
+                v-if="task.status !== `APPROVE`"
                 class="boxInput"
                 placeholder="ความคิดเห็น*"
                 :rows="4"
