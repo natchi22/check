@@ -7,6 +7,7 @@
         >
             <nuxt-link :to="`/manager/task/${item.taskId}`">
                 <div
+                    style="position: relative;"
                     class="box-top"
                     v-if="item"
                 >
@@ -16,7 +17,7 @@
                     <img
                         v-if="alertApprove(item.taskList) && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                         src="~/assets/images/stamp.png"
-                        style="transform: rotateZ(7deg); width: 108px;"
+                        class="stamp"
                     >
                 </div>
                 <div
@@ -96,5 +97,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+}
+.stamp{
+    transform: rotateZ(7deg);
+    width: 108px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
 }
 </style>
