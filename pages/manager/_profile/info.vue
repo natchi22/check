@@ -3,7 +3,7 @@
         <div class="edit">
             <img
                 class="pic size-pic"
-                :src="profile.pictureUrl"
+                :src="profile ? profile.pictureUrl : `~/assets/images/avatardefault.png`"
                 alt="รูปโปรไฟล์"
             >
             <nuxt-link
@@ -52,7 +52,13 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
+    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
+        ...mapState({
+            profile: state => state.profile.profileData
+        })
+    },
     data() {
         return {
             managerId: this.$route.params.profile,
