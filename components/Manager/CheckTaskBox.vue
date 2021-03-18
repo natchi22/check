@@ -11,7 +11,7 @@
                     class="box-top"
                     v-if="item"
                 >
-                    <h2>
+                    <h2 style="width: 71%; z-index: 1;">
                         {{ item.name }}
                     </h2>
                     <img
@@ -100,9 +100,10 @@ export default {
 }
 .stamp{
     transform: rotateZ(7deg);
-    width: 108px;
+    width: 82px;
     position: absolute;
-    right: 1px;
-    top: 1px;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
 }
 </style>
