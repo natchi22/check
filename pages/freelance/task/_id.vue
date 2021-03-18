@@ -155,18 +155,6 @@ export default {
     padding: 0 0 24px 0;
 }
 /* กรอบวันที่ใหญ่ */
-.boxTime{
-    display: flex;
-    flex-direction: row;
-    background: #FF0000;
-    border-radius: 4px;
-    padding: 3px 9px;
-}
-.boxTime h2{
-    color: #ffffff;
-    padding: 4px 0 0 4px;
-    margin-bottom: 0px;
-}
 .progress{
     margin: 0 0 20px 0;
 }

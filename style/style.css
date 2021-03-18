@@ -112,6 +112,7 @@ input{
     height: 29px;
     background-color: #FF0000;
     padding: 3px 6px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
 }
 .box-date h3{
     color: #ffffff;
@@ -134,6 +135,7 @@ input{
     width: 82px;
     height: 29px;
     padding: 3px 0px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
 }
 .btn-succeed{
     background-color: #0BB807;
@@ -158,6 +160,7 @@ input{
 .detail{
     width: 100%;
     word-wrap: break-word;
+    padding: 0 16px;
 }
 .boxInput{
     width: 100%;
@@ -173,6 +176,19 @@ input{
 }
 .upload{
     width: 250px;
+}
+.boxTime{
+    display: flex;
+    flex-direction: row;
+    background: #FF0000;
+    border-radius: 4px;
+    padding: 3px 9px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
+}
+.boxTime h2{
+    color: #ffffff;
+    padding: 4px 0 0 4px;
+    margin-bottom: 0px;
 }
 /* กรอบสเต็ปงาน */
 /* หัวชื่อผู้จัดการ */

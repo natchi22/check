@@ -1,6 +1,5 @@
 <template>
     <!-- <div class="body"> -->
-    <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
             <h1>{{ task.name }}</h1>
@@ -50,7 +49,9 @@
                 :href="task.linkUrl"
                 target="_blank"
             >
-                <h3 class="detail linkUrl">
+                <h3 
+                    class="detail linkUrl"
+                >
                     {{ task.linkUrl }}
                 </h3>
             </a>
@@ -192,18 +193,6 @@ export default {
     padding: 0 0 24px 0;
 }
 /* กรอบวันที่ใหญ่ */
-.boxTime{
-    display: flex;
-    flex-direction: row;
-    background: #FF0000;
-    border-radius: 4px;
-    padding: 3px 9px;
-}
-.boxTime h2{
-    color: #ffffff;
-    padding: 4px 0 0 4px;
-    margin-bottom: 0px;
-}
 .progress{
     margin: 0 0 20px 0;
 }
