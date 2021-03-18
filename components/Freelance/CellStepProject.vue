@@ -2,7 +2,7 @@
     <!-- <div class="body"> -->
     <div class="status">
         <div class="top-succeed">
-            <h1>{{ task.name }}</h1>
+            <h1>{{ task.name }}///{{ taskBefore.status }}</h1>
         </div>
         <div class="box-status">
             <div class="box-date">
@@ -35,7 +35,10 @@
                 </h3>
             </div>
         </div>
-        <div class="main">
+        <div
+            class="main"
+            v-if="!taskBefore || taskBefore.status !== `IN_PROCESS`"
+        >
             <h2 class="topic">
                 แนบ link งาน
             </h2>
@@ -49,14 +52,17 @@
                 :href="task.linkUrl"
                 target="_blank"
             >
-                <h3 
+                <h3
                     class="detail linkUrl"
                 >
                     {{ task.linkUrl }}
                 </h3>
             </a>
         </div>
-        <div class="main">
+        <div
+            class="main"
+            v-if="!taskBefore || taskBefore.status !== `IN_PROCESS`"
+        >
             <h2 class="topic">
                 รายละเอียด
             </h2>
@@ -76,11 +82,11 @@
         </div>
         <hr
             class="line"
-            v-if="task.comment"
+            v-if="task.comment && (!taskBefore || taskBefore.status !== `IN_PROCESS`)"
         >
         <div
             class="main"
-            v-if="task.comment"
+            v-if="task.comment && (!taskBefore || taskBefore.status !== `IN_PROCESS`)"
         >
             <h2 class="topic">
                 ความคิดเห็น
@@ -92,7 +98,7 @@
         <div class="submit-task">
             <a-button
                 type="primary"
-                v-if="task.status === `IN_PROCESS`"
+                v-if="task.status === `IN_PROCESS` && (!taskBefore || taskBefore.status !== `IN_PROCESS`)"
                 @click="submit(task)"
             >
                 ส่งงาน
@@ -105,7 +111,7 @@ import { mapState } from 'vuex'
 import toastr from 'toastr'
 
 export default {
-    props: [ 'task', 'taskId' ],
+    props: [ 'task', 'taskId', 'taskBefore' ],
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData

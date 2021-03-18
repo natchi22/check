@@ -40,6 +40,7 @@
             v-for="(ts,index) in task.taskList"
             :key="index"
             :task="{...ts,index}"
+            :taskBefore="index == 0 ? {} : task.taskList[index-1]"
             :taskId="taskId"
             @reCall="getData"
         />
