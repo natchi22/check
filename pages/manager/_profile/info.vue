@@ -9,7 +9,10 @@
             <nuxt-link
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
-                <button class="btn btn-green btn-size">
+                <button
+                    v-if="$fireAuth.currentUser && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                    class="btn btn-green btn-size"
+                >
                     แก้ไขข้อมูลส่วนตัว
                 </button>
             </nuxt-link>
@@ -49,15 +52,10 @@
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 export default {
-    computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
-        ...mapState({
-            profile: state => state.profile.profileData
-        })
-    },
     data() {
         return {
+            managerId: this.$route.params.profile,
             fName: '',
             lName: '',
             telNumber: '',
@@ -66,7 +64,7 @@ export default {
     },
     methods: {
         async getManager() {
-            const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.$fireAuth.currentUser.uid).get()
+            const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.managerId).get()
             infor.forEach((doc)=>{
                 this.fName = doc.data().fName
                 this.lName = doc.data().lName
