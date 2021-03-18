@@ -28,7 +28,7 @@
                     type="phone"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
-                <p>{{ telNumber }}</p>
+                <p>{{ telNumber ? telNumber : '-' }}</p>
             </div>
             <div class="form">
                 <a-icon
@@ -60,6 +60,7 @@ export default {
         return {
             fName: '',
             lName: '',
+            telNumber: '',
             email: ''
         }
     },
@@ -69,6 +70,7 @@ export default {
             infor.forEach((doc)=>{
                 this.fName = doc.data().fName
                 this.lName = doc.data().lName
+                this.telNumber = doc.data().telNumber
                 this.email = doc.data().email
             })
         },
