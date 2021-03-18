@@ -104,6 +104,10 @@ input{
     justify-content: space-between;
     margin-bottom: 15px;
 }
+.dateTask{
+    display: flex;
+    padding: 0 16px;
+}
     /* กรอบวันที่เล็ก */
 .box-date{
     display: flex;

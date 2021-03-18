@@ -124,10 +124,6 @@ export default {
     padding: 24px;
     margin: 0 auto 24px auto;
 }
-.dateTask{
-    display: flex;
-    padding: 0 0 0 10px;
-}
 .topic{
     width: 100%
 }
