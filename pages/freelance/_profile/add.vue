@@ -225,6 +225,9 @@ export default {
 .boxDropdown{
 	width: 100%;
 }
+.ant-btn{
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
+}
 .ant-btn-group.ant-dropdown-button{
 	width: 100%;
 }
