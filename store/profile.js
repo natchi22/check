@@ -1,6 +1,5 @@
 export const state = () => ({
     profileData: {}
-
 })
 export const mutations = {
     saveProfile (state, profile) {

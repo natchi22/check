@@ -79,7 +79,7 @@
                 ความคิดเห็น
             </h2>
             <a-textarea
-                v-if="!task.comment"
+                v-if="task.status !== `IN_PROCESS`"
                 class="boxInput"
                 placeholder="ความคิดเห็น*"
                 :rows="4"
@@ -89,7 +89,7 @@
                 v-else
                 class="detail"
             >
-                {{ task.comment }}
+                {{ task.comment ? task.comment : '-' }}
             </h3>
         </div>
         <div class="submit-task">

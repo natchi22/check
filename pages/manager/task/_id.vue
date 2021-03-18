@@ -21,6 +21,13 @@
         </div>
         <div class="div-contact-mn">
             <a-icon
+                type="user"
+                :style="{ color: '#3ABCA7',fontSize: '20px' }"
+            />
+            <h3>ผู้รับผิดชอบงาน : {{ task.freelanceId ? showFreelance(task.freelanceId) : '' }}</h3>
+        </div>
+        <div class="div-contact-mn">
+            <a-icon
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
@@ -83,9 +90,6 @@ export default {
                 name: null,
                 date: '16/01/2021'
             },
-            urlTask: 'URLงานที่แนบมา',
-            detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
-            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน',
         }
     },
     methods: {
@@ -95,6 +99,14 @@ export default {
             if (manager) {
                 return `${manager.fName} ${manager.lName}`
             }
+        },
+        showFreelance(freelanceId) {
+            var docRef = this.$fireStore.collection("Freelance").doc(freelanceId)
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    return doc.data()
+                }
+            })
         },
         calPlan(startDate, endDate) {
             const today = moment()
