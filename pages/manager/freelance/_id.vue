@@ -120,10 +120,6 @@ export default {
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 24px;
 }
-.dateTask{
-    display: flex;
-    padding: 0 0 0 10px;
-}
 .topic{
     width: 56px;
 }
