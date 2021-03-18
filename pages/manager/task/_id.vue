@@ -14,7 +14,7 @@
             <div>
                 <img
                     class="pic size-pic"
-                    :src="profile.pictureUrl"
+                    :src="freelance.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
             </div>
@@ -24,7 +24,7 @@
                 type="user"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ผู้รับผิดชอบงาน : {{ freelance }}</h3>
+            <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
         </div>
         <div class="div-contact-mn">
             <a-icon
@@ -119,17 +119,14 @@ export default {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     this.task = doc.data()
-                    console.log(this.task)
                     this.getFreelance(this.task.freelanceId)
                 }
             })
         },
-        getFreelance(id) {
-            var docFree = this.$fireStore.collection("Freelance").doc(id)
-            docFree.get().then((doc) => {
-                if (doc.exists) {
-                    this.freelance = doc.data()
-                }
+        async getFreelance(id) {
+            var docFree = await this.$fireStore.collection("Freelance").where("lineId", '==', id).get()
+            docFree.forEach((doc)=>{
+                this.freelance = doc.data()
             })
         },
         async getManagersData() {
