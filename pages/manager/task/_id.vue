@@ -24,7 +24,7 @@
                 type="user"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ผู้รับผิดชอบงาน : {{ task.freelanceId ? showFreelance(task.freelanceId) : '' }}</h3>
+            <h3>ผู้รับผิดชอบงาน : {{ freelance }}</h3>
         </div>
         <div class="div-contact-mn">
             <a-icon
@@ -78,6 +78,7 @@ export default {
     data() {
         return {
             inforManagers: [],
+            freelance: {},
             taskId: this.$route.params.id,
             task: {},
             form: {
@@ -100,14 +101,6 @@ export default {
                 return `${manager.fName} ${manager.lName}`
             }
         },
-        showFreelance(freelanceId) {
-            var docRef = this.$fireStore.collection("Freelance").doc(freelanceId)
-            docRef.get().then((doc) => {
-                if (doc.exists) {
-                    return doc.data()
-                }
-            })
-        },
         calPlan(startDate, endDate) {
             const today = moment()
             const start = moment(startDate, "DD/MM/YYYY")
@@ -126,6 +119,13 @@ export default {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     this.task = doc.data()
+                    var docFree = this.$fireStore.collection("Freelance").doc(this.task.freelanceId)
+                    docFree.get().then((doc) => {
+                        if (doc.exists) {
+                            this.freelance = doc.data()
+                        }
+                        console.log(this.freelance)
+                    })
                 }
             })
         },
