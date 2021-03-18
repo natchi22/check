@@ -120,13 +120,15 @@ export default {
                 if (doc.exists) {
                     this.task = doc.data()
                     console.log(this.task)
-                    var docFree = this.$fireStore.collection("Freelance").doc(this.task.freelanceId)
-                    docFree.get().then((doc) => {
-                        if (doc.exists) {
-                            this.freelance = doc.data()
-                        }
-                        console.log(this.freelance)
-                    })
+                    this.getFreelance(this.task.freelanceId)
+                }
+            })
+        },
+        getFreelance(id) {
+            var docFree = this.$fireStore.collection("Freelance").doc(id)
+            docFree.get().then((doc) => {
+                if (doc.exists) {
+                    this.freelance = doc.data()
                 }
             })
         },
