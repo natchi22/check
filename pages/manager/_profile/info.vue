@@ -21,14 +21,21 @@
                     type="user"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
-                <h2>{{ fName }}  {{ lName }}</h2>
+                <p>{{ fName }}  {{ lName }}</p>
+            </div>
+            <div class="form">
+                <a-icon
+                    type="phone"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <p>{{ telNumber }}</p>
             </div>
             <div class="form">
                 <a-icon
                     type="mail"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
-                <h2>{{ email }}</h2>
+                <p>{{ email }}</p>
             </div>
             <div class="div-submit">
                 <button
