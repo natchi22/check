@@ -14,7 +14,7 @@
             <div>
                 <img
                     class="pic size-pic"
-                    :src="freelance.pictureUrl"
+                    :src="freelance.pictureUrl ? freelance.pictureUrl : `~/assets/images/avatardefault.png`"
                     alt="รูปโปรไฟล์"
                 >
             </div>
