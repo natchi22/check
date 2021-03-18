@@ -119,6 +119,7 @@ export default {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     this.task = doc.data()
+                    console.log(this.task)
                     var docFree = this.$fireStore.collection("Freelance").doc(this.task.freelanceId)
                     docFree.get().then((doc) => {
                         if (doc.exists) {
