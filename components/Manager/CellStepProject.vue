@@ -73,7 +73,7 @@
         >
         <div
             class="main"
-            v-if="task.status !== `IN_PROCESS`"
+            v-if="task.status !== `IN_PROCESS` && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
         >
             <h2 class="topic">
                 ความคิดเห็น
@@ -95,7 +95,7 @@
         <div class="submit-task">
             <a-button
                 type="primary"
-                v-if="task.status === `PENDING`"
+                v-if="task.status === `PENDING` && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                 @click="approve(task)"
             >
                 ตรวจงาน
