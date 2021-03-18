@@ -14,10 +14,17 @@
             <div>
                 <img
                     class="pic size-pic"
-                    :src="profile.pictureUrl"
+                    :src="freelance.pictureUrl ? freelance.pictureUrl : `~/assets/images/avatardefault.png`"
                     alt="รูปโปรไฟล์"
                 >
             </div>
+        </div>
+        <div class="div-contact-mn">
+            <a-icon
+                type="user"
+                :style="{ color: '#3ABCA7',fontSize: '20px' }"
+            />
+            <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
         </div>
         <div class="div-contact-mn">
             <a-icon
@@ -71,6 +78,7 @@ export default {
     data() {
         return {
             inforManagers: [],
+            freelance: {},
             taskId: this.$route.params.id,
             task: {},
             form: {
@@ -83,9 +91,6 @@ export default {
                 name: null,
                 date: '16/01/2021'
             },
-            urlTask: 'URLงานที่แนบมา',
-            detailTask: 'รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้รายละเอียดการทำงานชิ้นนี้',
-            commentTask: 'คอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างานคอมเม้นจากหัวหน้างาน',
         }
     },
     methods: {
@@ -114,7 +119,14 @@ export default {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     this.task = doc.data()
+                    this.getFreelance(this.task.freelanceId)
                 }
+            })
+        },
+        async getFreelance(id) {
+            var docFree = await this.$fireStore.collection("Freelance").where("lineId", '==', id).get()
+            docFree.forEach((doc)=>{
+                this.freelance = doc.data()
             })
         },
         async getManagersData() {
