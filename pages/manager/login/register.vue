@@ -34,6 +34,7 @@
         <button
             class="btn btn-green"
             @click="register"
+            :loading="loading"
         >
             เพิ่มหัวหน้างาน
         </button>
@@ -59,6 +60,7 @@ export default {
             email: '',
             telNumber: '',
             rank: 'หัวหน้างาน',
+            loading: false,
         }
     },
     async mounted() {
@@ -66,6 +68,7 @@ export default {
     },
     methods: {
         async register() {
+            this.loading = true
             await this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
                 .then((userCredential) => {
                     var user = userCredential.user
@@ -86,9 +89,11 @@ export default {
             }).then(()=>{
                 this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
                 this.$router.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
+                this.loading = false
             }).catch((error) => {
                 var errorMessage = error.message
                 toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
+                this.loading = false
             })
         }
 

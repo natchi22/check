@@ -13,8 +13,9 @@
             </div>
             <div>
                 <img
+                    v-if="freelance.pictureUrl"
                     class="pic size-pic"
-                    :src="freelance.pictureUrl ? freelance.pictureUrl : `~/assets/images/avatardefault.png`"
+                    :src="freelance.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
             </div>
