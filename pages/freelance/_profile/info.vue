@@ -48,6 +48,7 @@ export default {
     },
     data() {
         return {
+            freelanceId: this.$route.params.profile,
             fName: '',
             lName: '',
             telNumber: '',
@@ -56,11 +57,11 @@ export default {
     },
     methods: {
         back() {
-            this.$router.push(`/freelance/${this.profile.userId}`)
+            this.$router.go(-1)
         }
     },
     async mounted () {
-        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.profile.userId).get()
+        const infor = await this.$fireStore.collection("Freelance").where("lineId", '==', this.freelanceId).get()
         infor.forEach((doc)=>{
             this.fName = doc.data().firstName
             this.lName = doc.data().lastName

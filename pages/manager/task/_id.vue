@@ -24,7 +24,9 @@
                 type="user"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
+            <nuxt-link :to="`/freelance/${freelance.lineId}/info`">
+                <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
+            </nuxt-link>
         </div>
         <div class="div-contact-mn">
             <a-icon
