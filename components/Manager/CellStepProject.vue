@@ -1,5 +1,6 @@
 <template>
     <!-- <div class="body"> -->
+    <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
             <h1>{{ task.name }}</h1>
@@ -35,38 +36,30 @@
                 </h3>
             </div>
         </div>
-        <div class="main">
+        <div
+            class="main"
+            v-if="task.status !== `IN_PROCESS`"
+        >
             <h2 class="topic">
                 แนบ link งาน
             </h2>
-            <a-input
-                v-model="linkUrl"
-                v-if="!task.linkUrl"
-                placeholder="link งาน หรือ url รูปภาพ"
-            />
             <a
                 v-if="task.linkUrl"
                 :href="task.linkUrl"
                 target="_blank"
             >
-                <h3 
-                    class="detail linkUrl"
-                >
+                <h3 class="detail linkUrl">
                     {{ task.linkUrl }}
                 </h3>
             </a>
         </div>
-        <div class="main">
+        <div
+            class="main"
+            v-if="task.status !== `IN_PROCESS`"
+        >
             <h2 class="topic">
                 รายละเอียด
             </h2>
-            <a-textarea
-                v-if="!task.desc"
-                class="boxInput"
-                placeholder="รายละเอียดงาน*"
-                :rows="4"
-                v-model="desc"
-            />
             <h3
                 class="detail"
                 v-if="task.desc"
@@ -76,26 +69,36 @@
         </div>
         <hr
             class="line"
-            v-if="task.comment"
+            v-if="task.comment && task.status !== `IN_PROCESS`"
         >
         <div
             class="main"
-            v-if="task.comment"
+            v-if="task.status !== `IN_PROCESS`"
         >
             <h2 class="topic">
                 ความคิดเห็น
             </h2>
-            <h3 class="detail">
+            <a-textarea
+                v-if="!task.comment"
+                class="boxInput"
+                placeholder="ความคิดเห็น*"
+                :rows="4"
+                v-model="comment"
+            />
+            <h3
+                v-else
+                class="detail"
+            >
                 {{ task.comment }}
             </h3>
         </div>
         <div class="submit-task">
             <a-button
                 type="primary"
-                v-if="task.status === `IN_PROCESS`"
-                @click="submit(task)"
+                v-if="task.status === `PENDING`"
+                @click="approve(task)"
             >
-                ส่งงาน
+                ตรวจงาน
             </a-button>
         </div>
     </div>
@@ -113,20 +116,18 @@ export default {
     },
     data() {
         return {
-            linkUrl: '',
-            desc: ''
+            comment: ''
         }
     },
     methods: {
-        async submit() {
+        async approve() {
             await this.$fireStore.collection("Task")
                 .where('taskId', '==', this.taskId)
                 .get().then((query) => {
                     const task = query.docs[0]
                     var taskList = task.data().taskList
-                    taskList[this.task.index].linkUrl = this.linkUrl
-                    taskList[this.task.index].desc = this.desc
-                    taskList[this.task.index].status = 'PENDING'
+                    taskList[this.task.index].comment = this.comment
+                    taskList[this.task.index].status = 'APPROVE'
                     task.ref.update({
                         taskList: taskList
                     }).then(() => {
@@ -151,6 +152,18 @@ export default {
     padding: 0 0 24px 0;
 }
 /* กรอบวันที่ใหญ่ */
+.boxTime{
+    display: flex;
+    flex-direction: row;
+    background: #FF0000;
+    border-radius: 4px;
+    padding: 3px 9px;
+}
+.boxTime h2{
+    color: #ffffff;
+    padding: 4px 0 0 4px;
+    margin-bottom: 0px;
+}
 .progress{
     margin: 0 0 20px 0;
 }
@@ -171,3 +184,5 @@ export default {
     justify-content: flex-end;
 }
 </style>
+
+

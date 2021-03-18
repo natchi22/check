@@ -5,7 +5,7 @@
             v-for="item in tasks"
             :key="item.id"
         >
-            <div>
+            <nuxt-link :to="`/manager/task/${item.taskId}`">
                 <div
                     class="box-top"
                     v-if="item"
@@ -13,6 +13,11 @@
                     <h2>
                         {{ item.name }}
                     </h2>
+                    <img
+                        v-if="alertApprove(item.taskList) && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                        src="~/assets/images/stamp.png"
+                        style="transform: rotateZ(7deg); width: 108px;"
+                    >
                 </div>
                 <div
                     class="box-end"
@@ -25,7 +30,7 @@
                         ผู้ดูแล : {{ showManager(item.manager) }}
                     </h3>
                 </div>
-            </div>
+            </nuxt-link>
         </div>
         <div
             v-if="tasks.length === 0"
@@ -53,6 +58,9 @@ export default {
                 return `${manager.fName} ${manager.lName}`
             }
         },
+        alertApprove(list) {
+            return list.filter(e => e.status === 'PENDING').length > 0
+        }
     }
 }
 </script>
@@ -62,7 +70,7 @@ export default {
     display: flex;
     flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 26px 30px;
+    padding: 14px;
     margin: 0 10px 20px 10px;
 }
 .box-manager{

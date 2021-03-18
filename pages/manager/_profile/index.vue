@@ -2,7 +2,7 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>{{ inforManager.firstName }}  {{ inforManager.lastName }}</h2>
+            <h2>{{ inforManager.fName }}  {{ inforManager.lName }}</h2>
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -86,17 +86,16 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="lateTask"
+                        :tasks="lateTaskFilter"
                     />
                 </a-tab-pane>
-
                 <a-tab-pane
                     key="2"
                     tab="ตามแผนงาน"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="onPlanTask"
+                        :tasks="onPlanTaskFilter"
                     />
                 </a-tab-pane>
 
@@ -106,7 +105,7 @@
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
-                        :tasks="successTask"
+                        :tasks="successTaskFilter"
                     />
                 </a-tab-pane>
             </a-tabs>
@@ -158,7 +157,40 @@ export default {
                 }
             })
             return res
-        }
+        },
+        lateTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `LATE` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        onPlanTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `ON_PLAN` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
+        successTaskFilter() {
+            var res = []
+            this.inforTask.forEach(element => {
+                const calPlan = this.calPlan(element.startDate, element.endDate)
+                const calReal = this.calReal(element.taskList)
+                if (this.checkStatus(calPlan, calReal) === `DONE` && element.manager === this.$fireAuth.currentUser.uid) {
+                    res.push(element)
+                }
+            })
+            return res
+        },
     },
     data() {
         return {
@@ -173,7 +205,7 @@ export default {
     methods: {
         async getUserData() {
             const infor = await this.$fireStore.collection("Manager")
-                .where("lineId", '==', this.profile.userId).get()
+                .where("managerId", '==', this.$fireAuth.currentUser.uid).get()
             infor.forEach((doc)=>{
                 this.inforManager = doc.data()
             })
@@ -221,12 +253,6 @@ export default {
             }
             else {
                 return `LATE`
-            }
-        },
-        showManager(managerId) {
-            const manager = this.inforManagers.find(el => el.managerId == managerId)
-            if (manager) {
-                return `${manager.fName} ${manager.lName}`
             }
         },
     },
