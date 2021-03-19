@@ -15,6 +15,14 @@
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
             class="tabs"
         >
+            <div class="div-btn">
+                <button
+                    class="btn btn-green"
+                    @click="goToManagerInfo"
+                >
+                    ข้อมูลหัวหน้างาน
+                </button>
+            </div>
             <a-tabs
                 type="card"
             >
@@ -47,7 +55,7 @@
                         :tasks="successTask"
                     />
                 </a-tab-pane>
-
+                <!--
                 <a-tab-pane
                     key="4"
                     tab="หัวหน้างาน"
@@ -73,7 +81,7 @@
                             </h4>
                         </div>
                     </div>
-                </a-tab-pane>
+                </a-tab-pane> -->
             </a-tabs>
         </div>
         <div v-else>
@@ -255,6 +263,9 @@ export default {
                 return `LATE`
             }
         },
+        goToManagerInfo() {
+            this.$router.push('/manager/managerManage')
+        }
     },
     async mounted() {
         this.getUserData()
@@ -312,5 +323,8 @@ export default {
 /* .tabs{
 
 } */
+}
+.div-btn{
+    text-align: center;
 }
 </style>
