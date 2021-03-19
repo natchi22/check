@@ -101,7 +101,7 @@ export default {
                         // email: this.email, //ไม่ให้แก้ email
                         password: this.password,
                     }).then(() => {
-                        this.$router.replace(`/manager/${this.profile.userId}`)
+                        this.$router.go(-1)
                     })
                 })
         }
