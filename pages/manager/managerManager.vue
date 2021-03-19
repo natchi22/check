@@ -49,6 +49,7 @@ export default {
             }
         },
         async getManagersData() {
+            console.log('!!!')
             const inforManagers = await this.$fireStore.collection("Manager").get()
             inforManagers.forEach((doc)=>{
                 this.inforManagers.push(doc.data())
