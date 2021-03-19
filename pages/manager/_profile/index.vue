@@ -24,7 +24,7 @@
                 <button
                     class="btn btn-green"
                     style="margin-bottom: 18px"
-                    @click="$router.push('/managerManage')"
+                    @click="$router.push(`/manager/${id}/managerManage`)"
                 >
                     ข้อมูลหัวหน้างาน
                 </button>
@@ -208,6 +208,7 @@ export default {
     },
     data() {
         return {
+            id: this.$route.params.profile,
             manager: 'ชื่อหัวหน้า',
             email: 'email',
             inforManager: {},
