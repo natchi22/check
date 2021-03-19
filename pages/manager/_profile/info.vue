@@ -9,6 +9,7 @@
             <nuxt-link
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
+                {{ $fireAuth.currentUser }} // {{ managerId }}
                 <button
                     v-if="$fireAuth.currentUser.uid === managerId && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                     class="btn btn-green btn-size"
