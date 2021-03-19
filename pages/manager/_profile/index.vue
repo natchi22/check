@@ -2,7 +2,12 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>{{ inforManager.fName }}  {{ inforManager.lName }}</h2>
+            <h2 v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`">
+                ยินดีต้อนรับ, {{ inforManager.fName }}  {{ inforManager.lName }}
+            </h2>
+            <h2 v-else>
+                ยินดีต้อนรับ, ผู้จัดการ
+            </h2>
             <nuxt-link :to="`/manager/${profile.userId}/info`">
                 <img
                     class="pic size-pic"
@@ -18,8 +23,8 @@
             <div class="div-btn">
                 <button
                     class="btn btn-green"
-                    style="margin-top: 18px"
-                    @click="$router.push('/manager/managerManage')"
+                    style="margin-bottom: 18px"
+                    @click="$router.push('/managerManage')"
                 >
                     ข้อมูลหัวหน้างาน
                 </button>
