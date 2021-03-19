@@ -3,7 +3,7 @@
     <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
-            <h1>{{ task.name }}</h1>
+            <h1>{{ index }} {{ task.name }}</h1>
         </div>
         <div class="box-status">
             <div class="box-date">

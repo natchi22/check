@@ -84,16 +84,6 @@ export default {
             freelance: {},
             taskId: this.$route.params.id,
             task: {},
-            form: {
-                taskName: 'งานขึ้นบ้านใหม่',
-                date: '01/01/2021',
-                manager: null,
-                tasks: []
-            },
-            taskList: {
-                name: null,
-                date: '16/01/2021'
-            },
         }
     },
     methods: {
