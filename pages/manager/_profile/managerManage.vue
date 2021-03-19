@@ -21,14 +21,13 @@
                 </h4>
             </div>
         </div>
-        <div class="div-submit">
-            <button
-                class="btn btn-wait"
-                @click="$router.go(-1)"
-            >
-                ย้อนกลับ
-            </button>
-        </div>
+        <button
+            class="btn btn-wait"
+            style="margin-top: 8px; margin-bottom: 8px"
+            @click="$router.go(-1)"
+        >
+            ย้อนกลับ
+        </button>
     </div>
 </template>
 <script>
@@ -74,7 +73,7 @@ export default {
     margin: 0 10px 20px 10px;
 }
 .box-manager{
-    max-height: 550px;
+    max-height: 500px;
     overflow-y: scroll;
     padding: 7px;
 }
