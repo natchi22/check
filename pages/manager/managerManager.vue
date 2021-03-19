@@ -21,6 +21,14 @@
                 </h4>
             </div>
         </div>
+        <div class="div-submit">
+            <button
+                class="btn btn-wait"
+                @click="$router.go(-1)"
+            >
+                ย้อนกลับ
+            </button>
+        </div>
     </div>
 </template>
 <script>
@@ -69,6 +77,11 @@ export default {
     max-height: 550px;
     overflow-y: scroll;
     padding: 7px;
+}
+.div-submit{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 26px;
 }
 </style>
 
