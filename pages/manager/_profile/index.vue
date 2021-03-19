@@ -18,7 +18,8 @@
             <div class="div-btn">
                 <button
                     class="btn btn-green"
-                    @click="goToManagerInfo"
+                    style="margin-top: 18px"
+                    @click="$router.push('/manager/managerManage')"
                 >
                     ข้อมูลหัวหน้างาน
                 </button>
@@ -263,9 +264,6 @@ export default {
                 return `LATE`
             }
         },
-        goToManagerInfo() {
-            this.$router.push('/manager/managerManage')
-        }
     },
     async mounted() {
         this.getUserData()
