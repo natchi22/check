@@ -10,7 +10,7 @@
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
                 <button
-                    v-if="$fireAuth.currentUser && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                    v-if="$fireAuth.currentUser.uid === managerId && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                     class="btn btn-green btn-size"
                 >
                     แก้ไขข้อมูลส่วนตัว

@@ -34,7 +34,14 @@
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            <div v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`">
+                <nuxt-link :to="`/freelance/${manager.managerId}/info`">
+                    <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+                </nuxt-link>
+            </div>
+            <div v-else>
+                <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            </div>
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
