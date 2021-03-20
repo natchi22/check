@@ -119,23 +119,27 @@ export default {
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
             if (this.oldPassword) {
                 if (this.newPassword) {
+                    this.loading = true
                     this.$fireAuth
                         .signInWithEmailAndPassword(this.email, this.oldPassword)
                         .then(() => {
                             this.$fireAuth.currentUser.updatePassword(this.newPassword).then(async () =>{
                                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
                                 await user.update({
-                                    firstName: this.fName,
-                                    lastName: this.lName,
+                                    fName: this.fName,
+                                    lName: this.lName,
                                     telNumber: this.telNumber,
                                 }).then(() => {
+                                    this.loading = false
                                     toastr.success('แก้ไขข้อมูลสำเร็จ')
                                     this.$router.go(-1)
                                 })
                             }).catch(() => {
+                                this.loading = false
                                 toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
                             })
                         }).catch(() => {
+                            this.loading = false
                             toastr.error('รหัสผ่านเดิมไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
                         })
                 }
