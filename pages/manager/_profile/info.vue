@@ -78,7 +78,7 @@ export default {
             profile: state => state.profile.profileData
         }),
         isAdmin() {
-            return this.$fireAuth.currentUser.email === `superadmin@gmail.com`
+            return this.managerId === `LkEgEE9HzgT06rcXANfOHyLtPoq2`
         }
     },
     data() {
@@ -93,6 +93,7 @@ export default {
     methods: {
         async getManager() {
             const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.managerId).get()
+            console.log(infor)
             infor.forEach((doc)=>{
                 this.fName = doc.data().fName
                 this.lName = doc.data().lName
