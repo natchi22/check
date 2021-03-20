@@ -50,21 +50,21 @@
         <h3 v-if="!isAdmin">
             Password เดิม
         </h3>
-        <input
+        <a-input-password
             v-if="!isAdmin"
             type="text"
             placeholder="Old Password*"
             v-model="oldPassword"
-        >
+        />
         <h3 v-if="!isAdmin">
             Password ใหม่
         </h3>
-        <input
+        <a-input-password
             v-if="!isAdmin"
             type="text"
             placeholder="New Password*"
             v-model="newPassword"
-        >
+        />
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
         <!-- <nuxt-link to="/head/profile/boss"> -->
         <div
