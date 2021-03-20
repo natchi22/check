@@ -11,14 +11,15 @@
             <h2>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h2>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
                 <a-icon
+                    class="size-icon"
                     type="edit"
-                    :style="{ color: '#555555' ,margin: '0 7px'}"
+                    :style="{ margin: '0 7px'}"
                 />
             </nuxt-link>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/info`">
                 <a-icon
+                    class="size-icon"
                     type="user"
-                    :style="{ color: '#555555' }"
                 />
             </nuxt-link>
         </div>
@@ -96,6 +97,11 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+.size-icon{
+    width: 30px;
+    height: 30px;
+    color: #555555;
+}
 .profile{
     padding: 0 10px;
 }
