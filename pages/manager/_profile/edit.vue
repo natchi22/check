@@ -5,50 +5,63 @@
             :src="profile.pictureUrl"
             alt="รูปโปรไฟล์"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             ชื่อ
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="ชื่อ*"
             v-model="fName"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             นามสกุล
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="นามสกุล*"
             v-model="lName"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             เบอร์โทรศัพท์
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             E-mail
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="E-mail*"
             v-model="email"
         >
-        <h2 v-if="!isAdmin">
-            Password
-        </h2>
+        <hr
+            class="line"
+        >
+        <h3>หากต้องการเปลี่ยนรหัสผ่าน กรุณากรอก password เดิมและ password ใหม่ข้างล่าง หากไม่ต้องการเปลี่ยนรหัสผ่านให้เว้นว่างไว้</h3>
+        <h3 v-if="!isAdmin">
+            Password เดิม
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="Password*"
-            v-model="password"
+            v-model="oldPassword"
+        >
+        <h3 v-if="!isAdmin">
+            Password ใหม่
+        </h3>
+        <input
+            v-if="!isAdmin"
+            type="text"
+            placeholder="Password*"
+            v-model="newPassword"
         >
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
         <!-- <nuxt-link to="/head/profile/boss"> -->
@@ -75,7 +88,8 @@ export default {
             lName: '',
             telNumber: '',
             email: '',
-            password: ''
+            oldPassword: '',
+            newPassword: ''
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -136,5 +150,12 @@ export default {
     width: 400px;
     margin: 0 auto;
 }
+}
+.line{
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2px 0px;
 }
 </style>
