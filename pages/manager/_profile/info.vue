@@ -19,26 +19,45 @@
         </div>
 
         <div class="div-contact">
-            <div class="form">
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
                 <a-icon
                     type="user"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
                 <p>{{ fName }}  {{ lName }}</p>
             </div>
-            <div class="form">
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
                 <a-icon
                     type="phone"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
                 <p>{{ telNumber ? telNumber : '-' }}</p>
             </div>
-            <div class="form">
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
                 <a-icon
                     type="mail"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
                 <p>{{ email }}</p>
+            </div>
+            <div
+                class="form"
+                v-if="isAdmin"
+            >
+                <a-icon
+                    type="mail"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <p>superAdmin@gmail.com</p>
             </div>
             <div class="div-submit">
                 <button
@@ -57,7 +76,10 @@ export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
-        })
+        }),
+        isAdmin() {
+            return this.$fireAuth.currentUser.email === `superadmin@gmail.com`
+        }
     },
     data() {
         return {
