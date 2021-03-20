@@ -36,7 +36,7 @@
         >
         <div class="div-btn">
             <a-button
-                style="margin-top: 8px"
+                class="btn btn-green"
                 :loading="loading"
                 @click="summit"
             >
