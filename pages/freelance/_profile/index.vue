@@ -8,7 +8,7 @@
             >
         </div>
         <div class="head">
-            <h3>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h3>
+            <h2>{{ inforFrelance.firstName }} {{ inforFrelance.lastName }}</h2>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/edit`">
                 <a-icon
                     type="edit"
