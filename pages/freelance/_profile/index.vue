@@ -13,13 +13,14 @@
                 <a-icon
                     class="size-icon"
                     type="edit"
-                    :style="{ margin: '0 7px'}"
+                    :style="{  fontSize: '20px', color: '#555555' ,margin: '0 7px'}"
                 />
             </nuxt-link>
             <nuxt-link :to="`/freelance/${inforFrelance.lineId}/info`">
                 <a-icon
                     class="size-icon"
                     type="user"
+                    :style="{  fontSize: '20px', color: '#555555' }"
                 />
             </nuxt-link>
         </div>
@@ -100,7 +101,6 @@ export default {
 .size-icon{
     width: 30px;
     height: 30px;
-    color: #555555;
 }
 .profile{
     padding: 0 10px;
