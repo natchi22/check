@@ -99,6 +99,9 @@ input{
 
 
 /* กรอบสเต็ปงาน */
+.box{
+    margin: 0 auto;
+}
 .box-status{
     display: flex;
     justify-content: space-between;
