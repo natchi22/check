@@ -31,13 +31,13 @@
             placeholder="เบอร์โทรศัพท์"
             v-model="telNumber"
         >
-        <button
+        <a-button
             class="btn btn-green"
             @click="register"
             :loading="loading"
         >
             เพิ่มหัวหน้างาน
-        </button>
+        </a-button>
         <button
             style="margin-top: 8px"
             class="btn btn-wait"

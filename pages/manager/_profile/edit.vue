@@ -71,12 +71,13 @@
             class="div-btn"
             v-if="!isAdmin"
         >
-            <button
+            <a-button
+                :loading="loading"
                 class="btn btn-green"
                 @click="summit"
             >
                 บันทึก
-            </button>
+            </a-button>
         </div>
         <!-- </nuxt-link> -->
     </div>
@@ -90,9 +91,10 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
-            // email: '',
+            email: '',
             oldPassword: '',
-            newPassword: ''
+            newPassword: '',
+            loading: false,
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -110,7 +112,7 @@ export default {
             this.fName = doc.data().fName
             this.lName = doc.data().lName
             this.telNumber = doc.data().telNumber
-            // this.email = doc.data().email
+            this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
