@@ -88,11 +88,11 @@ export default {
     },
     async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+        const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.$fireAuth.currentUser.uid).get()
         infor.forEach((doc)=>{
-            this.fName = doc.data().firstName
-            this.lName = doc.data().lastName
-            this.telNumber = doc.data().phone
+            this.fName = doc.data().fName
+            this.lName = doc.data().lName
+            this.telNumber = doc.data().telNumber
             this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     },
