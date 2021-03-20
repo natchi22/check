@@ -51,7 +51,7 @@
         <input
             v-if="!isAdmin"
             type="text"
-            placeholder="Password*"
+            placeholder="Old Password*"
             v-model="oldPassword"
         >
         <h3 v-if="!isAdmin">
@@ -60,7 +60,7 @@
         <input
             v-if="!isAdmin"
             type="text"
-            placeholder="Password*"
+            placeholder="New Password*"
             v-model="newPassword"
         >
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
