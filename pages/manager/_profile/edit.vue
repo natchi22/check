@@ -150,8 +150,8 @@ export default {
             else {
                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
                 await user.update({
-                    firstName: this.fName,
-                    lastName: this.lName,
+                    fName: this.fName,
+                    lName: this.lName,
                     telNumber: this.telNumber,
                 }).then(() => {
                     toastr.success('แก้ไขข้อมูลสำเร็จ')
