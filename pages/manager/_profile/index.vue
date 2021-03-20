@@ -2,19 +2,41 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2>{{ inforManager.fName }}  {{ inforManager.lName }}</h2>
-            <nuxt-link :to="`/manager/${profile.userId}/info`">
-                <img
-                    class="pic size-pic"
-                    :src="profile.pictureUrl"
-                    alt="รูปโปรไฟล์"
-                >
-            </nuxt-link>
+            <h3
+                v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                style="margin-top: 6px"
+            >
+                ยินดีต้อนรับ, {{ inforManager.fName }}  {{ inforManager.lName }}
+            </h3>
+            <h3
+                v-else
+                style="margin-top: 6px"
+            >
+                ยินดีต้อนรับ, ผู้จัดการ
+            </h3>
+            <div>
+                <nuxt-link :to="`/manager/${$fireAuth.currentUser.uid}/info`">
+                    <img
+                        class="pic size-pic"
+                        :src="profile.pictureUrl"
+                        alt="รูปโปรไฟล์"
+                    >
+                </nuxt-link>
+            </div>
         </div>
         <div
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
             class="tabs"
         >
+            <div class="div-btn">
+                <button
+                    class="btn btn-green"
+                    style="margin-bottom: 18px"
+                    @click="$router.push(`/manager/${id}/managerManage`)"
+                >
+                    ข้อมูลหัวหน้างาน
+                </button>
+            </div>
             <a-tabs
                 type="card"
             >
@@ -47,7 +69,7 @@
                         :tasks="successTask"
                     />
                 </a-tab-pane>
-
+                <!--
                 <a-tab-pane
                     key="4"
                     tab="หัวหน้างาน"
@@ -73,7 +95,7 @@
                             </h4>
                         </div>
                     </div>
-                </a-tab-pane>
+                </a-tab-pane> -->
             </a-tabs>
         </div>
         <div v-else>
@@ -194,6 +216,7 @@ export default {
     },
     data() {
         return {
+            id: this.$route.params.profile,
             manager: 'ชื่อหัวหน้า',
             email: 'email',
             inforManager: {},
@@ -312,5 +335,8 @@ export default {
 /* .tabs{
 
 } */
+}
+.div-btn{
+    text-align: center;
 }
 </style>

@@ -24,7 +24,9 @@
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            <nuxt-link :to="`/manager/${task.manager}/info`">
+                <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            </nuxt-link>
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
@@ -40,6 +42,7 @@
             v-for="(ts,index) in task.taskList"
             :key="index"
             :task="{...ts,index}"
+            :taskBefore="index == 0 ? {} : task.taskList[index-1]"
             :taskId="taskId"
             @reCall="getData"
         />

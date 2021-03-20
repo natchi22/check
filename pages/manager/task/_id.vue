@@ -13,8 +13,9 @@
             </div>
             <div>
                 <img
+                    v-if="freelance.pictureUrl"
                     class="pic size-pic"
-                    :src="freelance.pictureUrl ? freelance.pictureUrl : `~/assets/images/avatardefault.png`"
+                    :src="freelance.pictureUrl"
                     alt="รูปโปรไฟล์"
                 >
             </div>
@@ -24,14 +25,23 @@
                 type="user"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
+            <nuxt-link :to="`/freelance/${freelance.lineId}/info`">
+                <h3>ผู้รับผิดชอบงาน : {{ freelance.firstName }} {{ freelance.lastName }}</h3>
+            </nuxt-link>
         </div>
         <div class="div-contact-mn">
             <a-icon
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            <div v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`">
+                <nuxt-link :to="`/manager/${task.manager}/info`">
+                    <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+                </nuxt-link>
+            </div>
+            <div v-else>
+                <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            </div>
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
@@ -81,16 +91,6 @@ export default {
             freelance: {},
             taskId: this.$route.params.id,
             task: {},
-            form: {
-                taskName: 'งานขึ้นบ้านใหม่',
-                date: '01/01/2021',
-                manager: null,
-                tasks: []
-            },
-            taskList: {
-                name: null,
-                date: '16/01/2021'
-            },
         }
     },
     methods: {

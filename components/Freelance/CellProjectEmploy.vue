@@ -121,8 +121,7 @@ export default {
 .box{
     width: 100%;
     box-shadow: 4px 4px 8px rgb(229,229,229);
-    padding: 24px;
-    margin: 0 auto 24px auto;
+    padding: 14px;
 }
 .topic{
     width: 100%

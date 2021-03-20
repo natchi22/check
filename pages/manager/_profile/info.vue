@@ -2,6 +2,13 @@
     <div class="body">
         <div class="edit">
             <img
+                v-if="!isAdmin && $fireAuth.currentUser.email === `superadmin@gmail.com`"
+                class="pic size-pic"
+                src="~/assets/images/avatardefault.png"
+                alt="รูปโปรไฟล์"
+            >
+            <img
+                v-else
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
@@ -9,26 +16,55 @@
             <nuxt-link
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
-                <button class="btn btn-green btn-size">
+                <button
+                    v-if="$fireAuth.currentUser.uid === managerId && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                    class="btn btn-green btn-size"
+                >
                     แก้ไขข้อมูลส่วนตัว
                 </button>
             </nuxt-link>
         </div>
 
         <div class="div-contact">
-            <div class="form">
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
                 <a-icon
                     type="user"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
-                <h2>{{ fName }}  {{ lName }}</h2>
+                <p>{{ fName }}  {{ lName }}</p>
             </div>
-            <div class="form">
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
+                <a-icon
+                    type="phone"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <p>{{ telNumber ? telNumber : '-' }}</p>
+            </div>
+            <div
+                class="form"
+                v-if="!isAdmin"
+            >
                 <a-icon
                     type="mail"
                     :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
                 />
-                <h2>{{ email }}</h2>
+                <p>{{ email }}</p>
+            </div>
+            <div
+                class="form"
+                v-if="isAdmin"
+            >
+                <a-icon
+                    type="mail"
+                    :style="{ fontSize: '16px', color: '#555555' , margin: '5px'}"
+                />
+                <p>superAdmin@gmail.com</p>
             </div>
             <div class="div-submit">
                 <button
@@ -47,23 +83,30 @@ export default {
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **importmapState ด้วย
         ...mapState({
             profile: state => state.profile.profileData
-        })
+        }),
+        isAdmin() {
+            return this.managerId === `LkEgEE9HzgT06rcXANfOHyLtPoq2`
+        }
     },
     data() {
         return {
+            managerId: this.$route.params.profile,
             fName: '',
             lName: '',
+            telNumber: '',
             email: ''
         }
     },
     methods: {
         async getManager() {
-            const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.$fireAuth.currentUser.uid).get()
+            const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.managerId).get()
             infor.forEach((doc)=>{
                 this.fName = doc.data().fName
                 this.lName = doc.data().lName
+                this.telNumber = doc.data().telNumber
                 this.email = doc.data().email
             })
+            console.log(this.fName, this.lName, this.email)
         },
     },
     async mounted () {

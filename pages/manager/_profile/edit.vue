@@ -1,64 +1,89 @@
 <template>
     <div class="body">
-        {{ $fireAuth.currentUser.email }}
         <img
             class="pic size-pic"
             :src="profile.pictureUrl"
             alt="รูปโปรไฟล์"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             ชื่อ
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="ชื่อ*"
             v-model="fName"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             นามสกุล
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="นามสกุล*"
             v-model="lName"
         >
-        <h2 v-if="!isAdmin">
+        <h3 v-if="!isAdmin">
             เบอร์โทรศัพท์
-        </h2>
+        </h3>
         <input
             v-if="!isAdmin"
             type="text"
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
         >
-        <h2>E-mail</h2>
+        <!-- <h3 v-if="!isAdmin">
+            E-mail
+        </h3>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="E-mail*"
             v-model="email"
+        > -->
+        <hr
+            class="line"
         >
-        <h2>Password</h2>
-        <input
+        <p style="font-size:12px">
+            หากต้องการเปลี่ยนรหัสผ่าน กรุณากรอก password เดิมและ password ใหม่ข้างล่าง หากไม่ต้องการเปลี่ยนรหัสผ่านให้เว้นว่างไว้
+        </p>
+        <h3 v-if="!isAdmin">
+            Password เดิม
+        </h3>
+        <a-input-password
+            v-if="!isAdmin"
             type="text"
-            placeholder="Password*"
-            v-model="password"
-        >
+            placeholder="Old Password*"
+            v-model="oldPassword"
+        />
+        <h3 v-if="!isAdmin">
+            Password ใหม่
+        </h3>
+        <a-input-password
+            v-if="!isAdmin"
+            type="text"
+            placeholder="New Password*"
+            v-model="newPassword"
+        />
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
         <!-- <nuxt-link to="/head/profile/boss"> -->
-        <div class="div-btn">
-            <button
-                class="btn btn-green"
+        <div
+            class="div-btn"
+            v-if="!isAdmin"
+        >
+            <a-button
+                style="margin-top: 8px"
+                :loading="loading"
                 @click="summit"
             >
                 บันทึก
-            </button>
+            </a-button>
         </div>
         <!-- </nuxt-link> -->
     </div>
 </template>
 <script>
+import toastr from 'toastr'
 import { mapState } from 'vuex'
 export default {
     data() {
@@ -67,7 +92,9 @@ export default {
             lName: '',
             telNumber: '',
             email: '',
-            password: ''
+            oldPassword: '',
+            newPassword: '',
+            loading: false,
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -80,30 +107,57 @@ export default {
     },
     async mounted() {
         // .where freelanceId=ตัวที่อ่านค่า หัวข้อมูลกลุ่มนั้น อยู่หน้าที่inputมา,== ไอดีไหน,ไอดีที่จะเอามา อันนี้ระบุเป็นตัวแต่เดี๋ยวต้องระบุobject id
-        const infor = await this.$fireStore.collection("Manager").where("lineId", '==', this.profile.userId).get()
+        const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.$fireAuth.currentUser.uid).get()
         infor.forEach((doc)=>{
-            this.fName = doc.data().firstName
-            this.lName = doc.data().lastName
-            this.telNumber = doc.data().phone
+            this.fName = doc.data().fName
+            this.lName = doc.data().lName
+            this.telNumber = doc.data().telNumber
             this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-            await this.$fireStore.collection("Manager")
-                .where('lineId', '==', this.profile.userId)
-                .get().then((query) => {
-                    const profile = query.docs[0]
-                    profile.ref.update({
-                        firstName: this.fName,
-                        lastName: this.lName,
-                        phone: this.telNumber,
-                        // email: this.email, //ไม่ให้แก้ email
-                        password: this.password,
-                    }).then(() => {
-                        this.$router.replace(`/manager/${this.profile.userId}`)
-                    })
+            if (this.oldPassword) {
+                if (this.newPassword) {
+                    this.loading = true
+                    this.$fireAuth
+                        .signInWithEmailAndPassword(this.email, this.oldPassword)
+                        .then(() => {
+                            this.$fireAuth.currentUser.updatePassword(this.newPassword).then(async () =>{
+                                const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
+                                await user.update({
+                                    fName: this.fName,
+                                    lName: this.lName,
+                                    telNumber: this.telNumber,
+                                }).then(() => {
+                                    this.loading = false
+                                    toastr.success('แก้ไขข้อมูลสำเร็จ')
+                                    this.$router.go(-1)
+                                })
+                            }).catch(() => {
+                                this.loading = false
+                                toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+                            })
+                        }).catch(() => {
+                            this.loading = false
+                            toastr.error('รหัสผ่านเดิมไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+                        })
+                }
+                else {
+                    toastr.error('กรุณากรอกรหัสผ่านใหม่')
+                }
+            }
+            else {
+                const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
+                await user.update({
+                    fName: this.fName,
+                    lName: this.lName,
+                    telNumber: this.telNumber,
+                }).then(() => {
+                    toastr.success('แก้ไขข้อมูลสำเร็จ')
+                    this.$router.go(-1)
                 })
+            }
         }
     }
 }
@@ -128,5 +182,12 @@ export default {
     width: 400px;
     margin: 0 auto;
 }
+}
+.line{
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2px 0px;
 }
 </style>

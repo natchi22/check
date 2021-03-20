@@ -35,17 +35,19 @@
             v-model="email"
         >
         <div class="div-btn">
-            <button
-                class="btn btn-green"
+            <a-button
+                style="margin-top: 8px"
+                :loading="loading"
                 @click="summit"
             >
                 บันทึก
-            </button>
+            </a-button>
         </div>
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
+import toastr from 'toastr'
+import { mapState } from 'vuex'
 export default {
     data() {
         return {
@@ -53,6 +55,7 @@ export default {
             lName: '',
             telNumber: '',
             email: '',
+            loading: false,
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -72,6 +75,7 @@ export default {
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
+            this.loading = true
             await this.$fireStore.collection("Freelance")
                 .where('lineId', '==', this.profile.userId)
                 .get().then((query) => {
@@ -82,7 +86,11 @@ export default {
                         phone: this.telNumber,
                         email: this.email
                     }).then(() => {
-                        this.$router.replace(`/freelance/${this.profile.userId}`)
+                        this.loading = false
+                        toastr.success('แก้ไขข้อมูลสำเร็จ')
+                        this.$router.go(-1)
+                    }).catch(()=>{
+                        toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
                     })
                 })
         }

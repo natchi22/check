@@ -3,7 +3,7 @@
     <!-- ถ้างานที่ส่งตรวจผ่านแล้ว แสดงช่องนี้ -->
     <div class="status">
         <div class="top-succeed">
-            <h1>{{ task.name }}</h1>
+            <h1>{{ task.index+1 }} {{ task.name }}</h1>
         </div>
         <div class="box-status">
             <div class="box-date">
@@ -73,7 +73,7 @@
         >
         <div
             class="main"
-            v-if="task.status !== `IN_PROCESS`"
+            v-if="task.status !== `IN_PROCESS` && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
         >
             <h2 class="topic">
                 ความคิดเห็น
@@ -95,7 +95,7 @@
         <div class="submit-task">
             <a-button
                 type="primary"
-                v-if="task.status === `PENDING`"
+                v-if="task.status === `PENDING` && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                 @click="approve(task)"
             >
                 ตรวจงาน
