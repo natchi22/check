@@ -8,13 +8,15 @@
             <h2 v-else>
                 ยินดีต้อนรับ, ผู้จัดการ
             </h2>
-            <nuxt-link :to="`/manager/${inforManager.managerId}/info`">
-                <img
-                    class="pic size-pic"
-                    :src="profile.pictureUrl"
-                    alt="รูปโปรไฟล์"
-                >
-            </nuxt-link>
+            <div>
+                <nuxt-link :to="`/manager/${$fireAuth.currentUser.uid}/info`">
+                    <img
+                        class="pic size-pic"
+                        :src="profile.pictureUrl"
+                        alt="รูปโปรไฟล์"
+                    >
+                </nuxt-link>
+            </div>
         </div>
         <div
             v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`"
