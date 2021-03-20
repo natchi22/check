@@ -124,7 +124,7 @@ export default {
                         .then(() => {
                             this.$fireAuth.currentUser.updatePassword(this.newPassword).then(async () =>{
                                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
-                                await user.ref.update({
+                                await user.update({
                                     firstName: this.fName,
                                     lastName: this.lName,
                                     telNumber: this.telNumber,
@@ -145,8 +145,7 @@ export default {
             }
             else {
                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
-                console.log(user)
-                await user.ref.update({
+                await user.update({
                     firstName: this.fName,
                     lastName: this.lName,
                     telNumber: this.telNumber,
