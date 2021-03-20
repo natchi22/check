@@ -2,8 +2,15 @@
     <div class="body">
         <div class="edit">
             <img
+                v-if="!isAdmin && $fireAuth.currentUser.email === `superadmin@gmail.com`"
                 class="pic size-pic"
-                :src="profile ? profile.pictureUrl : `~/assets/images/avatardefault.png`"
+                src="~/assets/images/avatardefault.png"
+                alt="รูปโปรไฟล์"
+            >
+            <img
+                v-else
+                class="pic size-pic"
+                :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
             <nuxt-link
