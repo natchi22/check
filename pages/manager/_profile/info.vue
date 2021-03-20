@@ -100,13 +100,13 @@ export default {
     methods: {
         async getManager() {
             const infor = await this.$fireStore.collection("Manager").where("managerId", '==', this.managerId).get()
-            console.log(infor)
             infor.forEach((doc)=>{
                 this.fName = doc.data().fName
                 this.lName = doc.data().lName
                 this.telNumber = doc.data().telNumber
                 this.email = doc.data().email
             })
+            console.log(this.fName, this.lName, this.email)
         },
     },
     async mounted () {
