@@ -35,7 +35,7 @@
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
             <div v-if="$fireAuth.currentUser.email === `superadmin@gmail.com`">
-                <nuxt-link :to="`/freelance/${task.manager}/info`">
+                <nuxt-link :to="`/manager/${task.manager}/info`">
                     <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
                 </nuxt-link>
             </div>
