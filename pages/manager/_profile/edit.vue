@@ -32,7 +32,7 @@
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
         >
-        <h3 v-if="!isAdmin">
+        <!-- <h3 v-if="!isAdmin">
             E-mail
         </h3>
         <input
@@ -40,7 +40,7 @@
             type="text"
             placeholder="E-mail*"
             v-model="email"
-        >
+        > -->
         <hr
             class="line"
         >
@@ -82,6 +82,7 @@
     </div>
 </template>
 <script>
+import toastr from 'toastr'
 import { mapState } from 'vuex'
 export default {
     data() {
@@ -89,7 +90,7 @@ export default {
             fName: '',
             lName: '',
             telNumber: '',
-            email: '',
+            // email: '',
             oldPassword: '',
             newPassword: ''
         }
@@ -109,25 +110,34 @@ export default {
             this.fName = doc.data().fName
             this.lName = doc.data().lName
             this.telNumber = doc.data().telNumber
-            this.email = doc.data().email
+            // this.email = doc.data().email
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-            await this.$fireStore.collection("Manager")
-                .where('lineId', '==', this.profile.userId)
-                .get().then((query) => {
-                    const profile = query.docs[0]
-                    profile.ref.update({
-                        firstName: this.fName,
-                        lastName: this.lName,
-                        phone: this.telNumber,
-                        // email: this.email, //ไม่ให้แก้ email
-                        password: this.password,
-                    }).then(() => {
-                        this.$router.go(-1)
-                    })
-                })
+            if (this.oldPassword) {
+                if (this.newPassword) {
+                    this.$fireAuth
+                        .signInWithEmailAndPassword(this.email, this.oldPassword)
+                        .then(() => {
+                            this.$fireAuth.currentUser.updatePassword('newPassword').then(async () =>{
+                                const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
+                                await user.ref.update({
+                                    firstName: this.fName,
+                                    lastName: this.lName,
+                                    telNumber: this.telNumber,
+                                }).then(() => {
+                                    toastr.success('แก้ไขข้อมูลสำเร็จ')
+                                    this.$router.go(-1)
+                                })
+                            }).catch(() => {
+                                toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+                            })
+                        }).catch(() => {
+                            toastr.error('รหัสผ่านเดิมไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
+                        })
+                }
+            }
         }
     }
 }
