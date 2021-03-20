@@ -2,12 +2,18 @@
     <div class="body">
         <div class="profile-head">
             <!-- กดรูปดูโปรไฟล์ -->
-            <h2 v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`">
+            <h3
+                v-if="$fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                style="margin-top: 6px"
+            >
                 ยินดีต้อนรับ, {{ inforManager.fName }}  {{ inforManager.lName }}
-            </h2>
-            <h2 v-else>
+            </h3>
+            <h3
+                v-else
+                style="margin-top: 6px"
+            >
                 ยินดีต้อนรับ, ผู้จัดการ
-            </h2>
+            </h3>
             <div>
                 <nuxt-link :to="`/manager/${$fireAuth.currentUser.uid}/info`">
                     <img
