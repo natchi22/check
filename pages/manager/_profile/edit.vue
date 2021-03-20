@@ -122,7 +122,7 @@ export default {
                     this.$fireAuth
                         .signInWithEmailAndPassword(this.email, this.oldPassword)
                         .then(() => {
-                            this.$fireAuth.currentUser.updatePassword('newPassword').then(async () =>{
+                            this.$fireAuth.currentUser.updatePassword(this.newPassword).then(async () =>{
                                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
                                 await user.ref.update({
                                     firstName: this.fName,
