@@ -3,7 +3,7 @@
         <div class="cover">
             <img
                 class="pic size-pic"
-                :src="profile.pictureUrl"
+                :src="inforFrelance.pictureUrl"
                 alt="รูปโปรไฟล์"
             >
         </div>
