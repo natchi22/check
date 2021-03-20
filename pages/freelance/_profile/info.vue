@@ -3,7 +3,7 @@
         <div class="profile-img">
             <img
                 class="pic size-pic"
-                :src="inforFrelance.pictureUrl"
+                :src="pictureUrl"
                 alt="รูปโปรไฟล์"
             >
         </div>
@@ -53,6 +53,7 @@ export default {
             lName: '',
             telNumber: '',
             email: '',
+            pictureUrl: ''
         }
     },
     methods: {
@@ -67,6 +68,7 @@ export default {
             this.lName = doc.data().lastName
             this.telNumber = doc.data().phone
             this.email = doc.data().email
+            this.pictureUrl = doc.data().pictureUrl
         }) //เรียกมาโชว์ doc=กลุ่มdataหน้าinput
     }
 }
