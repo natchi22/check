@@ -139,6 +139,20 @@ export default {
                             toastr.error('รหัสผ่านเดิมไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง')
                         })
                 }
+                else {
+                    toastr.error('กรุณากรอกรหัสผ่านใหม่')
+                }
+            }
+            else {
+                const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
+                await user.ref.update({
+                    firstName: this.fName,
+                    lastName: this.lName,
+                    telNumber: this.telNumber,
+                }).then(() => {
+                    toastr.success('แก้ไขข้อมูลสำเร็จ')
+                    this.$router.go(-1)
+                })
             }
         }
     }
