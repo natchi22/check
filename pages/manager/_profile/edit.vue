@@ -1,6 +1,5 @@
 <template>
     <div class="body">
-        {{ $fireAuth.currentUser.email }}
         <img
             class="pic size-pic"
             :src="profile.pictureUrl"
@@ -33,21 +32,30 @@
             placeholder="เบอร์โทรศัพท์*"
             v-model="telNumber"
         >
-        <h2>E-mail</h2>
+        <h2 v-if="!isAdmin">
+            E-mail
+        </h2>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="E-mail*"
             v-model="email"
         >
-        <h2>Password</h2>
+        <h2 v-if="!isAdmin">
+            Password
+        </h2>
         <input
+            v-if="!isAdmin"
             type="text"
             placeholder="Password*"
             v-model="password"
         >
         <!-- บันทึกข้้อมูลส่วนตัว ไปหน้าแรก ของตัวเอง -->
         <!-- <nuxt-link to="/head/profile/boss"> -->
-        <div class="div-btn">
+        <div
+            class="div-btn"
+            v-if="!isAdmin"
+        >
             <button
                 class="btn btn-green"
                 @click="summit"
