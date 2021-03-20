@@ -24,7 +24,9 @@
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            <nuxt-link :to="`/manager/${task.manager}/info`">
+                <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+            </nuxt-link>
         </div>
         <h2>ความสำเร็จตามแผน</h2>
         <a-progress
