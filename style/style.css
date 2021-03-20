@@ -70,6 +70,10 @@ input{
     font-weight: bold;
     font-size: 18px;
 }
+.btn-send{
+    width: 40px;
+    height: 30px;
+}
 .size{
     width: 180px;
     height: 32px;

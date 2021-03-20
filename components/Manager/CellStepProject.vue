@@ -94,6 +94,7 @@
         </div>
         <div class="submit-task">
             <a-button
+                class="btn btn-green btn-send"
                 type="primary"
                 v-if="task.status === `PENDING` && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                 @click="approve(task)"

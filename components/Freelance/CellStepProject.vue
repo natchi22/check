@@ -97,6 +97,7 @@
         </div>
         <div class="submit-task">
             <a-button
+                class="btn btn-green btn-send"
                 type="primary"
                 v-if="task.status === `IN_PROCESS` && (!taskBefore || taskBefore.status !== `IN_PROCESS`)"
                 @click="submit(task)"
