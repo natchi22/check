@@ -72,8 +72,8 @@
             v-if="!isAdmin"
         >
             <a-button
+                style="margin-top: 8px"
                 :loading="loading"
-                class="btn btn-green"
                 @click="summit"
             >
                 บันทึก

@@ -40,7 +40,6 @@
         </a-button>
         <button
             style="margin-top: 8px"
-            class="btn btn-wait"
             @click="$router.go(-1)"
         >
             ย้อนกลับ
