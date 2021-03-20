@@ -145,6 +145,7 @@ export default {
             }
             else {
                 const user = await this.$fireStore.collection("Manager").doc(this.$fireAuth.currentUser.uid)
+                console.log(user)
                 await user.ref.update({
                     firstName: this.fName,
                     lastName: this.lName,
