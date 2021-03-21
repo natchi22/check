@@ -21,7 +21,7 @@
             <a-form-item
                 style="margin-bottom: 14px"
                 :validateStatus="submitted && !$v.form.endDate.required ? 'error' : ''"
-                :help="submitted && !$v.form.endDate.required ? 'กรุณากรอก รหัสผ่าน' : ''"
+                :help="submitted && !$v.form.endDate.required ? 'กรุณากำหนดวันส่งงาน' : ''"
             >
                 <template slot="label">
                     กำหนดส่งงาน
@@ -64,8 +64,6 @@
                 <a-form
                     style="width: 80%; margin: 0 auto;"
                     @submit.prevent="addList"
-                    :validateStatus="submitted && !$v.form.taskList.minLength ? 'error' : ''"
-                    :help="submitted && !$v.form.taskList.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
                 >
                     <a-form-item
                         style="margin-bottom: 14px"
@@ -193,21 +191,29 @@ export default {
         },
         async addWork() {
             this.submitted = true
-            const task = this.$fireStore.collection("Task").doc()
-            await task.set({
-                taskId: task.id,
-                name: this.form.name,
-                freelanceId: this.profile.userId,
-                startDate: this.form.startDate,
-                endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
-                manager: this.form.manager,
-                taskList: this.form.taskList,
-            }).then(()=>{
-                toastr.success('เพิ่มงานสำเร็จ')
-                this.$router.go(-1)
-            }).catch(()=>{
-                toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
-            })
+            if (!this.$v.form.taskList.minLength) {
+                toastr.error('กรุณาเพิ่มงานย่อย')
+            }
+            if (this.$v.form.name.required && this.$v.form.endDate.required &&
+            this.$v.form.manager.required && this.$v.form.taskList.minLength &&
+            this.$v.form.taskList.minLength) {
+                const task = this.$fireStore.collection("Task").doc()
+                await task.set({
+                    taskId: task.id,
+                    name: this.form.name,
+                    freelanceId: this.profile.userId,
+                    startDate: this.form.startDate,
+                    endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
+                    manager: this.form.manager,
+                    taskList: this.form.taskList,
+                }).then(()=>{
+                    toastr.success('เพิ่มงานสำเร็จ')
+                    this.$router.go(-1)
+                }).catch(()=>{
+                    toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
+                })
+            }
+
         },
         handleChangeManager(value) {
             this.form.manager = value
@@ -225,7 +231,10 @@ export default {
             name: { required },
             endDate: { required },
             manager: { required },
-            taskList: { minLength: minLength(1) }
+            taskList: {
+                minLength: minLength(2),
+                $each: { required }
+            }
         },
         subTaskFocus: { required },
         dateFocus: { required },
