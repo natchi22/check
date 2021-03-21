@@ -130,6 +130,9 @@ export default {
 </script>
 
 <style scoped>
+.body{
+    padding: 0px 16px 16px 16px;
+}
 .box{
     width: 100%;
     box-shadow: 4px 4px 8px rgb(229,229,229);
