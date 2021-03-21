@@ -2,7 +2,7 @@
     <!-- <div class="body"> -->
     <div class="status">
         <div class="top-succeed">
-            <h1>{{ task.name }}</h1>
+            <h1>{{ task.index }}. {{ task.name }}</h1>
         </div>
         <div class="box-status">
             <div class="box-date">
