@@ -62,7 +62,10 @@
                         :percent="calReal(task.taskList)"
                     />
                 </div>
-                <div class="div-progress">
+                <div
+                    class="div-progress"
+                    v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) !== `DONE`"
+                >
                     <h3>ความคืบหน้างาน : {{ list }}</h3>
                 </div>
             </div>
