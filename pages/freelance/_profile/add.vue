@@ -164,7 +164,7 @@ export default {
             this.form.manager = value
         },
         disabledDate(current) {
-            return current < moment().endOf('day')
+            return current <= moment()
         },
 
     },
