@@ -52,6 +52,7 @@ import toastr from 'toastr'
 export default {
     data() {
         return {
+            submitted: false,
             email: '',
             password: ''
         }
@@ -68,6 +69,7 @@ export default {
 
         async login(e) {
             e.preventDefault()
+            this.submitted = true
             if (this.email && this.password) {
                 try {
                     await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password).then((response)=>{
