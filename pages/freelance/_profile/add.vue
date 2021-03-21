@@ -10,6 +10,7 @@
 
             <h2>กำหนดส่งงาน</h2>
             <a-date-picker
+                :disabled-date="disabledDate"
                 :format="dateFormatList"
                 class="boxDate"
                 placeholder="กำหนดส่ง Project*"
@@ -161,7 +162,11 @@ export default {
         },
         handleChangeManager(value) {
             this.form.manager = value
-        }
+        },
+        disabledDate(current) {
+            return current < moment().endOf('day')
+        },
+
     },
     async mounted() {
         this.getManagerData()
