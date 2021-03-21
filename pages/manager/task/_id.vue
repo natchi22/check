@@ -173,6 +173,7 @@ export default {
     background: #FF0000;
     border-radius: 4px;
     padding: 3px 9px;
+    width: 80%;
 }
 .boxTime h2{
     color: #ffffff;

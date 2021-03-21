@@ -32,7 +32,7 @@
                     </h3>
                 </div>
                 <div class="div-progress">
-                    <h3>ความคืบหน้างาน : {{ showProcess(item.taskList) }}</h3>
+                    <h4>ความคืบหน้างาน : {{ showProcess(item.taskList) }}</h4>
                 </div>
             </nuxt-link>
         </div>
@@ -89,7 +89,7 @@ export default {
     flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 14px;
-    margin: 0 10px 20px 10px;
+    margin: 0 0px 20px 0px;
 }
 .box-manager{
     max-height: 550px;
