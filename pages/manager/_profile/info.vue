@@ -106,7 +106,6 @@ export default {
                 this.telNumber = doc.data().telNumber
                 this.email = doc.data().email
             })
-            console.log(this.fName, this.lName, this.email)
         },
     },
     async mounted () {
