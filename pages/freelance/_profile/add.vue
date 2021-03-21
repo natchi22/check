@@ -1,66 +1,113 @@
 <template>
     <div class="body">
-        <div class="div-top">
-            <h2>งาน</h2>
-            <a-input
-                class="boxInput"
-                placeholder="ชื่อ Project*"
-                v-model="form.name"
-            />
-
-            <h2>กำหนดส่งงาน</h2>
-            <a-date-picker
-                :disabled-date="disabledDate"
-                :format="dateFormatList"
-                class="boxDate"
-                placeholder="กำหนดส่ง Project*"
-                v-model="form.endDate"
-            />
-
-            <h2>หัวหน้างาน</h2>
-            <a-select
-                style="width: 100%"
-                @change="handleChangeManager"
-                placeholder="หัวหน้างาน*"
+        <a-form @submit.prevent="addWork">
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.name.required ? 'error' : ''"
+                :help="submitted && !$v.form.name.required ? 'กรุณากรอกชื่องาน' : ''"
             >
-                <a-icon
-                    slot="suffixIcon"
-                    type="user"
+                <template slot="label">
+                    ชื่องาน
+                </template>
+                <a-input
+                    class="boxInput"
+                    placeholder="ชื่อ Project*"
+                    v-model="form.name"
                 />
-                <a-select-option
-                    v-for="item in inforhead"
-                    :value="item.managerId"
-                    :key="item.managerId"
-                >
-                    {{ item.fName }} {{ item.lName }}
-                </a-select-option>
-            </a-select>
-        </div>
-        <div class="box">
-            <h2>งานย่อย :</h2>
-            <a-input
-                class="boxInput"
-                placeholder="งานย่อย*"
-                allow-clear
-                v-model="subTaskFocus"
-            />
-
-            <h2>นัดตรวจ :</h2>
-            <a-date-picker
-                class="boxDate"
-                :format="dateFormatList"
-                placeholder="นัดตรวจ*"
-                v-model="dateFocus"
-            />
-        </div>
-        <div class="div-list">
-            <button
-                class="btn btn-green btn-size-list"
-                @click="addList()"
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.endDate.required ? 'error' : ''"
+                :help="submitted && !$v.form.endDate.required ? 'กรุณากรอก รหัสผ่าน' : ''"
             >
-                เพิ่มลิส
-            </button>
-        </div>
+                <template slot="label">
+                    กำหนดส่งงาน
+                </template>
+                <a-date-picker
+                    :disabled-date="disabledDate"
+                    :format="dateFormatList"
+                    class="boxDate"
+                    placeholder="กำหนดส่ง Project*"
+                    v-model="form.endDate"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.manager.required ? 'error' : ''"
+                :help="submitted && !$v.form.manager.required ? 'กรุณาเลือกหัวหน้างาน' : ''"
+            >
+                <template slot="label">
+                    หัวหน้างาน
+                </template>
+                <a-select
+                    style="width: 100%"
+                    @change="handleChangeManager"
+                    placeholder="หัวหน้างาน*"
+                >
+                    <a-icon
+                        slot="suffixIcon"
+                        type="user"
+                    />
+                    <a-select-option
+                        v-for="item in inforhead"
+                        :value="item.managerId"
+                        :key="item.managerId"
+                    >
+                        {{ item.fName }} {{ item.lName }}
+                    </a-select-option>
+                </a-select>
+            </a-form-item>
+            <a-form
+                @submit.prevent="addList"
+                :validateStatus="submitted && !$v.form.taskList.minLength ? 'error' : ''"
+                :help="submitted && !$v.form.name.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
+            >
+                <a-form-item
+                    style="margin-bottom: 14px"
+                    :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
+                    :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+                >
+                    <template slot="label">
+                        งานย่อย
+                    </template>
+                    <a-input
+                        class="boxInput"
+                        placeholder="งานย่อย*"
+                        allow-clear
+                        v-model="subTaskFocus"
+                    />
+                </a-form-item>
+                <a-form-item
+                    style="margin-bottom: 14px"
+                    :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
+                    :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+                >
+                    <template slot="label">
+                        นัดตรวจ
+                    </template>
+                    <a-date-picker
+                        class="boxDate"
+                        :format="dateFormatList"
+                        placeholder="นัดตรวจ*"
+                        v-model="dateFocus"
+                    />
+                </a-form-item>
+                <a-button
+                    html-type="submit"
+                    type="primary"
+                >
+                    เพิ่มงานย่อย
+                </a-button>
+            </a-form>
+            <a-button
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
+            >
+                เพิ่มงาน
+            </a-button>
+        </a-form>
         <div
             class="box-list"
             v-for="(item,index) in form.taskList"
@@ -111,7 +158,6 @@ export default {
             },
             subTaskFocus: '',
             dateFocus: '',
-            managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -124,12 +170,8 @@ export default {
             const inforhead = await this.$fireStore.collection("Manager")
                 .get()
             inforhead.forEach((doc)=>{
-                console.log(doc.data())
                 this.inforhead.push(doc.data())
-                // console.log(doc.data())
-                // console.log(inforhead)
             })
-
         },
         addList() {
             this.form.taskList.push({
@@ -170,7 +212,17 @@ export default {
     },
     async mounted() {
         this.getManagerData()
-    }
+    },
+    validations: {
+        form: {
+            name: { required },
+            endDate: { required },
+            manager: { required },
+            taskList: { minLength: minLength(1) }
+        },
+        subTaskFocus: { required },
+        dateFocus: { required },
+    },
 }
 </script>
 
