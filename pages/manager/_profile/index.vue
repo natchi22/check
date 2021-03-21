@@ -69,33 +69,6 @@
                         :tasks="successTask"
                     />
                 </a-tab-pane>
-                <!--
-                <a-tab-pane
-                    key="4"
-                    tab="หัวหน้างาน"
-                >
-                    <button
-                        style="margin-top: 8px; margin-bottom: 8px"
-                        class="btn btn-green"
-                        @click="$router.push('/manager/login/register')"
-                    >
-                        เพิ่มหัวหน้างาน
-                    </button>
-                    <div class="box-manager">
-                        <div
-                            class="box"
-                            v-for="item in inforManagers"
-                            :key="item.managerId"
-                        >
-                            <h3 style="margin-bottom: 0px !important;">
-                                {{ item.fName }} {{ item.lName }}
-                            </h3>
-                            <h4>
-                                Email : {{ item.email }}
-                            </h4>
-                        </div>
-                    </div>
-                </a-tab-pane> -->
             </a-tabs>
         </div>
         <div v-else>
