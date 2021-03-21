@@ -31,6 +31,9 @@
                         ผู้ดูแล : {{ showManager(item.manager) }}
                     </h3>
                 </div>
+                <div class="div-progress">
+                    <h3>ความคืบหน้างาน : {{ list }}</h3>
+                </div>
             </nuxt-link>
         </div>
         <div
@@ -61,6 +64,11 @@ export default {
         },
         alertApprove(list) {
             return list.filter(e => e.status === 'PENDING').length > 0
+        }
+    },
+    data() {
+        return {
+            list: []
         }
     }
 }
@@ -105,5 +113,10 @@ export default {
     right: 0px;
     top: 0px;
     z-index: 0;
+}
+.div-progress{
+    display: flex;
+    justify-content: flex-end;
+    margin: 17px 0px 0px 0px;
 }
 </style>
