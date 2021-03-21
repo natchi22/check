@@ -1,5 +1,6 @@
 <template>
     <div class="body">
+        <h2>เพิ่มงาน</h2>
         <a-form
             @submit.prevent="addWork"
             style="margin-bottom: 16px"
@@ -191,12 +192,11 @@ export default {
         },
         async addWork() {
             this.submitted = true
-            if (!this.$v.form.taskList.minLength) {
+            if (this.form.taskList.length == 0) {
                 toastr.error('กรุณาเพิ่มงานย่อย')
             }
             if (this.$v.form.name.required && this.$v.form.endDate.required &&
-            this.$v.form.manager.required && this.$v.form.taskList.minLength &&
-            this.$v.form.taskList.minLength) {
+            this.$v.form.manager.required && this.form.taskList.length) {
                 const task = this.$fireStore.collection("Task").doc()
                 await task.set({
                     taskId: task.id,
@@ -231,10 +231,6 @@ export default {
             name: { required },
             endDate: { required },
             manager: { required },
-            taskList: {
-                minLength: minLength(2),
-                $each: { required }
-            }
         },
         subTaskFocus: { required },
         dateFocus: { required },
