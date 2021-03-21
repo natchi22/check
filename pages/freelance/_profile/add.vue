@@ -33,6 +33,7 @@
                     class="boxDate"
                     placeholder="กำหนดส่ง Project*"
                     v-model="form.endDate"
+                    @change="changeEndDate"
                 />
             </a-form-item>
             <a-form-item
@@ -232,6 +233,9 @@ export default {
                 console.log(this.form.taskList[index].endDateCal)
                 return current <= moment(this.form.taskList[index].endDateCal).subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
             }
+        },
+        changeEndDate() {
+            this.form.taskList = []
         }
     },
     async mounted() {
