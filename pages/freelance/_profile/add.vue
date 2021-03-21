@@ -1,6 +1,6 @@
 <template>
     <div class="body">
-        <h2>เพิ่มงาน</h2>
+        <h1>เพิ่มงาน</h1>
         <a-form
             @submit.prevent="addWork"
             style="margin-bottom: 16px"
@@ -239,6 +239,12 @@ export default {
 </script>
 
 <style scoped>
+.body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
 .div-top{
 	width: 100%;
 	padding: 0 18px;
