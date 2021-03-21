@@ -32,7 +32,7 @@
                     </h3>
                 </div>
                 <div class="div-progress">
-                    <h3>ความคืบหน้างาน : {{ list }}</h3>
+                    <h3>ความคืบหน้างาน : {{ showProcess(item.taskList) }}</h3>
                 </div>
             </nuxt-link>
         </div>
@@ -64,6 +64,15 @@ export default {
         },
         alertApprove(list) {
             return list.filter(e => e.status === 'PENDING').length > 0
+        },
+        showProcess(taskList) {
+            var task = taskList.find(el => el.status === `IN_PROCESS`)
+            if (task) {
+                return task.name
+            }
+            else {
+                return 'รอตรวจงาน'
+            }
         }
     },
     data() {
