@@ -1,6 +1,9 @@
 <template>
     <div class="body">
-        <a-form @submit.prevent="addWork">
+        <a-form
+            @submit.prevent="addWork"
+            style="margin-bottom: 16px"
+        >
             <a-form-item
                 style="margin-bottom: 14px"
                 :validateStatus="submitted && !$v.form.name.required ? 'error' : ''"
@@ -57,49 +60,53 @@
                     </a-select-option>
                 </a-select>
             </a-form-item>
-            <a-form
-                style="width: 80%"
-                @submit.prevent="addList"
-                :validateStatus="submitted && !$v.form.taskList.minLength ? 'error' : ''"
-                :help="submitted && !$v.form.taskList.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
-            >
-                <a-form-item
-                    style="margin-bottom: 14px"
-                    :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
-                    :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+            <div class="sub-task">
+                <a-form
+                    style="width: 80%; margin: 0 auto;"
+                    @submit.prevent="addList"
+                    :validateStatus="submitted && !$v.form.taskList.minLength ? 'error' : ''"
+                    :help="submitted && !$v.form.taskList.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
                 >
-                    <template slot="label">
-                        งานย่อย
-                    </template>
-                    <a-input
-                        class="boxInput"
-                        placeholder="งานย่อย*"
-                        allow-clear
-                        v-model="subTaskFocus"
-                    />
-                </a-form-item>
-                <a-form-item
-                    style="margin-bottom: 14px"
-                    :validateStatus="submittedSub && !$v.dateFocus.required ? 'error' : ''"
-                    :help="submittedSub && !$v.dateFocus.required ? 'กรุณาเพิ่มวันนัดตรวจ' : ''"
-                >
-                    <template slot="label">
-                        นัดตรวจ
-                    </template>
-                    <a-date-picker
-                        class="boxDate"
-                        :format="dateFormatList"
-                        placeholder="นัดตรวจ*"
-                        v-model="dateFocus"
-                    />
-                </a-form-item>
-                <a-button
-                    html-type="submit"
-                    type="primary"
-                >
-                    เพิ่มงานย่อย
-                </a-button>
-            </a-form>
+                    <a-form-item
+                        style="margin-bottom: 14px"
+                        :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
+                        :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+                    >
+                        <template slot="label">
+                            งานย่อย
+                        </template>
+                        <a-input
+                            class="boxInput"
+                            placeholder="งานย่อย*"
+                            allow-clear
+                            v-model="subTaskFocus"
+                        />
+                    </a-form-item>
+                    <a-form-item
+                        style="margin-bottom: 14px"
+                        :validateStatus="submittedSub && !$v.dateFocus.required ? 'error' : ''"
+                        :help="submittedSub && !$v.dateFocus.required ? 'กรุณาเพิ่มวันนัดตรวจ' : ''"
+                    >
+                        <template slot="label">
+                            นัดตรวจ
+                        </template>
+                        <a-date-picker
+                            class="boxDate"
+                            :format="dateFormatList"
+                            placeholder="นัดตรวจ*"
+                            v-model="dateFocus"
+                        />
+                    </a-form-item>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <a-button
+                            html-type="submit"
+                            type="primary"
+                        >
+                            เพิ่มงานย่อย
+                        </a-button>
+                    </div>
+                </a-form>
+            </div>
             <a-button
                 block
                 size="large"
@@ -126,15 +133,6 @@
             <div class="topic">
                 <h3>กำหนดส่ง : {{ item.endDate }}</h3>
             </div>
-        </div>
-        <br>
-        <div class="div-add">
-            <button
-                class="btn btn-green btn-size-add"
-                @click="addWork()"
-            >
-                เพิ่มงาน
-            </button>
         </div>
     </div>
 </template>
@@ -179,14 +177,15 @@ export default {
         },
         addList() {
             this.submittedSub = true
-            if (!this.$v.subTaskFocus.required || !this.$v.dateFocus.required) {
+            if (this.$v.subTaskFocus.required && this.$v.dateFocus.required) {
                 this.form.taskList.push({
                     name: this.subTaskFocus,
                     endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
                     status: 'IN_PROCESS'
                 })
-                this.subTaskFocus = ''
-                this.dateFocus = ''
+                this.subTaskFocus = null
+                this.dateFocus = null
+                this.submittedSub = false
             }
         },
         remove(index) {
@@ -321,6 +320,10 @@ export default {
 	width: 504px;
 	margin: 0 auto 20px auto;
 }
+}
+.sub-task{
+    width: 100%;
+    margin-bottom: 16px;
 }
 </style>
 
