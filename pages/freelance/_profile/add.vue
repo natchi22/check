@@ -77,7 +77,6 @@
                         <a-input
                             class="boxInput"
                             placeholder="งานย่อย*"
-                            allow-clear
                             v-model="subTaskFocus"
                         />
                     </a-form-item>
@@ -91,9 +90,11 @@
                         </template>
                         <a-date-picker
                             class="boxDate"
+                            :disabled-date="calDisable"
                             :format="dateFormatList"
                             placeholder="นัดตรวจ*"
                             v-model="dateFocus"
+                            :disabled="!$v.form.endDate.required"
                         />
                     </a-form-item>
                     <div style="display: flex; justify-content: flex-end;">
@@ -140,7 +141,7 @@
 import { mapState } from 'vuex'
 import moment from 'moment'
 import toastr from 'toastr'
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -180,6 +181,7 @@ export default {
                 this.form.taskList.push({
                     name: this.subTaskFocus,
                     endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
+                    endDateCal: this.dateFocus,
                     status: 'IN_PROCESS'
                 })
                 this.subTaskFocus = null
@@ -221,7 +223,16 @@ export default {
         disabledDate(current) {
             return current <= moment()
         },
-
+        calDisable(current) {
+            if (this.form.taskList.length == 0) {
+                return current <= moment().subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
+            }
+            else {
+                const index = this.form.taskList.length - 1
+                console.log(this.form.taskList[index].endDateCal)
+                return current <= moment(this.form.taskList[index].endDateCal).subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
+            }
+        }
     },
     async mounted() {
         this.getManagerData()
@@ -239,12 +250,6 @@ export default {
 </script>
 
 <style scoped>
-.body{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
 .div-top{
 	width: 100%;
 	padding: 0 18px;
