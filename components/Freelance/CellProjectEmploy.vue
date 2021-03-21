@@ -117,8 +117,14 @@ export default {
             }
         },
         showProcess(taskList) {
-            const task = taskList.find(el => el.status === `IN_PROCESS`)
-            return task.name
+            var task = taskList.find(el => el.status === `IN_PROCESS`)
+            if (task) {
+                return task.name
+            }
+            else {
+                return 'รอตรวจงาน'
+            }
+
         }
     }
 }
