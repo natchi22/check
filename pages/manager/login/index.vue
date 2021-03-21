@@ -3,6 +3,7 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-form @submit.prevent="login">
             <a-form-item
+                style="margin-bottom: 0px"
                 :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
                     submitted && !$v.email.email ? 'error' : ''"
                 :help="submitted && !$v.email.required ? 'กรุณากรอก อีเมล' : ''||
@@ -19,6 +20,7 @@
                 />
             </a-form-item>
             <a-form-item
+                style="margin-bottom: 0px"
                 :validateStatus="submitted && !$v.password.required ? 'error' : ''"
                 :help="submitted && !$v.password.required ? 'กรุณากรอก รหัสผ่าน' : ''"
             >
@@ -130,6 +132,7 @@ export default {
     width: 85%;
     margin: 0 auto;
     color: #000000;
+    justify-content: center;
 }
 .login h1{
     font-size: 36px;
@@ -137,9 +140,6 @@ export default {
     color: #3ABCA7;
     margin: 30px 0 26px 0;
     text-align: center;
-}
-.input{
-    margin: 0 0 16px 0;
 }
 .btn-green{
     margin: 0 0 16px 0;
