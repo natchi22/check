@@ -142,6 +142,7 @@
 import { mapState } from 'vuex'
 import moment from 'moment'
 import toastr from 'toastr'
+import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -158,6 +159,8 @@ export default {
             },
             subTaskFocus: '',
             dateFocus: '',
+            submitted: false,
+            submittedSub: false
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -174,6 +177,7 @@ export default {
             })
         },
         addList() {
+            this.submittedSub = true
             this.form.taskList.push({
                 name: this.subTaskFocus,
                 endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
@@ -186,6 +190,7 @@ export default {
             this.form.taskList.splice(index, 1)
         },
         async addWork() {
+            this.submitted = true
             const task = this.$fireStore.collection("Task").doc()
             await task.set({
                 taskId: task.id,
