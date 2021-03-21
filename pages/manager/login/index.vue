@@ -1,35 +1,50 @@
 <template>
     <div class="login">
         <h1>เข้าสู่ระบบ</h1>
-        <a-input
-            class="input"
-            name="email"
-            placeholder="Email"
-            v-model="email"
-        />
-        <a-input-password
-            class="input"
-            name="password"
-            placeholder="รหัสผ่าน"
-            v-model="password"
-        />
-        <button
-            class="btn btn-green"
-            @click="login"
-        >
-            เข้าสู่ระบบ
-        </button>
-        <!-- <nuxt-link to="/manager/login/register">
-            <button
-                class="btn btn-green"
-                @click="register"
+        <a-form @submit.prevent="onLoginSubmit">
+            <a-form-item
+                :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
+                    submitted && !$v.email.email ? 'error' : ''"
+                :help="submitted && !$v.email.required ? 'กรุณากรอก อีเมล' : ''||
+                    submitted && !$v.email.email ? 'กรุณากรอก อีเมล ให้ถูกต้อง' : ''"
             >
-                สมัครสมาชิก
-            </button>
-        </nuxt-link> -->
+                <template slot="label">
+                    Email
+                </template>
+                <a-input
+                    class="input"
+                    name="email"
+                    placeholder="Email"
+                    v-model="email"
+                />
+            </a-form-item>
+            <a-form-item
+                :validateStatus="submitted && !$v.password.required ? 'error' : ''"
+                :help="submitted && !$v.password.required ? 'กรุณากรอก รหัสผ่าน' : ''"
+            >
+                <template slot="label">
+                    Password
+                </template>
+                <a-input-password
+                    class="input"
+                    name="password"
+                    placeholder="รหัสผ่าน"
+                    v-model="password"
+                />
+            </a-form-item>
+            <a-button
+                size="large"
+                html-type="submit"
+                class="button login"
+                type="primary"
+            >
+                เข้าสู่ระบบ
+            </a-button>
+        </a-form>
     </div>
 </template>
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้รูปไม่ต้องเอามา
 import toastr from 'toastr'
 
@@ -102,6 +117,10 @@ export default {
                 alert('Connect failed, please try again.')
                 liff.closeWindow()
             })
+    },
+    validations: {
+        email: { required, email },
+        password: { required },
     },
 }
 </script>
