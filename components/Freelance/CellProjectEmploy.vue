@@ -117,7 +117,8 @@ export default {
             }
         },
         showProcess(taskList) {
-            return taskList.find(el => el.status === `IN_PROCESS`)
+            const task = taskList.find(el => el.status === `IN_PROCESS`)
+            return task.name
         }
     }
 }
