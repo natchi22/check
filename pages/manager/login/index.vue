@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <h1>เข้าสู่ระบบ</h1>
-        <a-form @submit.prevent="onLoginSubmit">
+        <a-form @submit.prevent="login">
             <a-form-item
                 :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
                     submitted && !$v.email.email ? 'error' : ''"
