@@ -58,9 +58,10 @@
                 </a-select>
             </a-form-item>
             <a-form
+                style="width: 80%"
                 @submit.prevent="addList"
                 :validateStatus="submitted && !$v.form.taskList.minLength ? 'error' : ''"
-                :help="submitted && !$v.form.name.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
+                :help="submitted && !$v.form.taskList.minLength ? 'กรุณาเพิ่มงานย่อย' : ''"
             >
                 <a-form-item
                     style="margin-bottom: 14px"
@@ -79,8 +80,8 @@
                 </a-form-item>
                 <a-form-item
                     style="margin-bottom: 14px"
-                    :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
-                    :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+                    :validateStatus="submittedSub && !$v.dateFocus.required ? 'error' : ''"
+                    :help="submittedSub && !$v.dateFocus.required ? 'กรุณาเพิ่มวันนัดตรวจ' : ''"
                 >
                     <template slot="label">
                         นัดตรวจ
@@ -178,13 +179,15 @@ export default {
         },
         addList() {
             this.submittedSub = true
-            this.form.taskList.push({
-                name: this.subTaskFocus,
-                endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
-                status: 'IN_PROCESS'
-            })
-            this.subTaskFocus = ''
-            this.dateFocus = ''
+            if (!this.$v.subTaskFocus.required || !this.$v.dateFocus.required) {
+                this.form.taskList.push({
+                    name: this.subTaskFocus,
+                    endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
+                    status: 'IN_PROCESS'
+                })
+                this.subTaskFocus = ''
+                this.dateFocus = ''
+            }
         },
         remove(index) {
             this.form.taskList.splice(index, 1)
