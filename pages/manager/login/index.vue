@@ -3,7 +3,7 @@
         <h1>เข้าสู่ระบบ</h1>
         <a-form @submit.prevent="login">
             <a-form-item
-                style="margin-bottom: 0px"
+                style="margin-bottom: 14px"
                 :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
                     submitted && !$v.email.email ? 'error' : ''"
                 :help="submitted && !$v.email.required ? 'กรุณากรอก อีเมล' : ''||
@@ -20,7 +20,7 @@
                 />
             </a-form-item>
             <a-form-item
-                style="margin-bottom: 0px"
+                style="margin-bottom: 14px"
                 :validateStatus="submitted && !$v.password.required ? 'error' : ''"
                 :help="submitted && !$v.password.required ? 'กรุณากรอก รหัสผ่าน' : ''"
             >
@@ -35,6 +35,7 @@
                 />
             </a-form-item>
             <a-button
+                block
                 size="large"
                 html-type="submit"
                 type="primary"
