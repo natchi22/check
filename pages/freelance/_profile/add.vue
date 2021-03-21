@@ -151,10 +151,10 @@ export default {
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
-                name: '',
+                name: null,
                 startDate: moment().format('DD/MM/YYYY'),
-                endDate: '',
-                manager: '',
+                endDate: null,
+                manager: null,
                 taskList: []
             },
             subTaskFocus: '',
