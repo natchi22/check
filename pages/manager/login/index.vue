@@ -35,7 +35,6 @@
             <a-button
                 size="large"
                 html-type="submit"
-                class="button login"
                 type="primary"
             >
                 เข้าสู่ระบบ
