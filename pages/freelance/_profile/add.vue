@@ -281,6 +281,9 @@ export default {
 .btn{
 	font-size: 12px;
 }
+.btn-wait{
+    font-size: 16px;
+}
 .btn-size-list{
 	width: 50px;
 	height: 26px;
