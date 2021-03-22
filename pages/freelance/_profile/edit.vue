@@ -86,6 +86,14 @@
                 บันทึก
             </a-button>
         </a-form>
+        <a-button
+            block
+            size="large"
+            type="warning"
+            @click="$router.go(-1)"
+        >
+            ย้อนกลับ
+        </a-button>
     </div>
 </template>
 <script>
