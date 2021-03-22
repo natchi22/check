@@ -138,7 +138,7 @@
             </div>
         </div>
         <a-button
-            
+            class="btn btn-wait"
             block
             size="large"
             type="warning"

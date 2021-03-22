@@ -59,6 +59,11 @@ input{
     background-color: #3ABCA7;
     border-color: #3ABCA7;
 }
+.ant-btn-primary:active{
+    background: #FFFFFF;
+    color: #3ABCA7;
+    border: 1px solid  #3ABCA7;
+}
 .ant-btn-primary:hover{
     background-color: #3ABCA7;
     border-color: #3ABCA7;
