@@ -198,8 +198,6 @@ export default {
             if (this.form.taskList.length == 0) {
                 toastr.error('กรุณาเพิ่มงานย่อย')
             }
-            console.log(this.$v.form.name.required, this.$v.form.endDate.required,
-                this.$v.form.manager.required, this.form.taskList.length)
             if (this.$v.form.name.required && this.$v.form.endDate.required &&
             this.$v.form.manager.required && this.form.taskList.length) {
                 const task = this.$fireStore.collection("Task").doc()
@@ -210,7 +208,9 @@ export default {
                     startDate: this.form.startDate,
                     endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
                     manager: this.form.manager,
-                    taskList: this.form.taskList,
+                    taskList: this.form.taskList.forEach(function(v) {
+                        delete v.endDateCal
+                    }),
                 }).then(()=>{
                     toastr.success('เพิ่มงานสำเร็จ')
                     this.$router.go(-1)
@@ -232,7 +232,6 @@ export default {
             }
             else {
                 const index = this.form.taskList.length - 1
-                console.log(this.form.taskList[index].endDateCal)
                 return current <= moment(this.form.taskList[index].endDateCal).subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
             }
         },
