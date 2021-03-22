@@ -218,6 +218,8 @@ input{
     border-radius: 4px;
     padding: 3px 9px;
     box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
+    width: 100%;
+
 }
 .boxTime h2{
     color: #ffffff;
