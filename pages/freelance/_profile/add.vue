@@ -135,6 +135,14 @@
                 <h3>กำหนดส่ง : {{ item.endDate }}</h3>
             </div>
         </div>
+        <a-button
+            block
+            size="large"
+            type="warning"
+            @click="$router.go(-1)"
+        >
+            ย้อนกลับ
+        </a-button>
     </div>
 </template>
 
