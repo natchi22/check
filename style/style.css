@@ -55,6 +55,10 @@ input{
     padding: 0 0 0 15px;
 }
 /* ปุ่ม */
+.ant-btn-primary:hover{
+    background-color: #3ABCA7;
+    border-color: #3ABCA7;
+}
 .button{
     display: flex;
     flex-direction: column;
