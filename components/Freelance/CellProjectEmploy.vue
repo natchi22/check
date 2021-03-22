@@ -34,9 +34,9 @@
                 <div class="div-contact-mn">
                     <a-icon
                         type="phone"
-                        :style="{ color: '#3ABCA7',fontSize: '20px' }"
+                        :style="{ color: '#3ABCA7',fontSize: '20px', marginRight: '2px' }"
                     />
-                    <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
+                    <h4>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h4>
                 </div>
                 <div class="dateTask">
                     <h3 class="topic">
@@ -62,8 +62,11 @@
                         :percent="calReal(task.taskList)"
                     />
                 </div>
-                <div class="div-progress">
-                    <h3>ความคืบหน้างาน : {{ list }}</h3>
+                <div
+                    class="div-progress"
+                    v-if="checkStatus(calPlan(task.startDate,task.endDate),calReal(task.taskList)) !== `DONE`"
+                >
+                    <h3>ความคืบหน้างาน : {{ showProcess(task.taskList) }}</h3>
                 </div>
             </div>
         </nuxt-link>
@@ -112,12 +115,24 @@ export default {
             else {
                 return `LATE`
             }
+        },
+        showProcess(taskList) {
+            var task = taskList.find(el => el.status === `IN_PROCESS`)
+            if (task) {
+                return task.name
+            }
+            else {
+                return 'รอตรวจงาน'
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+.body{
+    padding: 0px 16px 16px 16px;
+}
 .box{
     width: 100%;
     box-shadow: 4px 4px 8px rgb(229,229,229);

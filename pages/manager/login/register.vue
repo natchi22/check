@@ -1,53 +1,110 @@
 <template>
     <div class="login">
         <h1>เพิ่มหัวหน้างาน</h1>
-        <h2>E-mail</h2>
-        <input
-            type="text"
-            placeholder="E-mail"
-            v-model="email"
-        >
-        <h2>Password</h2>
-        <input
-            type="password"
-            placeholder="รหัสผ่าน"
-            v-model="password"
-        >
-        <h2>ชื่อ</h2>
-        <input
-            type="text"
-            placeholder="ชื่อ"
-            v-model="fName"
-        >
-        <h2>นามสกุล</h2>
-        <input
-            type="text"
-            placeholder="นามสกุล"
-            v-model="lName"
-        >
-        <h2>เบอร์โทรศัพท์</h2>
-        <input
-            type="text"
-            placeholder="เบอร์โทรศัพท์"
-            v-model="telNumber"
-        >
+        <a-form @submit.prevent="register">
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
+                    submitted && !$v.email.email ? 'error' : ''"
+                :help="submitted && !$v.email.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.email.email ? 'กรุณากรอกอีเมลให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    Email
+                </template>
+                <a-input
+                    class="input"
+                    name="email"
+                    placeholder="Email"
+                    v-model="email"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.password.required ? 'error' : ''"
+                :help="submitted && !$v.password.required ? 'กรุณากรอกรหัสผ่าน' : ''"
+            >
+                <template slot="label">
+                    Password
+                </template>
+                <a-input-password
+                    class="input"
+                    name="password"
+                    placeholder="รหัสผ่าน"
+                    v-model="password"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.fName.required ? 'error' : ''"
+                :help="submitted && !$v.fName.required ? 'กรุณากรอกชื่อ' : ''"
+            >
+                <template slot="label">
+                    ชื่อ
+                </template>
+                <a-input
+                    class="input"
+                    name="fName"
+                    placeholder="ชื่อ"
+                    v-model="fName"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.lName.required ? 'error' : ''"
+                :help="submitted && !$v.lName.required ? 'กรุณากรอกนามสกุล' : ''"
+            >
+                <template slot="label">
+                    นามสกุล
+                </template>
+                <a-input
+                    class="input"
+                    name="lName"
+                    placeholder="นามสกุล"
+                    v-model="lName"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.telNumber.required ? 'error' : '' ||
+                    submitted && !$v.telNumber.numeric ? 'error' : ''"
+                :help="submitted && !$v.telNumber.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.telNumber.numeric ? 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    เบอร์โทรศัพท์
+                </template>
+                <a-input
+                    class="input"
+                    name="telNumber"
+                    placeholder="เบอร์โทรศัพท์"
+                    v-model="telNumber"
+                />
+            </a-form-item>
+            <a-button
+                style="margin-bottom: 14px"
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
+                :loading="loading"
+            >
+                เพิ่มผู้จัดการ
+            </a-button>
+        </a-form>
         <a-button
-            class="btn btn-green"
-            @click="register"
-            :loading="loading"
-        >
-            เพิ่มหัวหน้างาน
-        </a-button>
-        <button
-            style="margin-top: 8px"
+            block
+            size="large"
+            type="warning"
             @click="$router.go(-1)"
         >
             ย้อนกลับ
-        </button>
+        </a-button>
     </div>
 </template>
 <script>
 import toastr from 'toastr'
+import { required, email, numeric } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -58,45 +115,55 @@ export default {
             lName: '',
             email: '',
             telNumber: '',
-            rank: 'หัวหน้างาน',
             loading: false,
+            submitted: false
         }
-    },
-    async mounted() {
-
     },
     methods: {
         async register() {
-            this.loading = true
-            await this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
-                .then((userCredential) => {
-                    var user = userCredential.user
-                    this.uid = user.uid
+            this.submitted = true
+            if (this.$v.email.required && this.$v.password.required &&
+            this.$v.fName.required && this.$v.lName.required &&
+            this.$v.telNumber.required && this.$v.telNumber.numeric) {
+                this.loading = true
+                await this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
+                    .then((userCredential) => {
+                        var user = userCredential.user
+                        this.uid = user.uid
                     //this.$fireAuth.signOut()
-                })
-                .catch((error) => {
+                    })
+                    .catch((error) => {
+                        var errorMessage = error.message
+                        toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
+                    })
+                const user = await this.$fireStore.collection("Manager").doc(this.uid)
+                await user.set({
+                    fName: this.fName,
+                    lName: this.lName,
+                    telNumber: this.telNumber,
+                    managerId: this.uid,
+                    email: this.email,
+                }).then(()=>{
+                    this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
+                    this.$router.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
+                    this.loading = false
+                }).catch((error) => {
                     var errorMessage = error.message
                     toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
+                    this.loading = false
                 })
-            const user = await this.$fireStore.collection("Manager").doc(this.uid)
-            await user.set({
-                fName: this.fName,
-                lName: this.lName,
-                telNumber: this.telNumber,
-                managerId: this.uid,
-                email: this.email,
-            }).then(()=>{
-                this.$fireAuth.signInWithEmailAndPassword('superAdmin@gmail.com', 'password')
-                this.$router.push('/manager/LkEgEE9HzgT06rcXANfOHyLtPoq2')
-                this.loading = false
-            }).catch((error) => {
-                var errorMessage = error.message
-                toastr.error(`เกิดข้อผิดพลาด ${errorMessage}`)
-                this.loading = false
-            })
+            }
+
         }
 
-    }
+    },
+    validations: {
+        password: { required },
+        fName: { required },
+        lName: { required },
+        email: { required, email },
+        telNumber: { required, numeric },
+    },
 }
 </script>
 <style scoped>
@@ -105,7 +172,7 @@ export default {
     flex-direction: column;
     width: 85%;
     margin: 0 auto;
-    text-align: center;
+    /* text-align: center; */
     color: #000000;
 }
 .login h1{

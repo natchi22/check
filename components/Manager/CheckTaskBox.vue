@@ -31,6 +31,9 @@
                         ผู้ดูแล : {{ showManager(item.manager) }}
                     </h3>
                 </div>
+                <div class="div-progress">
+                    <h4>ความคืบหน้างาน : {{ showProcess(item.taskList) }}</h4>
+                </div>
             </nuxt-link>
         </div>
         <div
@@ -61,6 +64,20 @@ export default {
         },
         alertApprove(list) {
             return list.filter(e => e.status === 'PENDING').length > 0
+        },
+        showProcess(taskList) {
+            var task = taskList.find(el => el.status === `IN_PROCESS`)
+            if (task) {
+                return task.name
+            }
+            else {
+                return 'รอตรวจงาน'
+            }
+        }
+    },
+    data() {
+        return {
+            list: []
         }
     }
 }
@@ -72,7 +89,7 @@ export default {
     flex-direction: column;
     box-shadow: 4px 4px 8px rgb(229,229,229);
     padding: 14px;
-    margin: 0 10px 20px 10px;
+    margin: 0 0px 20px 0px;
 }
 .box-manager{
     max-height: 550px;
@@ -105,5 +122,10 @@ export default {
     right: 0px;
     top: 0px;
     z-index: 0;
+}
+.div-progress{
+    display: flex;
+    justify-content: flex-end;
+    margin: 17px 0px 0px 0px;
 }
 </style>

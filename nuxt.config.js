@@ -26,6 +26,7 @@ export default {
     },
     plugins: [
         '@/plugins/antd-ui',
+        '~/plugins/validate.js',
     ],
     components: true,
     buildModules: [

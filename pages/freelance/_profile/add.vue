@@ -1,65 +1,122 @@
 <template>
     <div class="body">
-        <div class="div-top">
-            <h2>งาน</h2>
-            <a-input
-                class="boxInput"
-                placeholder="ชื่อ Project*"
-                v-model="form.name"
-            />
-
-            <h2>กำหนดส่งงาน</h2>
-            <a-date-picker
-                :format="dateFormatList"
-                class="boxDate"
-                placeholder="กำหนดส่ง Project*"
-                v-model="form.endDate"
-            />
-
-            <h2>หัวหน้างาน</h2>
-            <a-select
-                style="width: 100%"
-                @change="handleChangeManager"
-                placeholder="หัวหน้างาน*"
+        <h1>เพิ่มงาน</h1>
+        <a-form
+            @submit.prevent="addWork"
+            style="margin-bottom: 16px"
+        >
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.name.required ? 'error' : ''"
+                :help="submitted && !$v.form.name.required ? 'กรุณากรอกชื่องาน' : ''"
             >
-                <a-icon
-                    slot="suffixIcon"
-                    type="user"
+                <template slot="label">
+                    ชื่องาน
+                </template>
+                <a-input
+                    class="boxInput"
+                    placeholder="ชื่อ Project*"
+                    v-model="form.name"
                 />
-                <a-select-option
-                    v-for="item in inforhead"
-                    :value="item.managerId"
-                    :key="item.managerId"
-                >
-                    {{ item.fName }} {{ item.lName }}
-                </a-select-option>
-            </a-select>
-        </div>
-        <div class="box">
-            <h2>งานย่อย :</h2>
-            <a-input
-                class="boxInput"
-                placeholder="งานย่อย*"
-                allow-clear
-                v-model="subTaskFocus"
-            />
-
-            <h2>นัดตรวจ :</h2>
-            <a-date-picker
-                class="boxDate"
-                :format="dateFormatList"
-                placeholder="นัดตรวจ*"
-                v-model="dateFocus"
-            />
-        </div>
-        <div class="div-list">
-            <button
-                class="btn btn-green btn-size-list"
-                @click="addList()"
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.endDate.required ? 'error' : ''"
+                :help="submitted && !$v.form.endDate.required ? 'กรุณากำหนดวันส่งงาน' : ''"
             >
-                เพิ่มลิส
-            </button>
-        </div>
+                <template slot="label">
+                    กำหนดส่งงาน
+                </template>
+                <a-date-picker
+                    :disabled-date="disabledDate"
+                    :format="dateFormatList"
+                    class="boxDate"
+                    placeholder="กำหนดส่ง Project*"
+                    v-model="form.endDate"
+                    @change="changeEndDate"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.form.manager.required ? 'error' : ''"
+                :help="submitted && !$v.form.manager.required ? 'กรุณาเลือกหัวหน้างาน' : ''"
+            >
+                <template slot="label">
+                    หัวหน้างาน
+                </template>
+                <a-select
+                    style="width: 100%"
+                    @change="handleChangeManager"
+                    placeholder="หัวหน้างาน*"
+                >
+                    <a-icon
+                        slot="suffixIcon"
+                        type="user"
+                    />
+                    <a-select-option
+                        v-for="item in inforhead"
+                        :value="item.managerId"
+                        :key="item.managerId"
+                    >
+                        {{ item.fName }} {{ item.lName }}
+                    </a-select-option>
+                </a-select>
+            </a-form-item>
+            <div class="sub-task">
+                <a-form
+                    style="width: 80%; margin: 0 auto;"
+                    @submit.prevent="addList"
+                >
+                    <a-form-item
+                        style="margin-bottom: 14px"
+                        :validateStatus="submittedSub && !$v.subTaskFocus.required ? 'error' : ''"
+                        :help="submittedSub && !$v.subTaskFocus.required ? 'กรุณากรอกชื่องานย่อย' : ''"
+                    >
+                        <template slot="label">
+                            งานย่อย
+                        </template>
+                        <a-input
+                            class="boxInput"
+                            placeholder="งานย่อย*"
+                            v-model="subTaskFocus"
+                        />
+                    </a-form-item>
+                    <a-form-item
+                        style="margin-bottom: 14px"
+                        :validateStatus="submittedSub && !$v.dateFocus.required ? 'error' : ''"
+                        :help="submittedSub && !$v.dateFocus.required ? 'กรุณาเพิ่มวันนัดตรวจ' : ''"
+                    >
+                        <template slot="label">
+                            นัดตรวจ
+                        </template>
+                        <a-date-picker
+                            class="boxDate"
+                            :disabled-date="calDisable"
+                            :format="dateFormatList"
+                            placeholder="นัดตรวจ*"
+                            v-model="dateFocus"
+                            :disabled="!$v.form.endDate.required"
+                        />
+                    </a-form-item>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <a-button
+                            html-type="submit"
+                            type="primary"
+                        >
+                            เพิ่มงานย่อย
+                        </a-button>
+                    </div>
+                </a-form>
+            </div>
+            <a-button
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
+            >
+                เพิ่มงาน
+            </a-button>
+        </a-form>
         <div
             class="box-list"
             v-for="(item,index) in form.taskList"
@@ -78,15 +135,14 @@
                 <h3>กำหนดส่ง : {{ item.endDate }}</h3>
             </div>
         </div>
-        <br>
-        <div class="div-add">
-            <button
-                class="btn btn-green btn-size-add"
-                @click="addWork()"
-            >
-                เพิ่มงาน
-            </button>
-        </div>
+        <a-button
+            block
+            size="large"
+            type="warning"
+            @click="$router.go(-1)"
+        >
+            ย้อนกลับ
+        </a-button>
     </div>
 </template>
 
@@ -94,6 +150,7 @@
 import { mapState } from 'vuex'
 import moment from 'moment'
 import toastr from 'toastr'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -102,15 +159,16 @@ export default {
             moment,
             dateFormatList: 'DD/MM/YYYY',
             form: {
-                name: '',
+                name: null,
                 startDate: moment().format('DD/MM/YYYY'),
-                endDate: '',
-                manager: '',
+                endDate: null,
+                manager: null,
                 taskList: []
             },
             subTaskFocus: '',
             dateFocus: '',
-            managers: [ 'มานะ พากเพียร', 'สมบัติ วันดี' ]
+            submitted: false,
+            submittedSub: false
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -123,49 +181,89 @@ export default {
             const inforhead = await this.$fireStore.collection("Manager")
                 .get()
             inforhead.forEach((doc)=>{
-                console.log(doc.data())
                 this.inforhead.push(doc.data())
-                // console.log(doc.data())
-                // console.log(inforhead)
             })
-
         },
         addList() {
-            this.form.taskList.push({
-                name: this.subTaskFocus,
-                endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
-                status: 'IN_PROCESS'
-            })
-            this.subTaskFocus = ''
-            this.dateFocus = ''
+            this.submittedSub = true
+            if (this.$v.subTaskFocus.required && this.$v.dateFocus.required) {
+                this.form.taskList.push({
+                    name: this.subTaskFocus,
+                    endDate: moment(this.dateFocus).format('DD/MM/YYYY'),
+                    endDateCal: this.dateFocus,
+                    status: 'IN_PROCESS'
+                })
+                this.subTaskFocus = null
+                this.dateFocus = null
+                this.submittedSub = false
+            }
         },
         remove(index) {
             this.form.taskList.splice(index, 1)
         },
         async addWork() {
-            const task = this.$fireStore.collection("Task").doc()
-            await task.set({
-                taskId: task.id,
-                name: this.form.name,
-                freelanceId: this.profile.userId,
-                startDate: this.form.startDate,
-                endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
-                manager: this.form.manager,
-                taskList: this.form.taskList,
-            }).then(()=>{
-                toastr.success('เพิ่มงานสำเร็จ')
-                this.$router.go(-1)
-            }).catch(()=>{
-                toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
-            })
+            this.submitted = true
+            if (this.form.taskList.length == 0) {
+                toastr.error('กรุณาเพิ่มงานย่อย')
+            }
+            if (this.$v.form.name.required && this.$v.form.endDate.required &&
+            this.$v.form.manager.required && this.form.taskList.length) {
+                const res = await this.form.taskList.map(el => {
+                    const container = {}
+                    container.name = el.name,
+                    container.endDate = el.endDate
+                    container.status = el.status
+                    return container
+                })
+                const task = this.$fireStore.collection("Task").doc()
+                await task.set({
+                    taskId: task.id,
+                    name: this.form.name,
+                    freelanceId: this.profile.userId,
+                    startDate: this.form.startDate,
+                    endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
+                    manager: this.form.manager,
+                    taskList: res
+                }).then(()=>{
+                    toastr.success('เพิ่มงานสำเร็จ')
+                    this.$router.go(-1)
+                }).catch(()=>{
+                    toastr.error('เกิดข้อผิดพลาด ลองใหม่อีกครั้ง')
+                })
+            }
+
         },
         handleChangeManager(value) {
             this.form.manager = value
+        },
+        disabledDate(current) {
+            return current <= moment()
+        },
+        calDisable(current) {
+            if (this.form.taskList.length == 0) {
+                return current <= moment().subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
+            }
+            else {
+                const index = this.form.taskList.length - 1
+                return current <= moment(this.form.taskList[index].endDateCal) || current >= moment(this.form.endDate).add(1, 'days')
+            }
+        },
+        changeEndDate() {
+            this.form.taskList = []
         }
     },
     async mounted() {
         this.getManagerData()
-    }
+    },
+    validations: {
+        form: {
+            name: { required },
+            endDate: { required },
+            manager: { required },
+        },
+        subTaskFocus: { required },
+        dateFocus: { required },
+    },
 }
 </script>
 
@@ -256,6 +354,10 @@ export default {
 	width: 504px;
 	margin: 0 auto 20px auto;
 }
+}
+.sub-task{
+    width: 100%;
+    margin-bottom: 16px;
 }
 </style>
 

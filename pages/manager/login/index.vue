@@ -1,41 +1,59 @@
 <template>
     <div class="login">
         <h1>เข้าสู่ระบบ</h1>
-        <a-input
-            class="input"
-            name="email"
-            placeholder="Email"
-            v-model="email"
-        />
-        <a-input-password
-            class="input"
-            name="password"
-            placeholder="รหัสผ่าน"
-            v-model="password"
-        />
-        <button
-            class="btn btn-green"
-            @click="login"
-        >
-            เข้าสู่ระบบ
-        </button>
-        <!-- <nuxt-link to="/manager/login/register">
-            <button
-                class="btn btn-green"
-                @click="register"
+        <a-form @submit.prevent="login">
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
+                    submitted && !$v.email.email ? 'error' : ''"
+                :help="submitted && !$v.email.required ? 'กรุณากรอก อีเมล' : ''||
+                    submitted && !$v.email.email ? 'กรุณากรอก อีเมล ให้ถูกต้อง' : ''"
             >
-                สมัครสมาชิก
-            </button>
-        </nuxt-link> -->
+                <template slot="label">
+                    Email
+                </template>
+                <a-input
+                    class="input"
+                    name="email"
+                    placeholder="Email"
+                    v-model="email"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.password.required ? 'error' : ''"
+                :help="submitted && !$v.password.required ? 'กรุณากรอก รหัสผ่าน' : ''"
+            >
+                <template slot="label">
+                    Password
+                </template>
+                <a-input-password
+                    class="input"
+                    name="password"
+                    placeholder="รหัสผ่าน"
+                    v-model="password"
+                />
+            </a-form-item>
+            <a-button
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
+            >
+                เข้าสู่ระบบ
+            </a-button>
+        </a-form>
     </div>
 </template>
 <script>
+import { required, email } from 'vuelidate/lib/validators'
 import { mapState, mapMutations } from 'vuex' //ไม่ได้ใช้รูปไม่ต้องเอามา
 import toastr from 'toastr'
 
 export default {
     data() {
         return {
+            submitted: false,
             email: '',
             password: ''
         }
@@ -52,6 +70,7 @@ export default {
 
         async login(e) {
             e.preventDefault()
+            this.submitted = true
             if (this.email && this.password) {
                 try {
                     await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password).then((response)=>{
@@ -103,6 +122,10 @@ export default {
                 liff.closeWindow()
             })
     },
+    validations: {
+        email: { required, email },
+        password: { required },
+    },
 }
 </script>
 <style scoped>
@@ -112,6 +135,7 @@ export default {
     width: 85%;
     margin: 0 auto;
     color: #000000;
+    justify-content: center;
 }
 .login h1{
     font-size: 36px;
@@ -119,9 +143,6 @@ export default {
     color: #3ABCA7;
     margin: 30px 0 26px 0;
     text-align: center;
-}
-.input{
-    margin: 0 0 16px 0;
 }
 .btn-green{
     margin: 0 0 16px 0;
