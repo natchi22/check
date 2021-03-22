@@ -208,6 +208,13 @@ export default {
             }
             if (this.$v.form.name.required && this.$v.form.endDate.required &&
             this.$v.form.manager.required && this.form.taskList.length) {
+                const res = await this.form.taskList.map(el => {
+                    const container = {}
+                    container.name = el.name,
+                    container.endDate = el.endDate
+                    container.status = el.status
+                    return container
+                })
                 const task = this.$fireStore.collection("Task").doc()
                 await task.set({
                     taskId: task.id,
@@ -216,9 +223,7 @@ export default {
                     startDate: this.form.startDate,
                     endDate: moment(this.form.endDate).format('DD/MM/YYYY'),
                     manager: this.form.manager,
-                    taskList: this.form.taskList.forEach(function(v) {
-                        delete v.endDateCal
-                    }),
+                    taskList: res
                 }).then(()=>{
                     toastr.success('เพิ่มงานสำเร็จ')
                     this.$router.go(-1)
@@ -240,7 +245,7 @@ export default {
             }
             else {
                 const index = this.form.taskList.length - 1
-                return current <= moment(this.form.taskList[index].endDateCal).subtract(1, 'days') || current >= moment(this.form.endDate).add(1, 'days')
+                return current <= moment(this.form.taskList[index].endDateCal) || current >= moment(this.form.endDate).add(1, 'days')
             }
         },
         changeEndDate() {
