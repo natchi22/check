@@ -10,39 +10,82 @@
                 แก้ไขข้อมูลส่วนตัว
             </h1>
         </div>
-        <h2>ชื่อ*</h2>
-        <input
-            type="text"
-            placeholder="ชื่อ*"
-            v-model="fName"
-        >
-        <h2>นามสกุล*</h2>
-        <input
-            type="text"
-            placeholder="นามสกุล*"
-            v-model="lName"
-        >
-        <h2>เบอร์โทรศัพท์*</h2>
-        <input
-            type="text"
-            placeholder="เบอร์โทรศัพท์*"
-            v-model="telNumber"
-        >
-        <h2>Email*</h2>
-        <input
-            type="text"
-            placeholder="Email*"
-            v-model="email"
-        >
-        <div class="div-btn">
+        <a-form @submit.prevent="summit">
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.fName.required ? 'error' : ''"
+                :help="submitted && !$v.fName.required ? 'กรุณากรอกชื่อ' : ''"
+            >
+                <template slot="label">
+                    ชื่อ
+                </template>
+                <a-input
+                    class="input"
+                    name="fName"
+                    placeholder="ชื่อ"
+                    v-model="fName"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.lName.required ? 'error' : ''"
+                :help="submitted && !$v.lName.required ? 'กรุณากรอกนามสกุล' : ''"
+            >
+                <template slot="label">
+                    นามสกุล
+                </template>
+                <a-input
+                    class="input"
+                    name="lName"
+                    placeholder="นามสกุล"
+                    v-model="lName"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.telNumber.required ? 'error' : '' ||
+                    submitted && !$v.telNumber.numeric ? 'error' : ''"
+                :help="submitted && !$v.telNumber.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.telNumber.numeric ? 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    เบอร์โทรศัพท์
+                </template>
+                <a-input
+                    class="input"
+                    name="telNumber"
+                    placeholder="เบอร์โทรศัพท์"
+                    v-model="telNumber"
+                />
+            </a-form-item>
+            <a-form-item
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
+                    submitted && !$v.email.email ? 'error' : ''"
+                :help="submitted && !$v.email.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.email.email ? 'กรุณากรอกอีเมลให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    Email
+                </template>
+                <a-input
+                    class="input"
+                    name="email"
+                    placeholder="Email"
+                    v-model="email"
+                />
+            </a-form-item>
             <a-button
-                class="btn btn-green"
+                style="margin-bottom: 14px"
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
                 :loading="loading"
-                @click="summit"
             >
                 บันทึก
             </a-button>
-        </div>
+        </a-form>
     </div>
 </template>
 <script>
@@ -94,7 +137,13 @@ export default {
                     })
                 })
         }
-    }
+    },
+    validations: {
+        fName: { required },
+        lName: { required },
+        email: { required, email },
+        telNumber: { required, numeric },
+    },
 }
 </script>
 <style scoped>
