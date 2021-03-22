@@ -168,7 +168,7 @@ export default {
             this.submitted = true
             if (this.$v.fName.required && this.$v.lName.required &&
             this.$v.telNumber.required && this.$v.telNumber.numeric &&
-            this.$v.email.required && $v.email.email) {
+            this.$v.email.required && this.$v.email.email) {
                 if (this.oldPassword) {
                     if (this.newPassword) {
                         this.loading = true
