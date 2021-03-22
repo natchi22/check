@@ -22,6 +22,9 @@ img{
     width: 100%;
     object-fit: cover;
 }
+.img.icon-empty{
+    width: 20%;
+}
 /* รูป */
 /* เส้น */
 .line{
