@@ -101,6 +101,7 @@ export default {
             telNumber: '',
             email: '',
             loading: false,
+            submitted: false
         }
     },
     computed: { //นำstoreไปใช้ วางไว้หน้าที่จะใช้ และเรียกใช้บนโค้ด **import mapState ด้วย == นำอะไรที่มาจากไลน์มาใช้
@@ -120,10 +121,11 @@ export default {
     },
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
-            this.loading = true
+            this.submitted = true
             if (this.$v.fName.required && this.$v.lName.required &&
             this.$v.telNumber.required && this.$v.telNumber.numeric &&
             this.$v.email.email && this.$v.email.required) {
+                this.loading = true
                 await this.$fireStore.collection("Freelance")
                     .where('lineId', '==', this.profile.userId)
                     .get().then((query) => {
