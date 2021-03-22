@@ -119,23 +119,27 @@ export default {
     methods: { ///แก้ตรงนี้ แก้โปรไฟล์
         async summit() { ///input db ??? "'async' 'await'"ใส่ไว้รอ    /// กด submit แล้วเก็บข้อมูลที่ update
             this.loading = true
-            await this.$fireStore.collection("Freelance")
-                .where('lineId', '==', this.profile.userId)
-                .get().then((query) => {
-                    const profile = query.docs[0]
-                    profile.ref.update({
-                        firstName: this.fName,
-                        lastName: this.lName,
-                        phone: this.telNumber,
-                        email: this.email
-                    }).then(() => {
-                        this.loading = false
-                        toastr.success('แก้ไขข้อมูลสำเร็จ')
-                        this.$router.go(-1)
-                    }).catch(()=>{
-                        toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+            if (this.$v.fName.required && this.$v.lName.required &&
+            this.$v.telNumber.required && this.$v.telNumber.numeric &&
+            this.$v.email.email && this.$v.email.required) {
+                await this.$fireStore.collection("Freelance")
+                    .where('lineId', '==', this.profile.userId)
+                    .get().then((query) => {
+                        const profile = query.docs[0]
+                        profile.ref.update({
+                            firstName: this.fName,
+                            lastName: this.lName,
+                            phone: this.telNumber,
+                            email: this.email
+                        }).then(() => {
+                            this.loading = false
+                            toastr.success('แก้ไขข้อมูลสำเร็จ')
+                            this.$router.go(-1)
+                        }).catch(()=>{
+                            toastr.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง')
+                        })
                     })
-                })
+            }
         }
     },
     validations: {

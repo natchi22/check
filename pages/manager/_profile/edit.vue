@@ -5,48 +5,93 @@
             :src="profile.pictureUrl"
             alt="รูปโปรไฟล์"
         >
-        <h3 v-if="!isAdmin">
-            ชื่อ
-        </h3>
-        <input
-            v-if="!isAdmin"
-            type="text"
-            placeholder="ชื่อ*"
-            v-model="fName"
-        >
-        <h3 v-if="!isAdmin">
-            นามสกุล
-        </h3>
-        <input
-            v-if="!isAdmin"
-            type="text"
-            placeholder="นามสกุล*"
-            v-model="lName"
-        >
-        <h3 v-if="!isAdmin">
-            เบอร์โทรศัพท์
-        </h3>
-        <input
-            v-if="!isAdmin"
-            type="text"
-            placeholder="เบอร์โทรศัพท์*"
-            v-model="telNumber"
-        >
-        <!-- <h3 v-if="!isAdmin">
-            E-mail
-        </h3>
-        <input
-            v-if="!isAdmin"
-            type="text"
-            placeholder="E-mail*"
-            v-model="email"
-        > -->
-        <hr
-            class="line"
-        >
-        <p style="font-size:12px">
-            หากต้องการเปลี่ยนรหัสผ่าน กรุณากรอก password เดิมและ password ใหม่ข้างล่าง หากไม่ต้องการเปลี่ยนรหัสผ่านให้เว้นว่างไว้
-        </p>
+        <a-form @submit.prevent="summit">
+            <a-form-item
+                v-if="!isAdmin"
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.fName.required ? 'error' : ''"
+                :help="submitted && !$v.fName.required ? 'กรุณากรอกชื่อ' : ''"
+            >
+                <template slot="label">
+                    ชื่อ
+                </template>
+                <a-input
+                    class="input"
+                    name="fName"
+                    placeholder="ชื่อ"
+                    v-model="fName"
+                />
+            </a-form-item>
+            <a-form-item
+                v-if="!isAdmin"
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.lName.required ? 'error' : ''"
+                :help="submitted && !$v.lName.required ? 'กรุณากรอกนามสกุล' : ''"
+            >
+                <template slot="label">
+                    นามสกุล
+                </template>
+                <a-input
+                    class="input"
+                    name="lName"
+                    placeholder="นามสกุล"
+                    v-model="lName"
+                />
+            </a-form-item>
+            <a-form-item
+                v-if="!isAdmin"
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.telNumber.required ? 'error' : '' ||
+                    submitted && !$v.telNumber.numeric ? 'error' : ''"
+                :help="submitted && !$v.telNumber.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.telNumber.numeric ? 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    เบอร์โทรศัพท์
+                </template>
+                <a-input
+                    class="input"
+                    name="telNumber"
+                    placeholder="เบอร์โทรศัพท์"
+                    v-model="telNumber"
+                />
+            </a-form-item>
+            <a-form-item
+                v-if="!isAdmin"
+                style="margin-bottom: 14px"
+                :validateStatus="submitted && !$v.email.required ? 'error' : '' ||
+                    submitted && !$v.email.email ? 'error' : ''"
+                :help="submitted && !$v.email.required ? 'กรุณากรอกอีเมล' : ''||
+                    submitted && !$v.email.email ? 'กรุณากรอกอีเมลให้ถูกต้อง' : ''"
+            >
+                <template slot="label">
+                    Email
+                </template>
+                <a-input
+                    class="input"
+                    name="email"
+                    placeholder="Email"
+                    v-model="email"
+                />
+            </a-form-item>
+            <hr
+                class="line"
+            >
+            <p style="font-size:12px">
+                หากต้องการเปลี่ยนรหัสผ่าน กรุณากรอก password เดิมและ password ใหม่ข้างล่าง หากไม่ต้องการเปลี่ยนรหัสผ่านให้เว้นว่างไว้
+            </p>
+            <a-button
+                style="margin-bottom: 14px"
+                block
+                size="large"
+                html-type="submit"
+                type="primary"
+                :loading="loading"
+            >
+                บันทึก
+            </a-button>
+        </a-form>
+
         <h3 v-if="!isAdmin">
             Password เดิม
         </h3>
@@ -159,7 +204,13 @@ export default {
                 })
             }
         }
-    }
+    },
+    validations: {
+        fName: { required },
+        lName: { required },
+        email: { required, email },
+        telNumber: { required, numeric },
+    },
 }
 </script>
 <style scoped>

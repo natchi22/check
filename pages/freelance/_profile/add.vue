@@ -198,6 +198,8 @@ export default {
             if (this.form.taskList.length == 0) {
                 toastr.error('กรุณาเพิ่มงานย่อย')
             }
+            console.log(this.$v.form.name.required, this.$v.form.endDate.required,
+                this.$v.form.manager.required, this.form.taskList.length)
             if (this.$v.form.name.required && this.$v.form.endDate.required &&
             this.$v.form.manager.required && this.form.taskList.length) {
                 const task = this.$fireStore.collection("Task").doc()
