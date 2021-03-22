@@ -82,7 +82,7 @@
                 />
             </a-form-item>
             <a-button
-                style="margin-bottom:14px"
+                style="margin-bottom: 14px"
                 block
                 size="large"
                 html-type="submit"
