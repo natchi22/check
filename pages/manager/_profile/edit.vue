@@ -130,6 +130,8 @@
 <script>
 import toastr from 'toastr'
 import { mapState } from 'vuex'
+import { required, email, numeric } from 'vuelidate/lib/validators'
+
 export default {
     data() {
         return {
