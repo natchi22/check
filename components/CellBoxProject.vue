@@ -12,7 +12,7 @@
                 class="btn-status btn-succeed"
             >
                 <h3>
-                    งานสำเร็จ
+                    เสร็จสิ้น
                 </h3>
             </div>
             <div
@@ -20,7 +20,7 @@
                 class="btn-status btn-wait"
             >
                 <h3>
-                    ตามแผนการ
+                    ตามแผน
                 </h3>
             </div>
             <div
@@ -28,7 +28,7 @@
                 class="btn-status btn-process"
             >
                 <h3>
-                    ช้ากว่ากำหนด
+                    ล่าช้า
                 </h3>
             </div>
         </div>
