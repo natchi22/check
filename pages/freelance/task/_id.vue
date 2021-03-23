@@ -24,7 +24,7 @@
                 type="phone"
                 :style="{ color: '#3ABCA7',fontSize: '20px' }"
             />
-            <nuxt-link :to="`/manager/${task.manager}/info`">
+            <nuxt-link :to="`/freelance/manager/${task.manager}/info`">
                 <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
             </nuxt-link>
         </div>
