@@ -2,7 +2,7 @@
     <div class="body">
         <div class="edit">
             <img
-                v-if="!isAdmin && $fireAuth.currentUser.email !== manager.email"
+                v-if="!isAdmin && $fireAuth.currentUser.email !== email"
                 class="pic size-pic"
                 src="~/assets/images/avatardefault.png"
                 alt="รูปโปรไฟล์"
@@ -17,7 +17,7 @@
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
                 <button
-                    v-if="$fireAuth.currentUser.email === manager.email && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                    v-if="$fireAuth.currentUser.email === email && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                     class="btn btn-green btn-size"
                 >
                     แก้ไขข้อมูลส่วนตัว
