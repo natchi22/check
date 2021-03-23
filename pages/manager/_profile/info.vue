@@ -8,7 +8,7 @@
                 alt="รูปโปรไฟล์"
             >
             <img
-                v-if="profile.email === email"
+                v-if="isAdmin || profile.email === email"
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
