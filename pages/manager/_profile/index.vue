@@ -42,7 +42,7 @@
             >
                 <a-tab-pane
                     key="1"
-                    tab="ช้ากว่ากำหนด"
+                    tab="ล่าช้า"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
@@ -52,7 +52,7 @@
 
                 <a-tab-pane
                     key="2"
-                    tab="ตามแผนงาน"
+                    tab="ตามแผน"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
@@ -62,7 +62,7 @@
 
                 <a-tab-pane
                     key="3"
-                    tab="งานสำเร็จ"
+                    tab="เสร็จสิ้น"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
@@ -77,7 +77,7 @@
             >
                 <a-tab-pane
                     key="1"
-                    tab="ช้ากว่ากำหนด"
+                    tab="ล่าช้า"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
@@ -86,7 +86,7 @@
                 </a-tab-pane>
                 <a-tab-pane
                     key="2"
-                    tab="ตามแผนงาน"
+                    tab="ตามแผน"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"
@@ -96,7 +96,7 @@
 
                 <a-tab-pane
                     key="3"
-                    tab="งานสำเร็จ"
+                    tab="เสร็จสิ้น"
                 >
                     <CheckTaskBox
                         :inforManagers="inforManagers"

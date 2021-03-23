@@ -43,7 +43,7 @@
                 <h3>ติดต่อหัวหน้า : {{ task.manager ? showManager(task.manager) : '' }}</h3>
             </div>
         </div>
-        <h2>ความสำเร็จตามแผน</h2>
+        <h2>ความสำเร็จ</h2>
         <a-progress
             :percent="task.startDate && task.endDate ? calPlan(task.startDate,task.endDate) : 0"
             class="progress"
