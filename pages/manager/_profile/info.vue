@@ -2,13 +2,14 @@
     <div class="body">
         <div class="edit">
             <img
-                v-if="!isAdmin && profile.email !== email"
+                v-if="!isAdmin && $fireAuth.currentUser.email !== email"
                 class="pic size-pic"
                 src="~/assets/images/avatardefault.png"
                 alt="รูปโปรไฟล์"
             >
+            {{ profile.email }} / {{ $fireAuth.currentUser.email }}
             <img
-                v-if="isAdmin || profile.email === email"
+                v-if="isAdmin || $fireAuth.currentUser.email === email"
                 class="pic size-pic"
                 :src="profile.pictureUrl"
                 alt="รูปโปรไฟล์"
