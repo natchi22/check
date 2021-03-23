@@ -100,6 +100,7 @@
                     </a-form-item>
                     <div style="display: flex; justify-content: flex-end;">
                         <a-button
+                            
                             html-type="submit"
                             type="primary"
                         >
@@ -109,6 +110,7 @@
                 </a-form>
             </div>
             <a-button
+                
                 block
                 size="large"
                 html-type="submit"
@@ -136,6 +138,7 @@
             </div>
         </div>
         <a-button
+            class="btn btn-wait"
             block
             size="large"
             type="warning"
@@ -277,6 +280,9 @@ export default {
 }
 .btn{
 	font-size: 12px;
+}
+.btn-wait{
+    font-size: 16px;
 }
 .btn-size-list{
 	width: 50px;

@@ -19,8 +19,11 @@
     border-radius: 100%;
 }
 img{
-    width: 100%;
+    width: 20%;
     object-fit: cover;
+}
+.img.icon-empty{
+    width: 20%;
 }
 /* รูป */
 /* เส้น */
@@ -55,6 +58,24 @@ input{
     padding: 0 0 0 15px;
 }
 /* ปุ่ม */
+.ant-btn-primary:focus{
+    color: #FFFFFF;
+    background-color: #3ABCA7;
+    border-color: #3ABCA7;
+}
+.ant-btn-primary{
+    background-color: #3ABCA7;
+    border-color: #3ABCA7;
+}
+.ant-btn-primary:active{
+    background: #FFFFFF;
+    color: #3ABCA7;
+    border: 1px solid  #3ABCA7;
+}
+.ant-btn-primary:hover{
+    background-color: #3ABCA7;
+    border-color: #3ABCA7;
+}
 .button{
     display: flex;
     flex-direction: column;
@@ -197,6 +218,8 @@ input{
     border-radius: 4px;
     padding: 3px 9px;
     box-shadow: 4px 4px 8px rgba(0,0,0,0.25);
+    width: 100%;
+
 }
 .boxTime h2{
     color: #ffffff;

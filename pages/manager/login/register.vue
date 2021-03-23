@@ -89,7 +89,7 @@
                 type="primary"
                 :loading="loading"
             >
-                เพิ่มผู้จัดการ
+                เพิ่มหัวหน้างาน
             </a-button>
         </a-form>
         <a-button

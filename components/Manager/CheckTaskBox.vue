@@ -115,6 +115,9 @@ export default {
     justify-content: center;
     text-align: center;
 }
+.no-task img{
+    margin: 0 auto;
+}
 .stamp{
     transform: rotateZ(7deg);
     width: 82px;
