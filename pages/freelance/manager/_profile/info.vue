@@ -2,7 +2,6 @@
     <div class="body">
         <div class="edit">
             <img
-                v-if="!isAdmin && $fireAuth.currentUser.email !== email"
                 class="pic size-pic"
                 src="~/assets/images/avatardefault.png"
                 alt="รูปโปรไฟล์"
