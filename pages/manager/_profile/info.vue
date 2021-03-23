@@ -2,7 +2,7 @@
     <div class="body">
         <div class="edit">
             <img
-                v-if="!isAdmin && $fireAuth.currentUser.email !== email"
+                v-if="!isAdmin && profile.email !== email"
                 class="pic size-pic"
                 src="~/assets/images/avatardefault.png"
                 alt="รูปโปรไฟล์"
@@ -17,10 +17,10 @@
                 :to="`/manager/${$fireAuth.currentUser.uid}/edit`"
             >
                 <button
-                    v-if="$fireAuth.currentUser.email === email && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
+                    v-if="profile.email === email && $fireAuth.currentUser.email !== `superadmin@gmail.com`"
                     class="btn btn-green btn-size"
                 >
-                    แก้ไขข้อมูลส่วนตัว
+                    แก้ไขข้อมูลส่วนตัว {{ profile.email }}
                 </button>
             </nuxt-link>
         </div>
